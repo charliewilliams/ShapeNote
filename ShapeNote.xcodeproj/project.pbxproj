@@ -23,6 +23,9 @@
 		C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B8F1A7BBA7A0006ED16 /* Group.swift */; };
 		C0515B931A7BC4000006ED16 /* SH1991.json in Resources */ = {isa = PBXBuildFile; fileRef = C0515B921A7BC4000006ED16 /* SH1991.json */; };
 		C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */; };
+		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
+		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
+		C07542EB1A7BFE55007626C6 /* SingerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07542E91A7BFE55007626C6 /* SingerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		C0515B8F1A7BBA7A0006ED16 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C0515B921A7BC4000006ED16 /* SH1991.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SH1991.json; sourceTree = "<group>"; };
 		C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
+		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
+		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
+		C07542E91A7BFE55007626C6 /* SingerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +109,10 @@
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
 				C0515B651A7BA59D0006ED16 /* ViewController.swift */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
+				C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
+				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
+				C07542E91A7BFE55007626C6 /* SingerViewController.xib */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -233,6 +242,7 @@
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
+				C07542EB1A7BFE55007626C6 /* SingerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +266,8 @@
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
 				C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */,
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
+				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
+				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */,
 				C0515B661A7BA59D0006ED16 /* ViewController.swift in Sources */,
 				C0515B881A7BBA790006ED16 /* Leading.swift in Sources */,

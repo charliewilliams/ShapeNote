@@ -7,7 +7,7 @@
         <relationship name="songs" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="book" inverseEntity="Song" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="singer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Singer" inverseName="group" inverseEntity="Singer" syncable="YES"/>
     </entity>
     <entity name="Leading" representedClassName="Leading" syncable="YES">
@@ -22,6 +22,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="group" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="singer" inverseEntity="Group" syncable="YES"/>
         <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Leading" inverseName="leader" inverseEntity="Leading" syncable="YES"/>
     </entity>
@@ -41,9 +42,9 @@
     </entity>
     <elements>
         <element name="Book" positionX="151" positionY="18" width="128" height="103"/>
-        <element name="Group" positionX="-567" positionY="54" width="128" height="73"/>
+        <element name="Group" positionX="-567" positionY="54" width="128" height="75"/>
         <element name="Leading" positionX="-207" positionY="128" width="128" height="88"/>
-        <element name="Singer" positionX="-371" positionY="-1" width="128" height="163"/>
+        <element name="Singer" positionX="-371" positionY="-1" width="128" height="28"/>
         <element name="Song" positionX="-36" positionY="9" width="128" height="223"/>
     </elements>
 </model>

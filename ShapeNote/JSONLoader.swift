@@ -73,6 +73,6 @@ class JSONLoader: NSObject {
 
     func coreDataContext() -> NSManagedObjectContext! {
         
-        return CoreDataHelper.sharedHelper.managedObjectContext
+        return CoreDataHelper.managedContext
     }
 }

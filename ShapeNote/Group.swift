@@ -13,7 +13,7 @@ import CoreData
 
 class Group: NSManagedObject {
 
-    @NSManaged var location: String
+    @NSManaged var name: String
     @NSManaged var singer: Singer
 
 }
