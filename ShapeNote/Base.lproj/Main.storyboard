@@ -68,7 +68,7 @@
         <!--Sacred Harp-->
         <scene sceneID="IVu-nV-GIw">
             <objects>
-                <tableViewController title="Sacred Harp" id="pwM-Va-lag" sceneMemberID="viewController">
+                <tableViewController title="Sacred Harp" id="pwM-Va-lag" customClass="SongListTableViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OoA-wg-ntw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

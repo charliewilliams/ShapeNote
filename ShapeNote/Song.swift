@@ -41,6 +41,12 @@ class Song: NSManagedObject {
             "key":"Key"]
     }
     
+    var strippedNumber: String {
+    
+        let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
+        return self.number.stringByTrimmingCharactersInSet(characterSet)
+    }
+    
     func configureWithDict(dict:NSDictionary) {
         
         for (key, value) in Song.keys {
