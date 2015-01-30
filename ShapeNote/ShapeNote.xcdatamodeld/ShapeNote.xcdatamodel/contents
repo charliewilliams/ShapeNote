@@ -40,10 +40,10 @@
         <relationship name="ledBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Leading" inverseName="song" inverseEntity="Leading" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Singer" positionX="-371" positionY="-1" width="128" height="163"/>
-        <element name="Song" positionX="-36" positionY="9" width="128" height="223"/>
         <element name="Book" positionX="151" positionY="18" width="128" height="103"/>
         <element name="Group" positionX="-567" positionY="54" width="128" height="73"/>
         <element name="Leading" positionX="-207" positionY="128" width="128" height="88"/>
+        <element name="Singer" positionX="-371" positionY="-1" width="128" height="163"/>
+        <element name="Song" positionX="-36" positionY="9" width="128" height="223"/>
     </elements>
 </model>

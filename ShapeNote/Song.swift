@@ -12,22 +12,6 @@ import CoreData
 @objc(Song)
 
 class Song: NSManagedObject {
-    
-    //[{"Number":"073b","Song Title":"Arlington","Key":"Major","Fugue/Plain":"Plain","Time Signature":"3/2","Meter":"CM","Parts":4,"Year":1762,"Composer":"Arne, Thomas A.","Lyricist":null},
-    
-    class var keys: [String:String] {
-
-        return ["number":"Number",
-        "title":"Song Title",
-        "composer":"Composer",
-        "lyricist":"Lyricist",
-        "year":"Year",
-        "type":"Fugue/Plain",
-        "timeSignature":"Time Signature",
-        "meter":"Meter",
-        "parts":"Parts",
-        "key":"Key"]
-    }
 
     @NSManaged var title: String
     @NSManaged var composer: String
@@ -41,6 +25,21 @@ class Song: NSManagedObject {
     @NSManaged var key: String
     @NSManaged var book: Book
     @NSManaged var ledBy: Leading
+    
+    class var keys: [String:String] {
+        
+        //[{"Number":"073b","Song Title":"Arlington","Key":"Major","Fugue/Plain":"Plain","Time Signature":"3/2","Meter":"CM","Parts":4,"Year":1762,"Composer":"Arne, Thomas A.","Lyricist":null},
+        return ["number":"Number",
+            "title":"Song Title",
+            "composer":"Composer",
+            "lyricist":"Lyricist",
+            "year":"Year",
+            "type":"Fugue/Plain",
+            "timeSignature":"Time Signature",
+            "meter":"Meter",
+            "parts":"Parts",
+            "key":"Key"]
+    }
     
     func configureWithDict(dict:NSDictionary) {
         

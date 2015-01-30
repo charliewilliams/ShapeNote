@@ -22,16 +22,32 @@ class JSONLoader: NSObject {
         
         let songs = CoreDataHelper.sharedHelper.songs(nil) as [NSManagedObject]?
         
-//        if songs != nil {
-//            return
-//        }
+        if (songs?.count > 0) {
+            return
+        }
         
+        let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
+        book.title = "The Sacred Harp (1991)"
+        book.year = "1991";
+        book.author = "Sacred Harp Publishing Company"
+        
+        var songsSet = NSMutableOrderedSet();
+
         let json = loadFilesFromBundle()
         
         for d:NSDictionary in json {
             
             let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as Song
             s.configureWithDict(d)
+            songsSet.addObject(s)
+        }
+        
+        book.songs = songsSet
+        
+        var error:NSError?
+        coreDataContext().save(&error)
+        if error != nil {
+            println(error)
         }
     }
 
@@ -51,7 +67,6 @@ class JSONLoader: NSObject {
         if jsonError != nil {
             println(jsonError)
         }
-        print(decodedJson)
         
         return decodedJson as [NSDictionary]
     }

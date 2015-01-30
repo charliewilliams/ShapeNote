@@ -16,6 +16,6 @@ class Book: NSManagedObject {
     @NSManaged var title: String
     @NSManaged var year: String
     @NSManaged var author: String
-    @NSManaged var song: NSManagedObject
+    @NSManaged var songs: NSOrderedSet
 
 }
