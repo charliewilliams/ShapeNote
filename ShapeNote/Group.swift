@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+@objc(Group)
+
 class Group: NSManagedObject {
 
     @NSManaged var location: String

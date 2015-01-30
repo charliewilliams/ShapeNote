@@ -20,22 +20,29 @@ class JSONLoader: NSObject {
     
     func handleFirstRun() {
         
-        if NSUserDefaults.standardUserDefaults().boolForKey("FirstRun") {
-            return
-        }
+        let songs = CoreDataHelper.sharedHelper.songs(nil) as [NSManagedObject]?
+        
+//        if songs != nil {
+//            return
+//        }
         
         let json = loadFilesFromBundle()
         
         for d:NSDictionary in json {
             
-            let s: Song = Song()
+            let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as Song
             s.configureWithDict(d)
         }
     }
 
     func loadFilesFromBundle() -> [NSDictionary] {
         
-        let songsPath = NSBundle.mainBundle().pathForResource("SH1991", ofType: "json")
+        let songsPath = NSBundle.mainBundle().pathForResource("SH1991", ofType: "json")?
+        
+        if songsPath == nil {
+            println("Missing songs file in bundle!")
+            abort()
+        }
         let data = NSFileManager.defaultManager().contentsAtPath(songsPath!)
         assert(data != nil, "Need data")
         var jsonError: NSError?

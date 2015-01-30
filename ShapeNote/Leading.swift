@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+@objc(Leading)
+
 class Leading: NSManagedObject {
 
     @NSManaged var date: NSTimeInterval

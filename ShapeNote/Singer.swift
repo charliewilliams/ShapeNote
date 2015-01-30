@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+@objc(Singer)
+
 class Singer: NSManagedObject {
 
     @NSManaged var name: String

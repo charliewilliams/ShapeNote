@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+@objc(Song)
+
 class Song: NSManagedObject {
     
     //[{"Number":"073b","Song Title":"Arlington","Key":"Major","Fugue/Plain":"Plain","Time Signature":"3/2","Meter":"CM","Parts":4,"Year":1762,"Composer":"Arne, Thomas A.","Lyricist":null},

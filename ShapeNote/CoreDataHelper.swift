@@ -28,7 +28,7 @@ class CoreDataHelper {
         return resultsForEntityName("Book")
     }
     
-    func songs(book:String) -> [NSManagedObject] {
+    func songs(book:String?) -> [NSManagedObject] {
         
         return resultsForEntityName("Song")
     }
@@ -39,6 +39,10 @@ class CoreDataHelper {
         var error: NSError?
         
         let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]
+        
+        if error != nil {
+            println("error loading results for \(entityName): \(error)")
+        }
         
         return fetchedResults
     }
