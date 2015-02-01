@@ -15,7 +15,7 @@ class Song: NSManagedObject {
 
     @NSManaged var title: String
     @NSManaged var composer: String
-    @NSManaged var lyricist: String
+    @NSManaged var lyricist: String?
     @NSManaged var year: Int16
     @NSManaged var number: String
     @NSManaged var type: String

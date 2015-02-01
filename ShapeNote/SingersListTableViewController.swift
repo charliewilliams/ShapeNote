@@ -57,33 +57,22 @@ class SingersListTableViewController: UITableViewController {
             CoreDataHelper.save()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
-        } else if editingStyle == .Insert {
-            
-            
-        }    
-    }
-    
-    @IBAction func newSingerPressed(sender: AnyObject) {
-        
-        let svc = SingerViewController()
-        self.navigationController?.pushViewController(svc, animated: true)
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let svc = SingerViewController()
-        let s = singers[indexPath.row]
-        svc.singer = s
-        
-        self.navigationController?.pushViewController(svc, animated: true)
+        }
     }
 
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+
+        let dvc:UIViewController = segue.destinationViewController as UIViewController
+        
+        if let svc = dvc as? SingerViewController {
+
+            if let indexPath = tableView.indexPathForSelectedRow() {
+                let s = singers[indexPath.row]
+                svc.singer = s
+            }
+        }
     }
 
 }

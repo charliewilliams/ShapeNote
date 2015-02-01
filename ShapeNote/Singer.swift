@@ -10,10 +10,11 @@ import Foundation
 import CoreData
 
 enum Voice:Int16 {
-    case Bass = 0
-    case Tenor = 1
-    case Treble = 2
-    case Alto = 3
+    case NotSpecified = 0
+    case Bass = 1
+    case Tenor = 2
+    case Treble = 3
+    case Alto = 4
 }
 
 @objc(Singer)
@@ -39,6 +40,7 @@ class Singer: NSManagedObject {
         case .Tenor: return "Tenor"
         case .Treble: return "Treble"
         case .Alto: return "Alto"
+        case .NotSpecified: return ""
         }
         
     }

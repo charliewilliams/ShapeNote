@@ -18,19 +18,41 @@ class CoreDataHelper {
         return Static.instance
     }
     
-    func singers() -> [NSManagedObject] {
+    func singers() -> [Singer] {
         
-        return resultsForEntityName("Singer")
+        return resultsForEntityName("Singer") as [Singer]
     }
     
-    func books() -> [NSManagedObject] {
+    func books() -> [Book] {
         
-        return resultsForEntityName("Book")
+        return resultsForEntityName("Book") as [Book]
     }
     
-    func songs(book:String?) -> [NSManagedObject] {
+    func songs(book:String?) -> [Song] {
         
-        return resultsForEntityName("Song")
+        return resultsForEntityName("Song") as [Song]
+    }
+    
+    func groups() -> [Group] {
+        
+        return resultsForEntityName("Group") as [Group]
+    }
+    
+    func groupWithName(name:String) -> [Group]? {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Group")
+        var error: NSError?
+        
+        let resultPredicate = NSPredicate(format: "name = %@", name)
+        fetchRequest.predicate = resultPredicate
+        
+        let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [Group]
+        
+        if error != nil {
+            println("error loading results for Group: \(error)")
+        }
+        
+        return fetchedResults
     }
     
     func resultsForEntityName(entityName:String) -> [NSManagedObject] {

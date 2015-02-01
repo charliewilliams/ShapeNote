@@ -11,18 +11,24 @@ import CoreData
 
 class SongListTableViewController: UITableViewController {
     
+    var _songs:[Song]?
     var songs:[Song] {
-        let s:[Song] = CoreDataHelper.sharedHelper.songs(nil) as [Song]
-        let sortedSongs = s.sorted { (a:Song, b:Song) -> Bool in
-            
-            // t and b are in the wrong order, alphabetically
-            if (a.strippedNumber == b.strippedNumber) {
-                return a.number > b.number
-            } else {
-                return a.number < b.number
+        get {
+            if _songs == nil {
+                
+                let s:[Song] = CoreDataHelper.sharedHelper.songs(nil) as [Song]
+                _songs = s.sorted { (a:Song, b:Song) -> Bool in
+                    
+                    // t and b are in the wrong order, alphabetically
+                    if (a.strippedNumber == b.strippedNumber) {
+                        return a.number > b.number
+                    } else {
+                        return a.number < b.number
+                    }
+                }
             }
+            return _songs!
         }
-        return sortedSongs
     }
 
     override func viewDidLoad() {
@@ -41,11 +47,10 @@ class SongListTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as SongListTableViewCell
 
         let song = songs[indexPath.row]
-        cell.textLabel?.text = song.number + " " + song.title
-        cell.detailTextLabel?.text = song.composer + "(\(song.year))"
+        cell.configureWithSong(song)
 
         return cell
     }

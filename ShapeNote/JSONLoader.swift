@@ -31,6 +31,31 @@ class JSONLoader: NSObject {
         book.year = "1991";
         book.author = "Sacred Harp Publishing Company"
         
+        let groupNames = ["Bristol", "London", "Cork", "Norwich", "Manchester", "Amsterdam", "Poland", "Dublin", "Boston"]
+        
+        for name in groupNames {
+            let group = NSEntityDescription.insertNewObjectForEntityForName("Group", inManagedObjectContext: coreDataContext()) as Group
+            group.name = name
+        }
+        
+        let charlie = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: coreDataContext()) as Singer
+        charlie.name = "Charlie Williams"
+        charlie.shortName = "Charlie"
+        charlie.twitter = "buildsucceeded"
+        charlie.facebook = "Yes"
+        charlie.voice = Voice.Tenor.rawValue
+        
+        let emma = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: coreDataContext()) as Singer
+        emma.name = "Emma Hooper"
+        emma.shortName = "Emma"
+        emma.twitter = "waitress4thbees"
+        emma.facebook = "Yes"
+        emma.voice = Voice.Alto.rawValue
+        if let bristols = CoreDataHelper.sharedHelper.groupWithName("Bristol") {
+            charlie.group = bristols.first!
+            emma.group = bristols.first!
+        }
+        
         var songsSet = NSMutableOrderedSet();
 
         let json = loadFilesFromBundle()

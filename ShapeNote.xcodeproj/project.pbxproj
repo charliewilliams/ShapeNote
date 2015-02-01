@@ -25,7 +25,8 @@
 		C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */; };
 		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
-		C07542EB1A7BFE55007626C6 /* SingerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07542E91A7BFE55007626C6 /* SingerViewController.xib */; };
+		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
+		C09A96BC1A7ECB3A009D1C29 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A96BB1A7ECB3A009D1C29 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +62,8 @@
 		C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
-		C07542E91A7BFE55007626C6 /* SingerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingerViewController.xib; sourceTree = "<group>"; };
+		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
+		C09A96BB1A7ECB3A009D1C29 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09A96BC1A7ECB3A009D1C29 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 		C0515B521A7BA59D0006ED16 = {
 			isa = PBXGroup;
 			children = (
+				C09A96BB1A7ECB3A009D1C29 /* CoreText.framework */,
 				C0515B5D1A7BA59D0006ED16 /* ShapeNote */,
 				C0515B761A7BA59D0006ED16 /* ShapeNoteTests */,
 				C0515B5C1A7BA59D0006ED16 /* Products */,
@@ -109,10 +113,10 @@
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
 				C0515B651A7BA59D0006ED16 /* ViewController.swift */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
+				C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */,
 				C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
 				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
-				C07542E91A7BFE55007626C6 /* SingerViewController.xib */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -242,7 +246,6 @@
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
-				C07542EB1A7BFE55007626C6 /* SingerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +276,7 @@
 				C0515B881A7BBA790006ED16 /* Leading.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
+				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
 				C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +357,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -388,6 +393,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
