@@ -26,7 +26,6 @@
 		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
-		C09A96BC1A7ECB3A009D1C29 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A96BB1A7ECB3A009D1C29 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +62,6 @@
 		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
-		C09A96BB1A7ECB3A009D1C29 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C09A96BC1A7ECB3A009D1C29 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +85,6 @@
 		C0515B521A7BA59D0006ED16 = {
 			isa = PBXGroup;
 			children = (
-				C09A96BB1A7ECB3A009D1C29 /* CoreText.framework */,
 				C0515B5D1A7BA59D0006ED16 /* ShapeNote */,
 				C0515B761A7BA59D0006ED16 /* ShapeNoteTests */,
 				C0515B5C1A7BA59D0006ED16 /* Products */,

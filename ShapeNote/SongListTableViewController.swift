@@ -26,6 +26,8 @@ class SongListTableViewController: UITableViewController {
                         return a.number < b.number
                     }
                 }
+                
+                navigationItem.title = _songs?.first?.book.title
             }
             return _songs!
         }
