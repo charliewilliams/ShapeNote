@@ -30,6 +30,7 @@ class Singer: NSManagedObject {
     @NSManaged var lastSingDate: NSTimeInterval
     @NSManaged var group: Group
     @NSManaged var songs: Leading
+    @NSManaged var minutes: NSSet
     
     var voiceType:String {
         

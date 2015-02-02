@@ -23,13 +23,6 @@ static FBSharingHelper *staticHelper = nil;
 
 - (void)postMinutesToFacebook:(Minutes *)minutes {
     
-//    NSDictionary *params = @{@"name":@"Tutorial",
-//                                    @"caption":@"Test caption",
-//                                    @"description":[minutes stringForSocialMedia],
-//
-//                                    };
-    
-    
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     UIViewController *rootVC = app.window.rootViewController;
     
@@ -43,8 +36,9 @@ static FBSharingHelper *staticHelper = nil;
     }];
 }
 
+#pragma mark -
+
 - (void)activateApp {
-    
     [FBAppEvents activateApp];
 }
 

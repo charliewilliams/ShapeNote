@@ -11,6 +11,8 @@ import CoreData
 
 class MinutesListViewController: UITableViewController {
 
+    @IBOutlet weak var minutesListTableView: UITableView!
+    
     var _minutes:[Minutes]?
     var minutes:[Minutes] {
         get {
@@ -50,21 +52,28 @@ class MinutesListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as MinutesTableViewCell
         
-        let song = minutes[indexPath.row]
-//        cell.configureWithSong(song)
+        let minute = minutes[indexPath.row]
+        cell.configureWithMinutes(minute)
         
         return cell
     }
     
     // MARK: - Navigation
-    
-    
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        
+        let dvc = segue.destinationViewController as UIViewController
+        
+        if let mtvc = dvc as? MinuteTakingViewController {
+            
+            let indexPath = minutesListTableView.indexPathForSelectedRow()
+            if let index = indexPath?.row {
+                mtvc.minutes = minutes[index]
+            }
+        }
     }
 
 

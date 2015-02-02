@@ -13,6 +13,7 @@ import CoreData
 
     @NSManaged var date: NSDate
     @NSManaged var songs: NSOrderedSet
+    @NSManaged var singers: NSSet
     @NSManaged var group: Group
     @NSManaged var book: Book
 

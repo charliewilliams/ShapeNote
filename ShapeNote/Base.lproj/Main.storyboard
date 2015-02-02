@@ -14,11 +14,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="LrM-z1-qEM">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="LrM-z1-qEM" customClass="MinutesTableViewCell" customModule="ShapeNote" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LrM-z1-qEM" id="iRP-a7-QXP">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday, July 16, 2051" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-5x-Qev">
+                                            <rect key="frame" x="8" y="8" width="175" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="w1z-RO-obu"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28 songs, 15 singers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGv-NO-VIc">
+                                            <rect key="frame" x="8" y="23" width="134" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="leading" secondItem="iRP-a7-QXP" secondAttribute="leadingMargin" id="3gP-4s-rwb"/>
+                                        <constraint firstAttribute="centerY" secondItem="2ui-5x-Qev" secondAttribute="centerY" id="t6l-g0-M2v"/>
+                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="top" secondItem="iRP-a7-QXP" secondAttribute="topMargin" id="vxd-lS-pUs"/>
+                                        <constraint firstItem="bGv-NO-VIc" firstAttribute="top" secondItem="2ui-5x-Qev" secondAttribute="bottom" constant="-6" id="x2y-SJ-LBB"/>
+                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="leading" secondItem="bGv-NO-VIc" secondAttribute="leading" id="zds-cl-Nck"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="t6l-g0-M2v"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailLabel" destination="bGv-NO-VIc" id="GhS-bt-l7f"/>
+                                    <outlet property="mainLabel" destination="2ui-5x-Qev" id="j80-b4-bm7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -35,6 +68,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="minutesListTableView" destination="zN3-fP-HFD" id="da5-QE-WXc"/>
+                        <outlet property="tableView" destination="zN3-fP-HFD" id="9jC-lK-Hhy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMU-zz-dXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +86,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bsg-ng-LND">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bsg-ng-LND" customClass="MinutesTableViewCell" customModule="ShapeNote" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bsg-ng-LND" id="DXf-Ux-0V7">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -61,6 +98,10 @@
                             <outlet property="delegate" destination="tMy-iL-bif" id="ixx-BU-1n1"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="minutesTableView" destination="FnQ-AC-gn9" id="BPG-Y8-ljt"/>
+                        <outlet property="tableView" destination="FnQ-AC-gn9" id="lAp-KB-YVE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujK-CT-Af6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,7 +148,8 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNU-Vl-rrN" userLabel="Champion">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNU-Vl-rrN" userLabel="Champion">
+                                            <rect key="frame" x="588" y="3" width="5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Acf-g3-UMa"/>
                                             </constraints>
