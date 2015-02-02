@@ -17,13 +17,13 @@ class MinuteTakingViewController: UITableViewController {
     var _leadings:[Leading]?
     var leadings:[Leading] {
         get {
-            if _leadings == nil {
-                
+//            if _leadings == nil {
+            
                 if let loaded = minutes?.songs as? [Leading] {
                     
                     _leadings = loaded
                 }
-            }
+//            }
             
             return _leadings!
         }
@@ -42,7 +42,7 @@ class MinuteTakingViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if minutes == nil {
+        if _leadings == nil {
             newSongCalled(self.newSongButton)
         } else {
             minutesTableView.reloadData()
@@ -53,7 +53,7 @@ class MinuteTakingViewController: UITableViewController {
         
         if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLeadingViewController") as? NewLeadingViewController {
             
-            self.navigationController?.pushViewController(nvc, animated: true)
+            self.navigationController?.pushViewController(nvc, animated: false)
         }
         
     }

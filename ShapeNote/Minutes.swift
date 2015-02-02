@@ -9,7 +9,9 @@
 import Foundation
 import CoreData
 
-@objc class Minutes: NSManagedObject {
+@objc(Minutes)
+
+class Minutes: NSManagedObject {
 
     @NSManaged var date: NSDate
     @NSManaged var songs: NSOrderedSet

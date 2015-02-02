@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum ScopeBarIndex:Int {
     case SearchSongs = 0
@@ -16,10 +17,22 @@ enum ScopeBarIndex:Int {
 class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     var filteredSingers:[Singer]?
     var filteredSongs:[Song]?
     var chosenSinger:Singer?
     var chosenSong:Song?
+    var minutes:Minutes?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doneButton.enabled = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        searchBar.becomeFirstResponder()
+    }
     
     var _singers:[Singer]?
     var singers:[Singer] {
@@ -48,12 +61,22 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     func filterContentForSingerSearchText(searchText: String) {
         
+        if (searchText.utf16Count == 0) {
+            self.filteredSingers = self.singers
+            return
+        }
+        
         self.filteredSingers = self.singers.filter({(singer: Singer) -> Bool in
             return singer.name.rangeOfString(searchText, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil
         })
     }
     
     func filterContentForSongSearchText(searchText: String) {
+        
+        if (searchText.utf16Count == 0) {
+            self.filteredSongs = self.songs
+            return
+        }
         
         self.filteredSongs = self.songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
@@ -92,6 +115,20 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         } else {
             searchBar.placeholder = "enter name"
         }
+        
+        let complete = (chosenSong != nil && chosenSinger != nil)
+        doneButton.enabled = complete
+        
+        if complete == true {
+            
+            searchDisplayController?.setActive(false, animated: true)
+        } else {
+            
+            searchBar.text = ""
+            searchDisplayController?.searchResultsTableView.reloadData()
+            searchDisplayController?.setActive(true, animated: true)
+        }
+
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -103,15 +140,47 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
             if searchingSongs() {
                 chosenSong = filteredSongs![index]
                 searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
-            } else {
+            } else if index < filteredSingers?.count {
                 chosenSinger = filteredSingers![index]
                 searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
+            } else {
+                popAlertForNewSinger()
             }
             updateSearchAndScope()
-            searchDisplayController?.setActive(false, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.tableView.reloadData()
+    }
+    
+    func popAlertForNewSinger() {
+        
+        var inputTextField: UITextField?
+        let alert = UIAlertController(title: "New Singer", message: "Ok, what's their name?", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+            
+            if action.style == .Cancel {
+                return
+            }
+            
+            if let text = inputTextField?.text as String? {
+                let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as? Singer
+                newSinger?.name = text
+                self.chosenSinger = newSinger!
+                CoreDataHelper.save()
+                self.tableView.reloadData()
+                self.updateSearchAndScope()
+            }
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction!) -> Void in
+            
+        })
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField!) -> Void in
+            textField.placeholder = "Name"
+            inputTextField = textField
+        })
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,9 +195,9 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
                 }
             } else {
                 if let filtered = self.filteredSingers {
-                    return filtered.count
+                    return filtered.count + 1 // for New Singer
                 } else {
-                    return 0
+                    return 1
                 }
             }
             
@@ -153,9 +222,13 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
             if searchingSongs() {
                 var song = filteredSongs![indexPath.row]
                 cell.textLabel?.text = song.number + " " + song.title
-            } else {
+            } else if indexPath.row < filteredSingers?.count {
                 var singer = filteredSingers![indexPath.row]
                 cell.textLabel?.text = singer.name
+            } else {
+                // New singer cell
+                cell.textLabel?.text = "+ New Singer"
+                cell.textLabel?.textColor = UIColor.blueColor()
             }
             
         } else {
@@ -179,5 +252,29 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     }
     
     @IBAction func donePressed(sender: AnyObject) {
+        
+        let leading = NSEntityDescription.insertNewObjectForEntityForName("Leading", inManagedObjectContext: CoreDataHelper.managedContext!) as Leading
+        leading.date = NSDate()
+        leading.song = chosenSong!
+        leading.leader = chosenSinger!
+        
+        if minutes == nil {
+            minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext!) as? Minutes
+            minutes?.date = NSDate()
+            minutes?.book = CoreDataHelper.sharedHelper.books().first!
+        }
+        
+        leading.minutes = minutes!
+        
+        CoreDataHelper.save()
+        
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
+
+
+
+
+
+
+

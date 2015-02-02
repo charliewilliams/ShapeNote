@@ -71,7 +71,11 @@ class MinutesListViewController: UITableViewController {
             
             let indexPath = minutesListTableView.indexPathForSelectedRow()
             if let index = indexPath?.row {
-                mtvc.minutes = minutes[index]
+                if minutes.count > index+1 {
+                    mtvc.minutes = minutes[index]
+                } else {
+                    mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as? Minutes
+                }
             }
         }
     }

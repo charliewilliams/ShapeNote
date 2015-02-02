@@ -153,7 +153,19 @@
                             <outlet property="delegate" destination="3BM-r6-Sud" id="O5s-8t-DcV"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="2e1-N3-i6b">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="3xN-Va-lvw">
+                            <connections>
+                                <action selector="donePressed:" destination="3BM-r6-Sud" id="ssE-PA-XLP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="doneButton" destination="3xN-Va-lvw" id="dNx-2j-ZTl"/>
                         <outlet property="searchBar" destination="PkQ-m8-8l1" id="wE8-vN-g61"/>
                         <outlet property="searchDisplayController" destination="doK-b7-Hvg" id="WoD-gf-B3l"/>
                     </connections>
@@ -275,10 +287,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="rgN-e0-S6K" kind="relationship" relationship="viewControllers" id="0fc-BQ-M0w"/>
-                        <segue destination="9XQ-5N-jhl" kind="relationship" relationship="viewControllers" id="ZtV-lv-0MP"/>
                         <segue destination="acG-gu-NL8" kind="relationship" relationship="viewControllers" id="xnz-Or-Bsl"/>
+                        <segue destination="9XQ-5N-jhl" kind="relationship" relationship="viewControllers" id="ZtV-lv-0MP"/>
                         <segue destination="O1G-Wh-9uq" kind="relationship" relationship="viewControllers" id="21c-aI-3mS"/>
+                        <segue destination="rgN-e0-S6K" kind="relationship" relationship="viewControllers" id="0fc-BQ-M0w"/>
                         <segue destination="XrP-vU-mBa" kind="relationship" relationship="viewControllers" id="aKT-SS-2WI"/>
                     </connections>
                 </tabBarController>

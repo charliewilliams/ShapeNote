@@ -16,5 +16,5 @@ class Leading: NSManagedObject {
     @NSManaged var date: NSDate
     @NSManaged var leader: Singer
     @NSManaged var song: Song
-
+    @NSManaged var minutes: Minutes
 }
