@@ -77,13 +77,21 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
         
         if searchOption == ScopeBarIndex.SearchSongs.rawValue {
-            searchBar.placeholder = "enter song number"
             filterContentForSongSearchText(searchDisplayController!.searchBar.text)
         } else {
-            searchBar.placeholder = "enter name"
             filterContentForSingerSearchText(searchDisplayController!.searchBar.text)
         }
+        updateSearchAndScope()
         return true
+    }
+    
+    func updateSearchAndScope() {
+        
+        if searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue {
+            searchBar.placeholder = "enter song number"
+        } else {
+            searchBar.placeholder = "enter name"
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -94,12 +102,16 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
             
             if searchingSongs() {
                 chosenSong = filteredSongs![index]
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
             } else {
                 chosenSinger = filteredSingers![index]
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
             }
+            updateSearchAndScope()
             searchDisplayController?.setActive(false, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,11 +168,13 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     func configureCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) {
         
         if (indexPath.row == 0 && chosenSinger != nil) {
-            cell.textLabel?.text = chosenSinger?.name
-        } else if (indexPath.row == 0 && chosenSinger == nil) {
-            cell.textLabel?.text = chosenSong?.title
+            if let name = chosenSinger?.name {
+                cell.textLabel?.text = "Leader: " + name
+            }
         } else {
-            cell.textLabel?.text = chosenSong?.title
+            if let title = chosenSong?.title {
+                cell.textLabel?.text = "Song: " + title
+            }
         }
     }
     
