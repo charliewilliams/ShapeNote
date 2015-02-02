@@ -8,7 +8,7 @@
         <!--Past Minutes-->
         <scene sceneID="Z1o-JA-YAm">
             <objects>
-                <tableViewController title="Past Minutes" id="n40-Qi-f2u" sceneMemberID="viewController">
+                <tableViewController title="Past Minutes" id="n40-Qi-f2u" customClass="MinutesListViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zN3-fP-HFD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +43,7 @@
         <!--Taking Minutes-->
         <scene sceneID="7LS-4V-Sse">
             <objects>
-                <tableViewController title="Taking Minutes" id="tMy-iL-bif" sceneMemberID="viewController">
+                <tableViewController title="Taking Minutes" id="tMy-iL-bif" customClass="MinuteTakingViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FnQ-AC-gn9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                                             </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mear" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlg-P3-qtv" userLabel="Title">
-                                            <rect key="frame" x="39" y="6" width="37" height="20"/>
+                                            <rect key="frame" x="39" y="5" width="37" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -116,7 +116,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LMD Plain" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTR-In-myu" userLabel="MeterAndType">
-                                            <rect key="frame" x="535" y="25" width="58" height="15"/>
+                                            <rect key="frame" x="534" y="25" width="58" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -245,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ins-FJ-9FH">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Ins-FJ-9FH">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ins-FJ-9FH" id="YPe-Z4-TcW">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -266,7 +266,7 @@
         <!--Login-->
         <scene sceneID="ek2-7Z-A7C">
             <objects>
-                <viewController title="Login" id="KpN-VP-dkP" sceneMemberID="viewController">
+                <viewController title="Login" id="KpN-VP-dkP" customClass="LoginViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t1i-DD-eWo"/>
                         <viewControllerLayoutGuide type="bottom" id="WxT-sd-QSj"/>
@@ -274,6 +274,12 @@
                     <view key="view" contentMode="scaleToFill" id="vVb-is-39s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EU0-fi-kwv" customClass="FBLoginView">
+                                <rect key="frame" x="140" y="471" width="320" height="48"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="wQ9-AB-oso"/>

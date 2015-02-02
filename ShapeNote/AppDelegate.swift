@@ -16,9 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        FBSharingHelper.instance().activateApp()
         JSONLoader.sharedLoader.handleFirstRun()
         
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return FBSharingHelper.instance().openURL(url, application:sourceApplication)
     }
 
     func applicationWillResignActive(application: UIApplication) {

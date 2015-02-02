@@ -63,7 +63,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         singer!.name = nameTextField.text
         singer!.shortName = displayNameTextField.text
         
-        if let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingTextField.text)?.first {
+        if let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingTextField.text) {
             singer!.group = group
         }
         

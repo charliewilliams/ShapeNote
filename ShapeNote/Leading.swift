@@ -13,8 +13,8 @@ import CoreData
 
 class Leading: NSManagedObject {
 
-    @NSManaged var date: NSTimeInterval
-    @NSManaged var leader: NSManagedObject
-    @NSManaged var song: NSManagedObject
+    @NSManaged var date: NSDate
+    @NSManaged var leader: Singer
+    @NSManaged var song: Song
 
 }

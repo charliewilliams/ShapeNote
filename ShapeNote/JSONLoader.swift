@@ -51,9 +51,9 @@ class JSONLoader: NSObject {
         emma.twitter = "waitress4thbees"
         emma.facebook = "Yes"
         emma.voice = Voice.Alto.rawValue
-        if let bristols = CoreDataHelper.sharedHelper.groupWithName("Bristol") {
-            charlie.group = bristols.first!
-            emma.group = bristols.first!
+        if let bristol = CoreDataHelper.sharedHelper.groupWithName("Bristol") {
+            charlie.group = bristol
+            emma.group = bristol
         }
         
         var songsSet = NSMutableOrderedSet();

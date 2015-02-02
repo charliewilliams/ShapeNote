@@ -38,7 +38,7 @@ class CoreDataHelper {
         return resultsForEntityName("Group") as [Group]
     }
     
-    func groupWithName(name:String) -> [Group]? {
+    func groupWithName(name:String) -> Group? {
         
         let fetchRequest = NSFetchRequest(entityName: "Group")
         var error: NSError?
@@ -50,6 +50,23 @@ class CoreDataHelper {
         
         if error != nil {
             println("error loading results for Group: \(error)")
+        }
+        
+        return fetchedResults.first
+    }
+    
+    func minutes(groupName:String) -> [Minutes]? {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Minutes")
+        var error: NSError?
+        
+        let resultPredicate = NSPredicate(format: "name = %@", groupName)
+        fetchRequest.predicate = resultPredicate
+        
+        let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [Minutes]
+        
+        if error != nil {
+            println("error loading results for Minutes: \(error)")
         }
         
         return fetchedResults
