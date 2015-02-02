@@ -98,14 +98,78 @@
                             <outlet property="delegate" destination="tMy-iL-bif" id="ixx-BU-1n1"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Taking Minutes" id="et0-va-81l">
+                        <barButtonItem key="leftBarButtonItem" title="Done" style="done" id="eAm-Ni-47R">
+                            <connections>
+                                <action selector="donePressed:" destination="tMy-iL-bif" id="dhx-pg-iO9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="1WT-e3-X1p">
+                            <connections>
+                                <action selector="newSongCalled:" destination="tMy-iL-bif" id="oQM-OW-NJq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="minutesTableView" destination="FnQ-AC-gn9" id="BPG-Y8-ljt"/>
+                        <outlet property="newSongButton" destination="1WT-e3-X1p" id="jO1-Uf-VZO"/>
                         <outlet property="tableView" destination="FnQ-AC-gn9" id="lAp-KB-YVE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujK-CT-Af6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1870.5" y="-697.5"/>
+        </scene>
+        <!--New Leading View Controller-->
+        <scene sceneID="qaM-zw-kHU">
+            <objects>
+                <tableViewController storyboardIdentifier="NewLeadingViewController" id="3BM-r6-Sud" customClass="NewLeadingViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Eh0-Aq-hOR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="enter song number" showsSearchResultsButton="YES" showsScopeBar="YES" id="PkQ-m8-8l1">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                            <scopeButtonTitles>
+                                <string>Song</string>
+                                <string>Leader</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="3BM-r6-Sud" id="tRC-6F-9b8"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="I1r-yb-0D2">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1r-yb-0D2" id="xT4-x2-Qg4">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3BM-r6-Sud" id="aqF-fM-caA"/>
+                            <outlet property="delegate" destination="3BM-r6-Sud" id="O5s-8t-DcV"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="PkQ-m8-8l1" id="wE8-vN-g61"/>
+                        <outlet property="searchDisplayController" destination="doK-b7-Hvg" id="WoD-gf-B3l"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mEI-Qr-Unb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="doK-b7-Hvg">
+                    <connections>
+                        <outlet property="delegate" destination="3BM-r6-Sud" id="3B8-SM-YBs"/>
+                        <outlet property="searchBar" destination="PkQ-m8-8l1" id="O1M-9r-TVU"/>
+                        <outlet property="searchContentsController" destination="3BM-r6-Sud" id="FDo-ei-ULQ"/>
+                        <outlet property="searchResultsDataSource" destination="3BM-r6-Sud" id="q4S-ea-8ue"/>
+                        <outlet property="searchResultsDelegate" destination="3BM-r6-Sud" id="bl4-NV-ThS"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2542" y="-698"/>
         </scene>
         <!--Sacred Harp-->
         <scene sceneID="IVu-nV-GIw">

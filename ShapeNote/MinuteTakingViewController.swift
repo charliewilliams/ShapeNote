@@ -10,7 +10,9 @@ import UIKit
 
 class MinuteTakingViewController: UITableViewController {
     
-    @IBOutlet var minutesTableView: UITableView!
+    @IBOutlet weak var minutesTableView: UITableView!
+    @IBOutlet weak var newSongButton: UIBarButtonItem!
+    
     var minutes:Minutes?
     var _leadings:[Leading]?
     var leadings:[Leading] {
@@ -41,14 +43,26 @@ class MinuteTakingViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         if minutes == nil {
-            
-            // start taking new minutes
+            newSongCalled(self.newSongButton)
         } else {
-            
             minutesTableView.reloadData()
         }
     }
     
+    @IBAction func newSongCalled(sender: UIBarButtonItem) {
+        
+        if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLeadingViewController") as? NewLeadingViewController {
+            
+            self.navigationController?.pushViewController(nvc, animated: true)
+        }
+        
+    }
+    
+    @IBAction func donePressed(sender: UIBarButtonItem) {
+        
+        // save and dismiss
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
