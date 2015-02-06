@@ -7,7 +7,19 @@
 //
 
 import UIKit
+import TwitterKit
 
 class LoginViewController: UIViewController {
-
+    
+//    let logInButton = TWTRLogInButton(logInCompletion: {
+//        (session: TWTRSession!, error: NSError!) in
+//        // play with Twitter session
+//    })
+//    
+//    required init(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        
+//        logInButton.center = self.view.center
+//        self.view.addSubview(logInButton)
+//    }
 }

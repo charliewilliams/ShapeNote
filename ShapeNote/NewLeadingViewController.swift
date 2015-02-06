@@ -178,6 +178,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         alert.addAction(ok)
         alert.addTextFieldWithConfigurationHandler({ (textField:UITextField!) -> Void in
             textField.placeholder = "Name"
+            textField.text = self.searchBar.text
             inputTextField = textField
         })
         self.presentViewController(alert, animated: true, completion: nil)
@@ -257,14 +258,9 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         leading.date = NSDate()
         leading.song = chosenSong!
         leading.leader = chosenSinger!
-        
-        if minutes == nil {
-            minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext!) as? Minutes
-            minutes?.date = NSDate()
-            minutes?.book = CoreDataHelper.sharedHelper.books().first!
-        }
-        
         leading.minutes = minutes!
+        
+        TwitterShareHelper.sharedHelper.postLeading(leading)
         
         CoreDataHelper.save()
         

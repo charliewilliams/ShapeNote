@@ -32,7 +32,7 @@ static FBSharingHelper *staticHelper = nil;
             NSLog(@"%@", error);
         }
         
-        NSLog(@"Result: %d", result);
+        NSLog(@"Result: %lu", result);
     }];
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MinuteTakingViewController: UITableViewController {
     
@@ -14,18 +15,18 @@ class MinuteTakingViewController: UITableViewController {
     @IBOutlet weak var newSongButton: UIBarButtonItem!
     
     var minutes:Minutes?
-    var _leadings:[Leading]?
-    var leadings:[Leading] {
+    var leadings:[Leading]? {
         get {
-//            if _leadings == nil {
             
-                if let loaded = minutes?.songs as? [Leading] {
-                    
-                    _leadings = loaded
+            var ll:[Leading] = []
+            if let l:NSOrderedSet = minutes?.songs {
+                
+                l.enumerateObjectsUsingBlock { (lll:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+                    ll.append(lll as Leading)
                 }
-//            }
-            
-            return _leadings!
+            }
+
+            return ll
         }
     }
 
@@ -42,7 +43,7 @@ class MinuteTakingViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if _leadings == nil {
+        if leadings == nil || leadings?.count == 0 {
             newSongCalled(self.newSongButton)
         } else {
             minutesTableView.reloadData()
@@ -51,8 +52,17 @@ class MinuteTakingViewController: UITableViewController {
     
     @IBAction func newSongCalled(sender: UIBarButtonItem) {
         
+        if minutes == nil {
+            minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext!) as? Minutes
+            minutes?.date = NSDate()
+            minutes?.book = CoreDataHelper.sharedHelper.books().first!
+            minutes?.group = CoreDataHelper.sharedHelper.groupWithName("Bristol")!
+            CoreDataHelper.save()
+        }
+        
         if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLeadingViewController") as? NewLeadingViewController {
             
+            nvc.minutes = minutes
             self.navigationController?.pushViewController(nvc, animated: false)
         }
         
@@ -77,16 +87,17 @@ class MinuteTakingViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as MinutesTableViewCell
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .NoStyle
-        dateFormatter.timeStyle = .ShortStyle
-        
-        let leading = leadings[indexPath.row]
-        cell.mainLabel.text = leading.song.number + " " + leading.song.title + " – " + leading.leader.name
-        cell.detailLabel.text = dateFormatter.stringFromDate(leading.date)
-        
-        return cell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .NoStyle
+            dateFormatter.timeStyle = .ShortStyle
+            
+            if let leading = leadings?[indexPath.row] {
+                cell.textLabel!.text = leading.song.number + " " + leading.song.title + " – " + leading.leader.name
+                cell.detailTextLabel!.text = dateFormatter.stringFromDate(leading.date)
+            }
+            
+            return cell
     }
 }

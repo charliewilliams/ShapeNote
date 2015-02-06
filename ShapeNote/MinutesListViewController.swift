@@ -19,11 +19,11 @@ class MinutesListViewController: UITableViewController {
             if _minutes == nil {
                 
                 // TODO concept of "current group"
-                let group = CoreDataHelper.sharedHelper.groupWithName("Bristol")
-                if let name = group?.name {
+                let group:Group! = CoreDataHelper.sharedHelper.groupWithName("Bristol")
+                if group != nil {
                     
-                    navigationItem.title = name + ": Minutes"
-                    if let m:[Minutes] = CoreDataHelper.sharedHelper.minutes(name) {
+                    navigationItem.title = group.name + ": Minutes"
+                    if let m:[Minutes] = CoreDataHelper.sharedHelper.minutes(group) {
                         
                         _minutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
                             
