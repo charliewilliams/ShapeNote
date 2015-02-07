@@ -9,17 +9,44 @@
 import UIKit
 import TwitterKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, FBLoginViewDelegate {
     
-//    let logInButton = TWTRLogInButton(logInCompletion: {
-//        (session: TWTRSession!, error: NSError!) in
-//        // play with Twitter session
-//    })
-//    
-//    required init(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        
-//        logInButton.center = self.view.center
-//        self.view.addSubview(logInButton)
-//    }
+    @IBOutlet weak var twitterLoginButton: TWTRLogInButton!
+    @IBOutlet weak var facebookLoginButton: FBLoginView!
+    var loggingIn:Bool = false
+    var session: TWTRSession?
+    
+    // Twitter functions
+    @IBAction func twitterLoginButtonPressed(sender: TWTRLogInButton) {
+        
+        twitterLoginButton.logInCompletion = {(session:TWTRSession!, error:NSError!) -> Void in
+            
+            if error != nil {
+                println(error)
+            }
+            
+            if session != nil {
+                self.session = session
+                self.twitterLoginButton.setTitle("Logged in as \(session.userName)", forState: .Normal)
+            }
+        }
+    }
+    
+    
+    // Facebook functions
+    func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
+        
+    }
+    
+    func loginView(loginView: FBLoginView!, handleError error: NSError!) {
+        
+    }
+    
+    func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
+        
+    }
+    
+    func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
+        
+    }
 }
