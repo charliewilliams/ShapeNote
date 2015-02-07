@@ -36,14 +36,42 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     // Facebook functions
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
+        println(user)
+        
+        let permissions = ["public_profile", "user_friends", "email"]
+        
+        PFFacebookUtils.logInWithPermissions(permissions, { (pfUser:PFUser!, error:NSError!) -> Void in
+            
+            if pfUser == nil {
+                println("Error - user cancelled")
+                return
+            }
+            
+            FBSession.openActiveSessionWithPublishPermissions(["publish_actions"], defaultAudience: FBSessionDefaultAudience.Friends, allowLoginUI: true, completionHandler: { (session:FBSession!, state:FBSessionState, error:NSError!) -> Void in
+                
+            })
+            
+            FBRequest.requestForMe()?.startWithCompletionHandler({ (connection:FBRequestConnection!, info:AnyObject!, error:NSError!) -> Void in
+                
+                println(info)
+            })
+            
+//            PFFacebookUtils.reauthorizeUser(pfUser, withPublishPermissions:["publish_actions" as AnyObject], audience:FBSessionDefaultAudience.Friends, { (succeeded: Bool!, error: NSError!) -> Void in
+//                if succeeded == true {
+//                    // Your app now has publishing permissions for the user
+//                }
+//            })
+        })
+        
+
     }
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {
-        
+        println("Facebook login error: \(error)")
     }
     
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
-        
+
     }
     
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {

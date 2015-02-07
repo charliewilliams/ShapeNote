@@ -20,14 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         Fabric.with([Crashlytics(), Twitter()])
-        FBSharingHelper.instance().activateApp()
+        FBAppEvents.activateApp()
+        Parse.setApplicationId("MvJxV7TztlSI8c0bi59MR6HqUfe24N53Rhgsa51a", clientKey:"2exXKyLLRXMe2WM8maCDEOVB2yTrRm6i5cLTUOP6")
+        PFFacebookUtils.initializeFacebook()
+        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, { (success:Bool, error:NSError!) -> Void in })
         JSONLoader.sharedLoader.handleFirstRun()
         
         return true
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return FBSharingHelper.instance().openURL(url, application:sourceApplication)
+        
+        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication, withSession: PFFacebookUtils.session())
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -45,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
     }
 
     func applicationWillTerminate(application: UIApplication) {
