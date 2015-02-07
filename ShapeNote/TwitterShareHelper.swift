@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import Accounts
+import TwitterKit
 
 class TwitterShareHelper: NSObject {
     
@@ -27,68 +28,58 @@ class TwitterShareHelper: NSObject {
     func postLeading(leading:Leading) {
         
         self.leading = leading
-        let accountStore = ACAccountStore()
-        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-        let completion:ACAccountStoreRequestAccessCompletionHandler = {(granted:Bool, error:NSError?) -> Void in
+        let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
+        let params = ["status": leading.twitterString()]
         
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        // lat, long
+        
+        var clientError : NSError?
+        
+        let request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params, error: &clientError)
+        
+        if request != nil {
+            
+            Twitter.sharedInstance().APIClient.sendTwitterRequest(request) {(response, data, connectionError) -> Void in
                 
-                if granted == false {
-                    println("Access not granted")
-                    return
-                }
-                
-                let accounts = accountStore.accountsWithAccountType(accountType) as [ACAccount]
-                
-                if accounts.count == 1 {
+                if connectionError == nil {
+                    var jsonError : NSError?
+                    let json : AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError)
                     
-                    self.tweetFromAccount(accounts.first)
-                }
-                
-                else {
-                    
-                    let actionSheet = UIAlertController(title: "Select an account:", message: nil, preferredStyle: .ActionSheet)
-
-                    for account:ACAccount in accounts {
-                        
-                        let accountButton = UIAlertAction(title: account.username, style: .Default, handler: { (action:UIAlertAction!) -> Void in
-                            
-                            self.tweetFromAccount(account)
-                        })
-                        actionSheet.addAction(accountButton)
+                    if jsonError != nil {
+                        println("Error: \(jsonError)")
+                    } else {
+                        println(json)
                     }
-                    
-                    let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction!) -> Void in
-                        
-                    })
-                    actionSheet.addAction(cancel)
-                    
-                    
-                    // show it
                 }
-            })
+                else {
+                    println("Error: \(connectionError)")
+                }
+            }
+        }
+        else {
+            println("Error: \(clientError)")
         }
     }
     
-    func tweetFromAccount(account: ACAccount!) {
-        
-        twitterAccount = account // store this
-        let twitter:STTwitterAPI = STTwitterAPI.twitterAPIOSWithAccount(account)
-        
-        twitter.verifyCredentialsWithSuccessBlock({ (username:String!) -> Void in
-            
-            twitter.postStatusUpdate(self.leading?.twitterString(), inReplyToStatusID: "", latitude: "", longitude: "", placeID: "", displayCoordinates: 0, trimUser: 0, successBlock: { (response: [NSObject:AnyObject]!) -> Void in
-                
-                println(response)
-                
-                }, errorBlock: { (error:NSError!) -> Void in
-                    
-                    println(error)
-            })
-            
-            }, errorBlock: { (error:NSError!) -> Void in
-            println(error)
-        })
-    }
+//    func tweetFromAccount(account: ACAccount!) {
+//        
+//        twitterAccount = account // store this
+//        let twitter:STTwitterAPI = STTwitterAPI.twitterAPIOSWithAccount(account)
+//        
+//        twitter.verifyCredentialsWithSuccessBlock({ (username:String!) -> Void in
+//            
+//            twitter.postStatusUpdate(self.leading?.twitterString(), inReplyToStatusID: "", latitude: "", longitude: "", placeID: "", displayCoordinates: 0, trimUser: 0, successBlock: { (response: [NSObject:AnyObject]!) -> Void in
+//                
+//                println(response)
+//                
+//                }, errorBlock: { (error:NSError!) -> Void in
+//                    
+//                    println(error)
+//            })
+//            
+//            }, errorBlock: { (error:NSError!) -> Void in
+//            println(error)
+//        })
+//    }
    
 }

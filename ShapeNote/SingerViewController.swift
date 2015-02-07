@@ -68,7 +68,12 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
         
         singer!.voice = validatedVoiceType(voiceTypeTextField.text).rawValue
-        singer!.twitter = twitterHandleTextField.text
+        var twitter = twitterHandleTextField.text
+        if !twitter.hasPrefix("@") {
+            twitter.insert("@", atIndex: twitter.startIndex)
+        }
+        singer!.twitter = twitter
+
         singer!.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
         
         CoreDataHelper.save()

@@ -4,3 +4,4 @@
 
 #import "FBSharingHelper.h"
 #import "STTwitter.h"
+#import <FacebookSDK/FacebookSDK.h>

@@ -19,6 +19,18 @@ class Leading: NSManagedObject {
     @NSManaged var minutes: Minutes
     
     func twitterString() -> String {
-        return leader.name + " led " + song.number + " " + song.title + "."
+        
+        var userString: String;
+        
+        if leader.twitter.utf16Count > 0 {
+            
+            userString = "." + leader.twitter + " just led "
+            
+        } else {
+            
+            userString = leader.name + " led "
+        }
+        
+        return userString + song.number + " " + song.title + "."
     }
 }
