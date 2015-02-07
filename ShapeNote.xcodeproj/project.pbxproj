@@ -204,7 +204,6 @@
 		C0515B521A7BA59D0006ED16 = {
 			isa = PBXGroup;
 			children = (
-				C0C1D5191A8691280082C0EB /* ParseFacebookUtils.framework */,
 				C0515B5D1A7BA59D0006ED16 /* ShapeNote */,
 				C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */,
 				C0515B761A7BA59D0006ED16 /* ShapeNoteTests */,
@@ -337,6 +336,7 @@
 		C0C1D5171A868F560082C0EB /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				C0C1D5191A8691280082C0EB /* ParseFacebookUtils.framework */,
 				C0C1D51B1A8691380082C0EB /* ParseFacebookUtils.framework */,
 				C0C1D4F91A868EFA0082C0EB /* Bolts.framework */,
 				C0C1D4FA1A868EFA0082C0EB /* Parse.framework */,

@@ -21,9 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics(), Twitter()])
         FBAppEvents.activateApp()
-        Parse.setApplicationId("MvJxV7TztlSI8c0bi59MR6HqUfe24N53Rhgsa51a", clientKey:"2exXKyLLRXMe2WM8maCDEOVB2yTrRm6i5cLTUOP6")
-        PFFacebookUtils.initializeFacebook()
-        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, { (success:Bool, error:NSError!) -> Void in })
+//        Parse.setApplicationId("0YYog5pb5aCTUfaUyZdsZ22SREVd9SVJ1NQk5wyE", clientKey:"dnD2BN0PhqOiJurEmSpLFcUTEHuneJeat4CXnnyH")
+//        PFUser.enableAutomaticUser()
+//        PFFacebookUtils.initializeFacebook()
+//        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, { (success:Bool, error:NSError!) -> Void in })
         JSONLoader.sharedLoader.handleFirstRun()
         
         return true

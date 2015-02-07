@@ -408,20 +408,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAM-VT-7h5" userLabel="Twitter Login View" customClass="TWTRLogInButton">
-                                <rect key="frame" x="175" y="303" width="250" height="48"/>
+                                <rect key="frame" x="175" y="319" width="250" height="40"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="1O7-aK-Tlk"/>
+                                    <constraint firstAttribute="height" constant="40" id="1O7-aK-Tlk"/>
                                 </constraints>
                                 <connections>
                                     <action selector="twitterLoginButtonPressed:" destination="KpN-VP-dkP" eventType="touchUpInside" id="Ot2-Bp-dEw"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EU0-fi-kwv" userLabel="Facebook Login View" customClass="FBLoginView">
-                                <rect key="frame" x="175" y="471" width="250" height="48"/>
+                                <rect key="frame" x="175" y="479" width="250" height="40"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="7QV-iX-ROd"/>
                                     <constraint firstAttribute="width" constant="250" id="GHZ-Fv-93A"/>
                                 </constraints>
                                 <connections>
@@ -433,6 +432,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="EU0-fi-kwv" secondAttribute="centerX" id="JDj-It-DnT"/>
                             <constraint firstItem="oAM-VT-7h5" firstAttribute="width" secondItem="EU0-fi-kwv" secondAttribute="width" id="Lzz-r5-Jm7"/>
+                            <constraint firstItem="oAM-VT-7h5" firstAttribute="height" secondItem="EU0-fi-kwv" secondAttribute="height" id="b5T-WQ-4XB"/>
                             <constraint firstAttribute="centerX" secondItem="oAM-VT-7h5" secondAttribute="centerX" id="dWq-UU-Q1y"/>
                             <constraint firstItem="EU0-fi-kwv" firstAttribute="top" secondItem="oAM-VT-7h5" secondAttribute="bottom" constant="120" id="jPg-Ok-pc4"/>
                             <constraint firstItem="WxT-sd-QSj" firstAttribute="top" secondItem="EU0-fi-kwv" secondAttribute="bottom" constant="32" id="kO2-vz-a1V"/>
