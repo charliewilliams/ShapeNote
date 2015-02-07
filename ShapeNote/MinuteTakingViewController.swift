@@ -14,20 +14,31 @@ class MinuteTakingViewController: UITableViewController {
     @IBOutlet weak var minutesTableView: UITableView!
     @IBOutlet weak var newSongButton: UIBarButtonItem!
     
-    var minutes:Minutes?
-    var leadings:[Leading]? {
+    var minutes:Minutes? // the minutes object
+    var _leadings:[Leading]?
+    var leadings:[Leading]? { // all of the leadings from the minutes object
         get {
             
-            var ll:[Leading] = []
-            if let l:NSOrderedSet = minutes?.songs {
+            if _leadings == nil {
                 
-                l.enumerateObjectsUsingBlock { (lll:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
-                    ll.append(lll as Leading)
+                var tempLeadings = [Leading]()
+                if let loadedArray:NSOrderedSet = minutes?.songs {
+                    
+                    loadedArray.enumerateObjectsUsingBlock { (leading:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+                        
+                        tempLeadings.append(leading as Leading)
+                    }
                 }
+                _leadings = tempLeadings.sorted({ (first:Leading, second:Leading) -> Bool in
+                    return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
+                })
             }
-
-            return ll
+            return _leadings
         }
+    }
+    
+    func setNeedsReload() {
+        _leadings = nil
     }
 
     override func viewDidLoad() {
@@ -38,6 +49,12 @@ class MinuteTakingViewController: UITableViewController {
         dateFormatter.dateStyle = .MediumStyle
         
         navigationItem.title = "Minutes: " + dateFormatter.stringFromDate(NSDate())
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setNeedsReload()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -79,7 +96,7 @@ class MinuteTakingViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let count = minutes?.songs.count {
+        if let count = leadings?.count {
             return count
         }
         return 0
