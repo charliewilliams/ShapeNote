@@ -22,15 +22,37 @@ class Leading: NSManagedObject {
         
         var userString: String;
         
-        if leader.twitter.utf16Count > 0 {
+        if leader.twitter?.utf16Count > 0 {
             
-            userString = "." + leader.twitter + " just led "
+            userString = "." + leader.twitter! + " just led "
             
         } else {
             
-            userString = leader.name + " led "
+            userString = leader.name + " has just led "
         }
         
-        return userString + song.number + " " + song.title + "."
+        userString += song.number + " " + song.title + "."
+        
+        if (song.parts < 4) {
+            userString += " #\(song.parts)parts"
+        }
+        if (song.key == "minor") {
+            userString += " #minor"
+        }
+        if (song.type == "Fugue") {
+            userString += " #Fugue"
+        }
+        
+        userString += " #shapenote"
+        
+        userString += " " + song.book.hashTag
+        
+        while userString.utf16Count > 160 {
+            var components = userString.componentsSeparatedByString(" ")
+            components.removeLast()
+            userString = " ".join(components)
+        }
+        
+        return userString
     }
 }

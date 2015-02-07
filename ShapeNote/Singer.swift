@@ -22,15 +22,15 @@ enum Voice:Int16 {
 class Singer: NSManagedObject {
     
     @NSManaged var name: String
-    @NSManaged var shortName: String
+    @NSManaged var shortName: String?
     @NSManaged var voice: Int16
-    @NSManaged var twitter: String
-    @NSManaged var facebook: String
+    @NSManaged var twitter: String?
+    @NSManaged var facebook: String?
     @NSManaged var firstSingDate: NSTimeInterval
     @NSManaged var lastSingDate: NSTimeInterval
-    @NSManaged var group: Group
-    @NSManaged var songs: Leading
-    @NSManaged var minutes: NSSet
+    @NSManaged var group: Group?
+    @NSManaged var songs: Leading?
+    @NSManaged var minutes: NSSet?
     
     var voiceType:String {
         

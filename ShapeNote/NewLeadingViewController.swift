@@ -112,9 +112,12 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         
         if searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue {
             searchBar.placeholder = "enter song number"
+            searchBar.keyboardType = UIKeyboardType.NumberPad
         } else {
             searchBar.placeholder = "enter name"
+            searchBar.keyboardType = UIKeyboardType.ASCIICapable
         }
+        searchBar.reloadInputViews()
         
         let complete = (chosenSong != nil && chosenSinger != nil)
         doneButton.enabled = complete

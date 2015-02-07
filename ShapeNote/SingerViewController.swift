@@ -37,8 +37,8 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             nameTextField.text = singer?.name
             displayNameTextField.text = singer?.shortName
             
-            if singer?.group.fault == false {
-                homeSingingTextField.text = singer?.group.name
+            if singer?.group?.fault == false {
+                homeSingingTextField.text = singer?.group?.name
             }
             
             twitterHandleTextField.text = singer?.twitter

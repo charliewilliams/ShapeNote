@@ -60,6 +60,10 @@ class MinutesListViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
+    
     // MARK: - Navigation
 
     

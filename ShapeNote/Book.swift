@@ -17,5 +17,5 @@ class Book: NSManagedObject {
     @NSManaged var year: String
     @NSManaged var author: String
     @NSManaged var songs: NSOrderedSet
-
+    @NSManaged var hashTag: String
 }

@@ -13,9 +13,6 @@ import TwitterKit
 
 class TwitterShareHelper: NSObject {
     
-//    let twitterAPIKey = "ttsZGpXqhmcqX4eDH1Avwhiay"
-//    let twitterSecret = "XkZ8LzMOhAchwLjwiMNuQpiVdD3YB3DkbHtQkpcVoD3HdLQjoi"
-//    var twitterAccount:ACAccount?
     var leading:Leading?
     
     class var sharedHelper : TwitterShareHelper {
