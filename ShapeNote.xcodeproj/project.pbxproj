@@ -29,6 +29,7 @@
 		C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A721A86C25000E10773 /* Crashlytics.framework */; };
 		C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A731A86C25000E10773 /* Fabric.framework */; };
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
+		C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */; };
 		C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */; };
@@ -37,7 +38,6 @@
 		C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */; };
 		C09A96C41A7ED65A009D1C29 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */; };
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
-		C0C1D4851A8135140082C0EB /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0C1D4831A8135140082C0EB /* TwitterKitResources.bundle */; };
 		C0C1D4A41A813B120082C0EB /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D4881A813B120082C0EB /* NSDateFormatter+STTwitter.m */; };
 		C0C1D4A51A813B120082C0EB /* NSError+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D48A1A813B120082C0EB /* NSError+STTwitter.m */; };
 		C0C1D4A61A813B120082C0EB /* NSString+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D48C1A813B120082C0EB /* NSString+STTwitter.m */; };
@@ -90,6 +90,7 @@
 		C06D7A721A86C25000E10773 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A731A86C25000E10773 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
+		C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Fabric/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesListViewController.swift; sourceTree = "<group>"; };
 		C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteTakingViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
-		C0C1D4831A8135140082C0EB /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C0C1D4871A813B120082C0EB /* NSDateFormatter+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+STTwitter.h"; sourceTree = "<group>"; };
 		C0C1D4881A813B120082C0EB /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
 		C0C1D4891A813B120082C0EB /* NSError+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+STTwitter.h"; sourceTree = "<group>"; };
@@ -286,10 +286,10 @@
 		C0C1D5181A868F6B0082C0EB /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
+				C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */,
 				C06D7A721A86C25000E10773 /* Crashlytics.framework */,
 				C06D7A731A86C25000E10773 /* Fabric.framework */,
 				C06D7A741A86C25000E10773 /* TwitterKit.framework */,
-				C0C1D4831A8135140082C0EB /* TwitterKitResources.bundle */,
 			);
 			name = Fabric;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
-				C0C1D4851A8135140082C0EB /* TwitterKitResources.bundle in Resources */,
+				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 95e78a1b7ecc0b8e2442e9fa982256d4da835a2e ba140be7fe51516e03f1a5f0a130fc0de9c405eb233d585b418ea25ebc2859b9    ";
+			shellScript = "./Fabric/Fabric.framework/run 95e78a1b7ecc0b8e2442e9fa982256d4da835a2e ba140be7fe51516e03f1a5f0a130fc0de9c405eb233d585b418ea25ebc2859b9";
 		};
 /* End PBXShellScriptBuildPhase section */
 
