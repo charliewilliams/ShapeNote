@@ -26,10 +26,16 @@ class JSONLoader: NSObject {
             return
         }
         
-        let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
-        book.title = "The Sacred Harp (1991)"
-        book.year = "1991";
-        book.author = "Sacred Harp Publishing Company"
+        let shBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
+        shBook.title = "The Sacred Harp (1991)"
+        shBook.year = "1991";
+        shBook.author = "Sacred Harp Publishing Company"
+        shBook.hashTag = "#SacredHarp"
+        
+        let chBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
+        chBook.title = "The Christian Harmony (2010)"
+        chBook.year = "2010";
+        chBook.author = "Christian Harmony"
         
         let groupNames = ["Bristol", "London", "Cork", "Norwich", "Manchester", "Amsterdam", "Poland", "Dublin", "Boston"]
         
@@ -56,18 +62,24 @@ class JSONLoader: NSObject {
             emma.group = bristol
         }
         
-        var songsSet = NSMutableOrderedSet();
-
-        let json = loadFilesFromBundle()
-        
-        for d:NSDictionary in json {
+        for fileName in ["SH1991", "CH"] {
             
-            let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as Song
-            s.configureWithDict(d)
-            songsSet.addObject(s)
+            var songsSet = NSMutableOrderedSet();
+            let json = loadFileFromBundle(fileName)
+            
+            for d:NSDictionary in json {
+                
+                let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as Song
+                s.configureWithDict(d)
+                songsSet.addObject(s)
+            }
+            
+            if (fileName == "SH1991") {
+                shBook.songs = songsSet
+            } else {
+                chBook.songs = songsSet
+            }
         }
-        
-        book.songs = songsSet
         
         var error:NSError?
         coreDataContext().save(&error)
@@ -76,9 +88,9 @@ class JSONLoader: NSObject {
         }
     }
 
-    func loadFilesFromBundle() -> [NSDictionary] {
+    func loadFileFromBundle(fileName:String) -> [NSDictionary] {
         
-        let songsPath = NSBundle.mainBundle().pathForResource("SH1991", ofType: "json")?
+        let songsPath = NSBundle.mainBundle().pathForResource(fileName, ofType: "json")?
         
         if songsPath == nil {
             println("Missing songs file in bundle!")

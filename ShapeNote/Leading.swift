@@ -31,7 +31,7 @@ class Leading: NSManagedObject {
             userString = leader.name + " has just led "
         }
         
-        userString += song.number + " " + song.title + "."
+        userString += "#\(song.number): \(song.title)."
         
         if (song.parts < 4) {
             userString += " #\(song.parts)parts"

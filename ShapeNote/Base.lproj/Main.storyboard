@@ -284,7 +284,13 @@
                             <outlet property="delegate" destination="pwM-Va-lag" id="Xsg-pw-y3i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="k3G-yg-V0i"/>
+                    <navigationItem key="navigationItem" title="Title" id="h7t-20-rAS">
+                        <barButtonItem key="leftBarButtonItem" image="notebook" id="B6c-BR-lRp">
+                            <connections>
+                                <action selector="switchBooksPressed:" destination="pwM-Va-lag" id="ZAL-NZ-Lsd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQO-zt-667" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -632,6 +638,7 @@
     </scenes>
     <resources>
         <image name="contacts" width="32" height="32"/>
+        <image name="notebook" width="22" height="22"/>
         <image name="playlists" width="32" height="32"/>
         <image name="recents" width="32" height="32"/>
         <image name="top_charts" width="32" height="32"/>

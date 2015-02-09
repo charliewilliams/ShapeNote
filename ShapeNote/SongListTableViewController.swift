@@ -16,7 +16,8 @@ class SongListTableViewController: UITableViewController {
         get {
             if _songs == nil {
                 
-                let s:[Song] = CoreDataHelper.sharedHelper.songs(nil) as [Song]
+                let bookTitle = Defaults.currentlySelectedBookTitle
+                let s:[Song] = CoreDataHelper.sharedHelper.songs(bookTitle) as [Song]
                 _songs = s.sorted { (a:Song, b:Song) -> Bool in
                     
                     // t and b are in the wrong order, alphabetically
@@ -35,6 +36,13 @@ class SongListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    // MARK: - Switch books
+    
+    @IBAction func switchBooksPressed(sender: UIBarButtonItem) {
+        
+        println("No more books right now...")
     }
 
     // MARK: - Table view data source

@@ -19,18 +19,26 @@ class CoreDataHelper {
     }
     
     func singers() -> [Singer] {
-        
         return resultsForEntityName("Singer") as [Singer]
     }
     
     func books() -> [Book] {
-        
         return resultsForEntityName("Book") as [Book]
     }
     
-    func songs(book:String?) -> [Song] {
+    func book(title:String) -> Book? {
+        return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title = %@") as Book?
+    }
+    
+    func songs(inBookTitle:String?) -> [Song] {
         
-        return resultsForEntityName("Song") as [Song]
+        var bookTitle = inBookTitle
+        if bookTitle == nil {
+            bookTitle = "Sacred Harp (1991)"
+        }
+        let bookObject = book(bookTitle!)!
+        
+        return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book = %@") as [Song]
     }
     
     func groups() -> [Group] {
@@ -56,29 +64,25 @@ class CoreDataHelper {
     }
     
     func minutes(group:Group) -> [Minutes]? {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Minutes")
-        var error: NSError?
-        
-        let resultPredicate = NSPredicate(format: "group = %@", group)
-        fetchRequest.predicate = resultPredicate
-        
-        if let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as? [Minutes] {
-            
-            return fetchedResults
-        }
-        
-        if error != nil {
-            println("error loading results for Minutes: \(error)")
-        }
-        
-        return nil
+        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group = %") as [Minutes]?
     }
     
-    func resultsForEntityName(entityName:String) -> [NSManagedObject] {
+    func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> AnyObject? {
+        return resultsForEntityName(entityName, matchingObject: object, inQueryString: queryString)?.first
+    }
+    
+    func resultsForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> [AnyObject]? {
         
         let fetchRequest = NSFetchRequest(entityName:entityName)
         var error: NSError?
+        
+        if queryString != nil {
+            
+            assert(object != nil, "Object is required when using a query string")
+            
+            let resultPredicate = NSPredicate(format: queryString!, object!)
+            fetchRequest.predicate = resultPredicate
+        }
         
         let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]
         
@@ -87,6 +91,10 @@ class CoreDataHelper {
         }
         
         return fetchedResults
+    }
+    
+    func resultsForEntityName(entityName:String) -> [NSManagedObject] {
+        return resultsForEntityName(entityName, matchingObject: nil, inQueryString: nil) as [NSManagedObject]
     }
     
     lazy var applicationDocumentsDirectory: NSURL = {
