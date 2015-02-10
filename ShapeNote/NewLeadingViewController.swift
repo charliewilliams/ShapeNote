@@ -167,10 +167,10 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
             }
             
             if let text = inputTextField?.text as String? {
-                let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as? Singer
-                newSinger?.name = text
-                self.chosenSinger = newSinger!
-                CoreDataHelper.save()
+                let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as Singer
+                newSinger.name = text
+                self.chosenSinger = newSinger
+                CoreDataHelper.sharedHelper.saveContext()
                 self.tableView.reloadData()
                 self.updateSearchAndScope()
             }
@@ -263,10 +263,11 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         leading.song = chosenSong!
         leading.leader = chosenSinger!
         leading.minutes = minutes!
+        minutes?.singers.addObject(chosenSinger!)
         
         TwitterShareHelper.sharedHelper.postLeading(leading)
         
-        CoreDataHelper.save()
+        CoreDataHelper.sharedHelper.saveContext()
         
         self.navigationController?.popViewControllerAnimated(true)
     }

@@ -39,7 +39,7 @@ class CoreDataHelper {
     }
     
     func book(title:String) -> Book? {
-        return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title = %@") as Book?
+        return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title == %@") as Book?
     }
     
     func songs(inBookTitle:String) -> [Song] {
@@ -47,29 +47,29 @@ class CoreDataHelper {
         var bookTitle = inBookTitle
         let bookObject = book(bookTitle)!
         
-        return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book = %@") as [Song]
+        return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book == %@") as [Song]
     }
     
-    func fetchedResultsControllerForClassName(className:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSFetchedResultsController {
-        
-        let fetchRequest = NSFetchRequest(entityName:className)
-        var error: NSError?
-        let entityDescription = NSEntityDescription.entityForName(className, inManagedObjectContext: managedObjectContext!)
-        fetchRequest.entity = entityDescription
-        
-        let sort = NSSortDescriptor(key: "date", ascending: false)
-        
-//        , compare: { (date1:NSDate, date2:NSDate) -> NSComparisonResult in
-//            return date1.timeIntervalSince1970 > date2.timeIntervalSince1970
-//        })
+//    func fetchedResultsControllerForClassName(className:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSFetchedResultsController {
 //        
-        fetchRequest.sortDescriptors = [sort]
-        
-        fetchRequest.fetchBatchSize = 30
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Root")
-        
-        return fetchedResultsController
-    }
+//        let fetchRequest = NSFetchRequest(entityName:className)
+//        var error: NSError?
+//        let entityDescription = NSEntityDescription.entityForName(className, inManagedObjectContext: managedObjectContext!)
+//        fetchRequest.entity = entityDescription
+//        
+//        let sort = NSSortDescriptor(key: "date", ascending: false)
+//        
+////        , compare: { (date1:NSDate, date2:NSDate) -> NSComparisonResult in
+////            return date1.timeIntervalSince1970 > date2.timeIntervalSince1970
+////        })
+////        
+//        fetchRequest.sortDescriptors = [sort]
+//        
+//        fetchRequest.fetchBatchSize = 30
+//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Root")
+//        
+//        return fetchedResultsController
+//    }
     
     func groups() -> [Group] {
         
@@ -81,7 +81,7 @@ class CoreDataHelper {
         let fetchRequest = NSFetchRequest(entityName: "Group")
         var error: NSError?
         
-        let resultPredicate = NSPredicate(format: "name = %@", name)
+        let resultPredicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
         fetchRequest.predicate = resultPredicate
         
         let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [Group]
@@ -94,7 +94,11 @@ class CoreDataHelper {
     }
     
     func minutes(group:Group) -> [Minutes]? {
-        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group = %@") as [Minutes]?
+        
+        println("\(group) \(group.name)")
+        return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as [Minutes]?
+        // WARNING: Why doesn't this work?
+//        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group == %@") as [Minutes]?
     }
     
     func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> AnyObject? {
@@ -104,6 +108,9 @@ class CoreDataHelper {
     func resultsForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> [AnyObject]? {
         
         let fetchRequest = NSFetchRequest(entityName:entityName)
+        fetchRequest.returnsObjectsAsFaults = false
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        
         var error: NSError?
         
         if queryString != nil {
@@ -167,13 +174,13 @@ class CoreDataHelper {
         return CoreDataHelper.sharedHelper.managedObjectContext!
     }
     
-    class func save() {
-        var error:NSError?
-        CoreDataHelper.sharedHelper.managedObjectContext?.save(&error)
-        if (error != nil) {
-            println("CORE DATA ERROR: \(error)")
-        }
-    }
+//    class func save() {
+//        var error:NSError?
+//        CoreDataHelper.sharedHelper.managedObjectContext?.save(&error)
+//        if (error != nil) {
+//            println("CORE DATA ERROR: \(error)")
+//        }
+//    }
     
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.

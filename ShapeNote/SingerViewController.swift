@@ -76,7 +76,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
 
         singer!.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
         
-        CoreDataHelper.save()
+        CoreDataHelper.sharedHelper.saveContext()
         
         navigationController?.popViewControllerAnimated(true)
     }

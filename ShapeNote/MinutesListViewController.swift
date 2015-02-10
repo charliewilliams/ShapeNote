@@ -13,24 +13,23 @@ class MinutesListViewController: UITableViewController {
 
     @IBOutlet weak var minutesListTableView: UITableView!
     
-    var _minutes:[Minutes]?
-    var minutes:[Minutes] {
+    var _allMinutes:[Minutes]?
+    var allMinutes:[Minutes] {
         get {
-            if _minutes == nil {
+            if _allMinutes == nil {
                 
                 let group = CoreDataHelper.sharedHelper.currentlySelectedGroup
                     
                 navigationItem.title = group.name + ": Minutes"
-                if let m:[Minutes] = CoreDataHelper.sharedHelper.minutes(group) {
+                if let m = CoreDataHelper.sharedHelper.minutes(group) {
                     
-                    _minutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
+                    _allMinutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
                         
                         return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
                     }
                 }
             }
-            println("\(_minutes?.count) Minutes")
-            return _minutes!
+            return _allMinutes!
         }
     }
     
@@ -40,6 +39,7 @@ class MinutesListViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        _allMinutes = nil
         self.tableView.reloadData()
     }
     
@@ -50,14 +50,14 @@ class MinutesListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return minutes.count
+        return allMinutes.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as MinutesTableViewCell
         
-        let minute = minutes[indexPath.row]
+        let minute = allMinutes[indexPath.row]
         cell.configureWithMinutes(minute)
         
         return cell
@@ -69,19 +69,36 @@ class MinutesListViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        var m:Minutes
+    func minuteTakingViewControllerForIndexPath(_indexPath:NSIndexPath?) -> MinuteTakingViewController {
         
-        if minutes.count > indexPath.row+1 {
-            m = minutes[indexPath.row]
+        var m:Minutes
+        if let indexPath = _indexPath {
+            m = allMinutes[indexPath.row]
         } else {
             m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as Minutes
         }
-        
-        let minutesViewController = MinuteTakingViewController()
+
+        let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as MinuteTakingViewController
         minutesViewController.minutes = m
         
+        return minutesViewController
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        let minutesViewController = minuteTakingViewControllerForIndexPath(indexPath)
         self.navigationController?.pushViewController(minutesViewController, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let dvc = segue.destinationViewController as UIViewController
+        if let mtvc = dvc as? MinuteTakingViewController {
+            
+            if mtvc.minutes != nil {
+                return
+            }
+            mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as? Minutes
+        }
     }
 }

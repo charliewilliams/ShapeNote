@@ -28,6 +28,11 @@ class SingersListTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,7 +59,7 @@ class SingersListTableViewController: UITableViewController {
 
             let s = singers[indexPath.row]
             CoreDataHelper.managedContext.deleteObject(s)
-            CoreDataHelper.save()
+            CoreDataHelper.sharedHelper.saveContext()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

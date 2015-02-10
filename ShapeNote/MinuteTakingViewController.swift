@@ -52,16 +52,11 @@ class MinuteTakingViewController: UITableViewController {
         
         navigationItem.title = "Minutes: " + dateFormatter.stringFromDate(NSDate())
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        setNeedsReload()
-    }
 
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
+        setNeedsReload() //?
         minutesTableView.reloadData()
     }
     
@@ -77,7 +72,7 @@ class MinuteTakingViewController: UITableViewController {
     @IBAction func donePressed(sender: UIBarButtonItem) {
         
         // save and dismiss
-        CoreDataHelper.save()
+        CoreDataHelper.sharedHelper.saveContext()
         self.navigationController?.popViewControllerAnimated(true)
     }
 

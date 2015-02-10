@@ -15,9 +15,14 @@ class Minutes: NSManagedObject {
 
     @NSManaged var date: NSDate
     @NSManaged var songs: NSOrderedSet
-    @NSManaged var singers: NSSet
+    @NSManaged var singers: NSMutableSet
     @NSManaged var group: Group
     @NSManaged var book: Book
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        date = NSDate()
+    }
 
     func stringForSocialMedia() -> String {
         
