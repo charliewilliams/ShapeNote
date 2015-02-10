@@ -72,7 +72,7 @@ class JSONLoader: NSObject {
             "author":"The Shenandoah Harmony Publishing Company",
             "hashTag":"#Shenandoah"]
         
-        let coopBookDef = ["title":"The Sacred Harp (Cooper Edition, 2012)",
+        let coopBookDef = ["title":"The Sacred Harp (Cooper, 2012)",
             "fileName":"Cooper2012",
             "year":"2012",
             "author":"The Sacred Harp Book Company",

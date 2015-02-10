@@ -26,8 +26,8 @@ class SongListTableViewCell: UITableViewCell {
         titleLabel.text = song.title
         var infoString = ""
         
-        if song.composer.utf16Count > 0 {
-            infoString += song.composer
+        if let composer = song.composer {
+            infoString += composer
         }
         
         if let lyricist = song.lyricist {
@@ -44,11 +44,15 @@ class SongListTableViewCell: UITableViewCell {
         infoLabel.text = infoString
         
         infoString = ""
-        if song.meter.utf16Count > 0 && !song.meter.hasPrefix("None") {
-            infoString += " " + song.meter
+        if let meter = song.meter {
+            if !meter.hasPrefix("None") {
+                infoString += " " + meter
+            }
         }
-        if song.type.utf16Count > 0 && !song.type.hasPrefix("None") {
-            infoString += " " + song.type
+        if let type = song.type {
+            if !type.hasPrefix("None") {
+                infoString += " " + type
+            }
         }
         
         meterAndTypeLabel.text = infoString

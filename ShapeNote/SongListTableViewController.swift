@@ -24,7 +24,7 @@ class SongListTableViewController: UITableViewController {
                     if (a.strippedNumber == b.strippedNumber) {
                         return a.number > b.number
                     } else {
-                        return a.number < b.number
+                        return a.strippedNumber.toInt() < b.strippedNumber.toInt()
                     }
                 }
                 
@@ -33,16 +33,11 @@ class SongListTableViewController: UITableViewController {
             return _songs!
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
-    // MARK: - Switch books
-    
-    @IBAction func switchBooksPressed(sender: UIBarButtonItem) {
-        
-        println("No more books right now...")
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        _songs = nil
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
