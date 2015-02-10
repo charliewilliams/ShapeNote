@@ -39,7 +39,8 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         get {
             if _singers == nil {
                 
-                let group = CoreDataHelper.sharedHelper.groupWithName("Bristol")
+                let stored = Defaults.currentGroupName
+                let group = CoreDataHelper.sharedHelper.groupWithName(stored)
                 let singers = CoreDataHelper.sharedHelper.singers()
                 _singers = singers
             }
@@ -52,7 +53,8 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         get {
             if _songs == nil {
                 
-                let songs = CoreDataHelper.sharedHelper.songs(nil)
+                let bookTitle = Defaults.currentlySelectedBookTitle
+                let songs = CoreDataHelper.sharedHelper.songs(bookTitle)
                 _songs = songs
             }
             return _songs!

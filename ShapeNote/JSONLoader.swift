@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+let sacredHarpTitle = "The Sacred Harp (1991)"
+
 class JSONLoader: NSObject {
     
     class var sharedLoader : JSONLoader {
@@ -20,22 +22,11 @@ class JSONLoader: NSObject {
     
     func handleFirstRun() {
         
-        let songs = CoreDataHelper.sharedHelper.songs(nil) as [NSManagedObject]?
+        let bookTitle = Defaults.currentlySelectedBookTitle
         
-        if (songs?.count > 0) {
+        if let book = CoreDataHelper.sharedHelper.book(sacredHarpTitle) {
             return
         }
-        
-        let shBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
-        shBook.title = "The Sacred Harp (1991)"
-        shBook.year = "1991";
-        shBook.author = "Sacred Harp Publishing Company"
-        shBook.hashTag = "#SacredHarp"
-        
-        let chBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
-        chBook.title = "The Christian Harmony (2010)"
-        chBook.year = "2010";
-        chBook.author = "Christian Harmony"
         
         let groupNames = ["Bristol", "London", "Cork", "Norwich", "Manchester", "Amsterdam", "Poland", "Dublin", "Boston"]
         
@@ -62,10 +53,45 @@ class JSONLoader: NSObject {
             emma.group = bristol
         }
         
-        for fileName in ["SH1991", "CH"] {
+        let shBookDef = ["title":sacredHarpTitle,
+            "fileName":"SH1991",
+            "year":"1991",
+            "author":"The Sacred Harp Publishing Company",
+            "hashTag":"#SacredHarp",
+            "default":"true"]
+        
+        let chBookDef = ["title":"The Christian Harmony (2010)",
+            "fileName":"CH",
+            "year":"2010",
+            "author":"Christian Harmony",
+            "hashTag":"#7Shapes"]
+        
+        let shenBookDef = ["title":"The Shenandoah Harmony (2012)",
+            "fileName":"Shenandoah",
+            "year":"2012",
+            "author":"The Shenandoah Harmony Publishing Company",
+            "hashTag":"#Shenandoah"]
+        
+        let coopBookDef = ["title":"The Sacred Harp (Cooper Edition, 2012)",
+            "fileName":"Cooper2012",
+            "year":"2012",
+            "author":"The Sacred Harp Book Company",
+            "hashTag":"#CooperEdition"]
+        
+        let bookDefs = [shBookDef, chBookDef, shenBookDef, coopBookDef]
+        
+        for bookDef in bookDefs {
             
+            // make the book
+            let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
+            book.title = bookDef["title"]!
+            book.year = bookDef["year"]!
+            book.author = bookDef["author"]!
+            book.hashTag = bookDef["hashTag"]!
+            
+            // load the songs
             var songsSet = NSMutableOrderedSet();
-            let json = loadFileFromBundle(fileName)
+            let json = loadFileFromBundle(bookDef["fileName"]!)
             
             for d:NSDictionary in json {
                 
@@ -74,11 +100,7 @@ class JSONLoader: NSObject {
                 songsSet.addObject(s)
             }
             
-            if (fileName == "SH1991") {
-                shBook.songs = songsSet
-            } else {
-                chBook.songs = songsSet
-            }
+            book.songs = songsSet
         }
         
         var error:NSError?

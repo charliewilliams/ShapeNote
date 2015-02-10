@@ -88,6 +88,8 @@ class MinuteTakingViewController: UITableViewController {
     @IBAction func donePressed(sender: UIBarButtonItem) {
         
         // save and dismiss
+        CoreDataHelper.save()
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -100,6 +102,12 @@ class MinuteTakingViewController: UITableViewController {
             return count
         }
         return 0
+    }
+    
+    // MARK: - Navigation
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.performSegueWithIdentifier("PushToShowMinutes", sender: self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

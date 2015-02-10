@@ -38,11 +38,12 @@ class Song: NSManagedObject {
             "timeSignature":"Time Signature",
             "meter":"Meter",
             "parts":"Parts",
+            "source":"Source Abbr.",
             "key":"Key"]
     }
     
     var strippedNumber: String {
-    
+        
         let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
         return self.number.stringByTrimmingCharactersInSet(characterSet)
     }
@@ -51,20 +52,17 @@ class Song: NSManagedObject {
         
         for (key, value) in Song.keys {
             
-            let dictValue = dict[value] as? String?
-            
-            if dictValue != nil && dictValue! != "null" {
+            if let dictValue = dict[value] as? String {
                 
-                self.setValue(dictValue!, forKey: key)
-                
-            } else {
-                
-                let dictNumber = dict[value] as? NSNumber
-                
-                let num = dictNumber?.integerValue
-                
-                if num != 0 {
+                if dictValue != "null" {
                     
+                    self.setValue(dictValue, forKey: key)
+                }
+                
+            } else if let dictNumber = dict[value] as? NSNumber {
+                
+                let num = dictNumber.integerValue
+                if num != 0 {
                     self.setValue(num, forKey: key)
                 }
             }

@@ -24,6 +24,10 @@ class TwitterShareHelper: NSObject {
     
     func postLeading(leading:Leading) {
         
+        // WARNING: DEBUG
+        println("Not posting test run to Twitter")
+        return;
+        
         self.leading = leading
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
         let params = ["status": leading.twitterString()]
@@ -57,26 +61,4 @@ class TwitterShareHelper: NSObject {
             println("Error: \(clientError)")
         }
     }
-    
-//    func tweetFromAccount(account: ACAccount!) {
-//        
-//        twitterAccount = account // store this
-//        let twitter:STTwitterAPI = STTwitterAPI.twitterAPIOSWithAccount(account)
-//        
-//        twitter.verifyCredentialsWithSuccessBlock({ (username:String!) -> Void in
-//            
-//            twitter.postStatusUpdate(self.leading?.twitterString(), inReplyToStatusID: "", latitude: "", longitude: "", placeID: "", displayCoordinates: 0, trimUser: 0, successBlock: { (response: [NSObject:AnyObject]!) -> Void in
-//                
-//                println(response)
-//                
-//                }, errorBlock: { (error:NSError!) -> Void in
-//                    
-//                    println(error)
-//            })
-//            
-//            }, errorBlock: { (error:NSError!) -> Void in
-//            println(error)
-//        })
-//    }
-   
 }

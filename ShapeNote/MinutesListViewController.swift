@@ -40,6 +40,11 @@ class MinutesListViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.tableView.reloadData()
+//    }
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -65,7 +70,11 @@ class MinutesListViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.performSegueWithIdentifier("PushToShowMinutes", sender: self)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

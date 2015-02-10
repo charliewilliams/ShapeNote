@@ -30,13 +30,10 @@ class CoreDataHelper {
         return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title = %@") as Book?
     }
     
-    func songs(inBookTitle:String?) -> [Song] {
+    func songs(inBookTitle:String) -> [Song] {
         
         var bookTitle = inBookTitle
-        if bookTitle == nil {
-            bookTitle = "Sacred Harp (1991)"
-        }
-        let bookObject = book(bookTitle!)!
+        let bookObject = book(bookTitle)!
         
         return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book = %@") as [Song]
     }
@@ -64,7 +61,7 @@ class CoreDataHelper {
     }
     
     func minutes(group:Group) -> [Minutes]? {
-        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group = %") as [Minutes]?
+        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group = %@") as [Minutes]?
     }
     
     func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> AnyObject? {

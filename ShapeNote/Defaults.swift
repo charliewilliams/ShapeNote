@@ -9,6 +9,7 @@
 import UIKit
 
 let bookKey = "currentBook"
+let groupKey = "currentGroup"
 
 class Defaults: NSObject {
     
@@ -22,6 +23,19 @@ class Defaults: NSObject {
         }
         set(booktitle) {
             NSUserDefaults.standardUserDefaults().setObject(booktitle, forKey: bookKey)
+        }
+    }
+    
+    class var currentGroupName:String {
+        get {
+        if let stored = NSUserDefaults.standardUserDefaults().objectForKey(groupKey) as? String {
+            return stored
+        } else {
+            return "Bristol"
+            }
+        }
+        set(groupName) {
+            NSUserDefaults.standardUserDefaults().setObject(groupName, forKey: groupKey)
         }
     }
 }

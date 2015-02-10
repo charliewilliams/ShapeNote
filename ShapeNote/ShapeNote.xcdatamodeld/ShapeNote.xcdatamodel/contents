@@ -45,6 +45,7 @@
         <attribute name="meter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parts" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeSignature" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,6 +59,6 @@
         <element name="Leading" positionX="-207" positionY="128" width="128" height="103"/>
         <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
         <element name="Singer" positionX="-378" positionY="143" width="128" height="193"/>
-        <element name="Song" positionX="-9" positionY="9" width="128" height="223"/>
+        <element name="Song" positionX="-9" positionY="9" width="128" height="240"/>
     </elements>
 </model>

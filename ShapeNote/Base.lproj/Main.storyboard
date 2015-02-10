@@ -63,7 +63,7 @@
                     <navigationItem key="navigationItem" id="HZ3-By-0pR">
                         <barButtonItem key="rightBarButtonItem" title="+ New Singing" id="ZpZ-a4-Zgc">
                             <connections>
-                                <segue destination="tMy-iL-bif" kind="show" id="TdD-av-p5Y"/>
+                                <segue destination="tMy-iL-bif" kind="show" identifier="PushToShowMinutes" id="TdD-av-p5Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -288,6 +288,7 @@
                         <barButtonItem key="leftBarButtonItem" image="notebook" id="B6c-BR-lRp">
                             <connections>
                                 <action selector="switchBooksPressed:" destination="pwM-Va-lag" id="ZAL-NZ-Lsd"/>
+                                <segue destination="z4T-Ku-UY1" kind="show" id="YAH-iE-PDf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -295,6 +296,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQO-zt-667" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1206" y="0.0"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="4uT-rl-Jaj">
+            <objects>
+                <tableViewController id="z4T-Ku-UY1" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="C0K-Yw-nEx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ozz-iV-fkd">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ozz-iV-fkd" id="Xpg-T6-IGM">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z4T-Ku-UY1" id="xBo-fH-Olu"/>
+                            <outlet property="delegate" destination="z4T-Ku-UY1" id="JoE-FA-dFl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LfR-ZC-rQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

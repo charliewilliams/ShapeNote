@@ -33,6 +33,9 @@
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
 		C092E8621A891A51002594A5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8611A891A51002594A5 /* Defaults.swift */; };
+		C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8631A8A0311002594A5 /* Shenandoah.json */; };
+		C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8641A8A0311002594A5 /* Cooper2012.json */; };
+		C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */; };
 		C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */; };
 		C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */; };
 		C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A650A1A7EDA8600099E76 /* Minutes.swift */; };
@@ -96,6 +99,9 @@
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
 		C092E8611A891A51002594A5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		C092E8631A8A0311002594A5 /* Shenandoah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Shenandoah.json; sourceTree = "<group>"; };
+		C092E8641A8A0311002594A5 /* Cooper2012.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cooper2012.json; sourceTree = "<group>"; };
+		C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPickerTableViewController.swift; sourceTree = "<group>"; };
 		C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesListViewController.swift; sourceTree = "<group>"; };
 		C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteTakingViewController.swift; sourceTree = "<group>"; };
 		C09A650A1A7EDA8600099E76 /* Minutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minutes.swift; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
 				C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */,
 				C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */,
+				C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -211,6 +218,8 @@
 			children = (
 				C092E85F1A8914B6002594A5 /* CH.json */,
 				C0515B921A7BC4000006ED16 /* SH1991.json */,
+				C092E8631A8A0311002594A5 /* Shenandoah.json */,
+				C092E8641A8A0311002594A5 /* Cooper2012.json */,
 				C0515B5F1A7BA59D0006ED16 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -385,7 +394,9 @@
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
+				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
+				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
 				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +465,7 @@
 				C0C1D4AE1A813B120082C0EB /* BAVPlistNode.m in Sources */,
 				C0C1D4AF1A813B120082C0EB /* JSONSyntaxHighlight.m in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
+				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +545,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-D DEBUG=1";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -568,6 +581,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -585,7 +599,6 @@
 					"/Users/cw/Documents/FacebookSDK/**",
 					"~/Documents/FacebookSDK/FacebookSDK.framework/**",
 					"$(PROJECT_DIR)/ShapeNote",
-					"/Users/cw/Downloads/parse-library-1.6.2",
 					"$(PROJECT_DIR)/Fabric",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -613,7 +626,6 @@
 					"/Users/cw/Documents/FacebookSDK/**",
 					"~/Documents/FacebookSDK/FacebookSDK.framework/**",
 					"$(PROJECT_DIR)/ShapeNote",
-					"/Users/cw/Downloads/parse-library-1.6.2",
 					"$(PROJECT_DIR)/Fabric",
 				);
 				HEADER_SEARCH_PATHS = (
