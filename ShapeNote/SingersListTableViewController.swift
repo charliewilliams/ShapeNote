@@ -53,7 +53,7 @@ class SingersListTableViewController: UITableViewController {
         if editingStyle == .Delete {
 
             let s = singers[indexPath.row]
-            CoreDataHelper.managedContext?.deleteObject(s)
+            CoreDataHelper.managedContext.deleteObject(s)
             CoreDataHelper.save()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

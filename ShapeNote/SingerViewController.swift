@@ -58,7 +58,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
         
         if singer == nil {
-            singer = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext!) as? Singer
+            singer = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as? Singer
         }
         singer!.name = nameTextField.text
         singer!.shortName = displayNameTextField.text

@@ -19,6 +19,8 @@ class MinuteTakingViewController: UITableViewController {
     var leadings:[Leading]? { // all of the leadings from the minutes object
         get {
             
+            assert(minutes != nil, "Need to have minutes set by now!")
+            
             if _leadings == nil {
                 
                 var tempLeadings = [Leading]()
@@ -28,10 +30,10 @@ class MinuteTakingViewController: UITableViewController {
                         
                         tempLeadings.append(leading as Leading)
                     }
+                    _leadings = tempLeadings.sorted({ (first:Leading, second:Leading) -> Bool in
+                        return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
+                    })
                 }
-                _leadings = tempLeadings.sorted({ (first:Leading, second:Leading) -> Bool in
-                    return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
-                })
             }
             return _leadings
         }
@@ -52,37 +54,24 @@ class MinuteTakingViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        super.viewWillAppear(animated)
         setNeedsReload()
     }
 
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         
-        if leadings == nil || leadings?.count == 0 {
-            newSongCalled(self.newSongButton)
-        } else {
-            minutesTableView.reloadData()
-        }
+        super.viewDidAppear(animated)
+        minutesTableView.reloadData()
     }
     
     @IBAction func newSongCalled(sender: UIBarButtonItem) {
-        
-        if minutes == nil {
-            minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext!) as? Minutes
-            minutes?.date = NSDate()
-            minutes?.book = CoreDataHelper.sharedHelper.books().first!
-            minutes?.group = CoreDataHelper.sharedHelper.groupWithName("Bristol")!
-            CoreDataHelper.save()
-        }
         
         if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLeadingViewController") as? NewLeadingViewController {
             
             nvc.minutes = minutes
             self.navigationController?.pushViewController(nvc, animated: false)
         }
-        
     }
     
     @IBAction func donePressed(sender: UIBarButtonItem) {

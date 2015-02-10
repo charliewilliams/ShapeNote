@@ -18,20 +18,18 @@ class MinutesListViewController: UITableViewController {
         get {
             if _minutes == nil {
                 
-                // TODO concept of "current group"
-                let group:Group! = CoreDataHelper.sharedHelper.groupWithName("Bristol")
-                if group != nil {
+                let group = CoreDataHelper.sharedHelper.currentlySelectedGroup
                     
-                    navigationItem.title = group.name + ": Minutes"
-                    if let m:[Minutes] = CoreDataHelper.sharedHelper.minutes(group) {
+                navigationItem.title = group.name + ": Minutes"
+                if let m:[Minutes] = CoreDataHelper.sharedHelper.minutes(group) {
+                    
+                    _minutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
                         
-                        _minutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
-                            
-                            return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
-                        }
+                        return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
                     }
                 }
             }
+            println("\(_minutes?.count) Minutes")
             return _minutes!
         }
     }
@@ -40,10 +38,10 @@ class MinutesListViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.tableView.reloadData()
-//    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
     
     // MARK: - Table view data source
     
@@ -72,26 +70,18 @@ class MinutesListViewController: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        var m:Minutes
         
-        self.performSegueWithIdentifier("PushToShowMinutes", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        let dvc = segue.destinationViewController as UIViewController
-        
-        if let mtvc = dvc as? MinuteTakingViewController {
-            
-            let indexPath = minutesListTableView.indexPathForSelectedRow()
-            if let index = indexPath?.row {
-                if minutes.count > index+1 {
-                    mtvc.minutes = minutes[index]
-                } else {
-                    mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as? Minutes
-                }
-            }
+        if minutes.count > indexPath.row+1 {
+            m = minutes[indexPath.row]
+        } else {
+            m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as Minutes
         }
+        
+        let minutesViewController = MinuteTakingViewController()
+        minutesViewController.minutes = m
+        
+        self.navigationController?.pushViewController(minutesViewController, animated: true)
     }
-
-
 }

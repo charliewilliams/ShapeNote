@@ -18,6 +18,18 @@ class CoreDataHelper {
         return Static.instance
     }
     
+    var currentlySelectedGroup : Group {
+        get {
+            return groupWithName(Defaults.currentGroupName)!
+        }
+    }
+    
+    var currentlySelectedBook : Book {
+        get {
+            return book(Defaults.currentlySelectedBookTitle)!
+        }
+    }
+    
     func singers() -> [Singer] {
         return resultsForEntityName("Singer") as [Singer]
     }
@@ -36,6 +48,27 @@ class CoreDataHelper {
         let bookObject = book(bookTitle)!
         
         return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book = %@") as [Song]
+    }
+    
+    func fetchedResultsControllerForClassName(className:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSFetchedResultsController {
+        
+        let fetchRequest = NSFetchRequest(entityName:className)
+        var error: NSError?
+        let entityDescription = NSEntityDescription.entityForName(className, inManagedObjectContext: managedObjectContext!)
+        fetchRequest.entity = entityDescription
+        
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        
+//        , compare: { (date1:NSDate, date2:NSDate) -> NSComparisonResult in
+//            return date1.timeIntervalSince1970 > date2.timeIntervalSince1970
+//        })
+//        
+        fetchRequest.sortDescriptors = [sort]
+        
+        fetchRequest.fetchBatchSize = 30
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Root")
+        
+        return fetchedResultsController
     }
     
     func groups() -> [Group] {
@@ -130,8 +163,8 @@ class CoreDataHelper {
         return coordinator
         }()
     
-    class var managedContext: NSManagedObjectContext? {
-        return CoreDataHelper.sharedHelper.managedObjectContext
+    class var managedContext: NSManagedObjectContext {
+        return CoreDataHelper.sharedHelper.managedObjectContext!
     }
     
     class func save() {

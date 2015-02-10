@@ -39,8 +39,6 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         get {
             if _singers == nil {
                 
-                let stored = Defaults.currentGroupName
-                let group = CoreDataHelper.sharedHelper.groupWithName(stored)
                 let singers = CoreDataHelper.sharedHelper.singers()
                 _singers = singers
             }
@@ -115,9 +113,11 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         if searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue {
             searchBar.placeholder = "enter song number"
             searchBar.keyboardType = UIKeyboardType.NumberPad
+            self.filteredSongs = self.songs
         } else {
             searchBar.placeholder = "enter name"
             searchBar.keyboardType = UIKeyboardType.ASCIICapable
+            self.filteredSingers = self.singers
         }
         searchBar.reloadInputViews()
         
@@ -133,7 +133,6 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
             searchDisplayController?.searchResultsTableView.reloadData()
             searchDisplayController?.setActive(true, animated: true)
         }
-
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -259,7 +258,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     @IBAction func donePressed(sender: AnyObject) {
         
-        let leading = NSEntityDescription.insertNewObjectForEntityForName("Leading", inManagedObjectContext: CoreDataHelper.managedContext!) as Leading
+        let leading = NSEntityDescription.insertNewObjectForEntityForName("Leading", inManagedObjectContext: CoreDataHelper.managedContext) as Leading
         leading.date = NSDate()
         leading.song = chosenSong!
         leading.leader = chosenSinger!

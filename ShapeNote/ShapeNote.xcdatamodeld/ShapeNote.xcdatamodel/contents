@@ -56,7 +56,7 @@
     <elements>
         <element name="Book" positionX="160" positionY="-153" width="128" height="135"/>
         <element name="Group" positionX="-567" positionY="54" width="128" height="88"/>
-        <element name="Leading" positionX="-207" positionY="128" width="128" height="103"/>
+        <element name="Leading" positionX="-207" positionY="128" width="128" height="105"/>
         <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
         <element name="Singer" positionX="-378" positionY="143" width="128" height="193"/>
         <element name="Song" positionX="-9" positionY="9" width="128" height="240"/>
