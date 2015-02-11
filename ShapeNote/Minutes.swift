@@ -26,7 +26,11 @@ class Minutes: NSManagedObject {
 
     func stringForSocialMedia() -> String {
         
-        var string = "Minutes for " + group.name + " on "
+        var string = ""
+        
+//        if group.name != nil {
+//            string = "Minutes for \(group.name) on "
+//        }
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = .NoStyle
@@ -45,7 +49,7 @@ class Minutes: NSManagedObject {
                 if (leading.leader.shortName?.utf16Count > 0) {
                     string += leading.leader.shortName!
                 } else {
-                    string += "@" + leading.leader.name
+                    string += "" + leading.leader.name
                 }
                 
                 string += "\n"

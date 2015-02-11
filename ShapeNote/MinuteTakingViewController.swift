@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Social
 
 class MinuteTakingViewController: UITableViewController {
     
@@ -70,9 +71,15 @@ class MinuteTakingViewController: UITableViewController {
     }
     
     @IBAction func donePressed(sender: UIBarButtonItem) {
-        
-        // save and dismiss
+    
         CoreDataHelper.sharedHelper.saveContext()
+        
+        let socialShare = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        socialShare.setInitialText(minutes?.stringForSocialMedia())
+        
+        self.presentViewController(socialShare, animated: true) { () -> Void in
+            
+        }
         self.navigationController?.popViewControllerAnimated(true)
     }
 

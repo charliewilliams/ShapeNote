@@ -43,9 +43,13 @@ class Leading: NSManagedObject {
             userString += " #Fugue"
         }
         
-        userString += " #shapenote"
+        if arc4random() % 10 == 0 {
+            userString += " #shapenote"
+        }
         
-        userString += " " + song.book.hashTag
+        if arc4random() % 10 == 0 {
+            userString += " " + song.book.hashTag
+        }
         
         while userString.utf16Count > 160 {
             var components = userString.componentsSeparatedByString(" ")

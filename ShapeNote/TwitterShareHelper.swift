@@ -8,7 +8,6 @@
 
 import UIKit
 import Social
-import Accounts
 import TwitterKit
 
 class TwitterShareHelper: NSObject {
@@ -25,8 +24,8 @@ class TwitterShareHelper: NSObject {
     func postLeading(leading:Leading) {
         
         // WARNING: DEBUG
-        println("Not posting test run to Twitter")
-        return;
+//        println("Not posting test run to Twitter")
+//        return;
         
         self.leading = leading
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
