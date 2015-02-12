@@ -28,11 +28,6 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
             if session != nil {
                 self.session = session
                 self.twitterLoginButton.setTitle("Logged in as \(session.userName)", forState: .Normal)
-                
-//                let user = PFUser.currentUser()
-//                user.setObject("@" + session.userName, forKey: "twitterUserName")
-//                user.setObject(session.authToken, forKey: "twitterSessionAuthToken")
-//                user.setObject(session.authTokenSecret, forKey: "twitterSessionAuthSecret")
             }
         }
     }
@@ -40,17 +35,6 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func doFacebookLogin() {
         
         let permissions = ["public_profile", "user_friends", "email"]
-        
-//        let user = PFUser.currentUser()
-        
-//        PFFacebookUtils.linkUser(user, permissions: permissions) { (success:Bool, error:NSError!) -> Void in
-//            
-//            PFUser.becomeInBackground(user.sessionToken, block: { (user:PFUser!, becomeError:NSError!) -> Void in
-//                
-//                if becomeError != nil {
-//                    println(becomeError)
-//                }
-//            })
         
             FBSession.openActiveSessionWithPublishPermissions(["publish_actions"], defaultAudience: FBSessionDefaultAudience.Friends, allowLoginUI: true, completionHandler: { (session:FBSession!, state:FBSessionState, publishError:NSError!) -> Void in
                 
@@ -73,8 +57,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
         println(user)
-        if user != nil { //&& PFAnonymousUtils.isLinkedWithUser(PFUser.currentUser()) == true {
-            
+        if user != nil {
             doFacebookLogin()
         }
     }

@@ -73,14 +73,20 @@ class MinuteTakingViewController: UITableViewController {
     @IBAction func donePressed(sender: UIBarButtonItem) {
     
         CoreDataHelper.sharedHelper.saveContext()
-        
-        let socialShare = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        socialShare.setInitialText(minutes?.stringForSocialMedia())
-        
-        self.presentViewController(socialShare, animated: true) { () -> Void in
+
+        let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Do it", style: .Default) { (action:UIAlertAction!) -> Void in
+            
+            FacebookShareHelper.postMinutesToFacebook(self.minutes!)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (cancel:UIAlertAction!) -> Void in
             
         }
-        self.navigationController?.popViewControllerAnimated(true)
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
