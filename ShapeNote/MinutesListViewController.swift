@@ -55,7 +55,7 @@ class MinutesListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as MinutesTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MinutesTableViewCell
         
         let minute = allMinutes[indexPath.row]
         cell.configureWithMinutes(minute)
@@ -75,10 +75,10 @@ class MinutesListViewController: UITableViewController {
         if let indexPath = _indexPath {
             m = allMinutes[indexPath.row]
         } else {
-            m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as Minutes
+            m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Minutes
         }
 
-        let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as MinuteTakingViewController
+        let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         
         return minutesViewController
@@ -92,7 +92,7 @@ class MinutesListViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let dvc = segue.destinationViewController as UIViewController
+        let dvc = segue.destinationViewController as! UIViewController
         if let mtvc = dvc as? MinuteTakingViewController {
             
             if mtvc.minutes != nil {

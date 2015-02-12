@@ -36,7 +36,6 @@
 		C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8631A8A0311002594A5 /* Shenandoah.json */; };
 		C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8641A8A0311002594A5 /* Cooper2012.json */; };
 		C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */; };
-		C092E86A1A8A1258002594A5 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8691A8A1258002594A5 /* UILabel+Extensions.swift */; };
 		C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */; };
 		C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */; };
 		C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A650A1A7EDA8600099E76 /* Minutes.swift */; };
@@ -103,7 +102,6 @@
 		C092E8631A8A0311002594A5 /* Shenandoah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Shenandoah.json; sourceTree = "<group>"; };
 		C092E8641A8A0311002594A5 /* Cooper2012.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cooper2012.json; sourceTree = "<group>"; };
 		C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPickerTableViewController.swift; sourceTree = "<group>"; };
-		C092E8691A8A1258002594A5 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesListViewController.swift; sourceTree = "<group>"; };
 		C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteTakingViewController.swift; sourceTree = "<group>"; };
 		C09A650A1A7EDA8600099E76 /* Minutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minutes.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */,
 				C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */,
 				C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */,
-				C092E8691A8A1258002594A5 /* UILabel+Extensions.swift */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -462,7 +459,6 @@
 				C0C1D4A41A813B120082C0EB /* NSDateFormatter+STTwitter.m in Sources */,
 				C0515B881A7BBA790006ED16 /* Leading.swift in Sources */,
 				C0C1D4AB1A813B120082C0EB /* STTwitterOAuth.m in Sources */,
-				C092E86A1A8A1258002594A5 /* UILabel+Extensions.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,

@@ -29,7 +29,7 @@ class MinuteTakingViewController: UITableViewController {
                     
                     loadedArray.enumerateObjectsUsingBlock { (leading:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
                         
-                        tempLeadings.append(leading as Leading)
+                        tempLeadings.append(leading as! Leading)
                     }
                     _leadings = tempLeadings.sorted({ (first:Leading, second:Leading) -> Bool in
                         return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
@@ -103,7 +103,7 @@ class MinuteTakingViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .NoStyle

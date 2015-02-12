@@ -96,7 +96,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkEnteredFieldsValid() -> Bool {
-        return countElements(nameTextField.text) > 0
+        return count(nameTextField.text) > 0
     }
     
     @IBAction func tagOnFacebookSwitchChanged(sender: UISwitch) {

@@ -31,18 +31,18 @@ class JSONLoader: NSObject {
         let groupNames = ["Bristol", "London", "Cork", "Norwich", "Manchester", "Amsterdam", "Poland", "Dublin", "Boston"]
         
         for name in groupNames {
-            let group = NSEntityDescription.insertNewObjectForEntityForName("Group", inManagedObjectContext: coreDataContext()) as Group
+            let group = NSEntityDescription.insertNewObjectForEntityForName("Group", inManagedObjectContext: coreDataContext()) as! Group
             group.name = name
         }
         
-        let charlie = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: coreDataContext()) as Singer
+        let charlie = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: coreDataContext()) as! Singer
         charlie.name = "Charlie Williams"
         charlie.shortName = "Charlie"
         charlie.twitter = "@buildsucceeded"
         charlie.facebook = "Yes"
         charlie.voice = Voice.Tenor.rawValue
         
-        let emma = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: coreDataContext()) as Singer
+        let emma = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: coreDataContext()) as! Singer
         emma.name = "Emma Hooper"
         emma.shortName = "Emma"
         emma.twitter = "@waitress4thbees"
@@ -83,7 +83,7 @@ class JSONLoader: NSObject {
         for bookDef in bookDefs {
             
             // make the book
-            let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as Book
+            let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as! Book
             book.title = bookDef["title"]!
             book.year = bookDef["year"]!
             book.author = bookDef["author"]!
@@ -95,7 +95,7 @@ class JSONLoader: NSObject {
             
             for d:NSDictionary in json {
                 
-                let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as Song
+                let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as! Song
                 s.configureWithDict(d)
                 songsSet.addObject(s)
             }
@@ -112,7 +112,7 @@ class JSONLoader: NSObject {
 
     func loadFileFromBundle(fileName:String) -> [NSDictionary] {
         
-        let songsPath = NSBundle.mainBundle().pathForResource(fileName, ofType: "json")?
+        let songsPath = NSBundle.mainBundle().pathForResource(fileName, ofType: "json")
         
         if songsPath == nil {
             println("Missing songs file in bundle!")
@@ -122,12 +122,12 @@ class JSONLoader: NSObject {
         assert(data != nil, "Need data")
         var jsonError: NSError?
         
-        var decodedJson = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: &jsonError) as NSArray
+        var decodedJson = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: &jsonError) as! NSArray
         if jsonError != nil {
             println(jsonError)
         }
         
-        return decodedJson as [NSDictionary]
+        return decodedJson as! [NSDictionary]
     }
 
     func coreDataContext() -> NSManagedObjectContext! {

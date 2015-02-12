@@ -45,7 +45,7 @@ class SingersListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
         
         let singer = singers[indexPath.row]
         cell.textLabel?.text = singer.name
@@ -69,7 +69,7 @@ class SingersListTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        let dvc:UIViewController = segue.destinationViewController as UIViewController
+        let dvc:UIViewController = segue.destinationViewController as! UIViewController
         
         if let svc = dvc as? SingerViewController {
 

@@ -31,15 +31,15 @@ class CoreDataHelper {
     }
     
     func singers() -> [Singer] {
-        return resultsForEntityName("Singer") as [Singer]
+        return resultsForEntityName("Singer") as! [Singer]
     }
     
     func books() -> [Book] {
-        return resultsForEntityName("Book") as [Book]
+        return resultsForEntityName("Book") as! [Book]
     }
     
     func book(title:String) -> Book? {
-        return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title == %@") as Book?
+        return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title == %@") as! Book?
     }
     
     func songs(inBookTitle:String) -> [Song] {
@@ -47,7 +47,7 @@ class CoreDataHelper {
         var bookTitle = inBookTitle
         let bookObject = book(bookTitle)!
         
-        return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book == %@") as [Song]
+        return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book == %@") as! [Song]
     }
     
 //    func fetchedResultsControllerForClassName(className:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSFetchedResultsController {
@@ -73,7 +73,7 @@ class CoreDataHelper {
     
     func groups() -> [Group] {
         
-        return resultsForEntityName("Group") as [Group]
+        return resultsForEntityName("Group") as! [Group]
     }
     
     func groupWithName(name:String) -> Group? {
@@ -84,7 +84,7 @@ class CoreDataHelper {
         let resultPredicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
         fetchRequest.predicate = resultPredicate
         
-        let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [Group]
+        let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as! [Group]
         
         if error != nil {
             println("error loading results for Group: \(error)")
@@ -96,7 +96,7 @@ class CoreDataHelper {
     func minutes(group:Group) -> [Minutes]? {
         
         println("\(group) \(group.name)")
-        return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as [Minutes]?
+        return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
         // WARNING: Why doesn't this work?
 //        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group == %@") as [Minutes]?
     }
@@ -121,7 +121,7 @@ class CoreDataHelper {
             fetchRequest.predicate = resultPredicate
         }
         
-        let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]
+        let fetchedResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]
         
         if error != nil {
             println("error loading results for \(entityName): \(error)")
@@ -131,13 +131,13 @@ class CoreDataHelper {
     }
     
     func resultsForEntityName(entityName:String) -> [NSManagedObject] {
-        return resultsForEntityName(entityName, matchingObject: nil, inQueryString: nil) as [NSManagedObject]
+        return resultsForEntityName(entityName, matchingObject: nil, inQueryString: nil) as! [NSManagedObject]
     }
     
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.charliewilliams.ShapeNote" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as NSURL
+        return urls[urls.count-1] as! NSURL
         }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -160,10 +160,12 @@ class CoreDataHelper {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError(domain: "com.charliewilliams", code: 9999, userInfo: dict)
+            
+            // WARNING: Swift hates this construction
+//            error = NSError(domain: "com.charliewilliams", code: 9999, userInfo: dict as! [NSObject : AnyObject])
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(error), \(error!.userInfo)")
+//            NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
         }
         

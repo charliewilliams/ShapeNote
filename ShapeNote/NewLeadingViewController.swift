@@ -87,7 +87,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue
     }
     
-    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         
         if searchingSongs() {
             filterContentForSongSearchText(searchString)
@@ -97,7 +97,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
         return true
     }
     
-    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
         
         if searchOption == ScopeBarIndex.SearchSongs.rawValue {
             filterContentForSongSearchText(searchDisplayController!.searchBar.text)
@@ -167,7 +167,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
             }
             
             if let text = inputTextField?.text as String? {
-                let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as Singer
+                let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Singer
                 newSinger.name = text
                 self.chosenSinger = newSinger
                 CoreDataHelper.sharedHelper.saveContext()
@@ -220,7 +220,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
         
         if tableView == self.searchDisplayController!.searchResultsTableView {
 
@@ -258,7 +258,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     @IBAction func donePressed(sender: AnyObject) {
         
-        let leading = NSEntityDescription.insertNewObjectForEntityForName("Leading", inManagedObjectContext: CoreDataHelper.managedContext) as Leading
+        let leading = NSEntityDescription.insertNewObjectForEntityForName("Leading", inManagedObjectContext: CoreDataHelper.managedContext) as! Leading
         leading.date = NSDate()
         leading.song = chosenSong!
         leading.leader = chosenSinger!
