@@ -8,7 +8,8 @@
 
 import UIKit
 
-let groupGraphString = "/bristolsacredharp/feed"
+let groupGraphString = "/159750340866331/feed"
+
 class FacebookShareHelper: NSObject {
     
     class func postMinutesToFacebook(minutes:Minutes?) {
@@ -17,6 +18,7 @@ class FacebookShareHelper: NSObject {
         
         FBRequestConnection.startWithGraphPath(groupGraphString, parameters: params, HTTPMethod: "POST") { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             
+            println(error)
             if error != nil {
                 
                 println("error \(error) posting minutes")

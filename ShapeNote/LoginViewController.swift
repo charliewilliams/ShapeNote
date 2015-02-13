@@ -32,34 +32,33 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         }
     }
     
-    func doFacebookLogin() {
+    class func doFacebookLogin() {
         
-        let permissions = ["public_profile", "user_friends", "email"]
+        let permissions = ["public_profile", "user_friends", "email", "user_groups"]
         
-            FBSession.openActiveSessionWithPublishPermissions(["publish_actions"], defaultAudience: FBSessionDefaultAudience.Friends, allowLoginUI: true, completionHandler: { (session:FBSession!, state:FBSessionState, publishError:NSError!) -> Void in
-                
-                if publishError != nil {
-                    println(publishError)
-                }
-            })
+        FBSession.openActiveSessionWithPublishPermissions(["publish_actions", "user_groups"], defaultAudience: FBSessionDefaultAudience.Friends, allowLoginUI: true, completionHandler: { (session:FBSession!, state:FBSessionState, publishError:NSError!) -> Void in
             
-            FBRequest.requestForMe()?.startWithCompletionHandler({ (connection:FBRequestConnection!, info:AnyObject!, infoError:NSError!) -> Void in
-                
-                if infoError != nil {
-                    println(infoError)
-                }
-                println(info)
-            })
-//        }
+            if publishError != nil {
+                println(publishError)
+            }
+        })
+        
+        FBRequest.requestForMe()?.startWithCompletionHandler({ (connection:FBRequestConnection!, info:AnyObject!, infoError:NSError!) -> Void in
+            
+            if infoError != nil {
+                println(infoError)
+            }
+            println(info)
+        })
     }
     
     // Facebook functions
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
-        println(user)
-        if user != nil {
-            doFacebookLogin()
-        }
+//        println(user)
+//        if user != nil {
+//            doFacebookLogin()
+//        }
     }
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {

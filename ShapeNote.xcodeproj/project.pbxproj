@@ -43,6 +43,7 @@
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
 		C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */; };
 		C09A96C41A7ED65A009D1C29 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */; };
+		C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */; };
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
 		C0C1D4A41A813B120082C0EB /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D4881A813B120082C0EB /* NSDateFormatter+STTwitter.m */; };
 		C0C1D4A51A813B120082C0EB /* NSError+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D48A1A813B120082C0EB /* NSError+STTwitter.m */; };
@@ -110,6 +111,7 @@
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
 		C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerProfileViewController.swift; sourceTree = "<group>"; };
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
 		C0C1D4871A813B120082C0EB /* NSDateFormatter+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+STTwitter.h"; sourceTree = "<group>"; };
 		C0C1D4881A813B120082C0EB /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */,
 				C06AAE351A8D6ED400EB7612 /* FacebookShareHelper.swift */,
 				C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */,
+				C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
 				C0C1D4A71A813B120082C0EB /* STHTTPRequest+STTwitter.m in Sources */,

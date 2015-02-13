@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics(), Twitter()])
         FBAppEvents.activateApp()
-//        Parse.setApplicationId("0YYog5pb5aCTUfaUyZdsZ22SREVd9SVJ1NQk5wyE", clientKey:"dnD2BN0PhqOiJurEmSpLFcUTEHuneJeat4CXnnyH")
-//        PFUser.enableAutomaticUser()
-//        PFFacebookUtils.initializeFacebook()
-//        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, { (success:Bool, error:NSError!) -> Void in })
         JSONLoader.sharedLoader.handleFirstRun()
+        
+//        LoginViewController.doFacebookLogin()
+        
+//        FacebookShareHelper.postMinutesToFacebook(nil)
         
         return true
     }
