@@ -73,6 +73,10 @@ class MinuteTakingViewController: UITableViewController {
     @IBAction func donePressed(sender: UIBarButtonItem) {
     
         CoreDataHelper.sharedHelper.saveContext()
+        
+        if FacebookShareHelper.canPostToFacebook() == false {
+            return
+        }
 
         let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Do it", style: .Default) { (action:UIAlertAction!) -> Void in

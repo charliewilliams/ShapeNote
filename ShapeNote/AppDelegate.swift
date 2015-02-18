@@ -23,10 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBAppEvents.activateApp()
         JSONLoader.sharedLoader.handleFirstRun()
         
-//        LoginViewController.doFacebookLogin()
-        
-//        FacebookShareHelper.postMinutesToFacebook(nil)
-        
         return true
     }
     

@@ -12,17 +12,16 @@ let groupGraphString = "/159750340866331/feed"
 
 class FacebookShareHelper: NSObject {
     
-    class func postMinutesToFacebook(minutes:Minutes?) {
+    class func canPostToFacebook() -> Bool {
         
-        let params = ["message":"test"] //minutes.stringForSocialMedia()]
         let permissions:NSArray = FBSession.activeSession().permissions
+        return permissions.containsObject("publish_actions")
+    }
+    
+    class func postMinutesToFacebook(minutes:Minutes) {
         
-        if permissions.containsObject("publish_actions") == false {
-//             permission does not exist
-            
-            println("Don't have permissions: \(permissions)")
-        }
-        
+        let params = ["message": minutes.stringForSocialMedia()]
+
         FBRequestConnection.startWithGraphPath(groupGraphString, parameters: params, HTTPMethod: "POST") { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             
             println(error)
