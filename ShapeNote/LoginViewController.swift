@@ -16,6 +16,23 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     var loggingIn:Bool = false
     var session: TWTRSession?
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let twSession = Twitter.sharedInstance().session() {
+            
+            fixTwitterLoginStateForSession(twSession)
+        }
+        
+        if let fbSession = FBSession.activeSession() {
+            
+            let permissions = fbSession.permissions as NSArray
+            if permissions.containsObject("publish_actions") == false || permissions.containsObject("user_groups") == false {
+                LoginViewController.doFacebookLogin()
+            }
+        }
+    }
+
     // Twitter functions
     @IBAction func twitterLoginButtonPressed(sender: TWTRLogInButton) {
         
@@ -27,38 +44,27 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
             
             if session != nil {
                 self.session = session
-                self.twitterLoginButton.setTitle("Logged in as \(session.userName)", forState: .Normal)
+                self.fixTwitterLoginStateForSession(session!)
             }
         }
     }
     
     class func doFacebookLogin() {
         
-        let permissions = ["public_profile", "user_friends", "email", "user_groups"]
+        let writePermissions = ["public_profile", "user_friends", "email", "user_groups", "publish_actions"]
+        let session = FBSession.activeSession()
         
-        FBSession.openActiveSessionWithPublishPermissions(["publish_actions", "user_groups"], defaultAudience: FBSessionDefaultAudience.Friends, allowLoginUI: true, completionHandler: { (session:FBSession!, state:FBSessionState, publishError:NSError!) -> Void in
+        FBSession.activeSession().requestNewPublishPermissions(writePermissions, defaultAudience: .Everyone) { (session:FBSession!, publishError:NSError!) -> Void in
             
             if publishError != nil {
                 println(publishError)
             }
-        })
-        
-        FBRequest.requestForMe()?.startWithCompletionHandler({ (connection:FBRequestConnection!, info:AnyObject!, infoError:NSError!) -> Void in
-            
-            if infoError != nil {
-                println(infoError)
-            }
-            println(info)
-        })
+        }
     }
     
     // Facebook functions
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
-//        println(user)
-//        if user != nil {
-//            doFacebookLogin()
-//        }
     }
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {
@@ -72,4 +78,36 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
         println(loginView)        
     }
+    
+    func fixTwitterLoginStateForSession(session:TWTRSession) {
+        
+        if let subviews = twitterLoginButton.subviews as? [UIView] {
+            
+            for view in subviews {
+                
+                if let label = view as? UILabel {
+                    
+                    setTwitterText("Logged in as @\(session.userName)", onLabel: label)
+                    
+                } else if let subsub = view.subviews as? [UIView] {
+                    
+                    for vview in subsub {
+                        
+                        if let label = vview as? UILabel {
+                            
+                            setTwitterText("Logged in as @\(session.userName)", onLabel: label)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func setTwitterText(string:String, onLabel label:UILabel) {
+        
+        label.text = string
+        label.setNeedsLayout()
+        twitterLoginButton.setNeedsLayout()
+    }
+    
 }

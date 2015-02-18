@@ -15,6 +15,13 @@ class FacebookShareHelper: NSObject {
     class func postMinutesToFacebook(minutes:Minutes?) {
         
         let params = ["message":"test"] //minutes.stringForSocialMedia()]
+        let permissions:NSArray = FBSession.activeSession().permissions
+        
+        if permissions.containsObject("publish_actions") == false {
+//             permission does not exist
+            
+            println("Don't have permissions: \(permissions)")
+        }
         
         FBRequestConnection.startWithGraphPath(groupGraphString, parameters: params, HTTPMethod: "POST") { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             
