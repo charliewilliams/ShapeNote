@@ -1,5 +1,5 @@
 //
-//  Leading.swift
+//  Lesson.swift
 //  ShapeNote
 //
 //  Created by Charlie Williams on 30/01/2015.
@@ -9,9 +9,9 @@
 import Foundation
 import CoreData
 
-@objc(Leading)
+@objc(Lesson)
 
-class Leading: NSManagedObject {
+class Lesson: NSManagedObject {
 
     @NSManaged var date: NSDate
     @NSManaged var leader: Singer

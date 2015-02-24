@@ -16,32 +16,32 @@ class MinuteTakingViewController: UITableViewController {
     @IBOutlet weak var newSongButton: UIBarButtonItem!
     
     var minutes:Minutes? // the minutes object
-    var _leadings:[Leading]?
-    var leadings:[Leading]? { // all of the leadings from the minutes object
+    var _lessons:[Lesson]?
+    var lessons:[Lesson]? { // all of the lessons from the minutes object
         get {
             
             assert(minutes != nil, "Need to have minutes set by now!")
             
-            if _leadings == nil {
+            if _lessons == nil {
                 
-                var tempLeadings = [Leading]()
+                var templessons = [Lesson]()
                 if let loadedArray:NSOrderedSet = minutes?.songs {
                     
-                    loadedArray.enumerateObjectsUsingBlock { (leading:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+                    loadedArray.enumerateObjectsUsingBlock { (lesson:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
                         
-                        tempLeadings.append(leading as! Leading)
+                        templessons.append(lesson as! Lesson)
                     }
-                    _leadings = tempLeadings.sorted({ (first:Leading, second:Leading) -> Bool in
+                    _lessons = templessons.sorted({ (first:Lesson, second:Lesson) -> Bool in
                         return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
                     })
                 }
             }
-            return _leadings
+            return _lessons
         }
     }
     
     func setNeedsReload() {
-        _leadings = nil
+        _lessons = nil
     }
 
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class MinuteTakingViewController: UITableViewController {
     
     @IBAction func newSongCalled(sender: UIBarButtonItem) {
         
-        if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLeadingViewController") as? NewLeadingViewController {
+        if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLessonViewController") as? NewLessonViewController {
             
             nvc.minutes = minutes
             self.navigationController?.pushViewController(nvc, animated: false)
@@ -100,7 +100,7 @@ class MinuteTakingViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let count = leadings?.count {
+        if let count = lessons?.count {
             return count
         }
         return 0
@@ -120,9 +120,9 @@ class MinuteTakingViewController: UITableViewController {
             dateFormatter.dateStyle = .NoStyle
             dateFormatter.timeStyle = .ShortStyle
             
-            if let leading = leadings?[indexPath.row] {
-                cell.textLabel!.text = leading.song.number + " " + leading.song.title + " – " + leading.leader.name
-                cell.detailTextLabel!.text = dateFormatter.stringFromDate(leading.date)
+            if let lesson = lessons?[indexPath.row] {
+                cell.textLabel!.text = lesson.song.number + " " + lesson.song.title + " – " + lesson.leader.name
+                cell.detailTextLabel!.text = dateFormatter.stringFromDate(lesson.date)
             }
             
             return cell

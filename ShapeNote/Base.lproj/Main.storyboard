@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -136,10 +136,10 @@
             </objects>
             <point key="canvasLocation" x="1870.5" y="-697.5"/>
         </scene>
-        <!--New Leading View Controller-->
+        <!--New Lesson View Controller-->
         <scene sceneID="qaM-zw-kHU">
             <objects>
-                <tableViewController storyboardIdentifier="NewLeadingViewController" id="3BM-r6-Sud" customClass="NewLeadingViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NewLessonViewController" id="3BM-r6-Sud" customClass="NewLessonViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Eh0-Aq-hOR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -631,16 +631,16 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-Fv-i3o">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-Fv-i3o">
                                 <rect key="frame" x="0.0" y="277" width="600" height="165"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Draft-modes" translatesAutoresizingMaskIntoConstraints="NO" id="CbP-Nm-nfk">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Draft-modes" translatesAutoresizingMaskIntoConstraints="NO" id="CbP-Nm-nfk">
                                         <rect key="frame" x="0.0" y="0.0" width="233" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CbP-Nm-nfk" secondAttribute="height" multiplier="64:45" id="3mT-Ev-6ON"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Draft-forms" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-SA-veL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Draft-forms" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-SA-veL">
                                         <rect key="frame" x="233" y="0.0" width="234" height="165"/>
                                     </imageView>
                                 </subviews>

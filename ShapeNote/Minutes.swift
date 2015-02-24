@@ -41,15 +41,15 @@ class Minutes: NSManagedObject {
         
         songs.enumerateObjectsUsingBlock { (object:AnyObject!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
             
-            if let leading = object as? Leading {
+            if let lesson = object as? Lesson {
                 
-                string += leading.song.number + " " + leading.song.title
+                string += lesson.song.number + " " + lesson.song.title
                 string += " – "
                 
-                if leading.leader.shortName != nil && count(leading.leader.shortName!) > 0 {
-                    string += leading.leader.shortName!
+                if lesson.leader.shortName != nil && count(lesson.leader.shortName!) > 0 {
+                    string += lesson.leader.shortName!
                 } else {
-                    string += "" + leading.leader.name
+                    string += "" + lesson.leader.name
                 }
                 
                 string += "\n"

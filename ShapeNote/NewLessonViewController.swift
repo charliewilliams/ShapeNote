@@ -1,5 +1,5 @@
 //
-//  NewLeadingViewController.swift
+//  NewLessonViewController.swift
 //  ShapeNote
 //
 //  Created by Charlie Williams on 02/02/2015.
@@ -14,7 +14,7 @@ enum ScopeBarIndex:Int {
     case SearchLeaders = 1
 }
 
-class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
+class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -258,14 +258,14 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     @IBAction func donePressed(sender: AnyObject) {
         
-        let leading = NSEntityDescription.insertNewObjectForEntityForName("Leading", inManagedObjectContext: CoreDataHelper.managedContext) as! Leading
-        leading.date = NSDate()
-        leading.song = chosenSong!
-        leading.leader = chosenSinger!
-        leading.minutes = minutes!
+        let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: CoreDataHelper.managedContext) as! Lesson
+        lesson.date = NSDate()
+        lesson.song = chosenSong!
+        lesson.leader = chosenSinger!
+        lesson.minutes = minutes!
         minutes?.singers.addObject(chosenSinger!)
         
-        TwitterShareHelper.sharedHelper.postLeading(leading)
+        TwitterShareHelper.sharedHelper.postLesson(lesson)
         
         CoreDataHelper.sharedHelper.saveContext()
         

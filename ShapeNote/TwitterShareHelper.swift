@@ -12,7 +12,7 @@ import TwitterKit
 
 class TwitterShareHelper: NSObject {
     
-    var leading:Leading?
+    var lesson:Lesson?
     
     class var sharedHelper : TwitterShareHelper {
         struct Static {
@@ -21,15 +21,15 @@ class TwitterShareHelper: NSObject {
         return Static.instance
     }
     
-    func postLeading(leading:Leading) {
+    func postLesson(lesson:Lesson) {
         
         // WARNING: DEBUG
 //        println("Not posting test run to Twitter")
 //        return;
         
-        self.leading = leading
+        self.lesson = lesson
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
-        let params = ["status": leading.twitterString()]
+        let params = ["status": lesson.twitterString()]
         
         // lat, long
         
