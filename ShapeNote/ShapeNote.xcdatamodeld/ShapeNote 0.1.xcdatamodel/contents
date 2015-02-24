@@ -13,7 +13,7 @@
         <relationship name="minutes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Minutes" inverseName="group" inverseEntity="Minutes" syncable="YES"/>
         <relationship name="singers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Singer" inverseName="group" inverseEntity="Singer" syncable="YES"/>
     </entity>
-    <entity name="Lesson" representedClassName="Leading" syncable="YES">
+    <entity name="Lesson" representedClassName="Lesson" elementID="Leading" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="leader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Singer" inverseName="songs" inverseEntity="Singer" syncable="YES"/>
         <relationship name="minutes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Minutes" inverseName="songs" inverseEntity="Minutes" syncable="YES"/>

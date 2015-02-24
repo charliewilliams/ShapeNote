@@ -722,7 +722,7 @@
 				C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */,
 				C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */,
 			);
-			currentVersion = C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */;
+			currentVersion = C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */;
 			path = ShapeNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
