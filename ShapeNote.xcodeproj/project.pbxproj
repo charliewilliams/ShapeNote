@@ -17,7 +17,7 @@
 		C0515B7A1A7BA59D0006ED16 /* ShapeNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */; };
 		C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */; };
 		C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B851A7BADFE0006ED16 /* JSONLoader.swift */; };
-		C0515B881A7BBA790006ED16 /* Leading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B871A7BBA790006ED16 /* Leading.swift */; };
+		C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B871A7BBA790006ED16 /* Lesson.swift */; };
 		C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B891A7BBA7A0006ED16 /* Singer.swift */; };
 		C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B8B1A7BBA7A0006ED16 /* Book.swift */; };
 		C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B8D1A7BBA7A0006ED16 /* Song.swift */; };
@@ -72,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		C00AB58E1A7FDFEA001F4D61 /* NewLeadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLeadingViewController.swift; sourceTree = "<group>"; };
+		C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.1.xcdatamodel"; sourceTree = "<group>"; };
 		C0515B5B1A7BA59D0006ED16 /* ShapeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B5F1A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B601A7BA59D0006ED16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +86,7 @@
 		C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeNoteTests.swift; sourceTree = "<group>"; };
 		C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		C0515B851A7BADFE0006ED16 /* JSONLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
-		C0515B871A7BBA790006ED16 /* Leading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leading.swift; sourceTree = "<group>"; };
+		C0515B871A7BBA790006ED16 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		C0515B891A7BBA7A0006ED16 /* Singer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singer.swift; sourceTree = "<group>"; };
 		C0515B8B1A7BBA7A0006ED16 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		C0515B8D1A7BBA7A0006ED16 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
@@ -255,7 +256,7 @@
 				C0515B8D1A7BBA7A0006ED16 /* Song.swift */,
 				C0515B8B1A7BBA7A0006ED16 /* Book.swift */,
 				C0515B891A7BBA7A0006ED16 /* Singer.swift */,
-				C0515B871A7BBA790006ED16 /* Leading.swift */,
+				C0515B871A7BBA790006ED16 /* Lesson.swift */,
 				C09A650A1A7EDA8600099E76 /* Minutes.swift */,
 			);
 			name = "Managed Objects";
@@ -465,7 +466,7 @@
 				C0C1D4B01A813B120082C0EB /* STHTTPRequest.m in Sources */,
 				C0515B661A7BA59D0006ED16 /* ViewController.swift in Sources */,
 				C0C1D4A41A813B120082C0EB /* NSDateFormatter+STTwitter.m in Sources */,
-				C0515B881A7BBA790006ED16 /* Leading.swift in Sources */,
+				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0C1D4AB1A813B120082C0EB /* STTwitterOAuth.m in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
@@ -718,6 +719,7 @@
 		C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */,
 				C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */,
 			);
 			currentVersion = C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */;

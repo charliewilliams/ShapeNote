@@ -22,13 +22,13 @@ class Leading: NSManagedObject {
         
         var userString: String;
         
-        if leader.twitter?.utf16Count > 0 {
+        if leader.twitter != nil && count(leader.twitter!) > 0 {
             
-            userString = "." + leader.twitter! + " just led "
+            userString = "Now \(leader.twitter!) is leading "
             
         } else {
             
-            userString = leader.name + " has just led "
+            userString = "\(leader.name) is leading "
         }
         
         userString += "#\(song.number): \(song.title)."
@@ -51,7 +51,7 @@ class Leading: NSManagedObject {
             userString += " " + song.book.hashTag
         }
         
-        while userString.utf16Count > 160 {
+        while count(userString) > 160 {
             var components = userString.componentsSeparatedByString(" ")
             components.removeLast()
             userString = " ".join(components)
