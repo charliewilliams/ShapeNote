@@ -46,7 +46,7 @@ class Minutes: NSManagedObject {
                 string += leading.song.number + " " + leading.song.title
                 string += " – "
                 
-                if (leading.leader.shortName?.utf16Count > 0) {
+                if leading.leader.shortName != nil && count(leading.leader.shortName!) > 0 {
                     string += leading.leader.shortName!
                 } else {
                     string += "" + leading.leader.name

@@ -82,9 +82,10 @@ class MinuteTakingViewController: UITableViewController {
         let action = UIAlertAction(title: "Do it", style: .Default) { (action:UIAlertAction!) -> Void in
             
             FacebookShareHelper.postMinutesToFacebook(self.minutes!)
+            self.navigationController?.popViewControllerAnimated(true)
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (cancel:UIAlertAction!) -> Void in
-            
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (cancel:UIAlertAction!) -> Void in
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
         alert.addAction(action)

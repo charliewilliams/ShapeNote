@@ -61,7 +61,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     func filterContentForSingerSearchText(searchText: String) {
         
-        if (searchText.utf16Count == 0) {
+        if count(searchText) == 0 {
             self.filteredSingers = self.singers
             return
         }
@@ -73,7 +73,7 @@ class NewLeadingViewController: UITableViewController, UISearchDisplayDelegate {
     
     func filterContentForSongSearchText(searchText: String) {
         
-        if (searchText.utf16Count == 0) {
+        if count(searchText) == 0 {
             self.filteredSongs = self.songs
             return
         }

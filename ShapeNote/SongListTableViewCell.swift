@@ -36,7 +36,7 @@ class SongListTableViewCell: UITableViewCell {
             }
         }
         if (song.year > 0) {
-            if (infoString.utf16Count > 0) {
+            if count(infoString) > 0 {
                 infoString += ", "
             }
             infoString += "\(song.year)"

@@ -27,9 +27,12 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         if let fbSession = FBSession.activeSession() {
             
             let permissions = fbSession.permissions as NSArray
+            println(permissions)
             if permissions.containsObject("publish_actions") == false || permissions.containsObject("user_groups") == false {
                 LoginViewController.doFacebookLogin()
             }
+        } else {
+            LoginViewController.doFacebookLogin()
         }
     }
 
