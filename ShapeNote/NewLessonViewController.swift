@@ -12,6 +12,8 @@ import CoreData
 enum ScopeBarIndex:Int {
     case SearchSongs = 0
     case SearchLeaders = 1
+    case Dedication = 2
+    case Other = 3
 }
 
 class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
@@ -61,12 +63,17 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     
     func filterContentForSingerSearchText(searchText: String) {
         
+        let yesterday = NSDate(timeInterval: -60*60*24, sinceDate: NSDate())
+        
         if count(searchText) == 0 {
-            self.filteredSingers = self.singers
+    
+            filteredSingers = sorted(singers, { (s1:Singer, s2:Singer) -> Bool in
+                return s1.lastSingDate > s2.lastSingDate && s1.lastSingDate > yesterday.timeIntervalSince1970
+            })
             return
         }
         
-        self.filteredSingers = self.singers.filter({(singer: Singer) -> Bool in
+        filteredSingers = singers.filter({(singer: Singer) -> Bool in
             return singer.name.rangeOfString(searchText, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil
         })
     }
@@ -74,17 +81,21 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     func filterContentForSongSearchText(searchText: String) {
         
         if count(searchText) == 0 {
-            self.filteredSongs = self.songs
+            filteredSongs = songs
             return
         }
         
-        self.filteredSongs = self.songs.filter({(aSong: Song) -> Bool in
+        filteredSongs = songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
         })
     }
     
     func searchingSongs() -> Bool {
         return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue
+    }
+    
+    func searchingSingers() -> Bool {
+        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue
     }
     
     func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
@@ -110,15 +121,28 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     
     func updateSearchAndScope() {
         
-        if searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue {
-            searchBar.placeholder = "enter song number"
-            searchBar.keyboardType = UIKeyboardType.NumberPad
-            self.filteredSongs = self.songs
-        } else {
-            searchBar.placeholder = "enter name"
-            searchBar.keyboardType = UIKeyboardType.ASCIICapable
-            self.filteredSingers = self.singers
+        let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
+        searchBar.keyboardType = UIKeyboardType.ASCIICapable
+        
+        switch (index) {
+            
+            case .SearchSongs:
+                searchBar.placeholder = "enter song number"
+                searchBar.keyboardType = UIKeyboardType.NumberPad
+                self.filteredSongs = self.songs
+
+            case .SearchLeaders:
+                searchBar.placeholder = "enter name"
+                self.filteredSingers = self.singers
+
+            case .Dedication:
+                searchBar.placeholder = "enter dedication"
+            
+            case .Other:
+                searchBar.placeholder = "what's happening now?"
+
         }
+        
         searchBar.reloadInputViews()
         
         let complete = (chosenSong != nil && chosenSinger != nil)
@@ -144,8 +168,9 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
             if searchingSongs() {
                 chosenSong = filteredSongs![index]
                 searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
-            } else if index < filteredSingers?.count {
+            } else if searchingSingers() && index < filteredSingers?.count {
                 chosenSinger = filteredSingers![index]
+                chosenSinger?.lastSingDate = NSDate().timeIntervalSince1970
                 searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
             } else {
                 popAlertForNewSinger()

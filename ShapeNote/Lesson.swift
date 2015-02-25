@@ -17,6 +17,7 @@ class Lesson: NSManagedObject {
     @NSManaged var leader: Singer
     @NSManaged var song: Song
     @NSManaged var minutes: Minutes
+    @NSManaged var dedication: String?
     
     func twitterString() -> String {
         
@@ -32,6 +33,10 @@ class Lesson: NSManagedObject {
         }
         
         userString += "#\(song.number): \(song.title)."
+        
+        if dedication != nil {
+            userString += " \(dedication)"
+        }
         
         if (song.parts < 4) {
             userString += " #\(song.parts)parts"
