@@ -25,6 +25,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     var chosenSinger:Singer?
     var chosenSong:Song?
     var minutes:Minutes?
+    var dedication:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,10 +138,11 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
 
             case .Dedication:
                 searchBar.placeholder = "enter dedication"
+                popAlertForDedication()
             
             case .Other:
                 searchBar.placeholder = "what's happening now?"
-
+                
         }
         
         searchBar.reloadInputViews()
@@ -210,7 +212,43 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
             textField.text = self.searchBar.text
             inputTextField = textField
         })
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(alert, animated: true, completion: {
+            
+            self.view.setNeedsLayout()
+        })
+    }
+    
+    func popAlertForDedication() {
+        
+        var inputTextField: UITextField?
+        let alert = UIAlertController(title: "Dedication", message: "Enter dedication text, i.e. 'For...'", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+            
+            if let text = inputTextField?.text as String? {
+                self.dedication = text
+                self.tableView.reloadData()
+                self.updateSearchAndScope()
+            }
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction!) -> Void in
+            //
+        })
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField!) -> Void in
+            textField.placeholder = "For Name"
+            textField.text = self.searchBar.text
+            inputTextField = textField
+        })
+        
+        alert.becomeFirstResponder()
+        self.presentViewController(alert, animated: true, completion: {
+            
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                alert.view.center = CGPointMake(alert.view.center.x, alert.view.center.y - 70)
+            })
+        })
+
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -288,6 +326,8 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         lesson.song = chosenSong!
         lesson.leader = chosenSinger!
         lesson.minutes = minutes!
+        lesson.dedication = self.dedication
+        
         minutes?.singers.addObject(chosenSinger!)
         
         TwitterShareHelper.sharedHelper.postLesson(lesson)

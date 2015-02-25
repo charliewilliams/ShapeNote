@@ -151,6 +151,8 @@
                             <scopeButtonTitles>
                                 <string>Song</string>
                                 <string>Leader</string>
+                                <string>Dedication</string>
+                                <string>Other</string>
                             </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="3BM-r6-Sud" id="tRC-6F-9b8"/>
