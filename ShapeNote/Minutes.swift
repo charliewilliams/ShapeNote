@@ -43,16 +43,7 @@ class Minutes: NSManagedObject {
             
             if let lesson = object as? Lesson {
                 
-                string += lesson.song.number + " " + lesson.song.title
-                string += " – "
-                
-                if lesson.leader.shortName != nil && count(lesson.leader.shortName!) > 0 {
-                    string += lesson.leader.shortName!
-                } else {
-                    string += "" + lesson.leader.name
-                }
-                
-                string += "\n"
+                string += lesson.stringForMinutes()
             }
         }
         

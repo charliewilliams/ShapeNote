@@ -142,6 +142,7 @@
 		C0C1D4A11A813B120082C0EB /* JSONSyntaxHighlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONSyntaxHighlight.m; sourceTree = "<group>"; };
 		C0C1D4A21A813B120082C0EB /* STHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTTPRequest.h; sourceTree = "<group>"; };
 		C0C1D4A31A813B120082C0EB /* STHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTTPRequest.m; sourceTree = "<group>"; };
+		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNote-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -719,10 +720,11 @@
 		C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */,
 				C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */,
 				C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */,
 			);
-			currentVersion = C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */;
+			currentVersion = C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */;
 			path = ShapeNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

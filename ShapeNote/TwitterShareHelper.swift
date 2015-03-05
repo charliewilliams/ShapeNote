@@ -24,9 +24,11 @@ class TwitterShareHelper: NSObject {
     func postLesson(lesson:Lesson) {
         
         // WARNING: DEBUG
-//        println("Not posting test run to Twitter")
-//        return;
-        
+        println("Not posting test run to Twitter: \(lesson.twitterString())")
+        #if DEBUG
+        return;
+        #endif
+
         self.lesson = lesson
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
         let params = ["status": lesson.twitterString()]

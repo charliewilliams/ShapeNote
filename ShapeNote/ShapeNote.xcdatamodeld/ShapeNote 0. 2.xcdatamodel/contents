@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7527" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Book" representedClassName="Book" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" defaultValueString="#shapenote" syncable="YES"/>
+        <attribute name="hashTag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="minutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Minutes" inverseName="book" inverseEntity="Minutes" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="book" inverseEntity="Song" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="minutes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Minutes" inverseName="group" inverseEntity="Minutes" syncable="YES"/>
+        <relationship name="singers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Singer" inverseName="group" inverseEntity="Singer" syncable="YES"/>
+    </entity>
+    <entity name="Lesson" representedClassName="Lesson" elementID="Leading" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dedication" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="leader" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Singer" inverseName="songs" inverseEntity="Singer" syncable="YES"/>
+        <relationship name="minutes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Minutes" inverseName="songs" inverseEntity="Minutes" syncable="YES"/>
+        <relationship name="song" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="ledBy" inverseEntity="Song" syncable="YES"/>
+    </entity>
+    <entity name="Minutes" representedClassName="Minutes" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="minutes" inverseEntity="Book" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="minutes" inverseEntity="Group" syncable="YES"/>
+        <relationship name="singers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Singer" inverseName="minutes" inverseEntity="Singer" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Lesson" inverseName="minutes" inverseEntity="Lesson" syncable="YES"/>
+    </entity>
+    <entity name="Singer" representedClassName="Singer" syncable="YES">
+        <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstSingDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastSingDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="singers" inverseEntity="Group" syncable="YES"/>
+        <relationship name="minutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Minutes" inverseName="singers" inverseEntity="Minutes" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lesson" inverseName="leader" inverseEntity="Lesson" syncable="YES"/>
+    </entity>
+    <entity name="Song" representedClassName="Song" syncable="YES">
+        <attribute name="composer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lyricist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="meter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parts" optional="YES" attributeType="Integer 16" defaultValueString="4" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeSignature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="songs" inverseEntity="Book" syncable="YES"/>
+        <relationship name="ledBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lesson" inverseName="song" inverseEntity="Lesson" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Book" positionX="160" positionY="-153" width="128" height="135"/>
+        <element name="Group" positionX="-567" positionY="54" width="128" height="88"/>
+        <element name="Lesson" positionX="-207" positionY="128" width="128" height="120"/>
+        <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
+        <element name="Singer" positionX="-378" positionY="143" width="128" height="193"/>
+        <element name="Song" positionX="-9" positionY="9" width="128" height="240"/>
+    </elements>
+</model>

@@ -22,10 +22,15 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var filteredSingers:[Singer]?
     var filteredSongs:[Song]?
-    var chosenSinger:Singer?
+    var chosenSingers:[Singer]
     var chosenSong:Song?
     var minutes:Minutes?
     var dedication:String?
+    
+    required init(coder aDecoder: NSCoder) {
+        chosenSingers = []
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +93,8 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         filteredSongs = songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
+        }).sorted({ (song1:Song, song2:Song) -> Bool in
+            return song1.strippedNumber.toInt() < song2.strippedNumber.toInt()
         })
     }
     
@@ -99,11 +106,19 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue
     }
     
+    func addingDedication() -> Bool {
+        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Dedication.rawValue
+    }
+    
+    func addingOther() -> Bool {
+        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue
+    }
+    
     func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         
         if searchingSongs() {
             filterContentForSongSearchText(searchString)
-        } else {
+        } else if searchingSingers() {
             filterContentForSingerSearchText(searchString)
         }
         return true
@@ -111,9 +126,9 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     
     func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
         
-        if searchOption == ScopeBarIndex.SearchSongs.rawValue {
+        if searchingSongs() {
             filterContentForSongSearchText(searchDisplayController!.searchBar.text)
-        } else {
+        } else if searchingSingers() {
             filterContentForSingerSearchText(searchDisplayController!.searchBar.text)
         }
         updateSearchAndScope()
@@ -137,8 +152,11 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
                 self.filteredSingers = self.singers
 
             case .Dedication:
-                searchBar.placeholder = "enter dedication"
-                popAlertForDedication()
+                
+                if dedication == nil {
+                    searchBar.placeholder = "enter dedication"
+                    popAlertForDedication()
+                }
             
             case .Other:
                 searchBar.placeholder = "what's happening now?"
@@ -147,12 +165,13 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         searchBar.reloadInputViews()
         
-        let complete = (chosenSong != nil && chosenSinger != nil)
+        let complete = (chosenSong != nil && chosenSingers.count != 0)
         doneButton.enabled = complete
         
         if complete == true {
             
             searchDisplayController?.setActive(false, animated: true)
+            
         } else {
             
             searchBar.text = ""
@@ -170,17 +189,48 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
             if searchingSongs() {
                 chosenSong = filteredSongs![index]
                 searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
+                
             } else if searchingSingers() && index < filteredSingers?.count {
-                chosenSinger = filteredSingers![index]
-                chosenSinger?.lastSingDate = NSDate().timeIntervalSince1970
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
-            } else {
+                
+                let singer = filteredSingers![index]
+                singer.lastSingDate = NSDate().timeIntervalSince1970
+                chosenSingers.append(singer)
+                
+                if chosenSong == nil {
+                    searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
+                }
+                
+            } else if searchingSingers() {
                 popAlertForNewSinger()
+            } else if addingDedication() {
+                // nothing?
+            } else if addingOther() {
+                // TODO
             }
             updateSearchAndScope()
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.tableView.reloadData()
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch editingStyle {
+            
+        case .Delete:
+            if indexPath.row < chosenSingers.count {
+                chosenSingers.removeAtIndex(indexPath.row)
+            } else if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
+                chosenSong = nil
+            } else {
+                dedication = nil
+            }
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+        default:
+            break
+        }
+        
     }
     
     func popAlertForNewSinger() {
@@ -196,7 +246,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
             if let text = inputTextField?.text as String? {
                 let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Singer
                 newSinger.name = text
-                self.chosenSinger = newSinger
+                self.chosenSingers.append(newSinger)
                 CoreDataHelper.sharedHelper.saveContext()
                 self.tableView.reloadData()
                 self.updateSearchAndScope()
@@ -270,11 +320,11 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
             }
             
         } else {
-            var count = 0
-            if chosenSinger != nil {
+            var count = chosenSingers.count ?? 0
+            if chosenSong != nil {
                 count++
             }
-            if chosenSong != nil {
+            if dedication != nil {
                 count++
             }
             return count
@@ -308,14 +358,14 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     
     func configureCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) {
         
-        if (indexPath.row == 0 && chosenSinger != nil) {
-            if let name = chosenSinger?.name {
-                cell.textLabel?.text = "Leader: " + name
-            }
-        } else {
+        if indexPath.row < chosenSingers.count {
+            cell.textLabel?.text = "Leader: " + chosenSingers[indexPath.row].name
+        } else if indexPath.row == chosenSingers.count {
             if let title = chosenSong?.title {
                 cell.textLabel?.text = "Song: " + title
             }
+        } else if dedication != nil {
+            cell.textLabel?.text = dedication
         }
     }
     
@@ -323,12 +373,19 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: CoreDataHelper.managedContext) as! Lesson
         lesson.date = NSDate()
-        lesson.song = chosenSong!
-        lesson.leader = chosenSinger!
         lesson.minutes = minutes!
+        
+        if let song = chosenSong {
+            lesson.song = song
+        }
+        
+        println(lesson.leader)
+        lesson.leader = NSOrderedSet(array: chosenSingers)
+        
+        // optional stuff
         lesson.dedication = self.dedication
         
-        minutes?.singers.addObject(chosenSinger!)
+        minutes?.singers.addObjectsFromArray(chosenSingers)
         
         TwitterShareHelper.sharedHelper.postLesson(lesson)
         

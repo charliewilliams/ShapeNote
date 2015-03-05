@@ -147,7 +147,7 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="enter song number" showsSearchResultsButton="YES" showsScopeBar="YES" id="PkQ-m8-8l1">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                             <scopeButtonTitles>
                                 <string>Song</string>
                                 <string>Leader</string>
@@ -382,7 +382,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="yAs-hD-MtP" kind="show" id="JPD-6P-Frm"/>
+                                    <segue destination="qmh-zR-vgU" kind="show" id="Vsj-4P-156"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -844,4 +844,7 @@
         <image name="top_charts" width="32" height="32"/>
         <image name="users_three_2" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1sr-LM-wT2"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -121,7 +121,7 @@ class MinuteTakingViewController: UITableViewController {
             dateFormatter.timeStyle = .ShortStyle
             
             if let lesson = lessons?[indexPath.row] {
-                cell.textLabel!.text = lesson.song.number + " " + lesson.song.title + " – " + lesson.leader.name
+                cell.textLabel!.text = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
                 cell.detailTextLabel!.text = dateFormatter.stringFromDate(lesson.date)
             }
             

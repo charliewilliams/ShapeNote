@@ -14,29 +14,84 @@ import CoreData
 class Lesson: NSManagedObject {
 
     @NSManaged var date: NSDate
-    @NSManaged var leader: Singer
+    @NSManaged var leader: NSOrderedSet //[Singer]
     @NSManaged var song: Song
     @NSManaged var minutes: Minutes
     @NSManaged var dedication: String?
     
-    func twitterString() -> String {
+    func stringForMinutes() -> String {
         
-        var userString: String;
+        var string = song.number + " " + song.title
+        string += " – "
+        string += allLeadersString(useTwitterHandles: false)
+        if dedication != nil {
+            string += " (\(dedication!))"
+        }
+        string += "\n"
+        return string
+    }
+    
+    func allLeadersString(#useTwitterHandles:Bool) -> String {
         
-        if leader.twitter != nil && count(leader.twitter!) > 0 {
+        var leadersString = ""
+        let first:Singer = leader.firstObject! as! Singer
+        let last:Singer = leader.lastObject! as! Singer
+        
+        if first != last {
             
-            userString = "Now \(leader.twitter!) is leading "
+            leader.enumerateObjectsUsingBlock({ (element:AnyObject!, index:Int, done:UnsafeMutablePointer<ObjCBool>) -> Void in
+                
+                if let singer = element as? Singer {
+                    
+                    let name:String;
+                    
+                    if (useTwitterHandles == true && singer.twitter != nil) {
+                        name = singer.twitter!
+                    } else {
+                        name = singer.shortName ?? singer.name
+                    }
+                    
+                    switch index {
+                        
+                    case 0:
+                        leadersString = name
+                        
+                    case self.leader.count-1:
+                        leadersString += " & \(name)"
+                        
+                    default:
+                        leadersString += ", \(name)"
+                    }
+                }
+            })
             
         } else {
             
-            userString = "\(leader.name) is leading "
+            leadersString = first.twitter ?? first.name
         }
+
+        return leadersString
+    }
+    
+    func twitterString() -> String {
         
-        userString += "#\(song.number): \(song.title)."
+        var userString = "Now "
+        
+        userString += allLeadersString(useTwitterHandles: true)
+        
+        userString += leader.count == 1 ? " is leading" : " are leading "
+        
+        var number = song.number
+        if number.hasPrefix("0") {
+            number = number.substringFromIndex(number.startIndex.successor())
+        }
+        userString += "#\(number) : \(song.title)"
         
         if dedication != nil {
-            userString += " \(dedication)"
+            userString += " (\(dedication!))"
         }
+        
+        userString += "."
         
         if (song.parts < 4) {
             userString += " #\(song.parts)parts"
