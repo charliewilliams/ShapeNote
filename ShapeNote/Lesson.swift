@@ -24,8 +24,8 @@ class Lesson: NSManagedObject {
         var string = song.number + " " + song.title
         string += " – "
         string += allLeadersString(useTwitterHandles: false)
-        if dedication != nil {
-            string += " (\(dedication!))"
+        if let ded = dedication {
+            string += " (\(ded))"
         }
         string += "\n"
         return string
@@ -67,7 +67,7 @@ class Lesson: NSManagedObject {
             
         } else {
             
-            leadersString = first.twitter ?? first.name
+            leadersString = useTwitterHandles ? (first.twitter ?? first.name) : first.name
         }
 
         return leadersString

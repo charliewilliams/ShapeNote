@@ -36,7 +36,7 @@ class Minutes: NSManagedObject {
         dateFormatter.timeStyle = .NoStyle
         dateFormatter.dateStyle = .MediumStyle
         
-        string += dateFormatter.stringFromDate(NSDate())
+        string += dateFormatter.stringFromDate(date)
         string += ":\n\n"
         
         songs.enumerateObjectsUsingBlock { (object:AnyObject!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) -> Void in

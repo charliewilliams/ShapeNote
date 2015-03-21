@@ -51,7 +51,9 @@ class MinuteTakingViewController: UITableViewController {
         dateFormatter.timeStyle = .NoStyle
         dateFormatter.dateStyle = .MediumStyle
         
-        navigationItem.title = "Minutes: " + dateFormatter.stringFromDate(NSDate())
+        if let date = minutes?.date {
+            navigationItem.title = "Minutes: " + dateFormatter.stringFromDate(date)
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
