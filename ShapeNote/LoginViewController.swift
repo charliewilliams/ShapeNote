@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         if let fbSession = FBSession.activeSession() {
             
             let permissions = fbSession.permissions as NSArray
-            println(permissions)
+            print(permissions)
             if permissions.containsObject("publish_actions") == false || permissions.containsObject("user_groups") == false {
                 LoginViewController.doFacebookLogin()
             }
@@ -74,7 +74,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         session.requestNewPublishPermissions(writePermissions, defaultAudience: .Everyone) { (session:FBSession!, publishError:NSError!) -> Void in
             
             if publishError != nil {
-                println(publishError)
+                print(publishError)
             }
         }
     }
@@ -89,31 +89,28 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
-        println(loginView)
+        print(loginView)
     }
     
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
-        println(loginView)        
+        print(loginView)        
     }
     
     func fixTwitterLoginStateForSession(session:TWTRSession) {
         
-        if let subviews = twitterLoginButton.subviews as? [UIView] {
+        for view in twitterLoginButton.subviews {
             
-            for view in subviews {
+            if let label = view as? UILabel {
                 
-                if let label = view as? UILabel {
+                setTwitterText("Logged in as @\(session.userName)", onLabel: label)
+                
+            } else {
                     
-                    setTwitterText("Logged in as @\(session.userName)", onLabel: label)
+                for vview in view.subviews {
                     
-                } else if let subsub = view.subviews as? [UIView] {
-                    
-                    for vview in subsub {
+                    if let label = vview as? UILabel {
                         
-                        if let label = vview as? UILabel {
-                            
-                            setTwitterText("Logged in as @\(session.userName)", onLabel: label)
-                        }
+                        setTwitterText("Logged in as @\(session.userName)", onLabel: label)
                     }
                 }
             }

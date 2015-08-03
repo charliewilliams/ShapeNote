@@ -1,2 +1,4 @@
-pod 'Parse', '~> 1.7.4'
-pod 'ParseUI', '~> 1.1.3'
+source 'https://github.com/CocoaPods/Specs.git'
+pod 'Parse'
+pod 'ParseFacebookUtils'
+pod 'Bolts'

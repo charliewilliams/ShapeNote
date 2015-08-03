@@ -25,7 +25,7 @@ class TwitterShareHelper: NSObject {
         
         // WARNING: DEBUG
         #if DEBUG
-        println("Not posting test run to Twitter: \(lesson.twitterString())")
+        print("Not posting test run to Twitter: \(lesson.twitterString())")
         return;
         #endif
 

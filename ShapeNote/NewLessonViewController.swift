@@ -189,7 +189,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if tableView == searchController.searchResultsController.view {
+        guard let vc = searchController.searchResultsController else {
+            return
+        }
+        
+        if tableView == vc.view {
             
             let index = indexPath.row
             
@@ -340,15 +344,18 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        guard let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") else {
+            print("Couldn't dequeue cell!")
+            abort()
+        }
         
-        if tableView == self.searchDisplayController!.searchResultsTableView {
+        if let _searchDisplayController = self.searchDisplayController where tableView == _searchDisplayController.searchResultsTableView {
 
             if searchingSongs() {
-                var song = filteredSongs![indexPath.row]
+                let song = filteredSongs![indexPath.row]
                 cell.textLabel?.text = song.number + " " + song.title
             } else if indexPath.row < filteredSingers?.count {
-                var singer = filteredSingers![indexPath.row]
+                let singer = filteredSingers![indexPath.row]
                 cell.textLabel?.text = singer.name
             } else {
                 // New singer cell

@@ -191,7 +191,7 @@ class CoreDataHelper {
 //        var error:NSError?
 //        CoreDataHelper.sharedHelper.managedObjectContext?.save(&error)
 //        if (error != nil) {
-//            println("CORE DATA ERROR: \(error)")
+//            print("CORE DATA ERROR: \(error)")
 //        }
 //    }
     

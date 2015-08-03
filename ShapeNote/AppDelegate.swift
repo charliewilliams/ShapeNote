@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics(), Twitter()])
         
         Parse.setApplicationId("MvJxV7TztlSI8c0bi59MR6HqUfe24N53Rhgsa51a", clientKey: "2exXKyLLRXMe2WM8maCDEOVB2yTrRm6i5cLTUOP6")
-        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         FBAppEvents.activateApp()
         JSONLoader.sharedLoader.handleFirstRun()

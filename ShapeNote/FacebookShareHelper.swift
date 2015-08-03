@@ -24,14 +24,14 @@ class FacebookShareHelper: NSObject {
 
         FBRequestConnection.startWithGraphPath(groupGraphString, parameters: params, HTTPMethod: "POST") { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             
-            println(error)
+            print(error)
             if error != nil {
                 
-                println("error \(error) posting minutes")
+                print("error \(error) posting minutes")
                 
             } else {
                 
-                println("posted minutes: \(result)")
+                print("posted minutes: \(result)")
             }
         }
     }
