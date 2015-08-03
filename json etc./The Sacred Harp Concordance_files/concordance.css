@@ -1,0 +1,217 @@
+@page 			{  margin: .4in .25in .25in .25in; size: 9.0in 7.0in; }
+@page :left 	{  margin-right: .525in; }
+@page :right	{  margin-left:  .525in; }
+
+@prince-pdf {
+    prince-pdf-page-mode: show-bookmarks
+}
+
+div.FrontMatter { display: block; page: FrontMatter; prince-page-group: start; }
+div.Concordance { display: block; page: Concordance; prince-page-group: start; }
+
+@page FrontMatter {
+    @bottom {
+        content: normal;
+    }
+}
+
+@page FrontMatter :first {
+    @bottom {
+        content: normal;
+    }
+}
+
+@page FrontMatter inside {
+    @bottom {
+        content: normal;
+    }
+}
+
+@page Concordance {
+
+  padding-bottom: 2pt;
+  padding-top: 2pt;
+}
+
+
+@page Concordance :left {
+  @top-left {
+	margin-bottom: 4pt;
+    font: 10pt "Arial Narrow", serif;
+	font-weight: bold;
+    content: counter(page);
+    vertical-align: bottom;
+  }
+}
+
+@page Concordance :right {
+  @top-right {
+	margin-bottom: 4pt;
+    font: 10pt "Arial Narrow", serif;
+	font-weight: bold;
+    content: counter(page);
+    vertical-align: bottom;
+  }
+}
+
+@page Concordance :first {
+  border-top: none;
+  @top-left {
+    content: normal;
+  }
+  @top-right {
+    content: normal;
+  }
+}
+
+body {
+	padding: 0pt;
+	margin: 0pt;
+	border: 0pt;
+	font: 10.5pt/14.5pt "Arial Narrow", serif;
+}
+
+div.titlePage {
+	padding: 0.75in 1.0in .5in 1.0in;
+   page-break-after: always;
+}
+
+div.insidePage {
+	padding: 0in 1.0in 0in 1.0in;
+	page-break-after: always;
+	page: inside;
+}
+
+p.titlePageTitle {
+    font: 48pt "Harrington", "Georgia", serif;
+	text-align: center;
+    vertical-align: middle;
+}
+
+p.indexStartTitle {
+	padding: .1in 0in 0in 0in;
+    font: 24pt "Harrington", "Georgia", serif;
+	text-align: center;
+    vertical-align: middle;
+}
+
+div.listing { 
+  column-count: 3; 
+  column-gap: .1in;
+}
+
+div.listing h2 {
+	width: 2.675in;
+	column-break-after: avoid;
+	page-break-after: avoid;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 0pt;
+	margin: 0pt;
+	border: 0pt;
+	margin-top: 1pt;
+	border-bottom: .5pt solid black;
+}
+
+div.listing table {
+	width: 2.675in;
+	font-size: 8pt;
+	line-height: 9.5pt;
+	padding: 0pt;
+	margin: 0pt;
+	border: 0pt;
+	border-collapse: collapse;
+}
+
+div.listing table th,td {
+	font-weight: normal;
+	text-align: left;
+	vertical-align: top;
+	padding: 0pt;
+	margin: 0pt;
+	border: 0pt;
+}
+
+div.listing table th {
+	padding-left: 10pt;
+}
+
+div.listing table th :first{
+	text-indent: 10pt;
+}
+
+div.listing table th {
+	text-indent: -10pt;
+}
+
+div.listing table th {
+	padding-right: 3pt;
+	width: 1.615in;
+}
+div.listing table td {
+	width: 1.06in;
+}
+
+div.listing table td p {
+	margin: 0pt;
+	padding: 0pt;
+	border: 0pt;
+	padding-left: 12.5pt;
+	text-indent: -12.5pt;
+}
+div.listing table td p :first {
+	text-indent:  12.5pt;
+}
+
+a { 
+	text-decoration: none; 
+	color: black;
+}
+
+@media screen {
+
+body { 
+	margin: .5in;
+	width: 7.0in;
+	align: center;
+}
+
+a { 
+	text-decoration: underline; 
+	color: black;
+}
+
+p.indexStartTitle {
+	display: none;
+}
+
+div.listing {
+	margin-top: .5in;
+	margin-left: 1in;
+}
+
+div.listing h2 {
+	width: 30em;
+	margin-top: 10pt;
+	border-bottom: 1pt solid black;
+	font-size: 12pt;
+}
+
+div.listing table {
+	width: 5in;
+	align: center;
+	font-size: 11pt;
+	line-height: 13pt;
+}
+
+div.listing table th {
+	width: 3in;
+	padding-right: 3pt;
+}
+
+div.listing table td {
+	width: 2in;
+}
+
+}
+
