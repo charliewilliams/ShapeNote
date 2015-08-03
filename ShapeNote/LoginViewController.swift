@@ -42,7 +42,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         twitterLoginButton.logInCompletion = {(session:TWTRSession!, error:NSError!) -> Void in
             
             if error != nil {
-                println(error)
+                print(error)
             }
             
             if session != nil {
@@ -54,10 +54,24 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     class func doFacebookLogin() {
         
-        let writePermissions = ["public_profile", "user_friends", "email", "user_groups", "publish_actions"]
         let session = FBSession.activeSession()
         
-        FBSession.activeSession().requestNewPublishPermissions(writePermissions, defaultAudience: .Everyone) { (session:FBSession!, publishError:NSError!) -> Void in
+        if session.isOpen == false {
+            
+            session.openWithBehavior(FBSessionLoginBehavior.UseSystemAccountIfPresent, completionHandler: { (session:FBSession!, state:FBSessionState, error:NSError!) -> Void in
+                self.refreshPublishPermissions(session)
+            });
+            
+        } else {
+            
+            refreshPublishPermissions(session)
+        }
+    }
+    
+    class func refreshPublishPermissions(session:FBSession!) {
+        
+        let writePermissions = ["public_profile", "user_friends", "email", "user_groups", "publish_actions"]
+        session.requestNewPublishPermissions(writePermissions, defaultAudience: .Everyone) { (session:FBSession!, publishError:NSError!) -> Void in
             
             if publishError != nil {
                 println(publishError)
@@ -71,7 +85,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {
-        println("Facebook login error: \(error)")
+        print("Facebook login error: \(error)")
     }
     
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {

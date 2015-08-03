@@ -31,7 +31,7 @@ class MinuteTakingViewController: UITableViewController {
                         
                         templessons.append(lesson as! Lesson)
                     }
-                    _lessons = templessons.sorted({ (first:Lesson, second:Lesson) -> Bool in
+                    _lessons = templessons.sort({ (first:Lesson, second:Lesson) -> Bool in
                         return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
                     })
                 }
@@ -81,7 +81,7 @@ class MinuteTakingViewController: UITableViewController {
         }
 
         let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Do it", style: .Default) { (action:UIAlertAction!) -> Void in
+        let action = UIAlertAction(title: "Do it", style: .Default) { (action:UIAlertAction) -> Void in
             
             FacebookShareHelper.postMinutesToFacebook(self.minutes!)
             self.navigationController?.popViewControllerAnimated(true)
@@ -116,7 +116,7 @@ class MinuteTakingViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .NoStyle

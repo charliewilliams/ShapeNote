@@ -18,13 +18,13 @@ class SongListTableViewController: UITableViewController {
                 
                 let bookTitle = Defaults.currentlySelectedBookTitle
                 let s:[Song] = CoreDataHelper.sharedHelper.songs(bookTitle) as [Song]
-                _songs = s.sorted { (a:Song, b:Song) -> Bool in
+                _songs = s.sort { (a:Song, b:Song) -> Bool in
                     
                     // t and b are in the wrong order, alphabetically
                     if (a.strippedNumber == b.strippedNumber) {
                         return a.number > b.number
                     } else {
-                        return a.strippedNumber.toInt() < b.strippedNumber.toInt()
+                        return Int(a.strippedNumber) < Int(b.strippedNumber)
                     }
                 }
                 

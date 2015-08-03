@@ -12,7 +12,7 @@ class SingersListTableViewController: UITableViewController {
 
     var singers:[Singer] {
         let s:[Singer] = CoreDataHelper.sharedHelper.singers() as [Singer]
-        let sortedSingers = s.sorted { (a:Singer, b:Singer) -> Bool in
+        let sortedSingers = s.sort { (a:Singer, b:Singer) -> Bool in
             
 //            // group by voice type
 //            if (a.voice == b.voice) {
@@ -45,7 +45,7 @@ class SingersListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         
         let singer = singers[indexPath.row]
         cell.textLabel?.text = singer.name
@@ -69,11 +69,11 @@ class SingersListTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        let dvc:UIViewController = segue.destinationViewController as! UIViewController
+        let dvc:UIViewController = segue.destinationViewController 
         
         if let svc = dvc as? SingerViewController {
 
-            if let indexPath = tableView.indexPathForSelectedRow() {
+            if let indexPath = tableView.indexPathForSelectedRow {
                 let s = singers[indexPath.row]
                 svc.singer = s
             }

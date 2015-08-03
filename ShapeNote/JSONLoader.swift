@@ -90,7 +90,7 @@ class JSONLoader: NSObject {
             book.hashTag = bookDef["hashTag"]!
             
             // load the songs
-            var songsSet = NSMutableOrderedSet();
+            let songsSet = NSMutableOrderedSet();
             let json = loadFileFromBundle(bookDef["fileName"]!)
             
             for d:NSDictionary in json {
@@ -104,30 +104,33 @@ class JSONLoader: NSObject {
         }
         
         var error:NSError?
-        coreDataContext().save(&error)
+        do {
+            try coreDataContext().save()
+        } catch let error1 as NSError {
+            error = error1
+        }
         if error != nil {
-            println(error)
+            print(error)
         }
     }
 
     func loadFileFromBundle(fileName:String) -> [NSDictionary] {
         
-        let songsPath = NSBundle.mainBundle().pathForResource(fileName, ofType: "json")
-        
-        if songsPath == nil {
-            println("Missing songs file in bundle!")
-            abort()
-        }
-        let data = NSFileManager.defaultManager().contentsAtPath(songsPath!)
-        assert(data != nil, "Need data")
-        var jsonError: NSError?
-        
-        var decodedJson = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: &jsonError) as! NSArray
-        if jsonError != nil {
-            println(jsonError)
+        guard let songsPath = NSBundle.mainBundle().pathForResource(fileName, ofType: "json"),
+            let data = NSFileManager.defaultManager().contentsAtPath(songsPath)
+            else {
+                print("Couldn't read required file in bundle")
+                abort()
         }
         
-        return decodedJson as! [NSDictionary]
+        guard let decodedJson: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers),
+            let json = decodedJson as? [NSDictionary]
+            else {
+                print("Couldn't decode JSON in bundle")
+                abort()
+        }
+    
+        return json
     }
 
     func coreDataContext() -> NSManagedObjectContext! {

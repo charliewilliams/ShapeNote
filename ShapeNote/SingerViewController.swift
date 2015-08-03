@@ -20,7 +20,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var twitterHandleTextField: UITextField!
     @IBOutlet weak var tagOnFacebookSwitch: UISwitch!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -53,28 +53,34 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func donePressed(sender: AnyObject) {
         
-        if !checkEnteredFieldsValid() {
-            return;
+        guard let name = nameTextField.text where name.characters.count > 0 else {
+            return
         }
         
         if singer == nil {
             singer = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as? Singer
         }
-        singer!.name = nameTextField.text
-        singer!.shortName = displayNameTextField.text
         
-        if let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingTextField.text) {
-            singer!.group = group
+        let _singer = singer!
+        _singer.name = name
+        _singer.shortName = displayNameTextField.text
+        
+        if let homeSingingName = homeSingingTextField.text, let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName) {
+            _singer.group = group
         }
         
-        singer!.voice = validatedVoiceType(voiceTypeTextField.text).rawValue
-        var twitter = twitterHandleTextField.text
-        if !twitter.hasPrefix("@") {
-            twitter.insert("@", atIndex: twitter.startIndex)
+        if let voiceType = voiceTypeTextField.text {
+            _singer.voice = validatedVoiceType(voiceType).rawValue
         }
-        singer!.twitter = twitter
+        
+        if var twitter = twitterHandleTextField.text {
+            if twitter.hasPrefix("@") == false {
+                twitter = "@" + twitter
+            }
+            _singer.twitter = twitter
+        }
 
-        singer!.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
+        _singer.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
         
         CoreDataHelper.sharedHelper.saveContext()
         
@@ -95,10 +101,6 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func checkEnteredFieldsValid() -> Bool {
-        return count(nameTextField.text) > 0
-    }
-    
     @IBAction func tagOnFacebookSwitchChanged(sender: UISwitch) {
         singer?.facebook = sender.on ? "Yes" : "No"
     }
@@ -115,7 +117,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         
         if textField != twitterHandleTextField {
             
-            let index = find(textFields, textField)!
+            let index = textFields.indexOf(textField)!
             let newField = textFields[index+1]
             newField.becomeFirstResponder()
             

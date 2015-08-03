@@ -24,8 +24,8 @@ class TwitterShareHelper: NSObject {
     func postLesson(lesson:Lesson) {
         
         // WARNING: DEBUG
-        println("Not posting test run to Twitter: \(lesson.twitterString())")
         #if DEBUG
+        println("Not posting test run to Twitter: \(lesson.twitterString())")
         return;
         #endif
 
@@ -37,7 +37,13 @@ class TwitterShareHelper: NSObject {
         
         var clientError : NSError?
         
-        let request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params, error: &clientError)
+        let request: NSURLRequest!
+        do {
+            request = try Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params)
+        } catch let error as NSError {
+            clientError = error
+            request = nil
+        }
         
         if request != nil {
             
@@ -45,21 +51,29 @@ class TwitterShareHelper: NSObject {
                 
                 if connectionError == nil {
                     var jsonError : NSError?
-                    let json : AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError)
+                    let json : AnyObject?
+                    do {
+                        json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                    } catch let error as NSError {
+                        jsonError = error
+                        json = nil
+                    } catch {
+                        fatalError()
+                    }
                     
                     if jsonError != nil {
-                        println("Error: \(jsonError)")
+                        print("Error: \(jsonError)")
                     } else {
-                        println(json)
+                        print(json)
                     }
                 }
                 else {
-                    println("Error: \(connectionError)")
+                    print("Error: \(connectionError)")
                 }
             }
         }
         else {
-            println("Error: \(clientError)")
+            print("Error: \(clientError)")
         }
     }
 }

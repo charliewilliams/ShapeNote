@@ -16,9 +16,10 @@ enum ScopeBarIndex:Int {
     case Other = 3
 }
 
-class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
+class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    var searchController: UISearchController
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var filteredSingers:[Singer]?
     var filteredSongs:[Song]?
@@ -27,9 +28,11 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     var minutes:Minutes?
     var dedication:String?
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         chosenSingers = []
+        searchController = UISearchController()
         super.init(coder: aDecoder)
+        searchController = UISearchController(searchResultsController: self)
     }
     
     override func viewDidLoad() {
@@ -71,9 +74,9 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         let yesterday = NSDate(timeInterval: -60*60*24, sinceDate: NSDate())
         
-        if count(searchText) == 0 {
+        if searchText.characters.count == 0 {
     
-            filteredSingers = sorted(singers, { (s1:Singer, s2:Singer) -> Bool in
+            filteredSingers = singers.sort({ (s1:Singer, s2:Singer) -> Bool in
                 return s1.lastSingDate > s2.lastSingDate && s1.lastSingDate > yesterday.timeIntervalSince1970
             })
             return
@@ -86,15 +89,15 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     
     func filterContentForSongSearchText(searchText: String) {
         
-        if count(searchText) == 0 {
+        if searchText.characters.count == 0 {
             filteredSongs = songs
             return
         }
         
         filteredSongs = songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
-        }).sorted({ (song1:Song, song2:Song) -> Bool in
-            return song1.strippedNumber.toInt() < song2.strippedNumber.toInt()
+        }).sort({ (song1:Song, song2:Song) -> Bool in
+            return Int(song1.strippedNumber) < Int(song2.strippedNumber)
         })
     }
     
@@ -114,7 +117,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue
     }
     
-    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
+    func searchDisplayController(controller: UISearchController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         
         if searchingSongs() {
             filterContentForSongSearchText(searchString)
@@ -124,12 +127,16 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         return true
     }
     
-    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+    func searchDisplayController(controller: UISearchController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+        
+        guard let text = controller.searchBar.text else {
+            return false
+        }
         
         if searchingSongs() {
-            filterContentForSongSearchText(searchDisplayController!.searchBar.text)
+            filterContentForSongSearchText(text)
         } else if searchingSingers() {
-            filterContentForSingerSearchText(searchDisplayController!.searchBar.text)
+            filterContentForSingerSearchText(text)
         }
         updateSearchAndScope()
         return true
@@ -170,19 +177,19 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         if complete == true {
             
-            searchDisplayController?.setActive(false, animated: true)
+            searchController.active = false
             
         } else {
             
             searchBar.text = ""
-            searchDisplayController?.searchResultsTableView.reloadData()
-            searchDisplayController?.setActive(true, animated: true)
+            searchController.searchResultsUpdater?.updateSearchResultsForSearchController(searchController)
+            searchController.active = true
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if tableView == self.searchDisplayController!.searchResultsTableView {
+        if tableView == searchController.searchResultsController.view {
             
             let index = indexPath.row
             
@@ -237,7 +244,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         var inputTextField: UITextField?
         let alert = UIAlertController(title: "New Singer", message: "Ok, what's their name?", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction) -> Void in
             
             if action.style == .Cancel {
                 return
@@ -252,12 +259,12 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
                 self.updateSearchAndScope()
             }
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction!) -> Void in
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction) -> Void in
             
         })
         alert.addAction(cancel)
         alert.addAction(ok)
-        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField!) -> Void in
+        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField) -> Void in
             textField.placeholder = "Name"
             textField.text = self.searchBar.text
             inputTextField = textField
@@ -272,7 +279,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
         
         var inputTextField: UITextField?
         let alert = UIAlertController(title: "Dedication", message: "Enter dedication text, i.e. 'For...'", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction) -> Void in
             
             if let text = inputTextField?.text as String? {
                 self.dedication = text
@@ -280,12 +287,12 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
                 self.updateSearchAndScope()
             }
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction!) -> Void in
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction) -> Void in
             //
         })
         alert.addAction(cancel)
         alert.addAction(ok)
-        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField!) -> Void in
+        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField) -> Void in
             textField.placeholder = "For Name"
             textField.text = self.searchBar.text
             inputTextField = textField
@@ -303,7 +310,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableView == self.searchDisplayController!.searchResultsTableView {
+        if tableView == self.searchController.searchResultsController {
             
             if searchingSongs() {
                 if let filtered = self.filteredSongs {
@@ -379,7 +386,7 @@ class NewLessonViewController: UITableViewController, UISearchDisplayDelegate {
             lesson.song = song
         }
         
-        println(lesson.leader)
+        print(lesson.leader)
         lesson.leader = NSOrderedSet(array: chosenSingers)
         
         // optional stuff

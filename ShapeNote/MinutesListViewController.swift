@@ -23,7 +23,7 @@ class MinutesListViewController: UITableViewController {
                 navigationItem.title = group.name + ": Minutes"
                 if let m = CoreDataHelper.sharedHelper.minutes(group) {
                     
-                    _allMinutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
+                    _allMinutes = m.sort { (a:Minutes, b:Minutes) -> Bool in
                         
                         return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
                     }
@@ -92,7 +92,7 @@ class MinutesListViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let dvc = segue.destinationViewController as! UIViewController
+        let dvc = segue.destinationViewController 
         if let mtvc = dvc as? MinuteTakingViewController {
             
             if mtvc.minutes != nil {

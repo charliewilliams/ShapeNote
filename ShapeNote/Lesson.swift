@@ -31,7 +31,7 @@ class Lesson: NSManagedObject {
         return string
     }
     
-    func allLeadersString(#useTwitterHandles:Bool) -> String {
+    func allLeadersString(useTwitterHandles useTwitterHandles:Bool) -> String {
         
         var leadersString = ""
         let first:Singer = leader.firstObject! as! Singer
@@ -39,7 +39,7 @@ class Lesson: NSManagedObject {
         
         if first != last {
             
-            leader.enumerateObjectsUsingBlock({ (element:AnyObject!, index:Int, done:UnsafeMutablePointer<ObjCBool>) -> Void in
+            leader.enumerateObjectsUsingBlock({ (element:AnyObject, index:Int, done:UnsafeMutablePointer<ObjCBool>) -> Void in
                 
                 if let singer = element as? Singer {
                     
@@ -111,7 +111,7 @@ class Lesson: NSManagedObject {
             userString += " " + song.book.hashTag
         }
         
-        while count(userString) > 160 {
+        while userString.characters.count > 160 {
             var components = userString.componentsSeparatedByString(" ")
             components.removeLast()
             userString = " ".join(components)
