@@ -22,7 +22,6 @@
 		C0134F971ABF43B200B62BA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */; };
 		C0134F991ABF43BA00B62BA3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F981ABF43BA00B62BA3 /* libz.dylib */; };
 		C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */; };
-		C029903A1BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02990391BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift */; };
 		C0477ECF1B6FBC860047D7A0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0477ECE1B6FBC860047D7A0 /* Parse.framework */; };
 		C0477ED11B6FBC950047D7A0 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0477ED01B6FBC950047D7A0 /* ParseFacebookUtils.framework */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
@@ -59,6 +58,9 @@
 		C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A650A1A7EDA8600099E76 /* Minutes.swift */; };
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
 		C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */; };
+		C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0BE7DB41BE6359A006383CC /* FontAwesome.otf */; };
+		C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB61BE6A169006383CC /* NotesViewController.swift */; };
+		C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */; };
 		C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */; };
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
 		C0C1D4A41A813B120082C0EB /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D4881A813B120082C0EB /* NSDateFormatter+STTwitter.m */; };
@@ -104,7 +106,6 @@
 		C0134F981ABF43BA00B62BA3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.1.xcdatamodel"; sourceTree = "<group>"; };
-		C02990391BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSongsTableViewController.swift; sourceTree = "<group>"; };
 		C037AA2DCDB4BF3C50CE7F1E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0477ECE1B6FBC860047D7A0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Pods/Parse/Parse.framework; sourceTree = "<group>"; };
 		C0477ED01B6FBC950047D7A0 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = Pods/ParseFacebookUtils/ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -147,6 +148,9 @@
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
 		C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		C0BE7DB41BE6359A006383CC /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		C0BE7DB61BE6A169006383CC /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerProfileViewController.swift; sourceTree = "<group>"; };
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
 		C0C1D4871A813B120082C0EB /* NSDateFormatter+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+STTwitter.h"; sourceTree = "<group>"; };
@@ -294,7 +298,6 @@
 				C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */,
 				C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
-				C02990391BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift */,
 				C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */,
 				C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */,
 				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
@@ -303,6 +306,8 @@
 				C06AAE351A8D6ED400EB7612 /* FacebookShareHelper.swift */,
 				C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */,
 				C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */,
+				C0BE7DB61BE6A169006383CC /* NotesViewController.swift */,
+				C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -318,6 +323,7 @@
 		C0515B5E1A7BA59D0006ED16 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0BE7DB41BE6359A006383CC /* FontAwesome.otf */,
 				C092E85F1A8914B6002594A5 /* CH.json */,
 				C0515B921A7BC4000006ED16 /* SH1991.json */,
 				C092E8631A8A0311002594A5 /* Shenandoah.json */,
@@ -503,6 +509,7 @@
 				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
+				C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
 				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
@@ -596,7 +603,7 @@
 				C0C1D4AC1A813B120082C0EB /* STTwitterOS.m in Sources */,
 				C0C1D4A81A813B120082C0EB /* STTwitterAPI.m in Sources */,
 				C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */,
-				C029903A1BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift in Sources */,
+				C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */,
 				C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */,
 				C0C1D4A61A813B120082C0EB /* NSString+STTwitter.m in Sources */,
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
@@ -618,6 +625,7 @@
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
 				C0C1D4AE1A813B120082C0EB /* BAVPlistNode.m in Sources */,
 				C0C1D4AF1A813B120082C0EB /* JSONSyntaxHighlight.m in Sources */,
+				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */,

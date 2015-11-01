@@ -8,15 +8,24 @@
 
 import UIKit
 
+let favoritedString = ""
+let unfavoritedString = ""
+
 class SongListTableViewCell: UITableViewCell {
     
+    var song:Song?
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var localChampionLabel: UILabel!
     @IBOutlet weak var meterAndTypeLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
 
+    
+    
     func configureWithSong(song:Song) {
+        
+        self.song = song
         
         if song.number.hasPrefix("0") {
             numberLabel.text = song.number.substringFromIndex(song.number.startIndex.advancedBy(1))
@@ -55,7 +64,15 @@ class SongListTableViewCell: UITableViewCell {
             }
         }
         
+        let favoriteStateString = song.favorited ? favoritedString : unfavoritedString
+        favoriteButton.setTitle(favoriteStateString, forState: .Normal)
+        
         meterAndTypeLabel.text = infoString
     }
-
+    
+    @IBAction func favoriteButtonPressed(sender: UIButton) {
+        guard let song = song else { fatalError("No song attached to cell") }
+        song.favorited = !song.favorited
+    }
+    
 }

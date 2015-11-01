@@ -26,6 +26,7 @@ class Song: NSManagedObject {
     @NSManaged var book: Book
     @NSManaged var ledBy: Lesson
     @NSManaged var favorited: Bool
+    @NSManaged var notes: String?
     
     class var keys: [String:String] {
         
@@ -43,12 +44,6 @@ class Song: NSManagedObject {
             "key":"Key"]
     }
     
-    var strippedNumber: String {
-        
-        let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
-        return self.number.stringByTrimmingCharactersInSet(characterSet)
-    }
-    
     func configureWithDict(dict:NSDictionary) {
         
         for (key, value) in Song.keys {
@@ -62,5 +57,20 @@ class Song: NSManagedObject {
                     self.setValue(dictNumber.integerValue, forKey: key)
             }
         }
+    }
+    
+    var strippedNumber: String {
+        
+        let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
+        return self.number.stringByTrimmingCharactersInSet(characterSet)
+    }
+    
+    func isTriple() -> Bool {
+        if let timeSignature = timeSignature {
+            let index = timeSignature.startIndex.advancedBy(1)
+            let numerator = timeSignature.substringToIndex(index)
+            return numerator == "3" || numerator == "9"
+        }
+        return false
     }
 }
