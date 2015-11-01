@@ -114,7 +114,7 @@ class Lesson: NSManagedObject {
         while userString.characters.count > 160 {
             var components = userString.componentsSeparatedByString(" ")
             components.removeLast()
-            userString = " ".join(components)
+            userString = components.joinWithSeparator(" ")
         }
         
         return userString

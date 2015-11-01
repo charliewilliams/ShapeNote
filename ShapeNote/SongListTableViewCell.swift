@@ -19,7 +19,7 @@ class SongListTableViewCell: UITableViewCell {
     func configureWithSong(song:Song) {
         
         if song.number.hasPrefix("0") {
-            numberLabel.text = song.number.substringFromIndex(advance(song.number.startIndex, 1))
+            numberLabel.text = song.number.substringFromIndex(song.number.startIndex.advancedBy(1))
         } else {
             numberLabel.text = song.number
         }

@@ -22,6 +22,7 @@
 		C0134F971ABF43B200B62BA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */; };
 		C0134F991ABF43BA00B62BA3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F981ABF43BA00B62BA3 /* libz.dylib */; };
 		C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */; };
+		C029903A1BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02990391BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift */; };
 		C0477ECF1B6FBC860047D7A0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0477ECE1B6FBC860047D7A0 /* Parse.framework */; };
 		C0477ED11B6FBC950047D7A0 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0477ED01B6FBC950047D7A0 /* ParseFacebookUtils.framework */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
@@ -103,6 +104,7 @@
 		C0134F981ABF43BA00B62BA3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.1.xcdatamodel"; sourceTree = "<group>"; };
+		C02990391BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSongsTableViewController.swift; sourceTree = "<group>"; };
 		C037AA2DCDB4BF3C50CE7F1E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0477ECE1B6FBC860047D7A0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Pods/Parse/Parse.framework; sourceTree = "<group>"; };
 		C0477ED01B6FBC950047D7A0 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = Pods/ParseFacebookUtils/ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */,
 				C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
+				C02990391BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift */,
 				C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */,
 				C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */,
 				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
@@ -593,6 +596,7 @@
 				C0C1D4AC1A813B120082C0EB /* STTwitterOS.m in Sources */,
 				C0C1D4A81A813B120082C0EB /* STTwitterAPI.m in Sources */,
 				C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */,
+				C029903A1BE39FCE00E5DF2E /* FavoriteSongsTableViewController.swift in Sources */,
 				C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */,
 				C0C1D4A61A813B120082C0EB /* NSString+STTwitter.m in Sources */,
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
@@ -697,7 +701,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-D DEBUG=1";
-				PROVISIONING_PROFILE = "a3c91ff7-88f5-4931-ad55-9e61c02af839";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -734,7 +738,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
-				PROVISIONING_PROFILE = "a3c91ff7-88f5-4931-ad55-9e61c02af839";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -746,6 +750,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -770,6 +776,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShapeNote/ShapeNote-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -781,6 +788,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -805,6 +814,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShapeNote/ShapeNote-Bridging-Header.h";
 			};
 			name = Release;

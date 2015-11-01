@@ -25,6 +25,7 @@ class Song: NSManagedObject {
     @NSManaged var key: String?
     @NSManaged var book: Book
     @NSManaged var ledBy: Lesson
+    @NSManaged var favorite: Bool
     
     class var keys: [String:String] {
         

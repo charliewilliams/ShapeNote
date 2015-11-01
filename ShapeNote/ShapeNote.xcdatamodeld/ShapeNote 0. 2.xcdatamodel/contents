@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7527" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" defaultValueString="#shapenote" syncable="YES"/>
         <attribute name="hashTag" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,6 +41,7 @@
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="composer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lyricist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meter" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,6 +61,6 @@
         <element name="Lesson" positionX="-207" positionY="128" width="128" height="120"/>
         <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
         <element name="Singer" positionX="-378" positionY="143" width="128" height="193"/>
-        <element name="Song" positionX="-9" positionY="9" width="128" height="240"/>
+        <element name="Song" positionX="-9" positionY="9" width="128" height="255"/>
     </elements>
 </model>
