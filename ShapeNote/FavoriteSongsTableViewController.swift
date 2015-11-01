@@ -12,7 +12,7 @@ class FavoriteSongsTableViewController: SongListTableViewController {
     
     var filteredSongs:[Song] {
         return songs.filter { (song:Song) -> Bool in
-            song.isFavorite
+            song.favorited
         }
     }
     

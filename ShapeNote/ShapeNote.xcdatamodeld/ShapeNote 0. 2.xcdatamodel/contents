@@ -41,7 +41,7 @@
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="composer" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="favorited" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lyricist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meter" optional="YES" attributeType="String" syncable="YES"/>

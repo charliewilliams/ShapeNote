@@ -14,22 +14,21 @@ class SongListTableViewController: UITableViewController {
     var _songs:[Song]?
     var songs:[Song] {
         get {
-            if _songs == nil {
+            if _songs != nil { return _songs! }
                 
-                let bookTitle = Defaults.currentlySelectedBookTitle
-                let s:[Song] = CoreDataHelper.sharedHelper.songs(bookTitle) as [Song]
-                _songs = s.sort { (a:Song, b:Song) -> Bool in
-                    
-                    // t and b are in the wrong order, alphabetically
-                    if (a.strippedNumber == b.strippedNumber) {
-                        return a.number > b.number
-                    } else {
-                        return Int(a.strippedNumber) < Int(b.strippedNumber)
-                    }
+            let bookTitle = Defaults.currentlySelectedBookTitle
+            let s:[Song] = CoreDataHelper.sharedHelper.songs(bookTitle) as [Song]
+            _songs = s.sort { (a:Song, b:Song) -> Bool in
+                
+                // t and b are in the wrong order, alphabetically
+                if (a.strippedNumber == b.strippedNumber) {
+                    return a.number > b.number
+                } else {
+                    return Int(a.strippedNumber) < Int(b.strippedNumber)
                 }
-                
-                navigationItem.title = _songs?.first?.book.title
             }
+            
+            navigationItem.title = _songs!.first?.book.title
             return _songs!
         }
     }
@@ -53,7 +52,6 @@ class SongListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SongListTableViewCell
-
         let song = songs[indexPath.row]
         cell.configureWithSong(song)
 
