@@ -69,7 +69,18 @@ class Song: NSManagedObject {
         if let timeSignature = timeSignature {
             let index = timeSignature.startIndex.advancedBy(1)
             let numerator = timeSignature.substringToIndex(index)
+            if numerator == "3" || numerator == "9" { print("\(timeSignature) is Triple") } else { print("\(timeSignature) is not Triple") }
             return numerator == "3" || numerator == "9"
+        }
+        return false
+    }
+    
+    func isDuple() -> Bool {
+        if let timeSignature = timeSignature {
+            let index = timeSignature.startIndex.advancedBy(1)
+            let numerator = timeSignature.substringToIndex(index)
+            if numerator != "3" && numerator != "9" { print("\(timeSignature) is Duple") } else { print("\(timeSignature) is not Duple") }
+            return numerator != "3" && numerator != "9"
         }
         return false
     }

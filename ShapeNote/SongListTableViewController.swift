@@ -72,7 +72,7 @@ class SongListTableViewController: UITableViewController {
                 case .Minor:
                     return song.key == "Minor"
                 case .Duple:
-                    return !song.isTriple()
+                    return song.isDuple()
                 case .Triple:
                     return song.isTriple()
                 }

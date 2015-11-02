@@ -41,81 +41,76 @@ class FiltersViewController: UIViewController {
             }
         }
     }
+    
+    func add(toAdd:FilterType, remove toRemove:FilterType) {
+        guard var filters = songListViewController?.activeFilters else { return }
+        if let index = filters.indexOf(toRemove) { filters.removeAtIndex(index) }
+        filters.append(toRemove)
+        songListViewController?.activeFilters = filters
+    }
+    
+    func remove(toRemove:[FilterType]) {
+        guard var filters = songListViewController?.activeFilters else { return }
+        for filter in toRemove {
+            if let index = filters.indexOf(filter) { filters.removeAtIndex(index) }
+        }
+        songListViewController?.activeFilters = filters
+    }
 
     @IBAction func favoriteStatusChanged(sender: UISegmentedControl) {
         
-        guard var filters = songListViewController?.activeFilters else { return }
         switch sender.selectedSegmentIndex {
         case 0:
-            if let index = filters.indexOf(.Unfavorited) { filters.removeAtIndex(index) }
-            filters.append(.Favorited)
+            add(.Favorited, remove: .Unfavorited)
         case 1:
-            if let index = filters.indexOf(.Favorited) { filters.removeAtIndex(index) }
-            if let index = filters.indexOf(.Unfavorited) { filters.removeAtIndex(index) }
+            remove([.Favorited, .Unfavorited])
         case 2:
-            if let index = filters.indexOf(.Favorited) { filters.removeAtIndex(index) }
-            filters.append(.Unfavorited)
+            add(.Unfavorited, remove: .Favorited)
         default:
             fatalError("Storyboard incorrect")
         }
-        songListViewController?.activeFilters = filters
     }
     
     @IBAction func majorMinorStatusChanged(sender: UISegmentedControl) {
         
-        guard var filters = songListViewController?.activeFilters else { return }
         switch sender.selectedSegmentIndex {
         case 0:
-            if let index = filters.indexOf(.Minor) { filters.removeAtIndex(index) }
-            filters.append(.Major)
+            add(.Major, remove: .Minor)
         case 1:
-            if let index = filters.indexOf(.Major) { filters.removeAtIndex(index) }
-            if let index = filters.indexOf(.Minor) { filters.removeAtIndex(index) }
+            remove([.Major, .Minor])
         case 2:
-            if let index = filters.indexOf(.Major) { filters.removeAtIndex(index) }
-            filters.append(.Minor)
+            add(.Minor, remove: .Major)
         default:
             fatalError("Storyboard incorrect")
         }
-        songListViewController?.activeFilters = filters
     }
 
     @IBAction func plainFugueStatusChanged(sender: UISegmentedControl) {
         
-        guard var filters = songListViewController?.activeFilters else { return }
         switch sender.selectedSegmentIndex {
         case 0:
-            if let index = filters.indexOf(.Fugue) { filters.removeAtIndex(index) }
-            filters.append(.Plain)
+            add(.Plain, remove: .Fugue)
         case 1:
-            if let index = filters.indexOf(.Plain) { filters.removeAtIndex(index) }
-            if let index = filters.indexOf(.Fugue) { filters.removeAtIndex(index) }
+            remove([.Plain, .Fugue])
         case 2:
-            if let index = filters.indexOf(.Plain) { filters.removeAtIndex(index) }
-            filters.append(.Fugue)
+            add(.Fugue, remove: .Plain)
         default:
             fatalError("Storyboard incorrect")
         }
-        songListViewController?.activeFilters = filters
     }
 
     @IBAction func dupleTripleStatusChanged(sender: UISegmentedControl) {
         
-        guard var filters = songListViewController?.activeFilters else { return }
         switch sender.selectedSegmentIndex {
         case 0:
-            if let index = filters.indexOf(.Triple) { filters.removeAtIndex(index) }
-            filters.append(.Duple)
+            add(.Duple, remove: .Triple)
         case 1:
-            if let index = filters.indexOf(.Duple) { filters.removeAtIndex(index) }
-            if let index = filters.indexOf(.Triple) { filters.removeAtIndex(index) }
+            remove([.Duple, .Triple])
         case 2:
-            if let index = filters.indexOf(.Duple) { filters.removeAtIndex(index) }
-            filters.append(.Triple)
+            add(.Triple, remove: .Duple)
         default:
             fatalError("Storyboard incorrect")
         }
-        songListViewController?.activeFilters = filters
     }
 
     @IBAction func doneBarButtonPressed(sender: UIBarButtonItem) {
