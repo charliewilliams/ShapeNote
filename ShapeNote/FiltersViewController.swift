@@ -45,7 +45,7 @@ class FiltersViewController: UIViewController {
     func add(toAdd:FilterType, remove toRemove:FilterType) {
         guard var filters = songListViewController?.activeFilters else { return }
         if let index = filters.indexOf(toRemove) { filters.removeAtIndex(index) }
-        filters.append(toRemove)
+        filters.append(toAdd)
         songListViewController?.activeFilters = filters
     }
     

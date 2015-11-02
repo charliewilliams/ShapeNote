@@ -14,6 +14,7 @@ let unfavoritedString = ""
 class SongListTableViewCell: UITableViewCell {
     
     var song:Song?
+    var songListTableView:UITableView?
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
@@ -73,6 +74,7 @@ class SongListTableViewCell: UITableViewCell {
     @IBAction func favoriteButtonPressed(sender: UIButton) {
         guard let song = song else { fatalError("No song attached to cell") }
         song.favorited = !song.favorited
+        self.songListTableView?.reloadData()
     }
     
 }

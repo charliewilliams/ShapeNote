@@ -108,6 +108,7 @@ class SongListTableViewController: UITableViewController {
             song = songs[indexPath.row]
         }
         cell.configureWithSong(song)
+        cell.songListTableView = self.tableView
 
         return cell
     }
