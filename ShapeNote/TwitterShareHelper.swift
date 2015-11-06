@@ -38,18 +38,18 @@ class TwitterShareHelper: NSObject {
         var clientError : NSError?
         
         let request: NSURLRequest!
-        do {
-            request = try Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params)
-        } catch let error as NSError {
-            clientError = error
-            request = nil
-        }
+//        do {
+            request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params, error: nil)
+//        } catch let error as NSError {
+//            clientError = error
+//            request = nil
+//        }
         
         if request != nil {
             
             Twitter.sharedInstance().APIClient.sendTwitterRequest(request) {(response, data, connectionError) -> Void in
                 
-                if connectionError == nil {
+                if let data = data where connectionError == nil {
                     var jsonError : NSError?
                     let json : AnyObject?
                     do {

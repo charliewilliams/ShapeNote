@@ -43,7 +43,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             
             twitterHandleTextField.text = singer?.twitter
             tagOnFacebookSwitch.on = singer?.facebook != nil
-            voiceTypeTextField.text = singer?.voiceType
+            voiceTypeTextField.text = singer?.voice
             
         } else {
             

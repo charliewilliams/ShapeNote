@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupsPickerViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupsPickerViewController" customModule="ShapeNote" customModuleProvider="target">
             <connections>
+                <outlet property="pickerView" destination="79D-7w-WWy" id="XVc-LG-FjT"/>
+                <outlet property="showAllGroupsButton" destination="s4Z-h3-PdM" id="w4V-ZY-tKi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +17,76 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leading" translatesAutoresizingMaskIntoConstraints="NO" id="Wxj-1t-0g3">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                </imageView>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79D-7w-WWy">
+                    <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="0.4037446120689655" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="GXK-MH-3mS"/>
+                        <outlet property="delegate" destination="-1" id="uMl-bi-JYZ"/>
+                    </connections>
+                </pickerView>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqV-KH-l9o">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <animations/>
+                    <items>
+                        <navigationItem title="Title" id="qVc-36-BaK">
+                            <barButtonItem key="leftBarButtonItem" title="Show All My Groups" id="s4Z-h3-PdM">
+                                <connections>
+                                    <action selector="showAllGroupsPressed:" destination="-1" id="D5Z-sZ-fhu"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" systemItem="done" id="WWr-Io-1aS">
+                                <connections>
+                                    <action selector="donePressed:" destination="-1" id="WMg-qh-BDG"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find your home singing:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKN-GO-ewZ">
+                    <rect key="frame" x="0.0" y="163" width="600" height="21.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.57230603449999995" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="1" height="-1"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to take minutes, you must be a member of your local singing's Facebook group" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-o8-vlz">
+                    <rect key="frame" x="0.0" y="180.5" width="600" height="14.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DsE-o8-vlz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0rB-Rr-ExP"/>
+                <constraint firstItem="79D-7w-WWy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1AL-Eo-tGB"/>
+                <constraint firstAttribute="bottom" secondItem="79D-7w-WWy" secondAttribute="bottom" id="1S0-Ud-TGM"/>
+                <constraint firstItem="WKN-GO-ewZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EIP-os-j07"/>
+                <constraint firstItem="79D-7w-WWy" firstAttribute="top" secondItem="WKN-GO-ewZ" secondAttribute="bottom" constant="15" id="ELo-t6-upp"/>
+                <constraint firstAttribute="bottom" secondItem="Wxj-1t-0g3" secondAttribute="bottom" id="F6U-CB-CTb"/>
+                <constraint firstItem="Wxj-1t-0g3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VvR-oh-3mJ"/>
+                <constraint firstAttribute="trailing" secondItem="79D-7w-WWy" secondAttribute="trailing" id="cId-mu-YOu"/>
+                <constraint firstItem="DsE-o8-vlz" firstAttribute="top" secondItem="WKN-GO-ewZ" secondAttribute="bottom" constant="-4" id="epa-Tw-i3T"/>
+                <constraint firstItem="Wxj-1t-0g3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ftT-em-pvq"/>
+                <constraint firstAttribute="trailing" secondItem="DsE-o8-vlz" secondAttribute="trailing" id="l3q-pU-hgY"/>
+                <constraint firstAttribute="trailing" secondItem="WKN-GO-ewZ" secondAttribute="trailing" id="oGK-Vj-37g"/>
+                <constraint firstItem="79D-7w-WWy" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.666667" id="qw8-FB-E6K"/>
+                <constraint firstAttribute="trailing" secondItem="Wxj-1t-0g3" secondAttribute="trailing" id="vme-fC-YcG"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="leading" width="600" height="931"/>
+    </resources>
 </document>

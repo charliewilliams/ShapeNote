@@ -52,6 +52,17 @@
 				<key>KitName</key>
 				<string>Twitter</string>
 			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>VumFyEXKRAxhTCarfkRiJIYjI</string>
+					<key>consumerSecret</key>
+					<string>4R0AhGTfyZ6hGul6iD1TPbHm82aVWKRxoyC5jHlr2cvcvopKlj</string>
+				</dict>
+				<key>KitName</key>
+				<string>Digits</string>
+			</dict>
 		</array>
 	</dict>
 	<key>FacebookAppID</key>

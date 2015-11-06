@@ -13,22 +13,24 @@ class CoreDataHelper {
 
     class var sharedHelper : CoreDataHelper {
         struct Static {
-            static let instance : CoreDataHelper = CoreDataHelper()
+            static let instance:CoreDataHelper = CoreDataHelper()
         }
         return Static.instance
     }
     
-    var currentlySelectedGroup : Group {
+    var currentlySelectedGroup:Group {
         get {
             return groupWithName(Defaults.currentGroupName)!
         }
     }
     
-    var currentlySelectedBook : Book {
+    var currentlySelectedBook:Book {
         get {
             return book(Defaults.currentlySelectedBookTitle)!
         }
     }
+    
+    var currentSinger: Singer?
     
     func singers() -> [Singer] {
         return resultsForEntityName("Singer") as! [Singer]
