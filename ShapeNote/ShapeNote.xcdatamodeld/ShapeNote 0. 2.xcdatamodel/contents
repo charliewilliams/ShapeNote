@@ -34,7 +34,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="voice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="voice" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="singers" inverseEntity="Group" syncable="YES"/>
         <relationship name="minutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Minutes" inverseName="singers" inverseEntity="Minutes" syncable="YES"/>
         <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lesson" inverseName="leader" inverseEntity="Lesson" syncable="YES"/>
@@ -61,7 +61,7 @@
         <element name="Group" positionX="-567" positionY="54" width="128" height="88"/>
         <element name="Lesson" positionX="-207" positionY="128" width="128" height="120"/>
         <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
-        <element name="Singer" positionX="-378" positionY="143" width="128" height="193"/>
+        <element name="Singer" positionX="-378" positionY="143" width="128" height="195"/>
         <element name="Song" positionX="-9" positionY="9" width="128" height="270"/>
     </elements>
 </model>
