@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics(), Twitter()])
         
         Parse.setApplicationId("MvJxV7TztlSI8c0bi59MR6HqUfe24N53Rhgsa51a", clientKey: "2exXKyLLRXMe2WM8maCDEOVB2yTrRm6i5cLTUOP6")
+        PFFacebookUtils.initializeFacebook()
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        FBAppEvents.activateApp()
         JSONLoader.sharedLoader.handleFirstRun()
         
         return true
@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        FBAppEvents.activateApp()
         FBAppCall.handleDidBecomeActiveWithSession(FBSession.activeSession())
     }
 
