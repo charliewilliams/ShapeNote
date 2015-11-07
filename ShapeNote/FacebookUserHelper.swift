@@ -20,10 +20,12 @@ class FacebookUserHelper {
     }
     
     var completion:Completion?
+    var fbUser:FBGraphUser?
     
     func singerLoggedInToFacebook(user: FBGraphUser, permissions:[String]?, completion:Completion) {
         
         self.completion = completion
+        self.fbUser = user
         
         // 1. Get user name / first_name / id etc and put it on the user here
         for singer:Singer in CoreDataHelper.sharedHelper.singers() {
@@ -51,19 +53,40 @@ class FacebookUserHelper {
         }
     }
     
-    func signUpNewUser(user: FBGraphUser, permissions:[String]?) {
+    func signUpNewUser(fbUser: FBGraphUser, permissions:[String]?) {
         
+        self.fbUser = fbUser
+        
+        let userObject = fbUser as! FBGraphObject
         let pfUser = PFUser()
+        pfUser.username = userObject["email"] as? String
+        pfUser["first_name"] = userObject["first_name"] as? String
+        pfUser["last_name"] = userObject["last_name"] as? String
+        pfUser["name"] = userObject["name"] as? String
+        pfUser["gender"] = userObject["gender"] as? String
+        pfUser["locale"] = userObject["locale"] as? String
+        pfUser["id"] = userObject["id"] as? String
+        pfUser["timezone"] = userObject["timezone"] as? Int
+        pfUser["fbProfileURL"] = userObject["link"] as? String
+        pfUser["verified"] = userObject["verified"] as? Bool
         
-        if PFFacebookUtils.isLinkedWithUser(pfUser) {
-            return
+        pfUser.password = "\(fbUser.hash)"
+        
+        pfUser.signUpInBackgroundWithBlock { [weak self] (success:Bool, error:NSError?) -> Void in
+            self?.linkUser(pfUser, permissions: permissions)
         }
+    }
+    
+    func linkUser(pfUser: PFUser, permissions:[String]?) {
         
         PFFacebookUtils.linkUser(pfUser, permissions: permissions) { [weak self] (success:Bool, error:NSError?) -> Void in
             print(error)
             
-            if success && error == nil {
-                self?.getGroupsForUser(user)
+            if let fbUser = self?.fbUser
+                where success && error == nil {
+                self?.getGroupsForUser(fbUser)
+            } else {
+                self?.handleError(error)
             }
         }
     }
@@ -76,16 +99,27 @@ class FacebookUserHelper {
             guard let data = data as? FBGraphObject,
                 let groups = data["data"] as? [NSDictionary]
                 where error == nil
-                else { self?.handleError(); return }
+                else { self?.handleError(error); return }
             
+            if let user = PFUser.currentUser() {
+                user["groups"] = groups
+            }
             // 4. Return those so a view can make a "home singing" picker
             self?.completion?(groups)
         }
-
     }
     
-    func handleError() {
+    func handleError(error:NSError?) {
         
-        
+        var message = "There was an error talking to the cloud. That's all we know."
+        if let error = error
+            where error.localizedDescription.characters.count > 4 {
+                message = error.localizedDescription
+        }
+        let alert = UIAlertController(title: "Network Error", message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
 }

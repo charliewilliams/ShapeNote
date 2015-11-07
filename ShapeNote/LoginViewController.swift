@@ -11,7 +11,10 @@ import Twitter
 import TwitterKit
 
 let loggedOutVerticalConstant:CGFloat = 10
-let loggedInVerticalConstant:CGFloat = 90
+let loggedInVerticalConstant:CGFloat = -62
+let loggedInPointSize:CGFloat = 14
+let loggedOutPointSize:CGFloat = 17
+let userCanceled = 2
 
 class LoginViewController: UIViewController, FBLoginViewDelegate {
     
@@ -51,7 +54,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     // MARK: ----------- Facebook functions
     func requiredFacebookReadPermissions() -> [String] {
-        return ["public_profile", "user_friends", "email", "user_groups"]
+        return ["public_profile", "user_friends", "email", "user_likes"]
     }
     
     func requiredFacebookWritePermissions() -> [String] {
@@ -69,11 +72,10 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
                 
                 setConstraintsForFacebookLoginStatus(true)
                 
-                let permissions = fbSession.permissions as NSArray
-                print(permissions)
-                if permissions.containsObject("publish_actions") == false || permissions.containsObject("user_groups") == false {
-                    doManualFacebookLogin()
-                }
+//                fbSession.permissions as [AnyObject]
+//                if permissions.containsObject("publish_actions") == false || permissions.containsObject("user_groups") == false {
+//                    doManualFacebookLogin()
+//                }
         } else {
             setConstraintsForFacebookLoginStatus(false)
         }
@@ -137,7 +139,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
         facebookUser = user
-        self.userFullNameLabel.text = user.name
+        self.userFullNameLabel.text = "Logged in as \(user.name)"
+        self.userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
         
         // TODO only if we need to download the photo!
 //        FBRequest.requestForMe().startWithCompletionHandler { (connection:FBRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
@@ -154,6 +157,12 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         }
     }
     
+    func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
+        userFullNameLabel.text = "Log in to find your local singing"
+        userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedOutPointSize)
+        setConstraintsForFacebookLoginStatus(false)
+    }
+    
     func shouldShowGroupsPicker() -> Bool {
         // Check to see if we don't have a group?
         return true
@@ -167,6 +176,10 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {
+        
+        if error.code != userCanceled {
+            handleError(error)
+        }
         print("Facebook login error: \(error)")
     }
     
@@ -214,4 +227,17 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         twitterLoginButton.setNeedsLayout()
     }
     
+    func handleError(error:NSError?) {
+        
+        var message = "There was an error talking to Facebook. That's all we know."
+        if let error = error
+            where error.localizedDescription.characters.count > 4 {
+                message = error.localizedDescription
+        }
+        let alert = UIAlertController(title: "Network Error", message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 }

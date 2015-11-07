@@ -714,7 +714,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to find your local singing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0f-BL-9tb">
-                                <rect key="frame" x="173" y="416" width="254" height="21.5"/>
+                                <rect key="frame" x="173" y="416.5" width="254" height="21.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -727,7 +727,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Y81-mW-EXB" firstAttribute="top" secondItem="vVb-is-39s" secondAttribute="top" id="540-cY-q9a"/>
-                            <constraint firstItem="EU0-fi-kwv" firstAttribute="top" secondItem="n0f-BL-9tb" secondAttribute="bottom" constant="90.5" id="9b9-uO-rLa"/>
+                            <constraint firstItem="EU0-fi-kwv" firstAttribute="top" secondItem="n0f-BL-9tb" secondAttribute="bottom" constant="90" id="9b9-uO-rLa"/>
                             <constraint firstItem="Y81-mW-EXB" firstAttribute="leading" secondItem="vVb-is-39s" secondAttribute="leading" id="D8v-St-ZdV"/>
                             <constraint firstItem="oAM-VT-7h5" firstAttribute="centerX" secondItem="Y81-mW-EXB" secondAttribute="centerX" id="F3K-LV-ha2"/>
                             <constraint firstItem="n0f-BL-9tb" firstAttribute="top" secondItem="Y81-mW-EXB" secondAttribute="bottom" constant="4" id="IQL-Pz-hqG"/>

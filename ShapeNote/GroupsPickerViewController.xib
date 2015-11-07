@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupsPickerViewController" customModule="ShapeNote" customModuleProvider="target">
@@ -23,7 +22,7 @@
                     <animations/>
                 </imageView>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79D-7w-WWy">
-                    <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                    <rect key="frame" x="0.0" y="384" width="600" height="216"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="0.4037446120689655" colorSpace="calibratedWhite"/>
                     <connections>
@@ -50,7 +49,7 @@
                     </items>
                 </navigationBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find your home singing:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKN-GO-ewZ">
-                    <rect key="frame" x="0.0" y="163" width="600" height="21.5"/>
+                    <rect key="frame" x="0.0" y="347" width="600" height="21.5"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,7 +58,7 @@
                     <size key="shadowOffset" width="1" height="-1"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to take minutes, you must be a member of your local singing's Facebook group" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-o8-vlz">
-                    <rect key="frame" x="0.0" y="180.5" width="600" height="14.5"/>
+                    <rect key="frame" x="0.0" y="365" width="600" height="14.5"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,7 +80,6 @@
                 <constraint firstItem="Wxj-1t-0g3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ftT-em-pvq"/>
                 <constraint firstAttribute="trailing" secondItem="DsE-o8-vlz" secondAttribute="trailing" id="l3q-pU-hgY"/>
                 <constraint firstAttribute="trailing" secondItem="WKN-GO-ewZ" secondAttribute="trailing" id="oGK-Vj-37g"/>
-                <constraint firstItem="79D-7w-WWy" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.666667" id="qw8-FB-E6K"/>
                 <constraint firstAttribute="trailing" secondItem="Wxj-1t-0g3" secondAttribute="trailing" id="vme-fC-YcG"/>
             </constraints>
         </view>
