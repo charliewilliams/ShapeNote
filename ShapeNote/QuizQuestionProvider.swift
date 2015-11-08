@@ -54,7 +54,7 @@ class QuizQuestionProvider {
                     if let q = Quizzable(rawValue: question),
                         let a = Quizzable(rawValue: answer)
                         where question != answer {
-                            theseOptions.append(QuizOption(questionType: q, answerType: a, answers: nil, correctAnswer: nil))
+                            theseOptions.append(QuizOption(questionType: q, answerType: a))
                     }
                 }
                 
@@ -66,16 +66,20 @@ class QuizQuestionProvider {
     }
     
     var filteredOptions:[String:[QuizOption]] {
-        return ["Title":[QuizOption(questionType: .Title, answerType: .Number, answers: nil, correctAnswer: nil),
-            QuizOption(questionType: .Title, answerType: .FirstLine, answers: nil, correctAnswer: nil),
-            QuizOption(questionType: .Title, answerType: .Composer, answers: nil, correctAnswer: nil),
+        return ["Title":[QuizOption(questionType: .Title, answerType: .Number),
+            QuizOption(questionType: .Title, answerType: .FirstLine),
+            QuizOption(questionType: .Title, answerType: .Composer),
             ],
-            "Number":[QuizOption(questionType: .Number, answerType: .Title, answers: nil, correctAnswer: nil),
-            QuizOption(questionType: .Number, answerType: .ModeAndForm, answers: nil, correctAnswer: nil),
+            "Number":[QuizOption(questionType: .Number, answerType: .Title),
+            QuizOption(questionType: .Number, answerType: .ModeAndForm),
             ],
-            "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year, answers: nil, correctAnswer: nil)]
+            "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year)]
             
         ]
+    }
+    
+    func nextQuestion() -> QuizOption {
+        return QuizOption(questionType: .Title, answerType: .Number, question: "What number is Evening Shade?", answers: ["271", "83", "1", "399"], answerIndex: 0)
     }
 }
 

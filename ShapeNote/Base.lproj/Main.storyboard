@@ -667,7 +667,7 @@
             </objects>
             <point key="canvasLocation" x="1206" y="730.5"/>
         </scene>
-        <!--Quiz-->
+        <!--Test Your Knowledge-->
         <scene sceneID="1hJ-Ks-7Di">
             <objects>
                 <tableViewController id="cIv-xH-E25" customClass="QuizSetupViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
@@ -714,14 +714,23 @@
                             <outlet property="delegate" destination="cIv-xH-E25" id="SYO-yj-DFa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Quiz" id="eqS-9g-9ix">
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="mkj-Q7-SFH"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Test Your Knowledge" id="eqS-9g-9ix">
+                        <barButtonItem key="backBarButtonItem" title="Quiz" id="a5m-vn-gW0"/>
                         <barButtonItem key="leftBarButtonItem" title="Show All" id="QpM-eo-7JS">
                             <connections>
                                 <action selector="showAllButtonPressed:" destination="cIv-xH-E25" id="IsE-1v-wnz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Go!" style="done" id="H6E-yL-qJG"/>
+                        <barButtonItem key="rightBarButtonItem" title="Go!" style="done" id="H6E-yL-qJG">
+                            <connections>
+                                <segue destination="KQO-ra-Aa8" kind="show" id="USG-sK-LCo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="goTakeQuizButton" destination="H6E-yL-qJG" id="fCJ-DI-Gnp"/>
                         <outlet property="showAllButton" destination="QpM-eo-7JS" id="Jli-Dx-sjc"/>
@@ -730,6 +739,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jxw-RS-SQM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1206" y="1428"/>
+        </scene>
+        <!--Question-->
+        <scene sceneID="IPn-Bs-gxI">
+            <objects>
+                <viewController id="KQO-ra-Aa8" customClass="QuizInProgressViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SXl-pR-u9I"/>
+                        <viewControllerLayoutGuide type="bottom" id="UKn-cI-2hW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Cu-cb-Ch7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The song &quot;Evening Shade&quot; is number…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ami-W3-Ebi">
+                                <rect key="frame" x="20" y="72" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-YJ-hs2">
+                                <rect key="frame" x="20" y="113" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="471"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="UFU-2s-x9v"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmP-cL-dVi">
+                                <rect key="frame" x="20" y="151" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="12"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="NJm-3P-2i8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p59-MI-1ei">
+                                <rect key="frame" x="20" y="189" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="301"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="8Dy-S7-fna"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP3-2a-sh3">
+                                <rect key="frame" x="20" y="227" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="25"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="PuH-0M-Gsb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fP3-2a-sh3" firstAttribute="centerX" secondItem="p59-MI-1ei" secondAttribute="centerX" id="9wO-yd-f2J"/>
+                            <constraint firstItem="fP3-2a-sh3" firstAttribute="width" secondItem="p59-MI-1ei" secondAttribute="width" id="Sv6-b1-k9q"/>
+                            <constraint firstItem="fP3-2a-sh3" firstAttribute="top" secondItem="p59-MI-1ei" secondAttribute="bottom" constant="8" id="Z3t-8h-NEC"/>
+                            <constraint firstItem="fmP-cL-dVi" firstAttribute="width" secondItem="hAY-YJ-hs2" secondAttribute="width" id="aGg-Ya-cGD"/>
+                            <constraint firstItem="hAY-YJ-hs2" firstAttribute="trailing" secondItem="6Cu-cb-Ch7" secondAttribute="trailingMargin" id="fGW-wK-N9z"/>
+                            <constraint firstItem="ami-W3-Ebi" firstAttribute="trailing" secondItem="6Cu-cb-Ch7" secondAttribute="trailingMargin" id="fWJ-QE-5bw"/>
+                            <constraint firstItem="p59-MI-1ei" firstAttribute="top" secondItem="fmP-cL-dVi" secondAttribute="bottom" constant="8" id="hZt-01-5GD"/>
+                            <constraint firstItem="hAY-YJ-hs2" firstAttribute="top" secondItem="ami-W3-Ebi" secondAttribute="bottom" constant="20" id="kbC-Us-zZ9"/>
+                            <constraint firstItem="ami-W3-Ebi" firstAttribute="leading" secondItem="6Cu-cb-Ch7" secondAttribute="leadingMargin" id="nYG-2l-ebZ"/>
+                            <constraint firstItem="fmP-cL-dVi" firstAttribute="top" secondItem="hAY-YJ-hs2" secondAttribute="bottom" constant="8" id="o3B-kQ-otX"/>
+                            <constraint firstItem="p59-MI-1ei" firstAttribute="centerX" secondItem="fmP-cL-dVi" secondAttribute="centerX" id="sDt-UB-BuH"/>
+                            <constraint firstItem="ami-W3-Ebi" firstAttribute="top" secondItem="SXl-pR-u9I" secondAttribute="bottom" constant="8" id="t1e-FD-Ic1"/>
+                            <constraint firstItem="fmP-cL-dVi" firstAttribute="centerX" secondItem="hAY-YJ-hs2" secondAttribute="centerX" id="tBe-QP-MXJ"/>
+                            <constraint firstItem="p59-MI-1ei" firstAttribute="width" secondItem="fmP-cL-dVi" secondAttribute="width" id="ukc-gY-Je3"/>
+                            <constraint firstItem="hAY-YJ-hs2" firstAttribute="leading" secondItem="6Cu-cb-Ch7" secondAttribute="leadingMargin" id="ycO-pl-F8N"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Question" id="r4P-8m-FQh">
+                        <barButtonItem key="backBarButtonItem" title="Quiz" id="dm7-e3-sGY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Finish!" style="done" id="Qxc-us-8QC">
+                            <connections>
+                                <action selector="finishPressed:" destination="KQO-ra-Aa8" id="8ER-EY-eRo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="answerButton1" destination="hAY-YJ-hs2" id="jXf-5t-jtd"/>
+                        <outlet property="answerButton2" destination="fmP-cL-dVi" id="pYa-zC-cvz"/>
+                        <outlet property="answerButton3" destination="p59-MI-1ei" id="5rH-Pm-fXA"/>
+                        <outlet property="answerButton4" destination="fP3-2a-sh3" id="eZy-xY-bDr"/>
+                        <outlet property="questionLabel" destination="ami-W3-Ebi" id="pY1-gq-XdS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jKN-sb-ZHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="1428"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="ek2-7Z-A7C">

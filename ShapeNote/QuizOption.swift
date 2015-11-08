@@ -38,15 +38,15 @@ enum AnswerVerb:String {
     case ModeAndForm = "is a"
 }
 
-enum ModeOption {
-    case Major
-    case Minor
+enum ModeOption:String {
+    case Major = "Major"
+    case Minor = "Minor"
 }
 
-enum FormOption {
-    case Plaintune
-    case Fugue
-    case Anthem
+enum FormOption:String {
+    case Plaintune = "Plaintune"
+    case Fugue = "Fugue"
+    case Anthem = "Anthem"
 }
 
 func ==(lhs: QuizOption, rhs: QuizOption) -> Bool {
@@ -56,8 +56,24 @@ func ==(lhs: QuizOption, rhs: QuizOption) -> Bool {
 struct QuizOption: Hashable {
     let questionType:Quizzable
     let answerType:Quizzable
+    let question:String?
     let answers:[String]?
-    let correctAnswer:String?
+    var answerIndex:Int = 0
+    
+    init(questionType:Quizzable, answerType:Quizzable) {
+        self.questionType = questionType
+        self.answerType = answerType
+        question = nil
+        answers = nil
+    }
+    
+    init(questionType:Quizzable, answerType:Quizzable, question:String?, answers:[String]?, answerIndex:Int) {
+        self.questionType = questionType
+        self.answerType = answerType
+        self.question = question
+        self.answers = answers
+        self.answerIndex = answerIndex
+    }
     
     var itemStringForQuestionPair:String {
         switch self.answerType {

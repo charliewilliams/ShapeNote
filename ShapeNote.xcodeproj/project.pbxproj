@@ -48,6 +48,7 @@
 		C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */; };
 		C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */; };
 		C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A11BEFB63F00E05EBE /* QuizOption.swift */; };
+		C05626A41BEFB80700E05EBE /* QuizInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A31BEFB80700E05EBE /* QuizInProgressViewController.swift */; };
 		C064B5F11BEBEC950021F2B0 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */; };
 		C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */; };
@@ -147,6 +148,7 @@
 		C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionTypeTableViewCell.swift; sourceTree = "<group>"; };
 		C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionProvider.swift; sourceTree = "<group>"; };
 		C05626A11BEFB63F00E05EBE /* QuizOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOption.swift; sourceTree = "<group>"; };
+		C05626A31BEFB80700E05EBE /* QuizInProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizInProgressViewController.swift; sourceTree = "<group>"; };
 		C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Fabric/TwitterCore.framework; sourceTree = SOURCE_ROOT; };
 		C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DigitsKit.framework; path = Fabric/DigitsKit.framework; sourceTree = SOURCE_ROOT; };
 		C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = Fabric/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = SOURCE_ROOT; };
@@ -338,6 +340,7 @@
 				C056269A1BEF714E00E05EBE /* QuizItemViewController.xib */,
 				C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */,
 				C05626A11BEFB63F00E05EBE /* QuizOption.swift */,
+				C05626A31BEFB80700E05EBE /* QuizInProgressViewController.swift */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -659,6 +662,7 @@
 				C0C1D4A61A813B120082C0EB /* NSString+STTwitter.m in Sources */,
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
 				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
+				C05626A41BEFB80700E05EBE /* QuizInProgressViewController.swift in Sources */,
 				C06AAE361A8D6ED400EB7612 /* FacebookShareHelper.swift in Sources */,
 				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
