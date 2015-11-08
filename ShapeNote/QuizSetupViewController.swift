@@ -13,7 +13,7 @@ class QuizSetupViewController: UITableViewController {
     @IBOutlet var showAllButton: UIBarButtonItem!
     @IBOutlet var goTakeQuizButton: UIBarButtonItem!
 
-    let quizQuestionProvider = QuizQuestionProvider()
+    let quizQuestionProvider = QuizQuestionProvider.sharedProvider
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,7 @@ class QuizSetupViewController: UITableViewController {
         let questionType = quizQuestionProvider.questionTypes[indexPath.section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
         let q = questionsForType[indexPath.row]
+        cell.questionType = q
         let description = q.itemStringForQuestionPair
         cell.label.text = description
         
