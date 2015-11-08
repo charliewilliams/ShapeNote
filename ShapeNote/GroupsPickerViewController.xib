@@ -30,9 +30,12 @@
                         <outlet property="delegate" destination="-1" id="uMl-bi-JYZ"/>
                     </connections>
                 </pickerView>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqV-KH-l9o">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqV-KH-l9o">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="zPf-Iw-t8O"/>
+                    </constraints>
                     <items>
                         <navigationItem title="Title" id="qVc-36-BaK">
                             <barButtonItem key="leftBarButtonItem" title="Show All My Groups" id="s4Z-h3-PdM">
@@ -71,12 +74,15 @@
                 <constraint firstItem="DsE-o8-vlz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0rB-Rr-ExP"/>
                 <constraint firstItem="79D-7w-WWy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1AL-Eo-tGB"/>
                 <constraint firstAttribute="bottom" secondItem="79D-7w-WWy" secondAttribute="bottom" id="1S0-Ud-TGM"/>
+                <constraint firstItem="ZqV-KH-l9o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9ex-md-ybW"/>
                 <constraint firstItem="WKN-GO-ewZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EIP-os-j07"/>
                 <constraint firstItem="79D-7w-WWy" firstAttribute="top" secondItem="WKN-GO-ewZ" secondAttribute="bottom" constant="15" id="ELo-t6-upp"/>
                 <constraint firstAttribute="bottom" secondItem="Wxj-1t-0g3" secondAttribute="bottom" id="F6U-CB-CTb"/>
+                <constraint firstItem="ZqV-KH-l9o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Tea-c4-OnA"/>
                 <constraint firstItem="Wxj-1t-0g3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VvR-oh-3mJ"/>
                 <constraint firstAttribute="trailing" secondItem="79D-7w-WWy" secondAttribute="trailing" id="cId-mu-YOu"/>
                 <constraint firstItem="DsE-o8-vlz" firstAttribute="top" secondItem="WKN-GO-ewZ" secondAttribute="bottom" constant="-4" id="epa-Tw-i3T"/>
+                <constraint firstAttribute="trailing" secondItem="ZqV-KH-l9o" secondAttribute="trailing" id="etL-V0-QVN"/>
                 <constraint firstItem="Wxj-1t-0g3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ftT-em-pvq"/>
                 <constraint firstAttribute="trailing" secondItem="DsE-o8-vlz" secondAttribute="trailing" id="l3q-pU-hgY"/>
                 <constraint firstAttribute="trailing" secondItem="WKN-GO-ewZ" secondAttribute="trailing" id="oGK-Vj-37g"/>
