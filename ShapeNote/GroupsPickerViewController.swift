@@ -21,7 +21,7 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
     
     var groups:[NSDictionary]? {
         didSet {
-            if let groups = groups {
+            if let groups = groups where groups.count > 0 {
                 checkGroupsAgainstExistingOnServer(groups)
             }
         }
