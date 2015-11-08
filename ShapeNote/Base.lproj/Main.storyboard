@@ -593,10 +593,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="rgN-e0-S6K" kind="relationship" relationship="viewControllers" id="0fc-BQ-M0w"/>
                         <segue destination="acG-gu-NL8" kind="relationship" relationship="viewControllers" id="xnz-Or-Bsl"/>
                         <segue destination="9XQ-5N-jhl" kind="relationship" relationship="viewControllers" id="ZtV-lv-0MP"/>
                         <segue destination="O1G-Wh-9uq" kind="relationship" relationship="viewControllers" id="21c-aI-3mS"/>
-                        <segue destination="rgN-e0-S6K" kind="relationship" relationship="viewControllers" id="0fc-BQ-M0w"/>
                         <segue destination="XrP-vU-mBa" kind="relationship" relationship="viewControllers" id="aKT-SS-2WI"/>
                     </connections>
                 </tabBarController>
@@ -666,6 +666,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZh-Zl-JBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1206" y="730.5"/>
+        </scene>
+        <!--Quiz-->
+        <scene sceneID="1hJ-Ks-7Di">
+            <objects>
+                <tableViewController id="cIv-xH-E25" customClass="QuizSetupViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VR8-DB-gxF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wdi-Q4-Cb9" customClass="QuizQuestionTypeTableViewCell" customModule="ShapeNote" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wdi-Q4-Cb9" id="pmn-nj-20Z">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOg-Lk-KF1">
+                                            <rect key="frame" x="8" y="7" width="46" height="30"/>
+                                            <animations/>
+                                            <state key="normal" title="O"/>
+                                            <connections>
+                                                <action selector="selectionButtonPressed:" destination="wdi-Q4-Cb9" eventType="touchUpInside" id="ElI-5T-v7Z"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Given the number, what's the title?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEt-um-TWg">
+                                            <rect key="frame" x="62" y="11" width="530" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="label" destination="wEt-um-TWg" id="otO-0Q-mAS"/>
+                                    <outlet property="selectionButton" destination="XOg-Lk-KF1" id="sm1-w8-sZf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cIv-xH-E25" id="Ra3-JK-UIW"/>
+                            <outlet property="delegate" destination="cIv-xH-E25" id="SYO-yj-DFa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Quiz" id="eqS-9g-9ix">
+                        <barButtonItem key="leftBarButtonItem" title="Show All" id="QpM-eo-7JS">
+                            <connections>
+                                <action selector="showAllButtonPressed:" destination="cIv-xH-E25" id="IsE-1v-wnz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Go!" style="done" id="H6E-yL-qJG"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="goTakeQuizButton" destination="H6E-yL-qJG" id="fCJ-DI-Gnp"/>
+                        <outlet property="showAllButton" destination="QpM-eo-7JS" id="Jli-Dx-sjc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jxw-RS-SQM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1206" y="1428"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="ek2-7Z-A7C">
@@ -775,6 +839,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="cIv-xH-E25" kind="relationship" relationship="rootViewController" id="Bru-OB-MWf"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfy-hW-4Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

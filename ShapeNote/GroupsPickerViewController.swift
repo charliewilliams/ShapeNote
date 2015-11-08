@@ -14,6 +14,8 @@ enum PFClass:String {
 
 enum PFKey:String {
     case name = "name"
+    case group = "group"
+    case groups = "groups"
     case fbGroupID = "fbGroupID"
 }
 
@@ -130,8 +132,24 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
     @IBAction func donePressed(sender: AnyObject) {
         
         let index = pickerView.selectedRowInComponent(0)
-        if let group = groups?[index] {
+        if let group = groups?[index],
+            let user = PFUser.currentUser() {
             print("Picked: \(group["name"])")
+                
+                if let existingGroup = user[PFKey.group.rawValue] {
+                    
+                    let alert = UIAlertController(title: "Replace \(existingGroup[PFKey.name.rawValue])?", message: nil, preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) -> Void in
+                        user[PFKey.group.rawValue] = group
+                        user.saveEventually()
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                } else {
+                    user[PFKey.group.rawValue] = group
+                    user.saveEventually()
+                }
         }
         
         self.dismissViewControllerAnimated(true, completion: nil)

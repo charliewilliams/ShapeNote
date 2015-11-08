@@ -42,6 +42,11 @@
 		C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */; };
 		C05626951BED429000E05EBE /* GroupsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626931BED429000E05EBE /* GroupsPickerViewController.swift */; };
 		C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05626941BED429000E05EBE /* GroupsPickerViewController.xib */; };
+		C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626971BEF711500E05EBE /* QuizSetupViewController.swift */; };
+		C056269B1BEF714E00E05EBE /* QuizItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626991BEF714E00E05EBE /* QuizItemViewController.swift */; };
+		C056269C1BEF714E00E05EBE /* QuizItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C056269A1BEF714E00E05EBE /* QuizItemViewController.xib */; };
+		C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */; };
+		C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */; };
 		C064B5F11BEBEC950021F2B0 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */; };
 		C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */; };
@@ -135,6 +140,11 @@
 		C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesTableViewCell.swift; sourceTree = "<group>"; };
 		C05626931BED429000E05EBE /* GroupsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsPickerViewController.swift; sourceTree = "<group>"; };
 		C05626941BED429000E05EBE /* GroupsPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsPickerViewController.xib; sourceTree = "<group>"; };
+		C05626971BEF711500E05EBE /* QuizSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSetupViewController.swift; sourceTree = "<group>"; };
+		C05626991BEF714E00E05EBE /* QuizItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizItemViewController.swift; sourceTree = "<group>"; };
+		C056269A1BEF714E00E05EBE /* QuizItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizItemViewController.xib; sourceTree = "<group>"; };
+		C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionTypeTableViewCell.swift; sourceTree = "<group>"; };
+		C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionProvider.swift; sourceTree = "<group>"; };
 		C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Fabric/TwitterCore.framework; sourceTree = SOURCE_ROOT; };
 		C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DigitsKit.framework; path = Fabric/DigitsKit.framework; sourceTree = SOURCE_ROOT; };
 		C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = Fabric/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = SOURCE_ROOT; };
@@ -320,6 +330,11 @@
 				C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */,
 				C05626931BED429000E05EBE /* GroupsPickerViewController.swift */,
 				C05626941BED429000E05EBE /* GroupsPickerViewController.xib */,
+				C05626971BEF711500E05EBE /* QuizSetupViewController.swift */,
+				C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */,
+				C05626991BEF714E00E05EBE /* QuizItemViewController.swift */,
+				C056269A1BEF714E00E05EBE /* QuizItemViewController.xib */,
+				C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -527,6 +542,7 @@
 				C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
+				C056269C1BEF714E00E05EBE /* QuizItemViewController.xib in Resources */,
 				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,6 +649,7 @@
 				C0C1D4AC1A813B120082C0EB /* STTwitterOS.m in Sources */,
 				C0C1D4A81A813B120082C0EB /* STTwitterAPI.m in Sources */,
 				C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */,
+				C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */,
 				C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */,
 				C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */,
 				C0C1D4A61A813B120082C0EB /* NSString+STTwitter.m in Sources */,
@@ -640,6 +657,7 @@
 				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
 				C06AAE361A8D6ED400EB7612 /* FacebookShareHelper.swift in Sources */,
 				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
+				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
 				C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */,
 				C0C1D4AD1A813B120082C0EB /* STTwitterOSRequest.m in Sources */,
 				C0C1D4A91A813B120082C0EB /* STTwitterAppOnly.m in Sources */,
@@ -648,6 +666,7 @@
 				C0C1D4B01A813B120082C0EB /* STHTTPRequest.m in Sources */,
 				C0515B661A7BA59D0006ED16 /* ViewController.swift in Sources */,
 				C0C1D4A41A813B120082C0EB /* NSDateFormatter+STTwitter.m in Sources */,
+				C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */,
 				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0C1D4AB1A813B120082C0EB /* STTwitterOAuth.m in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
@@ -656,6 +675,7 @@
 				C0C1D4AE1A813B120082C0EB /* BAVPlistNode.m in Sources */,
 				C064B5F51BECAC840021F2B0 /* FacebookUserHelper.swift in Sources */,
 				C0C1D4AF1A813B120082C0EB /* JSONSyntaxHighlight.m in Sources */,
+				C056269B1BEF714E00E05EBE /* QuizItemViewController.swift in Sources */,
 				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
 				C05626951BED429000E05EBE /* GroupsPickerViewController.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,

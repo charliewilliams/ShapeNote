@@ -36,6 +36,13 @@ class FacebookUserHelper {
             }
         }
         
+        // ???
+        if let existingUser = PFUser.currentUser(),
+            let groups = existingUser[PFKey.groups.rawValue] as? [NSDictionary] where existingUser[PFKey.group.rawValue] == nil {
+                completion(groups)
+                return
+        }
+        
         // 2. Log in OR create the user on the server if they don't exist
         PFFacebookUtils.logInWithPermissions(permissions) { [weak self] (pfUser:PFUser?, error:NSError?) -> Void in
             
@@ -111,6 +118,7 @@ class FacebookUserHelper {
     
     func handleError(error:NSError?) {
         
+        // Todo detect if offline
         var message = "There was an error talking to the cloud. That's all we know."
         if let error = error
             where error.localizedDescription.characters.count > 4 {

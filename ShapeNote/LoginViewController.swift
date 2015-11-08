@@ -164,8 +164,10 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func shouldShowGroupsPicker() -> Bool {
-        // Check to see if we don't have a group?
-        return true
+        if let user = PFUser.currentUser() where user["group"] == nil {
+            return true
+        }
+        return false
     }
     
     func showGroupsPicker(groups:[NSDictionary]) {
