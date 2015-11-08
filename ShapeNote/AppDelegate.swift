@@ -33,7 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
-        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication, withSession: PFFacebookUtils.session())
+//        let session = PFFacebookUtils.session()
+        let session = FBSession.activeSession()
+        
+        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication, withSession: session)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -52,7 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         FBAppEvents.activateApp()
-        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
+        
+//        let session = PFFacebookUtils.session()
+        let session = FBSession.activeSession()
+        FBAppCall.handleDidBecomeActiveWithSession(session)
     }
 
     func applicationWillTerminate(application: UIApplication) {
