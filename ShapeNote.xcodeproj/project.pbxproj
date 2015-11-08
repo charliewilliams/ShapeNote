@@ -334,13 +334,7 @@
 				C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */,
 				C05626931BED429000E05EBE /* GroupsPickerViewController.swift */,
 				C05626941BED429000E05EBE /* GroupsPickerViewController.xib */,
-				C05626971BEF711500E05EBE /* QuizSetupViewController.swift */,
-				C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */,
-				C05626991BEF714E00E05EBE /* QuizItemViewController.swift */,
-				C056269A1BEF714E00E05EBE /* QuizItemViewController.xib */,
-				C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */,
-				C05626A11BEFB63F00E05EBE /* QuizOption.swift */,
-				C05626A31BEFB80700E05EBE /* QuizInProgressViewController.swift */,
+				C05626A51BEFD1B700E05EBE /* Quiz */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
@@ -394,6 +388,20 @@
 				C09A650A1A7EDA8600099E76 /* Minutes.swift */,
 			);
 			name = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		C05626A51BEFD1B700E05EBE /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				C05626971BEF711500E05EBE /* QuizSetupViewController.swift */,
+				C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */,
+				C05626991BEF714E00E05EBE /* QuizItemViewController.swift */,
+				C056269A1BEF714E00E05EBE /* QuizItemViewController.xib */,
+				C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */,
+				C05626A11BEFB63F00E05EBE /* QuizOption.swift */,
+				C05626A31BEFB80700E05EBE /* QuizInProgressViewController.swift */,
+			);
+			name = Quiz;
 			sourceTree = "<group>";
 		};
 		C0C1D4861A813B120082C0EB /* STTwitter */ = {

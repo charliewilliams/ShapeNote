@@ -44,12 +44,17 @@ class CoreDataHelper {
         return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title == %@") as! Book?
     }
     
+    func songs() -> [Song] {
+        return songs(currentlySelectedBook.title)
+    }
+    
+    func songs(inBook:Book) -> [Song] {
+         return resultsForEntityName("Song", matchingObject: inBook, inQueryString: "book == %@") as! [Song]
+    }
+    
     func songs(inBookTitle:String) -> [Song] {
-        
-        let bookTitle = inBookTitle
-        let bookObject = book(bookTitle)!
-        
-        return resultsForEntityName("Song", matchingObject: bookObject, inQueryString: "book == %@") as! [Song]
+        let bookObject = book(inBookTitle)!
+        return songs(bookObject)
     }
     
 //    func fetchedResultsControllerForClassName(className:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSFetchedResultsController {

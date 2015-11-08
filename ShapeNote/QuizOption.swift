@@ -19,7 +19,7 @@ enum Quizzable:String {
 }
 
 enum QuestionVerb:String {
-    case Title = "A song called"
+    case Title = ""
     case Composer = "A song by"
     case Lyricist = "A song with words by"
     case FirstLine = "A song beginning with the line"
@@ -34,7 +34,7 @@ enum AnswerVerb:String {
     case Lyricist = "has words by"
     case FirstLine = "begins with the line"
     case Year = "was written in the year"
-    case Number = "has the number"
+    case Number = "is song number"
     case ModeAndForm = "is a"
 }
 
@@ -57,7 +57,7 @@ struct QuizOption: Hashable {
     let questionType:Quizzable
     let answerType:Quizzable
     let question:String?
-    let answers:[String]?
+    var answers:[String]?
     var answerIndex:Int = 0
     
     init(questionType:Quizzable, answerType:Quizzable) {
@@ -96,7 +96,7 @@ struct QuizOption: Hashable {
     
     var exampleStringForQuestionPair:String {
         var s = String()
-        let X = "X"
+        let X = (question != nil) ? question! : "X"
         
         switch self.questionType {
         case .Title:
@@ -132,7 +132,7 @@ struct QuizOption: Hashable {
             s += AnswerVerb.ModeAndForm.rawValue
         }
         
-        s += " Y "
+        s += ":"
         
         return s
     }
