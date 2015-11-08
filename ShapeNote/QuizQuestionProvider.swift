@@ -55,51 +55,66 @@ struct QuizOption {
     let answers:[String]?
     let correctAnswer:String?
     
-    var exampleStringForQuestionPair:String {
-        
-        get {
-            
-            var s = String()
-            let X = "X"
-            
-            switch self.questionType {
-            case .Title:
-                s = QuestionVerb.Title.rawValue + " \(X) "
-            case .Composer:
-                s = QuestionVerb.Composer.rawValue + " \(X) "
-            case .Lyricist:
-                s = QuestionVerb.Lyricist.rawValue + " \(X) "
-            case .FirstLine:
-                s = QuestionVerb.FirstLine.rawValue + " \(X) "
-            case .Year:
-                s = QuestionVerb.Year.rawValue + " \(X) "
-            case .Number:
-                s = QuestionVerb.Number.rawValue + "\(X) "
-            case .ModeAndForm:
-                s = String(format:QuestionVerb.ModeAndForm.rawValue, "\(X) ")
-            }
-            
-            switch self.answerType {
-            case .Title:
-                s += AnswerVerb.Title.rawValue
-            case .Composer:
-                s += AnswerVerb.Composer.rawValue
-            case .Lyricist:
-                s += AnswerVerb.Lyricist.rawValue
-            case .FirstLine:
-                s += AnswerVerb.FirstLine.rawValue
-            case .Year:
-                s += AnswerVerb.Year.rawValue
-            case .Number:
-                s += AnswerVerb.Number.rawValue
-            case .ModeAndForm:
-                s += AnswerVerb.ModeAndForm.rawValue
-            }
-            
-            s += " Y "
-            
-            return s
+    var itemStringForQuestionPair:String {
+        switch self.answerType {
+        case .Title:
+            return "…what's the title?"
+        case .Composer:
+            return "…who's the composer?"
+        case .Lyricist:
+            return "…who wrote the words?"
+        case .FirstLine:
+            return "…what's the first line?"
+        case .Year:
+            return "…what year was it written?"
+        case .Number:
+            return "…what number is it?"
+        case .ModeAndForm:
+            return "…what's the mode and form?"
         }
+    }
+    
+    var exampleStringForQuestionPair:String {
+        var s = String()
+        let X = "X"
+        
+        switch self.questionType {
+        case .Title:
+            s = QuestionVerb.Title.rawValue + " \(X) "
+        case .Composer:
+            s = QuestionVerb.Composer.rawValue + " \(X) "
+        case .Lyricist:
+            s = QuestionVerb.Lyricist.rawValue + " \(X) "
+        case .FirstLine:
+            s = QuestionVerb.FirstLine.rawValue + " \(X) "
+        case .Year:
+            s = QuestionVerb.Year.rawValue + " \(X) "
+        case .Number:
+            s = QuestionVerb.Number.rawValue + "\(X) "
+        case .ModeAndForm:
+            s = String(format:QuestionVerb.ModeAndForm.rawValue, "\(X) ")
+        }
+        
+        switch self.answerType {
+        case .Title:
+            s += AnswerVerb.Title.rawValue
+        case .Composer:
+            s += AnswerVerb.Composer.rawValue
+        case .Lyricist:
+            s += AnswerVerb.Lyricist.rawValue
+        case .FirstLine:
+            s += AnswerVerb.FirstLine.rawValue
+        case .Year:
+            s += AnswerVerb.Year.rawValue
+        case .Number:
+            s += AnswerVerb.Number.rawValue
+        case .ModeAndForm:
+            s += AnswerVerb.ModeAndForm.rawValue
+        }
+        
+        s += " Y "
+        
+        return s
     }
 }
 

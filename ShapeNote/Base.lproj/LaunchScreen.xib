@@ -48,7 +48,7 @@
                 <constraint firstAttribute="bottom" secondItem="MEL-2y-82N" secondAttribute="bottom" id="gAk-px-YeB"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="MEL-2y-82N" secondAttribute="bottom" id="ygD-gQ-M6D"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">

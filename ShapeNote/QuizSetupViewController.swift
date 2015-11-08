@@ -38,7 +38,7 @@ class QuizSetupViewController: UITableViewController {
         let questionType = quizQuestionProvider.questionTypes[indexPath.section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
         let q = questionsForType[indexPath.row]
-        let description = q.exampleStringForQuestionPair
+        let description = q.itemStringForQuestionPair
         cell.label.text = description
         
         return cell
