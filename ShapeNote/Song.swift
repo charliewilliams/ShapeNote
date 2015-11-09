@@ -27,7 +27,7 @@ class Song: NSManagedObject {
     @NSManaged var ledBy: Lesson
     @NSManaged var favorited: Bool
     @NSManaged var notes: String?
-    @NSManaged var lyrics: [String]?
+    @NSManaged var lyrics: String?
     
     class var keys: [String:String] {
         
@@ -57,8 +57,10 @@ class Song: NSManagedObject {
             } else if let dictNumber = dict[value] as? NSNumber
                 where dictNumber.integerValue != 0 {
                     self.setValue(dictNumber.integerValue, forKey: key)
-            } else if let dictArray = dict[value] as? [AnyObject] {
-                self.setValue(dictArray, forKey: key)
+            } else if let dictArray = dict[value] as? [String] {
+                let lyrics = dictArray.joinWithSeparator("\n")
+                print(lyrics)
+                self.setValue(lyrics, forKey: key)
             }
         }
     }
@@ -101,7 +103,13 @@ class Song: NSManagedObject {
     
     func firstLine() -> String? {
         
-        guard let lyrics = lyrics where lyrics.count > 0 else { return nil }
-        return lyrics.first
+        guard let lyrics = lyrics else { return nil }
+        let lines = lyrics.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+        guard let line = lines.first else { return nil }
+        if line.characters.last == "," {
+            return line.substringToIndex(line.endIndex.predecessor())
+        }
+        
+        return line
     }
 }

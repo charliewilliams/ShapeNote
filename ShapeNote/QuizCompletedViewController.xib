@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuizCompletedViewController" customModule="ShapeNote" customModuleProvider="target">
@@ -19,14 +20,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice one!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzf-l1-h2r">
-                    <rect key="frame" x="218" y="80" width="163" height="47"/>
+                    <rect key="frame" x="218" y="110" width="163" height="47"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="39"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got 20 out of 20 right." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJc-a6-w0g">
-                    <rect key="frame" x="199" y="190" width="201.5" height="20.5"/>
+                    <rect key="frame" x="199" y="220" width="201.5" height="20.5"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -44,9 +45,10 @@
                         <action selector="okButtonPressed:" destination="-1" eventType="touchUpInside" id="QWS-L8-UoS"/>
                     </connections>
                 </button>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4I-V7-Lq8">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4I-V7-Lq8">
+                    <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                     <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <items>
                         <navigationItem title="Round Complete" id="c2g-Ww-4qI">
                             <barButtonItem key="rightBarButtonItem" systemItem="done" id="OL7-NX-Vtb">
@@ -62,12 +64,21 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="zJc-a6-w0g" firstAttribute="top" secondItem="zzf-l1-h2r" secondAttribute="bottom" constant="63" id="1St-AJ-5NC"/>
-                <constraint firstItem="zzf-l1-h2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="M6A-Ko-KPN"/>
+                <constraint firstItem="D4I-V7-Lq8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4CA-HR-mXW"/>
+                <constraint firstItem="zzf-l1-h2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="110" id="M6A-Ko-KPN"/>
                 <constraint firstItem="zzf-l1-h2r" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NqK-QF-o5G"/>
+                <constraint firstAttribute="trailing" secondItem="D4I-V7-Lq8" secondAttribute="trailing" id="RG0-t1-SdH"/>
                 <constraint firstItem="gvG-SP-Xw9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Utc-go-fis"/>
+                <constraint firstItem="D4I-V7-Lq8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="20" id="jWm-K5-LfS"/>
                 <constraint firstItem="zJc-a6-w0g" firstAttribute="centerX" secondItem="zzf-l1-h2r" secondAttribute="centerX" id="o3v-bI-hym"/>
                 <constraint firstAttribute="bottom" secondItem="gvG-SP-Xw9" secondAttribute="bottom" constant="100" id="oAj-AT-gkX"/>
+                <constraint firstItem="D4I-V7-Lq8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z5x-Mj-9w7"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="4CA-HR-mXW"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

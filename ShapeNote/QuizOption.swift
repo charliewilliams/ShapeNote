@@ -110,7 +110,7 @@ struct QuizOption: Hashable {
         case .Lyricist:
             s = QuestionVerb.Lyricist.rawValue + " \(X) "
         case .FirstLine:
-            s = QuestionVerb.FirstLine.rawValue + " \(X) "
+            s = QuestionVerb.FirstLine.rawValue + "\n\"\(X)\" "
         case .Year:
             s = QuestionVerb.Year.rawValue + " \(X) "
         case .Number:

@@ -160,7 +160,7 @@ class QuizQuestionProvider {
             let selector = Selector(stringLiteral: selectorName)
             if let unmanagedReturn = proposedSong?.performSelector(selector),
                 let proposedAnswer = unmanagedReturn.takeUnretainedValue() as? String
-                where proposedAnswer != question {
+                where answers.indexOf(proposedAnswer) == nil {
                     answers.append(proposedAnswer)
             }
         }
