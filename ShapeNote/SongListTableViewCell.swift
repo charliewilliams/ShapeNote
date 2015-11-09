@@ -63,10 +63,18 @@ class SongListTableViewCell: UITableViewCell {
             }
         }
         
-        let favoriteStateString = song.favorited ? favoritedString : unfavoritedString
         favoriteButton.setTitle(favoriteStateString, forState: .Normal)
+        favoriteButton.alpha = favoriteStateAlpha
         
         meterAndTypeLabel.text = infoString
+    }
+    
+    var favoriteStateString:String {
+        return song?.favorited == true ? favoritedString : unfavoritedString
+    }
+    
+    var favoriteStateAlpha:CGFloat {
+        return song?.favorited == true ? 1.0 : 0.3
     }
     
     @IBAction func favoriteButtonPressed(sender: UIButton) {
