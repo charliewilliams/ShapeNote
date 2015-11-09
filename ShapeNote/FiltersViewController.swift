@@ -11,6 +11,7 @@ import UIKit
 class FiltersViewController: UIViewController {
     
     var songListViewController: SongListTableViewController?
+    @IBOutlet var filteredSongsCountLabel: UILabel!
     
     @IBOutlet weak var favoritedSegmentedControl: UISegmentedControl!
     @IBOutlet weak var majorMinorSegmentedControl: UISegmentedControl!
@@ -45,6 +46,7 @@ class FiltersViewController: UIViewController {
                 notesSegmentedControl.selectedSegmentIndex = 2
             }
         }
+        updateCount()
     }
     
     func add(toAdd:FilterType, remove toRemove:FilterType) {
@@ -74,6 +76,7 @@ class FiltersViewController: UIViewController {
         default:
             fatalError("Storyboard incorrect")
         }
+        updateCount()
     }
     
     @IBAction func majorMinorStatusChanged(sender: UISegmentedControl) {
@@ -88,6 +91,7 @@ class FiltersViewController: UIViewController {
         default:
             fatalError("Storyboard incorrect")
         }
+        updateCount()
     }
 
     @IBAction func plainFugueStatusChanged(sender: UISegmentedControl) {
@@ -102,6 +106,7 @@ class FiltersViewController: UIViewController {
         default:
             fatalError("Storyboard incorrect")
         }
+        updateCount()
     }
 
     @IBAction func dupleTripleStatusChanged(sender: UISegmentedControl) {
@@ -116,6 +121,7 @@ class FiltersViewController: UIViewController {
         default:
             fatalError("Storyboard incorrect")
         }
+        updateCount()
     }
     
     @IBAction func notesStatusChanged(sender: UISegmentedControl) {
@@ -130,9 +136,16 @@ class FiltersViewController: UIViewController {
         default:
             fatalError("Storyboard incorrect")
         }
+        updateCount()
     }
     
-
+    func updateCount() {
+        guard let tableView = self.songListViewController?.tableView else { return }
+        tableView.reloadData()
+        let count = tableView.numberOfRowsInSection(0)
+        self.filteredSongsCountLabel.text = "\(count) songs"
+    }
+    
     @IBAction func doneBarButtonPressed(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }

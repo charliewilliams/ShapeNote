@@ -23,12 +23,14 @@ class NotesViewController: UIViewController, UITextViewDelegate {
     func textViewDidEndEditing(textView: UITextView) {
         if let song = song {
             song.notes = textView.text
+            CoreDataHelper.sharedHelper.saveContext()
         }
     }
     
     override func viewWillDisappear(animated: Bool) {
         if let song = song {
             song.notes = textView.text
+            CoreDataHelper.sharedHelper.saveContext()
         }
     }
 }

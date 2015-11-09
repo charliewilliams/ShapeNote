@@ -412,24 +412,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="il1-M9-YVz">
-                                <rect key="frame" x="20" y="64" width="560" height="487"/>
+                                <rect key="frame" x="20" y="84" width="560" height="447"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="Nfb-Kh-kw7" id="iY5-3u-wrD"/>
                                 </connections>
                             </textView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="il1-M9-YVz" firstAttribute="leading" secondItem="TFu-eB-ne7" secondAttribute="leadingMargin" id="Diu-aO-EAR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="il1-M9-YVz" secondAttribute="trailing" id="R5c-J3-6Pr"/>
-                            <constraint firstItem="rWL-0m-T96" firstAttribute="top" secondItem="il1-M9-YVz" secondAttribute="bottom" id="RUg-gC-HkK"/>
-                            <constraint firstItem="il1-M9-YVz" firstAttribute="top" secondItem="J84-tJ-k0U" secondAttribute="bottom" id="yrm-qQ-4R2"/>
+                            <constraint firstItem="rWL-0m-T96" firstAttribute="top" secondItem="il1-M9-YVz" secondAttribute="bottom" constant="20" id="RUg-gC-HkK"/>
+                            <constraint firstItem="il1-M9-YVz" firstAttribute="top" secondItem="J84-tJ-k0U" secondAttribute="bottom" constant="20" id="yrm-qQ-4R2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -453,7 +458,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="9SR-cY-HiA">
-                                <rect key="frame" x="150" y="130.5" width="300" height="29"/>
+                                <rect key="frame" x="150" y="130" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="e9l-cZ-ymy"/>
@@ -468,7 +473,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ior-oO-wDq">
-                                <rect key="frame" x="150" y="188.5" width="300" height="29"/>
+                                <rect key="frame" x="150" y="188" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="SmS-Lh-LdZ"/>
@@ -483,14 +488,14 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show only:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-tV-I3u">
-                                <rect key="frame" x="258.5" y="80" width="83.5" height="20.5"/>
+                                <rect key="frame" x="258" y="80" width="83.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="bwL-mC-X04">
-                                <rect key="frame" x="150" y="246.5" width="300" height="29"/>
+                                <rect key="frame" x="150" y="246" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="3Xf-H4-5xB"/>
@@ -505,7 +510,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mak-R5-APo">
-                                <rect key="frame" x="150" y="304.5" width="300" height="29"/>
+                                <rect key="frame" x="150" y="304" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="ZD9-pW-5gk"/>
@@ -548,7 +553,7 @@
                                 </items>
                             </navigationBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-uj-NxA">
-                                <rect key="frame" x="150" y="362.5" width="300" height="29"/>
+                                <rect key="frame" x="150" y="362" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="l64-T0-QUL"/>
@@ -563,6 +568,13 @@
                                     <action selector="notesStatusChanged:" destination="cqN-eN-Wto" eventType="valueChanged" id="3Uw-Q1-XSQ"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="521 songs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yaq-dX-qUp">
+                                <rect key="frame" x="261" y="515.5" width="78.5" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -579,6 +591,7 @@
                             <constraint firstItem="3Nz-4z-aTq" firstAttribute="top" secondItem="4Pi-vY-zie" secondAttribute="bottom" id="M29-6P-qbU"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="width" secondItem="ior-oO-wDq" secondAttribute="width" id="M4q-A6-tOi"/>
                             <constraint firstItem="Mak-R5-APo" firstAttribute="top" secondItem="bwL-mC-X04" secondAttribute="bottom" constant="30" id="NJf-As-rGS"/>
+                            <constraint firstItem="Yaq-dX-qUp" firstAttribute="centerX" secondItem="7GV-uj-NxA" secondAttribute="centerX" id="OSd-4W-YXa"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="centerX" secondItem="ior-oO-wDq" secondAttribute="centerX" id="SZb-8E-sr6"/>
                             <constraint firstItem="Mak-R5-APo" firstAttribute="width" secondItem="bwL-mC-X04" secondAttribute="width" id="ZMz-l2-F21"/>
                             <constraint firstItem="Mak-R5-APo" firstAttribute="centerX" secondItem="bwL-mC-X04" secondAttribute="centerX" id="a33-Bf-Moq"/>
@@ -590,6 +603,7 @@
                             <constraint firstItem="3Nz-4z-aTq" firstAttribute="leading" secondItem="870-Uu-YGA" secondAttribute="leadingMargin" constant="-20" id="rBa-HJ-2pQ"/>
                             <constraint firstItem="7GV-uj-NxA" firstAttribute="top" secondItem="Mak-R5-APo" secondAttribute="bottom" constant="30" id="rep-Hi-EbG"/>
                             <constraint firstItem="ior-oO-wDq" firstAttribute="centerX" secondItem="KqB-tV-I3u" secondAttribute="centerX" id="sgt-KR-mtY"/>
+                            <constraint firstItem="u9C-kY-BEp" firstAttribute="top" secondItem="Yaq-dX-qUp" secondAttribute="bottom" constant="20" id="vSi-sz-KpH"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -600,6 +614,7 @@
                     <connections>
                         <outlet property="dupleTripleSegmentedControl" destination="Mak-R5-APo" id="898-LW-Atl"/>
                         <outlet property="favoritedSegmentedControl" destination="9SR-cY-HiA" id="Hev-JT-rg4"/>
+                        <outlet property="filteredSongsCountLabel" destination="Yaq-dX-qUp" id="TwA-9Z-SHc"/>
                         <outlet property="majorMinorSegmentedControl" destination="ior-oO-wDq" id="GLC-IL-Ah0"/>
                         <outlet property="notesSegmentedControl" destination="7GV-uj-NxA" id="eb2-iD-ndh"/>
                         <outlet property="plainFugueSegmentedControl" destination="bwL-mC-X04" id="4Gv-oo-QBk"/>
