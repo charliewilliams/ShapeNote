@@ -8,8 +8,8 @@
 
 import UIKit
 
-let favoritedString = ""
-let unfavoritedString = ""
+let favoritedString = "★"
+let unfavoritedString = "☆"
 
 class SongListTableViewCell: UITableViewCell {
     
@@ -22,8 +22,6 @@ class SongListTableViewCell: UITableViewCell {
     @IBOutlet weak var meterAndTypeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
 
-    
-    
     func configureWithSong(song:Song) {
         
         self.song = song

@@ -16,6 +16,7 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var majorMinorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var plainFugueSegmentedControl: UISegmentedControl!
     @IBOutlet weak var dupleTripleSegmentedControl: UISegmentedControl!
+    @IBOutlet var notesSegmentedControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +39,10 @@ class FiltersViewController: UIViewController {
                 dupleTripleSegmentedControl.selectedSegmentIndex = 0
             case .Triple:
                 dupleTripleSegmentedControl.selectedSegmentIndex = 2
+            case .Notes:
+                notesSegmentedControl.selectedSegmentIndex = 0
+            case .NoNotes:
+                notesSegmentedControl.selectedSegmentIndex = 2
             }
         }
     }
@@ -112,6 +117,21 @@ class FiltersViewController: UIViewController {
             fatalError("Storyboard incorrect")
         }
     }
+    
+    @IBAction func notesStatusChanged(sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            add(.Notes, remove: .NoNotes)
+        case 1:
+            remove([.Notes, .Notes])
+        case 2:
+            add(.Notes, remove: .Notes)
+        default:
+            fatalError("Storyboard incorrect")
+        }
+    }
+    
 
     @IBAction func doneBarButtonPressed(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)

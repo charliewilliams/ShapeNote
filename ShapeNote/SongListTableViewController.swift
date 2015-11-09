@@ -18,6 +18,8 @@ enum FilterType {
     case Minor
     case Duple
     case Triple
+    case Notes
+    case NoNotes
 }
 
 class SongListTableViewController: UITableViewController {
@@ -75,6 +77,10 @@ class SongListTableViewController: UITableViewController {
                     return song.isDuple()
                 case .Triple:
                     return song.isTriple()
+                case .Notes:
+                    return song.notes?.characters.count > 0
+                case .NoNotes:
+                    return song.notes == nil || song.notes?.characters.count == 0
                 }
             })
         }

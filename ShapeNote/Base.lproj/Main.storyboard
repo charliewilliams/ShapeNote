@@ -453,7 +453,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="9SR-cY-HiA">
-                                <rect key="frame" x="150" y="130" width="300" height="29"/>
+                                <rect key="frame" x="150" y="130.5" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="e9l-cZ-ymy"/>
@@ -468,7 +468,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ior-oO-wDq">
-                                <rect key="frame" x="150" y="188" width="300" height="29"/>
+                                <rect key="frame" x="150" y="188.5" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="SmS-Lh-LdZ"/>
@@ -483,14 +483,14 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show only:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-tV-I3u">
-                                <rect key="frame" x="258" y="80" width="84" height="21"/>
+                                <rect key="frame" x="258.5" y="80" width="83.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="bwL-mC-X04">
-                                <rect key="frame" x="150" y="246" width="300" height="29"/>
+                                <rect key="frame" x="150" y="246.5" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="3Xf-H4-5xB"/>
@@ -505,7 +505,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mak-R5-APo">
-                                <rect key="frame" x="150" y="304" width="300" height="29"/>
+                                <rect key="frame" x="150" y="304.5" width="300" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="ZD9-pW-5gk"/>
@@ -534,7 +534,7 @@
                                     <action selector="donePressed:" destination="cqN-eN-Wto" eventType="touchUpInside" id="8qm-YL-hxK"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Nz-4z-aTq">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nz-4z-aTq">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <animations/>
                                 <items>
@@ -547,6 +547,22 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-uj-NxA">
+                                <rect key="frame" x="150" y="362.5" width="300" height="29"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="l64-T0-QUL"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Has Notes"/>
+                                    <segment title=""/>
+                                    <segment title="No Notes"/>
+                                </segments>
+                                <connections>
+                                    <action selector="dupleTripleStatusChanged:" destination="cqN-eN-Wto" eventType="valueChanged" id="pQb-Px-HyP"/>
+                                    <action selector="notesStatusChanged:" destination="cqN-eN-Wto" eventType="valueChanged" id="3Uw-Q1-XSQ"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -556,8 +572,11 @@
                             <constraint firstItem="ior-oO-wDq" firstAttribute="width" secondItem="9SR-cY-HiA" secondAttribute="width" id="78u-hM-o2K"/>
                             <constraint firstItem="ior-oO-wDq" firstAttribute="centerX" secondItem="9SR-cY-HiA" secondAttribute="centerX" id="89i-TQ-ige"/>
                             <constraint firstItem="ior-oO-wDq" firstAttribute="top" secondItem="9SR-cY-HiA" secondAttribute="bottom" constant="30" id="9uH-mo-dZ3"/>
+                            <constraint firstItem="7GV-uj-NxA" firstAttribute="width" secondItem="Mak-R5-APo" secondAttribute="width" id="CBz-Xj-MID"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u9C-kY-BEp" secondAttribute="trailing" constant="-20" id="D7v-m8-wQE"/>
                             <constraint firstItem="9SR-cY-HiA" firstAttribute="top" secondItem="KqB-tV-I3u" secondAttribute="bottom" constant="30" id="DXC-bL-LvY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Nz-4z-aTq" secondAttribute="trailing" constant="-20" id="FdF-Sb-0yn"/>
+                            <constraint firstItem="3Nz-4z-aTq" firstAttribute="top" secondItem="4Pi-vY-zie" secondAttribute="bottom" id="M29-6P-qbU"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="width" secondItem="ior-oO-wDq" secondAttribute="width" id="M4q-A6-tOi"/>
                             <constraint firstItem="Mak-R5-APo" firstAttribute="top" secondItem="bwL-mC-X04" secondAttribute="bottom" constant="30" id="NJf-As-rGS"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="centerX" secondItem="ior-oO-wDq" secondAttribute="centerX" id="SZb-8E-sr6"/>
@@ -565,15 +584,24 @@
                             <constraint firstItem="Mak-R5-APo" firstAttribute="centerX" secondItem="bwL-mC-X04" secondAttribute="centerX" id="a33-Bf-Moq"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="top" secondItem="ior-oO-wDq" secondAttribute="bottom" constant="30" id="bVO-zb-Kg2"/>
                             <constraint firstItem="9SR-cY-HiA" firstAttribute="centerX" secondItem="KqB-tV-I3u" secondAttribute="centerX" id="dsS-dQ-HkQ"/>
+                            <constraint firstItem="7GV-uj-NxA" firstAttribute="centerX" secondItem="Mak-R5-APo" secondAttribute="centerX" id="kzV-Mf-ND7"/>
                             <constraint firstItem="o7d-PQ-FVu" firstAttribute="top" secondItem="u9C-kY-BEp" secondAttribute="bottom" id="ou6-uG-hDu"/>
                             <constraint firstItem="KqB-tV-I3u" firstAttribute="top" secondItem="4Pi-vY-zie" secondAttribute="bottom" constant="60" id="qEF-IA-Nyh"/>
+                            <constraint firstItem="3Nz-4z-aTq" firstAttribute="leading" secondItem="870-Uu-YGA" secondAttribute="leadingMargin" constant="-20" id="rBa-HJ-2pQ"/>
+                            <constraint firstItem="7GV-uj-NxA" firstAttribute="top" secondItem="Mak-R5-APo" secondAttribute="bottom" constant="30" id="rep-Hi-EbG"/>
                             <constraint firstItem="ior-oO-wDq" firstAttribute="centerX" secondItem="KqB-tV-I3u" secondAttribute="centerX" id="sgt-KR-mtY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CBz-Xj-MID"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="dupleTripleSegmentedControl" destination="Mak-R5-APo" id="898-LW-Atl"/>
                         <outlet property="favoritedSegmentedControl" destination="9SR-cY-HiA" id="Hev-JT-rg4"/>
                         <outlet property="majorMinorSegmentedControl" destination="ior-oO-wDq" id="GLC-IL-Ah0"/>
+                        <outlet property="notesSegmentedControl" destination="7GV-uj-NxA" id="eb2-iD-ndh"/>
                         <outlet property="plainFugueSegmentedControl" destination="bwL-mC-X04" id="4Gv-oo-QBk"/>
                     </connections>
                 </viewController>
