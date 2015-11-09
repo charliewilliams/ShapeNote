@@ -106,8 +106,9 @@ class QuizQuestionProvider {
             "Number":[QuizOption(questionType: .Number, answerType: .Title),
             QuizOption(questionType: .Number, answerType: .ModeAndForm),
             ],
-            "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year)]
-            
+            "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year),
+                QuizOption(questionType: .FirstLine, answerType: .Title)
+                ],
         ]
     }
     

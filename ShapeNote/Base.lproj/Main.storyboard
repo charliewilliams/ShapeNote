@@ -753,14 +753,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The song &quot;Evening Shade&quot; is number…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ami-W3-Ebi">
-                                <rect key="frame" x="20" y="72" width="560" height="29"/>
+                                <rect key="frame" x="20" y="114" width="560" height="29"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-YJ-hs2">
-                                <rect key="frame" x="20" y="151" width="560" height="41"/>
+                                <rect key="frame" x="20" y="193" width="560" height="41"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="471"/>
@@ -769,7 +769,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmP-cL-dVi">
-                                <rect key="frame" x="20" y="222" width="560" height="41"/>
+                                <rect key="frame" x="20" y="264" width="560" height="41"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="12"/>
@@ -778,7 +778,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p59-MI-1ei">
-                                <rect key="frame" x="20" y="293" width="560" height="41"/>
+                                <rect key="frame" x="20" y="335" width="560" height="41"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="301"/>
@@ -787,7 +787,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP3-2a-sh3">
-                                <rect key="frame" x="20" y="364" width="560" height="41"/>
+                                <rect key="frame" x="20" y="406" width="560" height="41"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="25"/>
@@ -810,7 +810,7 @@
                             <constraint firstItem="ami-W3-Ebi" firstAttribute="leading" secondItem="6Cu-cb-Ch7" secondAttribute="leadingMargin" id="nYG-2l-ebZ"/>
                             <constraint firstItem="fmP-cL-dVi" firstAttribute="top" secondItem="hAY-YJ-hs2" secondAttribute="bottom" constant="30" id="o3B-kQ-otX"/>
                             <constraint firstItem="p59-MI-1ei" firstAttribute="centerX" secondItem="fmP-cL-dVi" secondAttribute="centerX" id="sDt-UB-BuH"/>
-                            <constraint firstItem="ami-W3-Ebi" firstAttribute="top" secondItem="SXl-pR-u9I" secondAttribute="bottom" constant="8" id="t1e-FD-Ic1"/>
+                            <constraint firstItem="ami-W3-Ebi" firstAttribute="top" secondItem="SXl-pR-u9I" secondAttribute="bottom" constant="50" id="t1e-FD-Ic1"/>
                             <constraint firstItem="fmP-cL-dVi" firstAttribute="centerX" secondItem="hAY-YJ-hs2" secondAttribute="centerX" id="tBe-QP-MXJ"/>
                             <constraint firstItem="p59-MI-1ei" firstAttribute="width" secondItem="fmP-cL-dVi" secondAttribute="width" id="ukc-gY-Je3"/>
                             <constraint firstItem="hAY-YJ-hs2" firstAttribute="leading" secondItem="6Cu-cb-Ch7" secondAttribute="leadingMargin" id="ycO-pl-F8N"/>
@@ -818,11 +818,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Question" id="r4P-8m-FQh">
                         <barButtonItem key="backBarButtonItem" title="Quiz" id="dm7-e3-sGY"/>
-                        <barButtonItem key="rightBarButtonItem" title="Finish!" style="done" id="Qxc-us-8QC">
-                            <connections>
-                                <action selector="finishPressed:" destination="KQO-ra-Aa8" id="8ER-EY-eRo"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="answerButton1" destination="hAY-YJ-hs2" id="jXf-5t-jtd"/>

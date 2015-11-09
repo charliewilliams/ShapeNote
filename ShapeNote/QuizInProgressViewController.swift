@@ -10,6 +10,9 @@ import UIKit
 
 class QuizInProgressViewController: UIViewController {
 
+    var currentQuestionNumber = 0
+    var numberOfCorrectQuestions = 0
+    let numberOfQuestionsPerRound = 20
     var question:QuizOption? {
         didSet {
             if let question = question,
@@ -47,6 +50,8 @@ class QuizInProgressViewController: UIViewController {
     func answered(correct:Bool) {
         guard let question = question else { fatalError() }
         
+        if correct { numberOfCorrectQuestions++ }
+        currentQuestionNumber++
         let title = correct ? "Hooray!" : "Boo…"
         let message = messageForQuestion(question, correct: correct)
         let alert = UIAlertController(title:title, message: message, preferredStyle: .Alert)
@@ -61,7 +66,23 @@ class QuizInProgressViewController: UIViewController {
     }
     
     func nextQuestion() {
+        
+        guard currentQuestionNumber < numberOfQuestionsPerRound else {
+            finishRound()
+            return
+        }
+        title = "\(currentQuestionNumber + 1)/\(numberOfQuestionsPerRound)"
+        if currentQuestionNumber > 0 {
+            let percentCorrect = Double(numberOfCorrectQuestions) / Double(currentQuestionNumber)
+            let pc = Int(percentCorrect * 100.0)
+            title = title! + "… \(pc)%"
+        }
+        
         question = QuizQuestionProvider.sharedProvider.nextQuestion()
+    }
+    
+    func finishRound() {
+        
     }
     
     @IBAction func finishPressed(sender: AnyObject) {
