@@ -84,4 +84,14 @@ class Song: NSManagedObject {
         }
         return false
     }
+    
+    func modeAndFormString() -> String {
+        
+        var s = ""
+        if let timeSignature = timeSignature { s += timeSignature }
+        if let mode = key { s += " " + mode }
+        if let type = type { s += " " + type }
+
+        return s
+    }
 }

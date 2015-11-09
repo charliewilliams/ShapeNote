@@ -127,7 +127,7 @@ class QuizQuestionProvider {
         case .Number:
             return "number"
         case .ModeAndForm:
-            return "…what's the mode and form?"
+            return "modeAndFormString"
         }
     }
     

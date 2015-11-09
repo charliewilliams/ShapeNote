@@ -102,7 +102,11 @@ struct QuizOption: Hashable {
         case .Title:
             s = QuestionVerb.Title.rawValue + " \(X) "
         case .Composer:
-            s = QuestionVerb.Composer.rawValue + " \(X) "
+            // Composer names are written Last, First
+            // but that's annoying to read in the quiz
+            var nameElements = X.componentsSeparatedByString(",")
+            nameElements = nameElements.reverse()
+            s = QuestionVerb.Composer.rawValue + " \(nameElements.joinWithSeparator(" ")) "
         case .Lyricist:
             s = QuestionVerb.Lyricist.rawValue + " \(X) "
         case .FirstLine:
