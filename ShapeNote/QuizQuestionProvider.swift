@@ -121,7 +121,6 @@ class QuizQuestionProvider {
         case .Lyricist:
             return "lyricist"
         case .FirstLine:
-            fatalError("No lyrics yet!")
             return "firstLine"
         case .Year:
             return "year"

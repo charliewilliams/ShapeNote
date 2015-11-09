@@ -44,6 +44,7 @@
         <attribute name="favorited" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lyricist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lyrics" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
@@ -62,6 +63,6 @@
         <element name="Lesson" positionX="-207" positionY="128" width="128" height="120"/>
         <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
         <element name="Singer" positionX="-378" positionY="143" width="128" height="195"/>
-        <element name="Song" positionX="-9" positionY="9" width="128" height="270"/>
+        <element name="Song" positionX="-9" positionY="9" width="128" height="285"/>
     </elements>
 </model>

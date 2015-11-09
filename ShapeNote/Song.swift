@@ -27,6 +27,7 @@ class Song: NSManagedObject {
     @NSManaged var ledBy: Lesson
     @NSManaged var favorited: Bool
     @NSManaged var notes: String?
+    @NSManaged var lyrics: [String]?
     
     class var keys: [String:String] {
         
@@ -41,7 +42,8 @@ class Song: NSManagedObject {
             "meter":"Meter",
             "parts":"Parts",
             "source":"Source Abbr.",
-            "key":"Key"]
+            "key":"Key",
+            "lyrics":"lyrics"]
     }
     
     func configureWithDict(dict:NSDictionary) {
@@ -55,6 +57,8 @@ class Song: NSManagedObject {
             } else if let dictNumber = dict[value] as? NSNumber
                 where dictNumber.integerValue != 0 {
                     self.setValue(dictNumber.integerValue, forKey: key)
+            } else if let dictArray = dict[value] as? [AnyObject] {
+                self.setValue(dictArray, forKey: key)
             }
         }
     }
@@ -93,5 +97,11 @@ class Song: NSManagedObject {
         if let type = type { s += " " + type }
 
         return s
+    }
+    
+    func firstLine() -> String? {
+        
+        guard let lyrics = lyrics where lyrics.count > 0 else { return nil }
+        return lyrics.first
     }
 }
