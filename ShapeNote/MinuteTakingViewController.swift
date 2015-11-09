@@ -13,7 +13,6 @@ import Social
 class MinuteTakingViewController: UITableViewController {
     
     @IBOutlet weak var minutesTableView: UITableView!
-    @IBOutlet weak var newSongButton: UIBarButtonItem!
     
     var minutes:Minutes? // the minutes object
     var _lessons:[Lesson]?
@@ -63,15 +62,6 @@ class MinuteTakingViewController: UITableViewController {
         minutesTableView.reloadData()
     }
     
-    @IBAction func newSongCalled(sender: UIBarButtonItem) {
-        
-        if let nvc = storyboard?.instantiateViewControllerWithIdentifier("NewLessonViewController") as? NewLessonViewController {
-            
-            nvc.minutes = minutes
-            self.navigationController?.pushViewController(nvc, animated: false)
-        }
-    }
-    
     @IBAction func donePressed(sender: UIBarButtonItem) {
     
         CoreDataHelper.sharedHelper.saveContext()
@@ -101,20 +91,17 @@ class MinuteTakingViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if let count = lessons?.count {
-            return count
+        if let lessons = lessons {
+            return lessons.count + 1
         }
-        return 0
-    }
-    
-    // MARK: - Navigation
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        self.performSegueWithIdentifier("PushToShowMinutes", sender: self)
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            return tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath)
+        }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
             
@@ -122,11 +109,19 @@ class MinuteTakingViewController: UITableViewController {
             dateFormatter.dateStyle = .NoStyle
             dateFormatter.timeStyle = .ShortStyle
             
-            if let lesson = lessons?[indexPath.row] {
-                cell.textLabel!.text = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
-                cell.detailTextLabel!.text = dateFormatter.stringFromDate(lesson.date)
-            }
-            
-            return cell
+        if let lessons = lessons where lessons.count > indexPath.row {
+            let lesson = lessons[indexPath.row]
+            cell.textLabel!.text = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
+            cell.detailTextLabel!.text = dateFormatter.stringFromDate(lesson.date)
+        }
+        
+        return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let destinationVC = segue.destinationViewController as? NewLessonViewController {
+            destinationVC.minutes = minutes
+        }
     }
 }

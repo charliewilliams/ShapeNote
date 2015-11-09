@@ -50,14 +50,18 @@ class MinutesListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMinutes.count
+        return allMinutes.count + 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        if indexPath.row == 0 {
+            return tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath)
+        }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MinutesTableViewCell
         
-        let minute = allMinutes[indexPath.row]
+        let minute = allMinutes[indexPath.row - 1]
         cell.configureWithMinutes(minute)
         
         return cell
@@ -69,11 +73,11 @@ class MinutesListViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    func minuteTakingViewControllerForIndexPath(_indexPath:NSIndexPath?) -> MinuteTakingViewController {
+    func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath?) -> MinuteTakingViewController {
         
         var m:Minutes
-        if let indexPath = _indexPath {
-            m = allMinutes[indexPath.row]
+        if let indexPath = indexPath where indexPath.row > 0 {
+            m = allMinutes[indexPath.row - 1]
         } else {
             m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Minutes
         }
