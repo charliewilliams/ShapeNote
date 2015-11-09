@@ -12,7 +12,7 @@ class QuizInProgressViewController: UIViewController {
 
     var currentQuestionNumber = 0
     var numberOfCorrectQuestions = 0
-    let numberOfQuestionsPerRound = 20
+    let numberOfQuestionsPerRound = 2
     var question:QuizOption? {
         didSet {
             if let question = question,
@@ -82,7 +82,12 @@ class QuizInProgressViewController: UIViewController {
     }
     
     func finishRound() {
-        
+        let endViewController = QuizCompletedViewController()
+        endViewController.numberCorrect = numberOfCorrectQuestions
+        endViewController.numberOfQuestions = numberOfQuestionsPerRound
+        self.presentViewController(endViewController, animated: true) { () -> Void in
+            self.navigationController?.popViewControllerAnimated(false)
+        }
     }
     
     @IBAction func finishPressed(sender: AnyObject) {

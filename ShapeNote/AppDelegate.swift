@@ -11,7 +11,6 @@ import Fabric
 import Crashlytics
 import TwitterKit
 import ParseFacebookUtils
-//import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
