@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ParseFacebookUtils
 
 typealias Completion = ([NSDictionary] -> ())
 

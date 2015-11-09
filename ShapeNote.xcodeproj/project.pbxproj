@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77297F99B7B588D55BAF8F0C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08474F1BE7661FA3AF8B7B45 /* libPods.a */; };
+		835BEC4C82FDD710D3D11F84 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D27FE40ECB6149B959D1687 /* Pods.framework */; };
 		C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */; };
 		C0134F831ABF437800B62BA3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F821ABF437800B62BA3 /* Accounts.framework */; };
 		C0134F851ABF437F00B62BA3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F841ABF437F00B62BA3 /* AudioToolbox.framework */; };
@@ -100,8 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08474F1BE7661FA3AF8B7B45 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		383B34BAB44AE16044A1D7AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3D27FE40ECB6149B959D1687 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		475940CE5D8D969AEC517111 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
 		C0134F821ABF437800B62BA3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -230,7 +230,7 @@
 				C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */,
 				C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */,
 				C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */,
-				77297F99B7B588D55BAF8F0C /* libPods.a in Frameworks */,
+				835BEC4C82FDD710D3D11F84 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +247,11 @@
 		0AB1ED6FCD97449B42354A2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				08474F1BE7661FA3AF8B7B45 /* libPods.a */,
+				C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */,
+				C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */,
+				C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */,
+				C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */,
+				3D27FE40ECB6149B959D1687 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -286,10 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				C0515B5D1A7BA59D0006ED16 /* ShapeNote */,
-				C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */,
-				C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */,
-				C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */,
-				C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */,
 				C0515B761A7BA59D0006ED16 /* ShapeNoteTests */,
 				C0515B5C1A7BA59D0006ED16 /* Products */,
 				6DCA3642784080E4A01CDCED /* Pods */,
@@ -742,6 +742,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -788,6 +789,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -827,6 +829,7 @@
 			baseConfigurationReference = 383B34BAB44AE16044A1D7AC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -865,6 +868,7 @@
 			baseConfigurationReference = 475940CE5D8D969AEC517111 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
