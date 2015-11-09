@@ -59,7 +59,6 @@ class Song: NSManagedObject {
                     self.setValue(dictNumber.integerValue, forKey: key)
             } else if let dictArray = dict[value] as? [String] {
                 let lyrics = dictArray.joinWithSeparator("\n")
-                print(lyrics)
                 self.setValue(lyrics, forKey: key)
             }
         }

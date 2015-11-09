@@ -12,7 +12,7 @@ class QuizInProgressViewController: UIViewController {
 
     var currentQuestionNumber = 0
     var numberOfCorrectQuestions = 0
-    let numberOfQuestionsPerRound = 2
+    let numberOfQuestionsPerRound = 20
     var question:QuizOption? {
         didSet {
             if let question = question,
