@@ -35,15 +35,12 @@ class TwitterShareHelper: NSObject {
         
         // lat, long
         
-        var clientError : NSError?
-        
+        var clientError : NSError? = nil
         let request: NSURLRequest!
-//        do {
-            request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params, error: nil)
-//        } catch let error as NSError {
-//            clientError = error
-//            request = nil
-//        }
+        request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params, error: &clientError)
+        if let error = clientError {
+            print("Error connecting to Twitter: " + error.localizedDescription)
+        }
         
         if request != nil {
             
