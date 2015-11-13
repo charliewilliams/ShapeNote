@@ -13,13 +13,14 @@ import Social
 class MinuteTakingViewController: UITableViewController {
     
     @IBOutlet weak var minutesTableView: UITableView!
+    @IBOutlet var doneButton: UIBarButtonItem!
     
     var minutes:Minutes? // the minutes object
     var _lessons:[Lesson]?
     var lessons:[Lesson]? { // all of the lessons from the minutes object
         get {
             
-            assert(minutes != nil, "Need to have minutes set by now!")
+            guard minutes != nil else { return nil }
             
             if _lessons == nil {
                 
@@ -45,6 +46,8 @@ class MinuteTakingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        doneButton.enabled = false
 
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = .NoStyle
@@ -92,6 +95,7 @@ class MinuteTakingViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let lessons = lessons {
+            doneButton.enabled = true
             return lessons.count + 1
         }
         return 1

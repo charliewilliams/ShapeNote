@@ -14,11 +14,6 @@ class MinutesTableViewCell: UITableViewCell {
     @IBOutlet weak var detailLabel: UILabel!
     
     var minutes:Minutes?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     func configureWithMinutes(minutes:Minutes) {
         
