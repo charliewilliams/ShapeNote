@@ -22,6 +22,7 @@
 		C0134F971ABF43B200B62BA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */; };
 		C0134F991ABF43BA00B62BA3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F981ABF43BA00B62BA3 /* libz.dylib */; };
 		C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */; };
+		C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
@@ -119,6 +120,7 @@
 		C0134F981ABF43BA00B62BA3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.1.xcdatamodel"; sourceTree = "<group>"; };
+		C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTableViewCell.swift; sourceTree = "<group>"; };
 		C0515B5B1A7BA59D0006ED16 /* ShapeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B5F1A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B601A7BA59D0006ED16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */,
 				C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */,
 				C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */,
+				C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */,
 			);
 			name = "Minute-taking";
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
+				C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */,
 				C0C1D4A71A813B120082C0EB /* STHTTPRequest+STTwitter.m in Sources */,
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
