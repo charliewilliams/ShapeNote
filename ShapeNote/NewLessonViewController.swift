@@ -12,63 +12,91 @@ import CoreData
 enum ScopeBarIndex:Int {
     case SearchSongs = 0
     case SearchLeaders = 1
-    case Dedication = 2
-    case Other = 3
+    case AssistedBy = 2
+    case Dedication = 3
+    case Other = 4
 }
 
-class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate {
+let minCellCount = 5
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    var searchController: UISearchController
+enum CellIdentifiers:String {
+    case Leader = "Leader"
+    case Song = "Song"
+    case AssistedBy = "AssistedBy"
+    case Dedication = "Dedication"
+    case OtherEvent = "Other"
+}
+
+typealias CellType = (reuseIdentifier:CellIdentifiers, index:ScopeBarIndex)
+
+class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    var searchBar: UISearchBar
+    var searchController: UISearchController
+    var minutes:Minutes?
     var filteredSingers:[Singer]?
     var filteredSongs:[Song]?
     var chosenSingers:[Singer]
     var chosenSong:Song?
-    var minutes:Minutes?
     var dedication:String?
+    var assistant:Singer?
+    var otherEvent:String?
     
     required init?(coder aDecoder: NSCoder) {
         chosenSingers = []
-        searchController = UISearchController()
+        searchBar = UISearchBar() // dummy so we don't need an optional property, blarg.
+        searchController = UISearchController() // dummy so we don't need an optional property, blarg.
         super.init(coder: aDecoder)
-        searchController = UISearchController(searchResultsController: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        buildSearchController()
+        extendedLayoutIncludesOpaqueBars = true
         doneButton.enabled = false
+    }
+    
+    func buildSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        buildSearchBar()
+
+        navigationController?.navigationBar.opaque = true
+//        definesPresentationContext = true
+    }
+    
+    func buildSearchBar() {
+        searchBar = searchController.searchBar
+        searchBar.showsScopeBar = true
+        searchBar.delegate = self
+        searchBar.backgroundColor = UIColor.whiteColor()
+        searchBar.opaque = true
+        searchBar.scopeButtonTitles = ["Song", "Leader", "Assisted by", "Dedication"]
+        searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
+        tableView.tableHeaderView = searchBar
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        searchBar.becomeFirstResponder()
-    }
-    
-    var _singers:[Singer]?
-    var singers:[Singer] {
-        get {
-            if _singers == nil {
-                
-                let singers = CoreDataHelper.sharedHelper.singers()
-                _singers = singers
-            }
-            return _singers!
+        searchController.active = true
+        navigationController?.navigationBarHidden = true
+        
+        dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
+            self?.searchBar.becomeFirstResponder()
         }
     }
     
-    var _songs:[Song]?
-    var songs:[Song] {
-        get {
-            if _songs == nil {
-                
-                let bookTitle = Defaults.currentlySelectedBookTitle
-                let songs = CoreDataHelper.sharedHelper.songs(bookTitle)
-                _songs = songs
-            }
-            return _songs!
-        }
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        updateSearchAndScope()
     }
+    
+//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+//        filterContentForSingerSearchText(searchText)
+//    }
     
     func filterContentForSingerSearchText(searchText: String) {
         
@@ -101,27 +129,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         })
     }
     
-    func searchingSongs() -> Bool {
-        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue
-    }
-    
-    func searchingSingers() -> Bool {
-        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue
-    }
-    
-    func addingDedication() -> Bool {
-        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Dedication.rawValue
-    }
-    
-    func addingOther() -> Bool {
-        return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue
-    }
-    
     func searchDisplayController(controller: UISearchController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         
-        if searchingSongs() {
+        if searchingSongs {
             filterContentForSongSearchText(searchString)
-        } else if searchingSingers() {
+        } else if searchingSingers {
             filterContentForSingerSearchText(searchString)
         }
         return true
@@ -133,13 +145,39 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             return false
         }
         
-        if searchingSongs() {
+        if searchingSongs {
             filterContentForSongSearchText(text)
-        } else if searchingSingers() {
+        } else if searchingSingers {
             filterContentForSingerSearchText(text)
         }
         updateSearchAndScope()
         return true
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+
+        let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
+        guard let searchText = searchBar.text else { return }
+
+        switch index {
+            
+        case .SearchSongs:
+            filterContentForSongSearchText(searchText)
+            
+        case .SearchLeaders:
+            filterContentForSingerSearchText(searchText)
+            
+        case .Dedication:
+            filterContentForSingerSearchText(searchText)
+            
+        case .AssistedBy:
+            fallthrough
+            
+        case .Other:
+            return
+        }
+        
+        tableView.reloadData()
     }
     
     func updateSearchAndScope() {
@@ -147,27 +185,25 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
         searchBar.keyboardType = UIKeyboardType.ASCIICapable
         
-        switch (index) {
+        switch index {
             
-            case .SearchSongs:
-                searchBar.placeholder = "enter song number"
-                searchBar.keyboardType = UIKeyboardType.NumberPad
-                self.filteredSongs = self.songs
-
-            case .SearchLeaders:
-                searchBar.placeholder = "enter name"
-                self.filteredSingers = self.singers
-
-            case .Dedication:
-                
-                if dedication == nil {
-                    searchBar.placeholder = "enter dedication"
-                    popAlertForDedication()
-                }
+        case .SearchSongs:
+            searchBar.placeholder = "enter song number"
+            searchBar.keyboardType = UIKeyboardType.NumberPad
+            self.filteredSongs = self.songs
             
-            case .Other:
-                searchBar.placeholder = "what's happening now?"
-                
+        case .SearchLeaders:
+            searchBar.placeholder = "enter name"
+            self.filteredSingers = self.singers
+            
+        case .Dedication:
+            break
+            
+        case .AssistedBy:
+            searchBar.placeholder = "enter assistant's name"
+            
+        case .Other:
+            searchBar.placeholder = "what's happening now?"
         }
         
         searchBar.reloadInputViews()
@@ -175,53 +211,81 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         let complete = (chosenSong != nil && chosenSingers.count != 0)
         doneButton.enabled = complete
         
-        if complete == true {
+        if complete {
             
+            navigationController?.navigationBarHidden = false
             searchController.active = false
             
         } else {
             
             searchBar.text = ""
-            searchController.searchResultsUpdater?.updateSearchResultsForSearchController(searchController)
+            navigationController?.navigationBarHidden = true
             searchController.active = true
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        guard let vc = searchController.searchResultsController else {
-            return
-        }
-        
-        if tableView == vc.view {
+        if searchController.active {
             
             let index = indexPath.row
             
-            if searchingSongs() {
-                chosenSong = filteredSongs![index]
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
+            if searchingSongs {
                 
-            } else if searchingSingers() && index < filteredSingers?.count {
+                chosenSong = filteredSongs![index]
+                
+                if chosenSingers.count == 0 {
+                    searchingSingers = true
+                }
+                
+            } else if searchingSingers && index < filteredSingers?.count {
                 
                 let singer = filteredSingers![index]
                 singer.lastSingDate = NSDate().timeIntervalSince1970
                 chosenSingers.append(singer)
                 
                 if chosenSong == nil {
-                    searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
+                    searchingSongs = true
                 }
                 
-            } else if searchingSingers() {
-                popAlertForNewSinger()
-            } else if addingDedication() {
-                // nothing?
-            } else if addingOther() {
-                // TODO
+            } else if searchingSingers {
+                
+                popAlertForNewSinger() // This isn't great, we should put a text field on the cell with a done button
+                
+            } else if addingDedication {
+
+                let singer = filteredSingers![index]
+                dedication = singer.name
+
+            } else if addingOther {
+                
+                // get text from cell like above
+                
             }
             updateSearchAndScope()
+            
+        } else {
+            
+            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { return }
+                
+            switch item {
+            case .SearchSongs:
+                searchingSongs = true
+            case .SearchLeaders:
+                searchingSingers = true
+            case .AssistedBy:
+                addingAssistant = true
+            case .Dedication:
+                addingDedication = true
+            case .Other:
+                addingOther = true
+            }
+            
+            self.searchBar.becomeFirstResponder()
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.tableView.reloadData()
+        
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        self.tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -241,7 +305,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         default:
             break
         }
-        
     }
     
     func popAlertForNewSinger() {
@@ -279,44 +342,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         })
     }
     
-    func popAlertForDedication() {
-        
-        var inputTextField: UITextField?
-        let alert = UIAlertController(title: "Dedication", message: "Enter dedication text, i.e. 'For...'", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction) -> Void in
-            
-            if let text = inputTextField?.text as String? {
-                self.dedication = text
-                self.tableView.reloadData()
-                self.updateSearchAndScope()
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction) -> Void in
-            //
-        })
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField) -> Void in
-            textField.placeholder = "For Name"
-            textField.text = self.searchBar.text
-            inputTextField = textField
-        })
-        
-        alert.becomeFirstResponder()
-        self.presentViewController(alert, animated: true, completion: {
-            
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                alert.view.center = CGPointMake(alert.view.center.x, alert.view.center.y - 70)
-            })
-        })
-
-    }
+    //MARK: TableView
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableView == self.searchController.searchResultsController {
+        if searchController.active {
             
-            if searchingSongs() {
+            if searchingSongs {
                 if let filtered = self.filteredSongs {
                     return filtered.count
                 } else {
@@ -331,27 +363,19 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             }
             
         } else {
-            var count = chosenSingers.count ?? 0
-            if chosenSong != nil {
-                count++
-            }
-            if dedication != nil {
-                count++
-            }
-            return count
+            return minCellCount + chosenSingers.count
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        guard let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") else {
-            print("Couldn't dequeue cell!")
-            abort()
-        }
         
-        if let _searchDisplayController = self.searchDisplayController where tableView == _searchDisplayController.searchResultsTableView {
+        let cellIdentifier = identifierForCellAtIndexPath(indexPath)
 
-            if searchingSongs() {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+
+        if searchController.active {
+
+            if searchingSongs {
                 let song = filteredSongs![indexPath.row]
                 cell.textLabel?.text = song.number + " " + song.title
             } else if indexPath.row < filteredSingers?.count {
@@ -370,16 +394,58 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         return cell
     }
     
+    func identifierForCellAtIndexPath(indexPath:NSIndexPath) -> String {
+        
+        if searchController.active {
+            return "SearchCell"
+        }
+        
+        let index = adjustedIndexForIndexPath(indexPath)
+        switch index {
+        case .SearchLeaders:
+            return CellIdentifiers.Leader.rawValue
+        case .SearchSongs:
+            return CellIdentifiers.Song.rawValue
+        case .AssistedBy:
+            return CellIdentifiers.AssistedBy.rawValue
+        case .Dedication:
+            return CellIdentifiers.Dedication.rawValue
+        case .Other:
+            return CellIdentifiers.OtherEvent.rawValue
+        }
+    }
+    
+    func adjustedIndexForIndexPath(indexPath:NSIndexPath) -> ScopeBarIndex {
+        
+        let numberOfSingers = chosenSingers.count
+        if numberOfSingers > 0 {
+            if indexPath.row <= numberOfSingers {
+                return ScopeBarIndex.SearchLeaders
+            }
+            return ScopeBarIndex(rawValue: indexPath.row - numberOfSingers)!
+        }
+        return ScopeBarIndex(rawValue: indexPath.row)!
+    }
+    
     func configureCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.row < chosenSingers.count {
-            cell.textLabel?.text = "Leader: " + chosenSingers[indexPath.row].name
-        } else if indexPath.row == chosenSingers.count {
-            if let title = chosenSong?.title {
-                cell.textLabel?.text = "Song: " + title
+        let type = adjustedIndexForIndexPath(indexPath)
+        
+        switch type {
+        case .SearchLeaders:
+            if indexPath.row < chosenSingers.count {
+                cell.detailTextLabel?.text = chosenSingers[indexPath.row].name
+            } else {
+                cell.detailTextLabel?.text = nil
             }
-        } else if dedication != nil {
+        case .SearchSongs:
+            cell.detailTextLabel?.text = chosenSong?.title
+        case .AssistedBy:
+            cell.detailTextLabel?.text = assistant?.name
+        case .Dedication:
             cell.textLabel?.text = dedication
+        case .Other:
+            cell.detailTextLabel?.text = otherEvent
         }
     }
     
@@ -407,10 +473,89 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    //MARK: fancy getters & setters
+    
+    var _singers:[Singer]?
+    var singers:[Singer] {
+        get {
+            if _singers == nil {
+                
+                let singers = CoreDataHelper.sharedHelper.singers()
+                _singers = singers
+            }
+            return _singers!
+        }
+    }
+    
+    var _songs:[Song]?
+    var songs:[Song] {
+        get {
+            if _songs == nil {
+                
+                let bookTitle = Defaults.currentlySelectedBookTitle
+                let songs = CoreDataHelper.sharedHelper.songs(bookTitle)
+                _songs = songs
+            }
+            return _songs!
+        }
+    }
+    
+    var searchingSongs:Bool {
+        get {
+            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue
+        }
+        set {
+            if newValue {
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
+            }
+        }
+    }
+    
+    var searchingSingers:Bool {
+        get {
+            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue
+        }
+        set {
+            if newValue {
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
+            }
+        }
+    }
+    
+    var addingAssistant:Bool {
+        get {
+            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.AssistedBy.rawValue
+        }
+        set {
+            if newValue {
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.AssistedBy.rawValue
+            }
+        }
+    }
+    
+    var addingDedication:Bool {
+        get {
+            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Dedication.rawValue
+        }
+        set {
+            if newValue {
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.Dedication.rawValue
+            }
+        }
+    }
+    
+    var addingOther:Bool {
+        get {
+            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue
+        }
+        set {
+            if newValue {
+                searchBar.selectedScopeButtonIndex = ScopeBarIndex.Other.rawValue
+            }
+        }
+    }
 }
-
-
-
 
 
 
