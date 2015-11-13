@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 enum ScopeBarIndex:Int {
-    case SearchSongs = 0
-    case SearchLeaders = 1
+    case SearchLeaders = 0
+    case SearchSongs = 1
     case AssistedBy = 2
     case Dedication = 3
     case Other = 4
@@ -21,13 +21,12 @@ let minCellCount = 5
 
 enum CellIdentifiers:String {
     case Leader = "Leader"
-    case Song = "Song"
     case AssistedBy = "AssistedBy"
     case Dedication = "Dedication"
-    case OtherEvent = "Other"
 }
 
 typealias CellType = (reuseIdentifier:CellIdentifiers, index:ScopeBarIndex)
+let blueColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
 
 class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
 
@@ -65,7 +64,8 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         buildSearchBar()
 
-        navigationController?.navigationBar.opaque = true
+//        navigationController?.navigationBar.opaque = true
+//        navigationController?.navigationBar.translucent = false
 //        definesPresentationContext = true
     }
     
@@ -73,9 +73,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchBar = searchController.searchBar
         searchBar.showsScopeBar = true
         searchBar.delegate = self
-        searchBar.backgroundColor = UIColor.whiteColor()
-        searchBar.opaque = true
-        searchBar.scopeButtonTitles = ["Song", "Leader", "Assisted by", "Dedication"]
+        searchBar.scopeButtonTitles = ["Leader", "Song", "Assisted by", "Dedication"]
         searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
         tableView.tableHeaderView = searchBar
     }
@@ -83,7 +81,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         searchController.active = true
-        navigationController?.navigationBarHidden = true
+//        navigationController?.navigationBarHidden = true
         
         dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
             self?.searchBar.becomeFirstResponder()
@@ -100,13 +98,9 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     func filterContentForSingerSearchText(searchText: String) {
         
-        let yesterday = NSDate(timeInterval: -60*60*24, sinceDate: NSDate())
-        
         if searchText.characters.count == 0 {
     
-            filteredSingers = singers.sort({ (s1:Singer, s2:Singer) -> Bool in
-                return s1.lastSingDate > s2.lastSingDate && s1.lastSingDate > yesterday.timeIntervalSince1970
-            })
+            filteredSingers = singers
             return
         }
         
@@ -124,8 +118,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         filteredSongs = songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
-        }).sort({ (song1:Song, song2:Song) -> Bool in
-            return Int(song1.strippedNumber) < Int(song2.strippedNumber)
         })
     }
     
@@ -188,9 +180,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         switch index {
             
         case .SearchSongs:
+            
+            filteredSongs = songs
             searchBar.placeholder = "enter song number"
             searchBar.keyboardType = UIKeyboardType.NumberPad
-            self.filteredSongs = self.songs
             
         case .SearchLeaders:
             searchBar.placeholder = "enter name"
@@ -213,97 +206,16 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         if complete {
             
-            navigationController?.navigationBarHidden = false
+//            navigationController?.navigationBarHidden = false
             searchController.active = false
+            searchBar.showsScopeBar = true
             
         } else {
             
             searchBar.text = ""
-            navigationController?.navigationBarHidden = true
+//            navigationController?.navigationBarHidden = true
             searchController.active = true
-        }
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if searchController.active {
-            
-            let index = indexPath.row
-            
-            if searchingSongs {
-                
-                chosenSong = filteredSongs![index]
-                
-                if chosenSingers.count == 0 {
-                    searchingSingers = true
-                }
-                
-            } else if searchingSingers && index < filteredSingers?.count {
-                
-                let singer = filteredSingers![index]
-                singer.lastSingDate = NSDate().timeIntervalSince1970
-                chosenSingers.append(singer)
-                
-                if chosenSong == nil {
-                    searchingSongs = true
-                }
-                
-            } else if searchingSingers {
-                
-                popAlertForNewSinger() // This isn't great, we should put a text field on the cell with a done button
-                
-            } else if addingDedication {
-
-                let singer = filteredSingers![index]
-                dedication = singer.name
-
-            } else if addingOther {
-                
-                // get text from cell like above
-                
-            }
-            updateSearchAndScope()
-            
-        } else {
-            
-            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { return }
-                
-            switch item {
-            case .SearchSongs:
-                searchingSongs = true
-            case .SearchLeaders:
-                searchingSingers = true
-            case .AssistedBy:
-                addingAssistant = true
-            case .Dedication:
-                addingDedication = true
-            case .Other:
-                addingOther = true
-            }
-            
-            self.searchBar.becomeFirstResponder()
-        }
-        
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        self.tableView.reloadData()
-    }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        switch editingStyle {
-            
-        case .Delete:
-            if indexPath.row < chosenSingers.count {
-                chosenSingers.removeAtIndex(indexPath.row)
-            } else if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
-                chosenSong = nil
-            } else {
-                dedication = nil
-            }
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
-        default:
-            break
+            searchBar.showsScopeBar = true
         }
     }
     
@@ -362,8 +274,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 }
             }
             
+        } else if chosenSingers.count == 0 {
+            return minCellCount
         } else {
-            return minCellCount + chosenSingers.count
+            return minCellCount + chosenSingers.count - 1
         }
     }
     
@@ -372,19 +286,22 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         let cellIdentifier = identifierForCellAtIndexPath(indexPath)
 
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+        cell.textLabel?.textColor = UIColor.blackColor()
 
         if searchController.active {
 
             if searchingSongs {
                 let song = filteredSongs![indexPath.row]
-                cell.textLabel?.text = song.number + " " + song.title
+                let rawNumber = song.number
+                let number = rawNumber.hasPrefix("0") ? rawNumber.substringFromIndex(rawNumber.startIndex.advancedBy(1)) : rawNumber
+                cell.textLabel?.text = number + " " + song.title
             } else if indexPath.row < filteredSingers?.count {
                 let singer = filteredSingers![indexPath.row]
                 cell.textLabel?.text = singer.name
             } else {
                 // New singer cell
                 cell.textLabel?.text = "+ New Singer"
-                cell.textLabel?.textColor = UIColor.blueColor()
+                cell.textLabel?.textColor = blueColor
             }
             
         } else {
@@ -394,60 +311,166 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         return cell
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if searchController.active { return 44 }
+        
+        let cellTypeIndex = adjustedIndexForIndexPath(indexPath)
+        
+        switch cellTypeIndex {
+        case .SearchLeaders: fallthrough
+        case .SearchSongs:
+            return 70
+        case .AssistedBy: fallthrough
+        case .Dedication: fallthrough
+        case .Other:
+            return 44
+        }
+    }
+    
     func identifierForCellAtIndexPath(indexPath:NSIndexPath) -> String {
         
-        if searchController.active {
-            return "SearchCell"
-        }
+        if searchController.active { return "SearchCell" }
         
         let index = adjustedIndexForIndexPath(indexPath)
         switch index {
-        case .SearchLeaders:
-            return CellIdentifiers.Leader.rawValue
+        case .SearchLeaders: fallthrough
         case .SearchSongs:
-            return CellIdentifiers.Song.rawValue
+            return CellIdentifiers.Leader.rawValue
         case .AssistedBy:
             return CellIdentifiers.AssistedBy.rawValue
-        case .Dedication:
-            return CellIdentifiers.Dedication.rawValue
+        case .Dedication: fallthrough
         case .Other:
-            return CellIdentifiers.OtherEvent.rawValue
+            return CellIdentifiers.Dedication.rawValue
         }
     }
     
     func adjustedIndexForIndexPath(indexPath:NSIndexPath) -> ScopeBarIndex {
         
         let numberOfSingers = chosenSingers.count
-        if numberOfSingers > 0 {
-            if indexPath.row <= numberOfSingers {
-                return ScopeBarIndex.SearchLeaders
-            }
-            return ScopeBarIndex(rawValue: indexPath.row - numberOfSingers)!
+        if indexPath.row < numberOfSingers || (numberOfSingers <= 1 && indexPath.row == 0) {
+            ScopeBarIndex.SearchLeaders
         }
-        return ScopeBarIndex(rawValue: indexPath.row)!
+        let adjustment = numberOfSingers > 0 ? numberOfSingers - 1 : 0
+        return ScopeBarIndex(rawValue: indexPath.row - adjustment)!
     }
     
     func configureCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) {
         
         let type = adjustedIndexForIndexPath(indexPath)
+        cell.textLabel?.textColor = blueColor
         
         switch type {
         case .SearchLeaders:
+            cell.textLabel?.text = "Leader"
             if indexPath.row < chosenSingers.count {
                 cell.detailTextLabel?.text = chosenSingers[indexPath.row].name
             } else {
                 cell.detailTextLabel?.text = nil
             }
         case .SearchSongs:
+            cell.textLabel?.text = "Song"
             cell.detailTextLabel?.text = chosenSong?.title
         case .AssistedBy:
-            cell.detailTextLabel?.text = assistant?.name
+            cell.textLabel?.text = "Assisted by"
+            cell.detailTextLabel?.text = assistant?.name ?? "tap to search…"
         case .Dedication:
-            cell.textLabel?.text = dedication
+            cell.textLabel?.text = "Dedication"
+            cell.textLabel?.text = dedication ?? "enter name or names"
         case .Other:
-            cell.detailTextLabel?.text = otherEvent
+            cell.textLabel?.text = "Other Events"
+            cell.detailTextLabel?.text = otherEvent ?? "break, announcements, etc."
         }
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if searchController.active {
+            
+            let index = indexPath.row
+            
+            if searchingSongs {
+                
+                chosenSong = filteredSongs![index]
+                
+                if chosenSingers.count == 0 {
+                    searchingSingers = true
+                }
+                
+            } else if searchingSingers && index < filteredSingers?.count {
+                
+                let singer = filteredSingers![index]
+                singer.lastSingDate = NSDate().timeIntervalSince1970
+                chosenSingers.append(singer)
+                
+                if chosenSong == nil {
+                    searchingSongs = true
+                }
+                
+            } else if searchingSingers {
+                
+                popAlertForNewSinger() // This isn't great, we should put a text field on the cell with a done button
+                
+            } else if addingDedication {
+                
+                let singer = filteredSingers![index]
+                dedication = singer.name
+                
+            } else if addingOther {
+                
+                // get text from cell like above
+                
+            }
+            updateSearchAndScope()
+            
+        } else {
+            
+            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { return }
+            
+            switch item {
+            case .SearchSongs:
+                searchingSongs = true
+            case .SearchLeaders:
+                searchingSingers = true
+            case .AssistedBy:
+                addingAssistant = true
+            case .Dedication:
+                addingDedication = true
+            case .Other:
+                addingOther = true
+            }
+            
+            self.searchBar.becomeFirstResponder()
+        }
+        
+        //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        //        self.tableView.reloadData()
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch editingStyle {
+            
+        case .Delete:
+            if indexPath.row < chosenSingers.count {
+                chosenSingers.removeAtIndex(indexPath.row)
+            } else if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
+                chosenSong = nil
+            } else {
+                dedication = nil
+            }
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+        default:
+            break
+        }
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    //MARK: Button actions
     
     @IBAction func donePressed(sender: AnyObject) {
         
@@ -481,7 +504,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         get {
             if _singers == nil {
                 
-                let singers = CoreDataHelper.sharedHelper.singers()
+                let yesterday = NSDate(timeInterval: -60*60*24, sinceDate: NSDate())
+                let singers = CoreDataHelper.sharedHelper.singers().sort({ (s1:Singer, s2:Singer) -> Bool in
+                    return s1.lastSingDate > s2.lastSingDate && s1.lastSingDate > yesterday.timeIntervalSince1970
+                })
                 _singers = singers
             }
             return _singers!
