@@ -49,7 +49,10 @@ class CoreDataHelper {
     }
     
     func songs(inBook:Book) -> [Song] {
-         return resultsForEntityName("Song", matchingObject: inBook, inQueryString: "book == %@") as! [Song]
+        let results = resultsForEntityName("Song", matchingObject: inBook, inQueryString: "book == %@") as! [Song]
+        return results.sort({ (a:Song, b:Song) -> Bool in
+            return a.compare(b)
+        })
     }
     
     func songs(inBookTitle:String) -> [Song] {

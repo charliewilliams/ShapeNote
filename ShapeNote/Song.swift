@@ -64,12 +64,6 @@ class Song: NSManagedObject {
         }
     }
     
-    var strippedNumber: String {
-        
-        let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
-        return self.number.stringByTrimmingCharactersInSet(characterSet)
-    }
-    
     func isTriple() -> Bool {
         if let timeSignature = timeSignature {
             let index = timeSignature.startIndex.advancedBy(1)
@@ -108,5 +102,22 @@ class Song: NSManagedObject {
         }
         
         return line
+    }
+    
+    //MARK: Sorting
+    
+    var strippedNumber: String {
+        
+        let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
+        return self.number.stringByTrimmingCharactersInSet(characterSet)
+    }
+    
+    func compare(other:Song) -> Bool {
+        // t and b are in the wrong order, alphabetically
+        if (strippedNumber == other.strippedNumber) {
+            return number.compare(other.number) == NSComparisonResult.OrderedDescending
+        } else {
+            return Int(strippedNumber)! < Int(other.strippedNumber)!
+        }
     }
 }

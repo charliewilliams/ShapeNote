@@ -28,18 +28,8 @@ class SongListTableViewController: UITableViewController {
     var songs:[Song] {
         get {
             if _songs != nil { return _songs! }
-                
-            let bookTitle = Defaults.currentlySelectedBookTitle
-            let s:[Song] = CoreDataHelper.sharedHelper.songs(bookTitle) as [Song]
-            _songs = s.sort { (a:Song, b:Song) -> Bool in
-                
-                // t and b are in the wrong order, alphabetically
-                if (a.strippedNumber == b.strippedNumber) {
-                    return a.number > b.number
-                } else {
-                    return Int(a.strippedNumber) < Int(b.strippedNumber)
-                }
-            }
+            
+            _songs = CoreDataHelper.sharedHelper.songs()
             
             navigationItem.title = _songs!.first?.book.title
             return _songs!
