@@ -12,6 +12,7 @@ import CoreData
 class MinutesListViewController: UITableViewController {
 
     @IBOutlet weak var minutesListTableView: UITableView!
+    @IBOutlet var noMinutesYetView: UIView!
     
     var _allMinutes:[Minutes]?
     var allMinutes:[Minutes] {
@@ -24,7 +25,6 @@ class MinutesListViewController: UITableViewController {
                 if let m = CoreDataHelper.sharedHelper.minutes(group) {
                     
                     _allMinutes = m.sort { (a:Minutes, b:Minutes) -> Bool in
-                        
                         return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
                     }
                 }
@@ -33,14 +33,24 @@ class MinutesListViewController: UITableViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         _allMinutes = nil
         self.tableView.reloadData()
+        
+        if allMinutes.count > 0 {
+            noMinutesYetView.hidden = true
+        } else {
+            var height = UIScreen.mainScreen().bounds.size.height
+            height -= UIApplication.sharedApplication().statusBarFrame.height
+            height -= 44
+            if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
+                let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
+                    height -= navBarHeight + tabBarHeight
+            }
+            
+            noMinutesYetView.bounds.size.height = height
+        }
     }
     
     // MARK: - Table view data source

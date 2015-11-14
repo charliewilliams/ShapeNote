@@ -107,10 +107,7 @@ class CoreDataHelper {
     
     func minutes(group:Group) -> [Minutes]? {
         
-        print("\(group) \(group.name)")
         return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
-        // WARNING: Why doesn't this work?
-//        return resultsForEntityName("Minutes", matchingObject: group, inQueryString: "group == %@") as [Minutes]?
     }
     
     func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> AnyObject? {

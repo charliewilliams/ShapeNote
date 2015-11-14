@@ -9,13 +9,14 @@
 import UIKit
 
 class NoMinutesYetView: UIView {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let label = UILabel()
+        label.text = "Minutes for your local singing will appear here.\n\nSign into Facebook to join your local singing,\nthen tap the cell above to get start taking minutes"
+        label.textColor = UIColor.whiteColor()
+        backgroundColor = blueColor.colorWithAlphaComponent(0.5)
     }
-    */
 
 }
