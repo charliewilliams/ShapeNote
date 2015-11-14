@@ -78,15 +78,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         tableView.tableHeaderView = searchBar
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        searchController.active = true
-//        navigationController?.navigationBarHidden = true
-        
-        dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
-            self?.searchBar.becomeFirstResponder()
-        }
-    }
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        searchController.active = true
+//        dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
+//            self?.searchBar.becomeFirstResponder()
+//        }
+//    }
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchAndScope()
@@ -98,11 +96,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     func filterContentForSingerSearchText(searchText: String) {
         
-        if searchText.characters.count == 0 {
-    
-            filteredSingers = singers
-            return
-        }
+        guard searchText.characters.count > 0 else { filteredSingers = singers; return }
         
         filteredSingers = singers.filter({(singer: Singer) -> Bool in
             return singer.name.rangeOfString(searchText, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil
@@ -111,10 +105,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     func filterContentForSongSearchText(searchText: String) {
         
-        if searchText.characters.count == 0 {
-            filteredSongs = songs
-            return
-        }
+        guard searchText.characters.count > 0 else { filteredSongs = songs; return }
         
         filteredSongs = songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
@@ -261,17 +252,12 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         if searchController.active {
             
             if searchingSongs {
-                if let filtered = self.filteredSongs {
-                    return filtered.count
-                } else {
-                    return 0
-                }
+                return filteredSongs?.count ?? 0
             } else {
-                if let filtered = self.filteredSingers {
-                    return filtered.count + 1 // for New Singer
-                } else {
-                    return 1
+                if let count = filteredSingers?.count {
+                    return count + 1
                 }
+                return 1
             }
             
         } else if chosenSingers.count == 0 {
@@ -286,6 +272,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         let cellIdentifier = identifierForCellAtIndexPath(indexPath)
 
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+        
+        if let singerCell = cell as? NewLessonTableViewCell where singerCell.parentTableViewController == nil {
+            singerCell.parentTableViewController = self
+        }
         cell.textLabel?.textColor = UIColor.blackColor()
 
         if searchController.active {
@@ -309,6 +299,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
         
         return cell
+    }
+    
+    func addSingerTapped(sender:UIButton) {
+        print("HI")
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -362,23 +356,33 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         switch type {
         case .SearchLeaders:
-            cell.textLabel?.text = "Leader"
-            if indexPath.row < chosenSingers.count {
-                cell.detailTextLabel?.text = chosenSingers[indexPath.row].name
+            let singerCell = cell as! NewLessonTableViewCell
+            if chosenSingers.count == 0 || indexPath.row == chosenSingers.count {
+                singerCell.addButton?.hidden = false
             } else {
-                cell.detailTextLabel?.text = nil
+                singerCell.addButton?.hidden = true
             }
+            if indexPath.row < chosenSingers.count {
+                singerCell.rightTextLabel?.text = chosenSingers[indexPath.row].name
+            }
+//            else {
+//                singerCell.rightTextLabel?.text = nil
+//            }
         case .SearchSongs:
-            cell.textLabel?.text = "Song"
-            cell.detailTextLabel?.text = chosenSong?.title
+            let songCell = cell as! NewLessonTableViewCell
+            songCell.rightTextLabel?.text = chosenSong?.title
         case .AssistedBy:
-            cell.textLabel?.text = "Assisted by"
-            cell.detailTextLabel?.text = assistant?.name ?? "tap to search…"
+            let assistantCell = cell as! NewLessonAssistantTableViewCell
+            assistantCell.rightTextLabel?.text = assistant?.name ?? "tap to search…"
         case .Dedication:
-            cell.textLabel?.text = "Dedication"
-            cell.textLabel?.text = dedication ?? "enter name or names"
+            let dedicationCell = cell as! NewLessonTextEntryTableViewCell
+            if dedication != nil {
+                dedicationCell.textField.text = dedication
+            } else {
+                dedicationCell.textField.placeholder = "enter name or names"
+            }
         case .Other:
-            cell.textLabel?.text = "Other Events"
+            cell.textLabel?.text = "Other Event"
             cell.detailTextLabel?.text = otherEvent ?? "break, announcements, etc."
         }
     }
@@ -425,7 +429,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             
         } else {
             
-            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { return }
+            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { fatalError() }
             
             switch item {
             case .SearchSongs:
