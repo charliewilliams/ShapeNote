@@ -8,35 +8,41 @@
 
 import UIKit
 
+let checkmark = "✔︎"
+
 class QuizQuestionTypeTableViewCell: UITableViewCell {
     
     @IBOutlet var selectionButton: UIButton!
     @IBOutlet var label: UILabel!
     
+    var _selected = false
     var questionType:QuizOption?
+    var parentTableViewController:QuizSetupViewController?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        selectionButton.setTitle(" ", forState: .Normal)
+    }
     
     @IBAction func selectionButtonPressed(sender: UIButton) {
-        self.selected = !self.selected
-        
-        guard let questionType = questionType else { fatalError() }
-        
-        if !self.selected {
-            selectionButton.setTitle("O", forState: .Normal)
-            QuizQuestionProvider.sharedProvider.selectedQuestions.remove(questionType)
-            
-            print(QuizQuestionProvider.sharedProvider.selectedQuestions)
-        }
+        self.selected = !_selected
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        super.setSelected(false, animated: false)
         
         guard let questionType = questionType else { fatalError() }
         
         if selected {
-            selectionButton.setTitle("X", forState: .Normal)
+            selectionButton.setTitle(checkmark, forState: .Normal)
             QuizQuestionProvider.sharedProvider.selectedQuestions.insert(questionType)
+            parentTableViewController?.didChangeSelection()
+        } else if !selected && _selected {
+            selectionButton.setTitle(" ", forState: .Normal)
+            QuizQuestionProvider.sharedProvider.selectedQuestions.remove(questionType)
+            parentTableViewController?.didChangeSelection()
         }
+        
+        _selected = selected
     }
-
 }

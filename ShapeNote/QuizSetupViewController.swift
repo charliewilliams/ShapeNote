@@ -17,6 +17,7 @@ class QuizSetupViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        goTakeQuizButton.enabled = false
     }
     
     @IBAction func showAllButtonPressed(sender: UIBarButtonItem) {
@@ -31,9 +32,20 @@ class QuizSetupViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func didChangeSelection() {
+        
+        if quizQuestionProvider.selectedQuestions.count > 0 {
+            goTakeQuizButton.enabled = true
+        } else {
+            goTakeQuizButton.enabled = false
+        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? QuizQuestionTypeTableViewCell else { fatalError() }
+        
+        cell.parentTableViewController = self
         
         let questionType = quizQuestionProvider.questionTypes[indexPath.section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
