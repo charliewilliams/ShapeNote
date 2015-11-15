@@ -24,13 +24,25 @@ class SingersListTableViewController: UITableViewController {
         return sortedSingers
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet var noSingersYetView: UIView!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        
+        if singers.count > 0 {
+            noSingersYetView.hidden = true
+        } else {
+            var height = UIScreen.mainScreen().bounds.size.height
+            height -= UIApplication.sharedApplication().statusBarFrame.height
+            if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
+                let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
+                    height -= navBarHeight + tabBarHeight
+            }
+            
+            noSingersYetView.hidden = false
+            noSingersYetView.bounds.size.height = height
+        }
     }
     
     // MARK: - Table view data source
@@ -66,6 +78,14 @@ class SingersListTableViewController: UITableViewController {
     }
 
     // MARK: - Navigation
+    
+    @IBAction func loginToFacebookButtonPressed(sender: UIButton) {
+        
+        if let loginModalViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") {
+            self.presentViewController(loginModalViewController, animated: true, completion: nil)
+        }
+    }
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 

@@ -923,6 +923,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="8VW-rw-KG6">
+                            <rect key="frame" x="0.0" y="130" width="600" height="400"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with Facebook to see the singers already added to your local group." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1w-p5-BoE">
+                                    <rect key="frame" x="193" y="63" width="215" height="214"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="214" id="Qb6-fn-uSq"/>
+                                        <constraint firstAttribute="width" constant="215" id="tdW-Rn-1gT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(If you don't have a Facebook account, you can add singers manually using the button above.)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnw-30-wGB">
+                                    <rect key="frame" x="193" y="287" width="215" height="81.5"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-QX-X1a">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                    <animations/>
+                                    <connections>
+                                        <action selector="loginToFacebookButtonPressed:" destination="i1v-MA-Y8G" eventType="touchUpInside" id="UIw-Us-vDp"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.17106681030000001" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Ncd-QX-X1a" secondAttribute="trailing" id="751-uR-lPx"/>
+                                <constraint firstItem="y1w-p5-BoE" firstAttribute="centerX" secondItem="8VW-rw-KG6" secondAttribute="centerX" id="81i-5C-g3v"/>
+                                <constraint firstItem="y1w-p5-BoE" firstAttribute="centerY" secondItem="8VW-rw-KG6" secondAttribute="centerY" constant="-30" id="F4O-Sy-8LC"/>
+                                <constraint firstAttribute="bottom" secondItem="Ncd-QX-X1a" secondAttribute="bottom" id="KpY-tW-gkq"/>
+                                <constraint firstItem="jnw-30-wGB" firstAttribute="width" secondItem="y1w-p5-BoE" secondAttribute="width" id="bos-Wh-lvm"/>
+                                <constraint firstItem="jnw-30-wGB" firstAttribute="top" secondItem="y1w-p5-BoE" secondAttribute="bottom" constant="10" id="mZO-yg-SI3"/>
+                                <constraint firstItem="jnw-30-wGB" firstAttribute="top" secondItem="Ncd-QX-X1a" secondAttribute="bottom" id="mgW-gJ-5vf"/>
+                                <constraint firstItem="jnw-30-wGB" firstAttribute="centerX" secondItem="y1w-p5-BoE" secondAttribute="centerX" id="og7-gs-MGV"/>
+                                <constraint firstItem="Ncd-QX-X1a" firstAttribute="top" secondItem="8VW-rw-KG6" secondAttribute="top" id="plA-ho-P3j"/>
+                                <constraint firstItem="Ncd-QX-X1a" firstAttribute="leading" secondItem="8VW-rw-KG6" secondAttribute="leading" id="qNO-Xj-4FG"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="mgW-gJ-5vf"/>
+                                </mask>
+                            </variation>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="taB-9m-Wg0">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
@@ -952,10 +1002,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="noSingersYetView" destination="8VW-rw-KG6" id="ngS-LQ-bhF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZh-Zl-JBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="730.5"/>
+            <point key="canvasLocation" x="1206" y="730"/>
         </scene>
         <!--Test Your Knowledge-->
         <scene sceneID="1hJ-Ks-7Di">
@@ -1124,7 +1177,7 @@
         <!--Delegate-->
         <scene sceneID="ek2-7Z-A7C">
             <objects>
-                <viewController title="Login" id="KpN-VP-dkP" customClass="LoginViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login" id="KpN-VP-dkP" customClass="LoginViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t1i-DD-eWo"/>
                         <viewControllerLayoutGuide type="bottom" id="WxT-sd-QSj"/>
