@@ -60,25 +60,21 @@ class MinutesListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMinutes.count + 1
+        return allMinutes.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-            return tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath)
-        }
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MinutesTableViewCell
         
-        let minute = allMinutes[indexPath.row - 1]
+        let minute = allMinutes[indexPath.row]
         cell.configureWithMinutes(minute)
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableCellWithIdentifier("HeaderCell")
     }
     
     // MARK: - Navigation
@@ -86,8 +82,8 @@ class MinutesListViewController: UITableViewController {
     func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath?) -> MinuteTakingViewController {
         
         var m:Minutes
-        if let indexPath = indexPath where indexPath.row > 0 {
-            m = allMinutes[indexPath.row - 1]
+        if let indexPath = indexPath {
+            m = allMinutes[indexPath.row]
         } else {
             m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Minutes
         }
@@ -104,15 +100,21 @@ class MinutesListViewController: UITableViewController {
         self.navigationController?.pushViewController(minutesViewController, animated: true)
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    // MARK: Navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let dvc = segue.destinationViewController 
-        if let mtvc = dvc as? MinuteTakingViewController {
-            
-            if mtvc.minutes != nil {
-                return
-            }
-            mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as? Minutes
+        if let mtvc = segue.destinationViewController as? MinuteTakingViewController where mtvc.minutes == nil {
+            mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext) as? Minutes
+            mtvc.minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
         }
     }
 }

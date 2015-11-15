@@ -86,35 +86,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start New Minutes +" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-5x-Qev">
-                                            <rect key="frame" x="209.5" y="10.5" width="181.5" height="23"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ig-MJ-4TG">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                            <state key="normal" title="Start New Minutes +">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="tMy-iL-bif" kind="show" identifier="PushToShowMinutes" id="cYj-ei-Bnt"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="leading" secondItem="iRP-a7-QXP" secondAttribute="leadingMargin" id="3gP-4s-rwb"/>
-                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="centerX" secondItem="iRP-a7-QXP" secondAttribute="centerX" id="85s-i9-VQe"/>
-                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="centerY" secondItem="iRP-a7-QXP" secondAttribute="centerY" id="awj-LQ-cKg"/>
-                                        <constraint firstAttribute="centerY" secondItem="2ui-5x-Qev" secondAttribute="centerY" id="t6l-g0-M2v"/>
-                                        <constraint firstItem="2ui-5x-Qev" firstAttribute="top" secondItem="iRP-a7-QXP" secondAttribute="topMargin" id="vxd-lS-pUs"/>
+                                        <constraint firstItem="4Ig-MJ-4TG" firstAttribute="leading" secondItem="iRP-a7-QXP" secondAttribute="leading" id="DCl-6y-UAr"/>
+                                        <constraint firstItem="4Ig-MJ-4TG" firstAttribute="top" secondItem="iRP-a7-QXP" secondAttribute="top" id="kX3-XY-HwB"/>
+                                        <constraint firstAttribute="bottom" secondItem="4Ig-MJ-4TG" secondAttribute="bottom" id="lEN-mr-1ue"/>
+                                        <constraint firstAttribute="trailing" secondItem="4Ig-MJ-4TG" secondAttribute="trailing" id="yAd-XX-ndL"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="3gP-4s-rwb"/>
-                                            <exclude reference="t6l-g0-M2v"/>
-                                            <exclude reference="vxd-lS-pUs"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="mainLabel" destination="2ui-5x-Qev" id="j80-b4-bm7"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="6bI-ny-Tep" customClass="MinutesTableViewCell" customModule="ShapeNote" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="130" width="600" height="44"/>
@@ -174,7 +167,6 @@
                         <outlet property="minutesListTableView" destination="zN3-fP-HFD" id="da5-QE-WXc"/>
                         <outlet property="noMinutesYetView" destination="z5C-gD-qZO" id="0Ni-Tl-JsM"/>
                         <outlet property="tableView" destination="zN3-fP-HFD" id="9jC-lK-Hhy"/>
-                        <segue destination="tMy-iL-bif" kind="show" identifier="PushToShowMinutes" id="aYb-ur-pGd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMU-zz-dXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,7 +412,7 @@
                                             <rect key="frame" x="121" y="10" width="451" height="30"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="BHt-5Q-ELE" id="POS-Q5-BrJ"/>
                                             </connections>
