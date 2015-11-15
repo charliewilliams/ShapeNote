@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let tableViewHeaderHeight:CGFloat = 50
+
 class MinutesListViewController: UITableViewController {
 
     @IBOutlet weak var minutesListTableView: UITableView!
@@ -43,7 +45,7 @@ class MinutesListViewController: UITableViewController {
         } else {
             var height = UIScreen.mainScreen().bounds.size.height
             height -= UIApplication.sharedApplication().statusBarFrame.height
-            height -= 44
+            height -= tableViewHeaderHeight
             if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
                 let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
                     height -= navBarHeight + tabBarHeight
@@ -105,7 +107,7 @@ class MinutesListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
+        return tableViewHeaderHeight
     }
     
     // MARK: Navigation

@@ -139,7 +139,7 @@ class MinuteTakingViewController: UITableViewController {
         if minutes?.complete == true {
             return 0
         }
-        return 50
+        return tableViewHeaderHeight
     }
     
     
