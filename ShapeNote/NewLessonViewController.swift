@@ -243,6 +243,23 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         })
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if addingDedication {
+            dedication = textField.text
+        } else if addingOther {
+            otherEvent = textField.text
+            if otherEvent?.characters.count > 0 {
+                doneButton.enabled = true
+            } else if chosenSong == nil || chosenSingers.count == 0 {
+                doneButton.enabled = false
+            }
+        }
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
     //MARK: TableView
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -502,11 +519,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             lesson.song = song
         }
         
-        print(lesson.leader)
         lesson.leader = NSOrderedSet(array: chosenSingers)
         
         // optional stuff
-        lesson.dedication = self.dedication
+        lesson.dedication = dedication
+        lesson.otherEvent = otherEvent
         
         minutes?.singers.addObjectsFromArray(chosenSingers)
         
