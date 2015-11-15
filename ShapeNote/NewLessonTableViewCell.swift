@@ -13,7 +13,6 @@ class NewLessonTableViewCell: UITableViewCell {
     
     @IBOutlet var leftTextLabel: UILabel!
     @IBOutlet var rightTextLabel: UILabel!
-    @IBOutlet var textField: UITextField!
     @IBOutlet var addButton: UIButton!
     
     var parentTableViewController:NewLessonViewController? {
@@ -23,19 +22,12 @@ class NewLessonTableViewCell: UITableViewCell {
             }
         }
     }
-
-    override var detailTextLabel: UILabel! {
-        return rightTextLabel
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         if let rightTextLabel = rightTextLabel {
             rightTextLabel.text = nil
-        }
-        if let textField = textField {
-            textField.placeholder = nil
         }
         addButton?.hidden = true
     }

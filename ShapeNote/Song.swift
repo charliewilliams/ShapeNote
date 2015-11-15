@@ -50,10 +50,13 @@ class Song: NSManagedObject {
         
         for (key, value) in Song.keys {
             
-            if let dictValue = dict[value] as? String
+            if var dictValue = dict[value] as? String
                 where dictValue != "null" {
-                self.setValue(dictValue, forKey: key)
-                
+                    if dictValue.hasPrefix("0") {
+                        dictValue = dictValue.substringFromIndex(dictValue.startIndex.successor())
+                    }
+                    self.setValue(dictValue, forKey: key)
+                    
             } else if let dictNumber = dict[value] as? NSNumber
                 where dictNumber.integerValue != 0 {
                     self.setValue(dictNumber.integerValue, forKey: key)
@@ -103,7 +106,7 @@ class Song: NSManagedObject {
         
         return line
     }
-    
+
     //MARK: Sorting
     
     var strippedNumber: String {

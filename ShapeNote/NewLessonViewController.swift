@@ -28,7 +28,7 @@ enum CellIdentifiers:String {
 typealias CellType = (reuseIdentifier:CellIdentifiers, index:ScopeBarIndex)
 let blueColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
 
-class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITextFieldDelegate {
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var searchBar: UISearchBar
@@ -78,13 +78,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         tableView.tableHeaderView = searchBar
     }
     
-//    override func viewDidAppear(animated: Bool) {
-//        super.viewDidAppear(animated)
-//        searchController.active = true
-//        dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
-//            self?.searchBar.becomeFirstResponder()
-//        }
-//    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        searchController.active = true
+        dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
+            self?.searchBar.becomeFirstResponder()
+        }
+    }
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchAndScope()
@@ -197,14 +197,12 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         if complete {
             
-//            navigationController?.navigationBarHidden = false
             searchController.active = false
             searchBar.showsScopeBar = true
             
         } else {
             
             searchBar.text = ""
-//            navigationController?.navigationBarHidden = true
             searchController.active = true
             searchBar.showsScopeBar = true
         }
@@ -355,9 +353,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         cell.textLabel?.textColor = blueColor
         
         switch type {
+            
         case .SearchLeaders:
             let singerCell = cell as! NewLessonTableViewCell
-            if chosenSingers.count == 0 || indexPath.row == chosenSingers.count {
+            singerCell.leftTextLabel.text = "Leader"
+            if chosenSingers.count > 0 && indexPath.row == chosenSingers.count {
                 singerCell.addButton?.hidden = false
             } else {
                 singerCell.addButton?.hidden = true
@@ -365,25 +365,38 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             if indexPath.row < chosenSingers.count {
                 singerCell.rightTextLabel?.text = chosenSingers[indexPath.row].name
             }
-//            else {
-//                singerCell.rightTextLabel?.text = nil
-//            }
+            else {
+                singerCell.rightTextLabel?.text = nil
+            }
+            
         case .SearchSongs:
             let songCell = cell as! NewLessonTableViewCell
+            songCell.leftTextLabel.text = "Song"
             songCell.rightTextLabel?.text = chosenSong?.title
+            songCell.addButton.hidden = true
+            
         case .AssistedBy:
             let assistantCell = cell as! NewLessonAssistantTableViewCell
-            assistantCell.rightTextLabel?.text = assistant?.name ?? "tap to search…"
+            assistantCell.rightTextLabel?.text = assistant?.name
+            
         case .Dedication:
             let dedicationCell = cell as! NewLessonTextEntryTableViewCell
             if dedication != nil {
+                dedicationCell.textField.hidden = false
                 dedicationCell.textField.text = dedication
             } else {
-                dedicationCell.textField.placeholder = "enter name or names"
+                dedicationCell.textField.hidden = true
             }
+            
         case .Other:
-            cell.textLabel?.text = "Other Event"
-            cell.detailTextLabel?.text = otherEvent ?? "break, announcements, etc."
+            let cell = cell as! NewLessonTextEntryTableViewCell
+            cell.leftTextLabel?.text = "Other Event"
+            if otherEvent != nil {
+                cell.textField.hidden = false
+                cell.textField.text = otherEvent
+            } else {
+                cell.textField.hidden = true
+            }
         }
     }
     
@@ -415,15 +428,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 
                 popAlertForNewSinger() // This isn't great, we should put a text field on the cell with a done button
                 
-            } else if addingDedication {
-                
-                let singer = filteredSingers![index]
-                dedication = singer.name
-                
-            } else if addingOther {
-                
-                // get text from cell like above
-                
             }
             updateSearchAndScope()
             
@@ -435,26 +439,38 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             case .SearchSongs:
                 searchingSongs = true
             case .SearchLeaders:
+                
+                if indexPath.row < chosenSingers.count {
+                    chosenSingers.removeAtIndex(indexPath.row)
+                }
                 searchingSingers = true
+                
             case .AssistedBy:
+                
                 addingAssistant = true
+                
             case .Dedication:
+                
                 addingDedication = true
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewLessonTextEntryTableViewCell
+                cell.textField.hidden = false
+                cell.textField.becomeFirstResponder()
+                
             case .Other:
+                
                 addingOther = true
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewLessonTextEntryTableViewCell
+                cell.textField.hidden = false
+                cell.textField.becomeFirstResponder()
             }
-            
-            self.searchBar.becomeFirstResponder()
         }
-        
-        //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        //        self.tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         switch editingStyle {
             
+        // WARNING: This is now wrong.
         case .Delete:
             if indexPath.row < chosenSingers.count {
                 chosenSingers.removeAtIndex(indexPath.row)
@@ -508,11 +524,28 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         get {
             if _singers == nil {
                 
-                let yesterday = NSDate(timeInterval: -60*60*24, sinceDate: NSDate())
+                let oneDayAgoSecs = -60*60*24
+                let yesterday = NSDate(timeInterval: NSTimeInterval(oneDayAgoSecs), sinceDate: NSDate())
+                let lastWeekPlusOneDay = NSTimeInterval(oneDayAgoSecs * 8)
                 let singers = CoreDataHelper.sharedHelper.singers().sort({ (s1:Singer, s2:Singer) -> Bool in
-                    return s1.lastSingDate > s2.lastSingDate && s1.lastSingDate > yesterday.timeIntervalSince1970
+                    return s1.lastSingDate > s2.lastSingDate // overall, most recent first
                 })
-                _singers = singers
+                    
+                let todaySingers = singers.filter({ (s:Singer) -> Bool in
+                    return s.lastSingDate > yesterday.timeIntervalSince1970
+                }).sort({ (s1:Singer, s2:Singer) -> Bool in
+                    return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
+                })
+                    
+                let singersFromLastWeekButNotToday = singers.filter({ (s:Singer) -> Bool in
+                    return todaySingers.indexOf(s) == nil && s.lastSingDate > lastWeekPlusOneDay
+                })
+                
+                let allOtherSingers = singers.filter({ (s:Singer) -> Bool in
+                    return todaySingers.indexOf(s) == nil && singersFromLastWeekButNotToday.indexOf(s) == nil
+                })
+                
+                _singers = singersFromLastWeekButNotToday + todaySingers + allOtherSingers
             }
             return _singers!
         }
