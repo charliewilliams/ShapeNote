@@ -15,17 +15,17 @@ class MinuteTakingViewController: UITableViewController {
     @IBOutlet weak var minutesTableView: UITableView!
     @IBOutlet var doneButton: UIBarButtonItem!
     
-    var minutes:Minutes? // the minutes object
+    var minutes:Minutes? // the minutes object, which is a collection of lessons
     var _lessons:[Lesson]?
     var lessons:[Lesson]? { // all of the lessons from the minutes object
         get {
             
-            guard minutes != nil else { return nil }
+            guard let minutes = minutes else { fatalError() }
             
             if _lessons == nil {
                 
                 var templessons = [Lesson]()
-                if let loadedArray:NSOrderedSet = minutes?.songs {
+                if let loadedArray:NSOrderedSet = minutes.songs {
                     
                     loadedArray.enumerateObjectsUsingBlock { (lesson:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
                         

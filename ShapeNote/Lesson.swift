@@ -18,6 +18,7 @@ class Lesson: NSManagedObject {
     @NSManaged var song: Song
     @NSManaged var minutes: Minutes
     @NSManaged var dedication: String?
+    @NSManaged var otherEvent: String?
     
     func stringForMinutes() -> String {
         
