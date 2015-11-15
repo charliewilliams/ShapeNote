@@ -65,21 +65,27 @@ class MinuteTakingViewController: UITableViewController {
         minutesTableView.reloadData()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        
+        if minutes?.songs.count == 0 {
+            CoreDataHelper.managedContext.deleteObject(minutes!)
+        }
+    }
+    
     @IBAction func donePressed(sender: UIBarButtonItem) {
     
+        minutes?.complete = true
         CoreDataHelper.sharedHelper.saveContext()
         
-        if FacebookShareHelper.canPostToFacebook() == false {
-            return
-        }
+        guard FacebookShareHelper.canPostToFacebook() else { self.navigationController?.popViewControllerAnimated(true); return }
 
         let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Do it", style: .Default) { (action:UIAlertAction) -> Void in
+        let action = UIAlertAction(title: "Post", style: .Default) { (action:UIAlertAction) -> Void in
             
             FacebookShareHelper.postMinutesToFacebook(self.minutes!)
             self.navigationController?.popViewControllerAnimated(true)
         }
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (cancel:UIAlertAction!) -> Void in
+        let cancel = UIAlertAction(title: "Don't post", style: UIAlertActionStyle.Cancel) { (cancel:UIAlertAction!) -> Void in
             self.navigationController?.popViewControllerAnimated(true)
         }
         
@@ -96,16 +102,12 @@ class MinuteTakingViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let lessons = lessons {
             doneButton.enabled = true
-            return lessons.count + 1
+            return lessons.count
         }
-        return 1
+        return 0
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if indexPath.row == 0 {
-            return tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath)
-        }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
             
@@ -121,6 +123,27 @@ class MinuteTakingViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK: Header for new lesson
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if minutes?.complete == true {
+            return nil
+        }
+        return tableView.dequeueReusableCellWithIdentifier("HeaderCell")
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if minutes?.complete == true {
+            return 0
+        }
+        return 50
+    }
+    
+    
+    // MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
