@@ -21,6 +21,7 @@
         <relationship name="song" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="ledBy" inverseEntity="Song" syncable="YES"/>
     </entity>
     <entity name="Minutes" representedClassName="Minutes" syncable="YES">
+        <attribute name="complete" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="minutes" inverseEntity="Book" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="minutes" inverseEntity="Group" syncable="YES"/>
@@ -61,7 +62,7 @@
         <element name="Book" positionX="160" positionY="-153" width="128" height="135"/>
         <element name="Group" positionX="-567" positionY="54" width="128" height="88"/>
         <element name="Lesson" positionX="-207" positionY="128" width="128" height="120"/>
-        <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
+        <element name="Minutes" positionX="-227" positionY="-238" width="128" height="135"/>
         <element name="Singer" positionX="-378" positionY="143" width="128" height="195"/>
         <element name="Song" positionX="-9" positionY="9" width="128" height="285"/>
     </elements>

@@ -18,6 +18,7 @@ class Minutes: NSManagedObject {
     @NSManaged var singers: NSMutableSet
     @NSManaged var group: Group
     @NSManaged var book: Book
+    @NSManaged var complete: Bool
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
