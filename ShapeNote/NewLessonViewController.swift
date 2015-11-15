@@ -76,6 +76,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchBar.scopeButtonTitles = ["Leader", "Song", "Assisted by", "Dedication"]
         searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
         tableView.tableHeaderView = searchBar
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -214,10 +215,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         let alert = UIAlertController(title: "New Singer", message: "Ok, what's their name?", preferredStyle: .Alert)
         let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction) -> Void in
             
-            if action.style == .Cancel {
-                return
-            }
-            
             if let text = inputTextField?.text as String? {
                 let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Singer
                 newSinger.name = text
@@ -226,9 +223,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 self.tableView.reloadData()
                 self.updateSearchAndScope()
             }
+            self.dismissViewControllerAnimated(true, completion: nil)
         })
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction) -> Void in
-            
+            self.dismissViewControllerAnimated(true, completion: nil)
         })
         alert.addAction(cancel)
         alert.addAction(ok)
@@ -237,10 +235,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             textField.text = self.searchBar.text
             inputTextField = textField
         })
-        self.presentViewController(alert, animated: true, completion: {
-            
-            self.view.setNeedsLayout()
-        })
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
