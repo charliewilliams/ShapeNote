@@ -91,10 +91,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         updateSearchAndScope()
     }
     
-//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-//        filterContentForSingerSearchText(searchText)
-//    }
-    
     func filterContentForSingerSearchText(searchText: String) {
         
         guard searchText.characters.count > 0 else { filteredSingers = singers; return }
@@ -111,31 +107,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         filteredSongs = songs.filter({(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
         })
-    }
-    
-    func searchDisplayController(controller: UISearchController, shouldReloadTableForSearchString searchString: String!) -> Bool {
-        
-        if searchingSongs {
-            filterContentForSongSearchText(searchString)
-        } else if searchingSingers {
-            filterContentForSingerSearchText(searchString)
-        }
-        return true
-    }
-    
-    func searchDisplayController(controller: UISearchController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
-        
-        guard let text = controller.searchBar.text else {
-            return false
-        }
-        
-        if searchingSongs {
-            filterContentForSongSearchText(text)
-        } else if searchingSingers {
-            filterContentForSingerSearchText(text)
-        }
-        updateSearchAndScope()
-        return true
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -209,35 +180,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
     }
     
-    func popAlertForNewSinger() {
-        
-        var inputTextField: UITextField?
-        let alert = UIAlertController(title: "New Singer", message: "Ok, what's their name?", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "Done", style: .Default, handler: { (action:UIAlertAction) -> Void in
-            
-            if let text = inputTextField?.text as String? {
-                let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Singer
-                newSinger.name = text
-                self.chosenSingers.append(newSinger)
-                CoreDataHelper.sharedHelper.saveContext()
-                self.tableView.reloadData()
-                self.updateSearchAndScope()
-            }
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        alert.addTextFieldWithConfigurationHandler({ (textField:UITextField) -> Void in
-            textField.placeholder = "Name"
-            textField.text = self.searchBar.text
-            inputTextField = textField
-        })
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if addingDedication {
@@ -309,10 +251,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
         
         return cell
-    }
-    
-    func addSingerTapped(sender:UIButton) {
-        print("HI")
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

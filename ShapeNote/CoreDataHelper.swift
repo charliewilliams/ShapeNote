@@ -60,29 +60,7 @@ class CoreDataHelper {
         return songs(bookObject)
     }
     
-//    func fetchedResultsControllerForClassName(className:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSFetchedResultsController {
-//        
-//        let fetchRequest = NSFetchRequest(entityName:className)
-//        var error: NSError?
-//        let entityDescription = NSEntityDescription.entityForName(className, inManagedObjectContext: managedObjectContext!)
-//        fetchRequest.entity = entityDescription
-//        
-//        let sort = NSSortDescriptor(key: "date", ascending: false)
-//        
-////        , compare: { (date1:NSDate, date2:NSDate) -> NSComparisonResult in
-////            return date1.timeIntervalSince1970 > date2.timeIntervalSince1970
-////        })
-////        
-//        fetchRequest.sortDescriptors = [sort]
-//        
-//        fetchRequest.fetchBatchSize = 30
-//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Root")
-//        
-//        return fetchedResultsController
-//    }
-    
     func groups() -> [Group] {
-        
         return resultsForEntityName("Group") as! [Group]
     }
     
@@ -106,7 +84,6 @@ class CoreDataHelper {
     }
     
     func minutes(group:Group) -> [Minutes]? {
-        
         return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
     }
     
@@ -118,7 +95,6 @@ class CoreDataHelper {
         
         let fetchRequest = NSFetchRequest(entityName:entityName)
         fetchRequest.returnsObjectsAsFaults = false
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         if queryString != nil {
             
@@ -151,7 +127,6 @@ class CoreDataHelper {
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-
         let modelURL = NSBundle.mainBundle().URLForResource("ShapeNote", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
@@ -193,14 +168,6 @@ class CoreDataHelper {
         return CoreDataHelper.sharedHelper.managedObjectContext!
     }
     
-//    class func save() {
-//        var error:NSError?
-//        CoreDataHelper.sharedHelper.managedObjectContext?.save(&error)
-//        if (error != nil) {
-//            print("CORE DATA ERROR: \(error)")
-//        }
-//    }
-    
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
@@ -216,15 +183,13 @@ class CoreDataHelper {
     
     func saveContext () {
         if let moc = self.managedObjectContext {
-            var error: NSError? = nil
             if moc.hasChanges {
                 do {
                     try moc.save()
-                } catch let error1 as NSError {
-                    error = error1
+                } catch let error as NSError {
                     // Replace this implementation with code to handle the error appropriately.
                     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
                     abort()
                 }
             }

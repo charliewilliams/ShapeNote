@@ -22,12 +22,12 @@ class JSONLoader: NSObject {
     
     func handleFirstRun() {
         
-        let bookTitle = Defaults.currentlySelectedBookTitle
-        
-        if let book = CoreDataHelper.sharedHelper.book(sacredHarpTitle) {
+        // If we have data, don't reload from JSON
+        if let _ = CoreDataHelper.sharedHelper.book(sacredHarpTitle) {
             return
         }
         
+        // TODO replace this with the cloud-based version
         let groupNames = ["Bristol", "London", "Cork", "Norwich", "Manchester", "Amsterdam", "Poland", "Dublin", "Boston"]
         
         for name in groupNames {
@@ -133,8 +133,7 @@ class JSONLoader: NSObject {
         return json
     }
 
-    func coreDataContext() -> NSManagedObjectContext! {
-        
+    func coreDataContext() -> NSManagedObjectContext {
         return CoreDataHelper.managedContext
     }
 }
