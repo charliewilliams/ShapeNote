@@ -65,13 +65,6 @@ class MinuteTakingViewController: UITableViewController {
         minutesTableView.reloadData()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        
-        if minutes?.songs.count == 0 {
-            CoreDataHelper.managedContext.deleteObject(minutes!)
-        }
-    }
-    
     @IBAction func donePressed(sender: UIBarButtonItem) {
     
         minutes?.complete = true
@@ -117,11 +110,22 @@ class MinuteTakingViewController: UITableViewController {
             
         if let lessons = lessons where lessons.count > indexPath.row {
             let lesson = lessons[indexPath.row]
-            cell.textLabel!.text = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
+            var string = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
+            if let dedication = lesson.dedication {
+                string += " (\(dedication))"
+            }
+            if let otherEvent = lesson.otherEvent {
+                string = otherEvent
+            }
+            cell.textLabel!.text = string
             cell.detailTextLabel!.text = dateFormatter.stringFromDate(lesson.date)
         }
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
     }
     
     // MARK: Header for new lesson
@@ -144,6 +148,13 @@ class MinuteTakingViewController: UITableViewController {
     
     
     // MARK: Navigation
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        
+        if let minutes = minutes where parent == nil && minutes.songs.count == 0 {
+            CoreDataHelper.managedContext.deleteObject(minutes)
+        }
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
