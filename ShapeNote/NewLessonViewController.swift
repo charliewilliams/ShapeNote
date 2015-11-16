@@ -183,17 +183,33 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if addingDedication {
+            
             dedication = textField.text
+            
         } else if addingOther {
+            
             otherEvent = textField.text
             if otherEvent?.characters.count > 0 {
                 doneButton.enabled = true
             } else if chosenSong == nil || chosenSingers.count == 0 {
                 doneButton.enabled = false
             }
+            
+        } else if let newSingerName = textField.text {
+            
+            let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as! Singer
+            newSinger.name = newSingerName
+            CoreDataHelper.sharedHelper.saveContext()
+            chosenSingers.append(newSinger)
+            searchingSingers = false
+            searchController.active = false;
+            updateSearchAndScope()
         }
         
         textField.resignFirstResponder()
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
         return true
     }
     
@@ -223,7 +239,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         let cellIdentifier = identifierForCellAtIndexPath(indexPath)
 
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
         
         if let singerCell = cell as? NewLessonTableViewCell where singerCell.parentTableViewController == nil {
             singerCell.parentTableViewController = self
@@ -233,17 +249,23 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         if searchController.active {
 
             if searchingSongs {
+                
                 let song = filteredSongs![indexPath.row]
                 let rawNumber = song.number
                 let number = rawNumber.hasPrefix("0") ? rawNumber.substringFromIndex(rawNumber.startIndex.advancedBy(1)) : rawNumber
                 cell.textLabel?.text = number + " " + song.title
+                
             } else if indexPath.row < filteredSingers?.count {
+                
                 let singer = filteredSingers![indexPath.row]
                 cell.textLabel?.text = singer.name
+                
             } else {
-                // New singer cell
-                cell.textLabel?.text = "+ New Singer"
-                cell.textLabel?.textColor = blueColor
+                
+                let newSingerCell = tableView.dequeueReusableCellWithIdentifier("Dedication") as! NewLessonTextEntryTableViewCell
+                newSingerCell.leftTextLabel?.text = "+New Singer"
+                newSingerCell.textField.placeholder = "enter name"
+                return newSingerCell
             }
             
         } else {
@@ -327,14 +349,17 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             
         case .AssistedBy:
             let assistantCell = cell as! NewLessonAssistantTableViewCell
+            assistantCell.leftTextLabel.text = "Assisted by"
             assistantCell.rightTextLabel?.text = assistant?.name
             
         case .Dedication:
             let dedicationCell = cell as! NewLessonTextEntryTableViewCell
+            dedicationCell.leftTextLabel.text = "Dedication"
             if dedication != nil {
                 dedicationCell.textField.hidden = false
                 dedicationCell.textField.text = dedication
             } else {
+                dedicationCell.textField.text = nil
                 dedicationCell.textField.hidden = true
             }
             
@@ -376,8 +401,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 
             } else if searchingSingers {
                 
-                popAlertForNewSinger() // This isn't great, we should put a text field on the cell with a done button
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewLessonTextEntryTableViewCell
+                cell.textField.hidden = false
+                cell.textField.placeholder = "enter name"
                 
+                dispatch_after(UInt64(0.1 * Double(NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                    cell.textField.becomeFirstResponder()
+                })
             }
             updateSearchAndScope()
             
@@ -388,16 +418,23 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             switch item {
             case .SearchSongs:
                 searchingSongs = true
+                searchController.active = true
+                
             case .SearchLeaders:
                 
                 if indexPath.row < chosenSingers.count {
                     chosenSingers.removeAtIndex(indexPath.row)
                 }
                 searchingSingers = true
+                searchController.active = true
                 
             case .AssistedBy:
                 
                 addingAssistant = true
+                searchController.active = true
+                dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
+                    self?.searchBar.becomeFirstResponder()
+                }
                 
             case .Dedication:
                 
@@ -416,11 +453,20 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
     }
     
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? NewLessonTextEntryTableViewCell {
+            cell.textField.resignFirstResponder()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row < chosenSingers.count
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         switch editingStyle {
-            
-        // WARNING: This is now wrong.
         case .Delete:
             if indexPath.row < chosenSingers.count {
                 chosenSingers.removeAtIndex(indexPath.row)
@@ -429,7 +475,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             } else {
                 dedication = nil
             }
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.reloadData()
             
         default:
             break
@@ -444,7 +490,8 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     @IBAction func donePressed(sender: AnyObject) {
         
-        let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: CoreDataHelper.managedContext) as! Lesson
+        guard let context = minutes?.managedObjectContext else { fatalError() }
+        let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: context) as! Lesson
         lesson.date = NSDate()
         lesson.minutes = minutes!
         
