@@ -11,9 +11,11 @@
 #import <UIKit/UIKit.h>
 
 #import <Parse/PFConstants.h>
-#import <Parse/PFNullability.h>
 
-PF_ASSUME_NONNULL_BEGIN
+PF_TV_UNAVAILABLE_WARNING
+PF_WATCH_UNAVAILABLE_WARNING
+
+NS_ASSUME_NONNULL_BEGIN
 
 /*!
  `PFNetworkActivityIndicatorManager` manages the state of the network activity indicator in the status bar.
@@ -48,7 +50,7 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 
  @returns The systemwide network activity indicator manager.
  */
-+ (instancetype)sharedManager;
++ (PFNetworkActivityIndicatorManager *)sharedManager;
 
 /*!
  @abstract Increments the number of active network requests.
@@ -68,4 +70,4 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFNetworkActivityIndicatorMana
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

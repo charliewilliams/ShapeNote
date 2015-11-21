@@ -210,7 +210,7 @@ static NSSet *protectedKeys;
      onlyIfDifferent:YES];
 }
 
-- (void)setChannels:(NSArray *)channels {
+- (void)setChannels:(NSArray PF_GENERIC(NSString *)*)channels {
     [self _setObject:channels forKey:PFInstallationKeyChannels onlyIfDifferent:YES];
 }
 
@@ -276,7 +276,7 @@ static NSSet *protectedKeys;
 }
 
 - (void)_updateVersionInfoFromDevice {
-    NSDictionary *appInfo = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *appInfo = [NSBundle mainBundle].infoDictionary;
     NSString *appName = appInfo[(__bridge NSString *)kCFBundleNameKey];
     NSString *appVersion = appInfo[(__bridge NSString *)kCFBundleVersionKey];
     NSString *appIdentifier = appInfo[(__bridge NSString *)kCFBundleIdentifierKey];

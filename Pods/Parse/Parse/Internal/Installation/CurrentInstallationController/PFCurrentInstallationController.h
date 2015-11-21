@@ -16,6 +16,7 @@
 #import "PFDataProvider.h"
 #import "PFMacros.h"
 
+PF_TV_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
 extern NSString *const PFCurrentInstallationFileName;
@@ -26,7 +27,7 @@ extern NSString *const PFCurrentInstallationPinName;
 
 PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFCurrentInstallationController : NSObject <PFCurrentObjectControlling>
 
-@property (nonatomic, weak, readonly) id<PFFileManagerProvider, PFInstallationIdentifierStoreProvider> commonDataSource;
+@property (nonatomic, weak, readonly) id<PFInstallationIdentifierStoreProvider> commonDataSource;
 @property (nonatomic, weak, readonly) id<PFObjectFilePersistenceControllerProvider> coreDataSource;
 
 ///--------------------------------------
@@ -35,11 +36,11 @@ PF_TV_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFCurrentInstallationControlle
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)dataStorageType
-                   commonDataSource:(id<PFFileManagerProvider, PFInstallationIdentifierStoreProvider>)commonDataSource
+                   commonDataSource:(id<PFInstallationIdentifierStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource;
 
 + (instancetype)controllerWithStorageType:(PFCurrentObjectStorageType)dataStorageType
-                         commonDataSource:(id<PFFileManagerProvider, PFInstallationIdentifierStoreProvider>)commonDataSource
+                         commonDataSource:(id<PFInstallationIdentifierStoreProvider>)commonDataSource
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource;
 
 ///--------------------------------------

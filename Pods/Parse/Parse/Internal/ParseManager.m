@@ -26,6 +26,7 @@
 #import "PFPinningEventuallyQueue.h"
 #import "PFUser.h"
 #import "PFURLSessionCommandRunner.h"
+#import "PFPersistenceController.h"
 
 #if !TARGET_OS_WATCH && !TARGET_OS_TV
 #import "PFPushManager.h"
@@ -37,6 +38,10 @@
 #import "PFProduct.h"
 #endif
 
+#if TARGET_OS_TV
+#import "PFMemoryEventuallyQueue.h"
+#endif
+
 static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 @interface ParseManager () <PFCoreManagerDataSource>
@@ -45,6 +50,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     dispatch_queue_t _eventuallyQueueAccessQueue;
     dispatch_queue_t _keychainStoreAccessQueue;
     dispatch_queue_t _fileManagerAccessQueue;
+    dispatch_queue_t _persistenceControllerAccessQueue;
     dispatch_queue_t _installationIdentifierStoreAccessQueue;
     dispatch_queue_t _commandRunnerAccessQueue;
     dispatch_queue_t _keyValueCacheAccessQueue;
@@ -61,6 +67,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
 @synthesize keychainStore = _keychainStore;
 @synthesize fileManager = _fileManager;
+@synthesize persistenceController = _persistenceController;
 @synthesize offlineStore = _offlineStore;
 @synthesize eventuallyQueue = _eventuallyQueue;
 @synthesize installationIdentifierStore = _installationIdentifierStore;
@@ -91,6 +98,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     _eventuallyQueueAccessQueue = dispatch_queue_create("com.parse.eventuallyqueue.access", DISPATCH_QUEUE_SERIAL);
     _keychainStoreAccessQueue = dispatch_queue_create("com.parse.keychainstore.access", DISPATCH_QUEUE_SERIAL);
     _fileManagerAccessQueue = dispatch_queue_create("com.parse.filemanager.access", DISPATCH_QUEUE_SERIAL);
+    _persistenceControllerAccessQueue = dispatch_queue_create("com.parse.persistanceController.access", DISPATCH_QUEUE_SERIAL);
     _installationIdentifierStoreAccessQueue = dispatch_queue_create("com.parse.installationidentifierstore.access",
                                                                     DISPATCH_QUEUE_SERIAL);
     _commandRunnerAccessQueue = dispatch_queue_create("com.parse.commandrunner.access", DISPATCH_QUEUE_SERIAL);
@@ -115,8 +123,8 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     // Migrate any data if it's required.
     [self _migrateSandboxDataToApplicationGroupContainerIfNeeded];
 
-    // Make sure the data on disk for Parse is for the current application.
-    [self _checkApplicationId];
+    // TODO: (nlutsenko) Make it not terrible!
+    [[self.persistenceController getPersistenceGroupAsync] waitForResult:nil withMainThreadWarning:NO];
 
     if (localDataStoreEnabled) {
         PFOfflineStoreOptions options = (_applicationGroupIdentifier ?
@@ -161,6 +169,11 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 - (PFEventuallyQueue *)eventuallyQueue {
     __block PFEventuallyQueue *queue = nil;
     dispatch_sync(_eventuallyQueueAccessQueue, ^{
+#if TARGET_OS_TV
+        if (!_eventuallyQueue) {
+            _eventuallyQueue = [PFMemoryEventuallyQueue newDefaultMemoryEventuallyQueueWithCommandRunner:self.commandRunner];
+        }
+#else
         if (!_eventuallyQueue ||
             (self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFCommandCache class]]) ||
             (!self.offlineStoreLoaded && [_eventuallyQueue isKindOfClass:[PFPinningEventuallyQueue class]])) {
@@ -180,6 +193,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
                 [commandCache removeAllCommands];
             }
         }
+#endif
         queue = _eventuallyQueue;
     });
     return queue;
@@ -237,13 +251,63 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     return fileManager;
 }
 
+#pragma mark PersistenceController
+
+- (PFPersistenceController *)persistenceController {
+    __block PFPersistenceController *controller = nil;
+    dispatch_sync(_persistenceControllerAccessQueue, ^{
+        if (!_persistenceController) {
+            _persistenceController = [self _createPersistenceController];
+        }
+        controller = _persistenceController;
+    });
+    return controller;
+}
+
+- (PFPersistenceController *)_createPersistenceController {
+    @weakify(self);
+    PFPersistenceGroupValidationHandler validationHandler = ^BFTask *(id<PFPersistenceGroup> group) {
+        @strongify(self);
+
+        return [[[[[group beginLockedContentAccessAsyncToDataForKey:_ParseApplicationIdFileName] continueWithSuccessBlock:^id(BFTask *task) {
+            return [group getDataAsyncForKey:_ParseApplicationIdFileName];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            NSData *data = task.result;
+            if (!data) {
+                return nil;
+            }
+
+            return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }] continueWithSuccessBlock:^id(BFTask *task) {
+            if (task.result) {
+                if ([self.applicationId isEqualToString:task.result]) {
+                    // Everything is valid, no need to remove, set applicationId here.
+                    return nil;
+                }
+
+                [self.keychainStore removeAllObjects];
+                [self.keyValueCache removeAllObjects];
+            }
+            return [[group removeAllDataAsync] continueWithSuccessBlock:^id(BFTask *task) {
+                NSData *applicationIdData = [self.applicationId dataUsingEncoding:NSUTF8StringEncoding];
+                return [group setDataAsync:applicationIdData forKey:_ParseApplicationIdFileName];
+            }];
+        }] continueWithBlock:^id(BFTask *task) {
+            return [group endLockedContentAccessAsyncToDataForKey:_ParseApplicationIdFileName];
+        }];
+    };
+    return [[PFPersistenceController alloc] initWithApplicationIdentifier:self.applicationId
+                                               applicationGroupIdentifier:self.applicationGroupIdentifier
+                                                   groupValidationHandler:validationHandler];
+}
+
 #pragma mark InstallationIdentifierStore
 
 - (PFInstallationIdentifierStore *)installationIdentifierStore {
     __block PFInstallationIdentifierStore *store = nil;
     dispatch_sync(_installationIdentifierStoreAccessQueue, ^{
         if (!_installationIdentifierStore) {
-            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithFileManager:self.fileManager];
+            _installationIdentifierStore = [[PFInstallationIdentifierStore alloc] initWithDataSource:self];
         }
         store = _installationIdentifierStore;
     });
@@ -350,9 +414,7 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
     __block PFPurchaseController *controller = nil;
     dispatch_sync(_controllerAccessQueue, ^{
         if (!_purchaseController) {
-            _purchaseController = [PFPurchaseController controllerWithCommandRunner:self.commandRunner
-                                                                        fileManager:self.fileManager
-                                                                             bundle:[NSBundle mainBundle]];
+            _purchaseController = [PFPurchaseController controllerWithDataSource:self bundle:[NSBundle mainBundle]];
         }
         controller = _purchaseController;
     });
@@ -385,52 +447,6 @@ static NSString *const _ParseApplicationIdFileName = @"applicationId";
 
         return nil;
     }];
-}
-
-///--------------------------------------
-#pragma mark - ApplicationId
-///--------------------------------------
-
-/*!
- Verifies that the data stored on disk for Parse was generated using the same application that is running now.
- */
-- (void)_checkApplicationId {
-    NSFileManager *systemFileManager = [NSFileManager defaultManager];
-
-    // Make sure the current version of the cache is for this application id.
-    NSString *applicationIdFile = [self.fileManager parseDataItemPathForPathComponent:_ParseApplicationIdFileName];
-    [[PFMultiProcessFileLockController sharedController] beginLockedContentAccessForFileAtPath:applicationIdFile];
-
-    if ([systemFileManager fileExistsAtPath:applicationIdFile]) {
-        NSError *error = nil;
-        NSString *applicationId = [NSString stringWithContentsOfFile:applicationIdFile
-                                                            encoding:NSUTF8StringEncoding
-                                                               error:&error];
-        if (!error && ![applicationId isEqualToString:self.applicationId]) {
-            // The application id has changed, so everything on disk is invalid.
-            [self.keychainStore removeAllObjects];
-            [self.keyValueCache removeAllObjects];
-
-            NSArray *tasks = @[
-                               // Remove the contents only, but don't delete the folder.
-                               [PFFileManager removeDirectoryContentsAsyncAtPath:[self.fileManager parseDefaultDataDirectoryPath]],
-                               // Completely remove everything in deprecated folder.
-                               [PFFileManager removeItemAtPathAsync:[self.fileManager parseDataDirectoryPath_DEPRECATED]]
-                               ];
-            [[BFTask taskForCompletionOfAllTasks:tasks] waitForResult:nil withMainThreadWarning:NO];
-        }
-    }
-
-    if (![systemFileManager fileExistsAtPath:applicationIdFile]) {
-        NSError *error = nil;
-        BFTask *writeTask = [PFFileManager writeStringAsync:self.applicationId toFile:applicationIdFile];
-        [writeTask waitForResult:&error withMainThreadWarning:NO];
-        if (error) {
-            PFLogError(PFLoggingTagCommon, @"Unable to create applicationId file with error: %@", error);
-        }
-    }
-
-    [[PFMultiProcessFileLockController sharedController] endLockedContentAccessForFileAtPath:applicationIdFile];
 }
 
 ///--------------------------------------

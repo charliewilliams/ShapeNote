@@ -181,7 +181,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@ = ?;",
                                    PFOfflineStoreKeyOfJSON, PFOfflineStoreTableOfObjects, PFOfflineStoreKeyOfUUID];
                 return [database executeQueryAsync:query
-                              withArgumentsInArray:[NSArray arrayWithObjects:uuid, nil]];
+                              withArgumentsInArray:@[ uuid ]];
             }] continueWithSuccessBlock:^id(BFTask *task) {
                 PFSQLiteDatabaseResult *result = task.result;
                 if (![result next]) {
@@ -376,7 +376,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
 - (BFTask *)saveObjectLocallyAsync:(PFObject *)object
                                key:(NSString *)key
                           database:(PFSQLiteDatabase *)database {
-    if ([object objectId] != nil && ![object isDataAvailable] &&
+    if ([object objectId] != nil && !object.dataAvailable &&
         ![object _hasChanges] && ![object _hasOutstandingOperations]) {
         return [BFTask taskWithResult:nil];
     }
@@ -530,7 +530,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 object = task.result;
                 return [self fetchObjectLocallyAsync:object database:database];
             }] continueWithSuccessBlock:^id(BFTask *task) {
-                if (!object.isDataAvailable) {
+                if (!object.dataAvailable) {
                     return [BFTask taskWithResult:@NO];
                 }
                 return matcherBlock(object, database);

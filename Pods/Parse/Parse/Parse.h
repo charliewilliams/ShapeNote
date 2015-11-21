@@ -26,7 +26,6 @@
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
-#import <Parse/PFNullability.h>
 
 #if TARGET_OS_IOS
 
@@ -48,7 +47,7 @@
 
 #endif
 
-PF_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /*!
  The `Parse` class contains static functions that handle global configuration for the Parse framework.
@@ -85,14 +84,14 @@ PF_ASSUME_NONNULL_BEGIN
  @abstract Enable pinning in your application. This must be called before your application can use
  pinning. The recommended way is to call this method before `setApplicationId:clientKey:`.
  */
-+ (void)enableLocalDatastore;
++ (void)enableLocalDatastore PF_TV_UNAVAILABLE;
 
 /*!
  @abstract Flag that indicates whether Local Datastore is enabled.
 
  @returns `YES` if Local Datastore is enabled, otherwise `NO`.
  */
-+ (BOOL)isLocalDatastoreEnabled;
++ (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
 /// @name Enabling Extensions Data Sharing
@@ -197,4 +196,4 @@ PF_ASSUME_NONNULL_BEGIN
 
 @end
 
-PF_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

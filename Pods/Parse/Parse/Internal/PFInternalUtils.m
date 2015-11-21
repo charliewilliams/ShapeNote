@@ -168,7 +168,7 @@ static NSString *parseServer_;
     for (NSString *key in keys) {
         [string appendFormat:@"%@:", key];
 
-        id value = [dictionary objectForKey:key];
+        id value = dictionary[key];
         [self appendObject:value toString:string];
 
         [string appendString:@","];
@@ -202,7 +202,7 @@ static NSString *parseServer_;
         }
         [seen addObject:object];
 
-        for (NSString *key in [(PFObject *)object allKeys]) {
+        for (NSString *key in ((PFObject *)object).allKeys) {
             [self traverseObject:object[key] usingBlock:block seenObjects:seen];
         }
 
@@ -266,35 +266,6 @@ static NSString *parseServer_;
     }
     return [NSString stringWithFormat:format,
             args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
-}
-
-@end
-
-// A PFJSONCacheItem is a pairing of a json string with its hash value.
-// This is used by our mutable container checking.
-@implementation PFJSONCacheItem
-
-- (instancetype)initWithObject:(id)object {
-    self = [super init];
-    if (!self) return nil;
-
-    NSObject *encoded = [[PFPointerOrLocalIdObjectEncoder objectEncoder] encodeObject:object];
-    NSData *jsonData = [PFJSONSerialization dataFromJSONObject:encoded];
-    _hashValue = PFMD5HashFromData(jsonData);
-
-    return self;
-}
-
-- (BOOL)isEqual:(id)otherCache {
-    if (![otherCache isKindOfClass:[PFJSONCacheItem class]]) {
-        return NO;
-    }
-
-    return [self.hashValue isEqualToString:[otherCache hashValue]];
-}
-
-+ (PFJSONCacheItem *)cacheFromObject:(id)object {
-    return [[PFJSONCacheItem alloc] initWithObject:object];
 }
 
 @end
