@@ -19,36 +19,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice one!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzf-l1-h2r">
-                    <rect key="frame" x="218" y="110" width="163" height="47"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nationalD" translatesAutoresizingMaskIntoConstraints="NO" id="IBc-IU-N3e">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="39"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got 20 out of 20 right." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJc-a6-w0g">
-                    <rect key="frame" x="199" y="220" width="201.5" height="20.5"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvG-SP-Xw9">
-                    <rect key="frame" x="278" y="456" width="44" height="44"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="bHD-Kq-o86"/>
-                        <constraint firstAttribute="width" constant="44" id="eij-HF-GUd"/>
-                    </constraints>
-                    <state key="normal" title="OK"/>
-                    <connections>
-                        <action selector="okButtonPressed:" destination="-1" eventType="touchUpInside" id="QWS-L8-UoS"/>
-                    </connections>
-                </button>
-                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4I-V7-Lq8">
-                    <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                </imageView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4I-V7-Lq8">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Aaf-oJ-OwN"/>
+                    </constraints>
                     <items>
                         <navigationItem title="Round Complete" id="c2g-Ww-4qI">
                             <barButtonItem key="rightBarButtonItem" systemItem="done" id="OL7-NX-Vtb">
@@ -59,26 +40,69 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice one!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzf-l1-h2r">
+                    <rect key="frame" x="213" y="110" width="173.5" height="47"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="39"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got  20  out of  20  correct." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJc-a6-w0g">
+                    <rect key="frame" x="261.5" y="220" width="77" height="125.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvG-SP-Xw9">
+                    <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="Qv5-Lm-JTG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="I'm Going Home">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="okButtonPressed:" destination="-1" eventType="touchUpInside" id="QWS-L8-UoS"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="zJc-a6-w0g" firstAttribute="top" secondItem="zzf-l1-h2r" secondAttribute="bottom" constant="63" id="1St-AJ-5NC"/>
+                <constraint firstItem="D4I-V7-Lq8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2k8-6n-ZBK"/>
                 <constraint firstItem="D4I-V7-Lq8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4CA-HR-mXW"/>
+                <constraint firstItem="gvG-SP-Xw9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8Re-8t-bQo"/>
                 <constraint firstItem="zzf-l1-h2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="110" id="M6A-Ko-KPN"/>
+                <constraint firstAttribute="trailing" secondItem="IBc-IU-N3e" secondAttribute="trailing" id="M9q-OC-dnB"/>
                 <constraint firstItem="zzf-l1-h2r" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NqK-QF-o5G"/>
+                <constraint firstAttribute="trailing" secondItem="gvG-SP-Xw9" secondAttribute="trailing" id="QNf-u8-mnL"/>
                 <constraint firstAttribute="trailing" secondItem="D4I-V7-Lq8" secondAttribute="trailing" id="RG0-t1-SdH"/>
                 <constraint firstItem="gvG-SP-Xw9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Utc-go-fis"/>
-                <constraint firstItem="D4I-V7-Lq8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="20" id="jWm-K5-LfS"/>
+                <constraint firstItem="IBc-IU-N3e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XfJ-Bt-meQ"/>
+                <constraint firstItem="IBc-IU-N3e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i64-cn-6sJ"/>
+                <constraint firstItem="D4I-V7-Lq8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="jWm-K5-LfS"/>
                 <constraint firstItem="zJc-a6-w0g" firstAttribute="centerX" secondItem="zzf-l1-h2r" secondAttribute="centerX" id="o3v-bI-hym"/>
                 <constraint firstAttribute="bottom" secondItem="gvG-SP-Xw9" secondAttribute="bottom" constant="100" id="oAj-AT-gkX"/>
+                <constraint firstAttribute="bottom" secondItem="gvG-SP-Xw9" secondAttribute="bottom" id="oXx-Sh-f7v"/>
+                <constraint firstAttribute="bottom" secondItem="IBc-IU-N3e" secondAttribute="bottom" id="rKM-Zw-yYn"/>
                 <constraint firstItem="D4I-V7-Lq8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z5x-Mj-9w7"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="4CA-HR-mXW"/>
+                    <exclude reference="jWm-K5-LfS"/>
+                    <exclude reference="oAj-AT-gkX"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="299" y="196"/>
         </view>
     </objects>
+    <resources>
+        <image name="nationalD" width="960" height="640"/>
+    </resources>
 </document>

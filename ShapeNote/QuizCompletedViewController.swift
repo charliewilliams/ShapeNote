@@ -22,7 +22,7 @@ class QuizCompletedViewController: UIViewController {
         
         headlineLabel.text = phraseForScore().string
 //        backgroundImageView.image = phraseForScore().image
-        detailLabel.text = "You got \(numberCorrect) out of \(numberOfQuestions) right."
+        detailLabel.text = "You got\n\(numberCorrect)\nout of\n\(numberOfQuestions)\nright."
     }
     
     func phraseForScore() -> (string:String, image:String?) {
