@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" defaultValueString="#shapenote" syncable="YES"/>
         <attribute name="hashTag" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,10 +28,10 @@
     </entity>
     <entity name="Singer" representedClassName="Singer" syncable="YES">
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstSingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastSingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="singers" inverseEntity="Group" syncable="YES"/>
@@ -54,11 +54,11 @@
         <relationship name="ledBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Leading" inverseName="song" inverseEntity="Leading" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="160" positionY="-153" width="128" height="135"/>
-        <element name="Group" positionX="-567" positionY="54" width="128" height="88"/>
-        <element name="Leading" positionX="-207" positionY="128" width="128" height="105"/>
-        <element name="Minutes" positionX="-227" positionY="-238" width="128" height="118"/>
-        <element name="Singer" positionX="-378" positionY="143" width="128" height="193"/>
-        <element name="Song" positionX="-9" positionY="9" width="128" height="240"/>
+        <element name="Book" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Group" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Leading" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Minutes" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Singer" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Song" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

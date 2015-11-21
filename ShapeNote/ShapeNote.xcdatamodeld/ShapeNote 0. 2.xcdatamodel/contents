@@ -31,10 +31,10 @@
     </entity>
     <entity name="Singer" representedClassName="Singer" syncable="YES">
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstSingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastSingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voice" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="singers" inverseEntity="Group" syncable="YES"/>
@@ -60,11 +60,11 @@
         <relationship name="ledBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lesson" inverseName="song" inverseEntity="Lesson" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="160" positionY="-153" width="128" height="135"/>
-        <element name="Group" positionX="-567" positionY="54" width="128" height="88"/>
-        <element name="Lesson" positionX="-207" positionY="128" width="128" height="135"/>
-        <element name="Minutes" positionX="-227" positionY="-238" width="128" height="135"/>
-        <element name="Singer" positionX="-378" positionY="143" width="128" height="195"/>
-        <element name="Song" positionX="-9" positionY="9" width="128" height="285"/>
+        <element name="Book" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Group" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Lesson" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Minutes" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Singer" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Song" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
