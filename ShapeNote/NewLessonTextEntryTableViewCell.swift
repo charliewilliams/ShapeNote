@@ -12,4 +12,5 @@ class NewLessonTextEntryTableViewCell: UITableViewCell {
 
     @IBOutlet var leftTextLabel: UILabel!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var backgroundImageView: UIImageView!
 }

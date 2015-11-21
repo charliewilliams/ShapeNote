@@ -14,6 +14,7 @@ class NewLessonTableViewCell: UITableViewCell {
     @IBOutlet var leftTextLabel: UILabel!
     @IBOutlet var rightTextLabel: UILabel!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var backgroundImageView: UIImageView!
     
     var parentTableViewController:NewLessonViewController? {
         didSet {

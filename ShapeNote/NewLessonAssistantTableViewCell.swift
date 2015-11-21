@@ -14,6 +14,7 @@ class NewLessonAssistantTableViewCell: UITableViewCell {
     @IBOutlet var leftTextLabel: UILabel!
     @IBOutlet var rightTextLabel: UILabel!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var backgroundImageView: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
