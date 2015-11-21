@@ -21,7 +21,7 @@ class MinutesListViewController: UITableViewController {
         get {
             if _allMinutes == nil {
                 
-                let group = CoreDataHelper.sharedHelper.currentlySelectedGroup
+                guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else { return [] }
                     
                 navigationItem.title = group.name + ": Minutes"
                 if let m = CoreDataHelper.sharedHelper.minutes(group) {
@@ -81,15 +81,9 @@ class MinutesListViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath?) -> MinuteTakingViewController {
+    func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath) -> MinuteTakingViewController {
         
-        var m:Minutes
-        if let indexPath = indexPath {
-            m = allMinutes[indexPath.row]
-        } else {
-            m = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.sharedHelper.managedObjectContext!) as! Minutes
-        }
-
+        let m = allMinutes[indexPath.row]
         let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         
@@ -117,6 +111,7 @@ class MinutesListViewController: UITableViewController {
         if let mtvc = segue.destinationViewController as? MinuteTakingViewController where mtvc.minutes == nil {
             mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext) as? Minutes
             mtvc.minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
+            CoreDataHelper.sharedHelper.saveContext()
         }
     }
 }
