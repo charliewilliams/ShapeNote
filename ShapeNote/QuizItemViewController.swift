@@ -27,7 +27,7 @@ class QuizItemViewController: UIViewController {
         didSet {
             if let question = question,
             let answers = question.answers {
-                self.questionLabel.text = question.exampleStringForQuestionPair
+                self.questionLabel.attributedText = question.exampleStringForQuestionPair
                 let buttons = answerButtons
                 
                 for (index, answer) in answers.enumerate() {

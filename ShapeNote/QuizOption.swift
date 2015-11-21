@@ -94,13 +94,13 @@ struct QuizOption: Hashable {
         }
     }
     
-    var exampleStringForQuestionPair:String {
+    var exampleStringForQuestionPair:NSAttributedString {
         var s = String()
         let X = (question != nil) ? question! : "X"
         
         switch self.questionType {
         case .Title:
-            s = QuestionVerb.Title.rawValue + " \(X) "
+            s = QuestionVerb.Title.rawValue + "\(X) "
         case .Composer:
             // Composer names are written Last, First
             // but that's annoying to read in the quiz
@@ -138,7 +138,15 @@ struct QuizOption: Hashable {
         
         s += ":"
         
-        return s
+        let italics = [NSFontAttributeName:UIFont.italicSystemFontOfSize(24)]
+        let nonItalics = [NSFontAttributeName:UIFont.systemFontOfSize(24)]
+        let nsstring = NSString(string: s)
+        let range = nsstring.rangeOfString(X)
+        
+        let attrQuestion = NSMutableAttributedString(string: s, attributes: nonItalics)
+        attrQuestion.addAttributes(italics, range: range)
+        
+        return attrQuestion
     }
     
     var hashValue: Int {
