@@ -31,24 +31,27 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if (singer != nil) {
-            
-            title = singer?.name
-            nameTextField.text = singer?.name
-            displayNameTextField.text = singer?.shortName
-            
-            if singer?.group?.fault == false {
-                homeSingingTextField.text = singer?.group?.name
-            }
-            
-            twitterHandleTextField.text = singer?.twitter
-            tagOnFacebookSwitch.on = singer?.facebook != nil
-            voiceTypeTextField.text = singer?.voice
-            
-        } else {
-            
+        guard let singer = singer else {
             title = "New Singer"
+            return
         }
+        
+        title = singer.firstName
+        if let first = singer.firstName {
+            nameTextField.text = first
+            if let last = singer.lastName {
+                nameTextField.text = first + " " + last
+            }
+        }
+        displayNameTextField.text = singer.firstName
+        
+        if singer.group?.fault == false {
+            homeSingingTextField.text = singer.group?.name
+        }
+        
+        twitterHandleTextField.text = singer.twitter
+        tagOnFacebookSwitch.on = singer.facebook != nil
+        voiceTypeTextField.text = singer.voice
     }
     
     @IBAction func donePressed(sender: AnyObject) {
@@ -61,26 +64,27 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             singer = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as? Singer
         }
         
-        let _singer = singer!
-        _singer.name = name
-        _singer.shortName = displayNameTextField.text
+        guard let singer = singer else { return }
+        singer.firstName = name.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).first
+        singer.lastName = name.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).last
+        singer.displayName = displayNameTextField.text ?? singer.firstName
         
         if let homeSingingName = homeSingingTextField.text, let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName) {
-            _singer.group = group
+            singer.group = group
         }
         
         if let voiceType = voiceTypeTextField.text {
-            _singer.voice = validatedVoiceType(voiceType).rawValue
+            singer.voice = validatedVoiceType(voiceType).rawValue
         }
         
         if var twitter = twitterHandleTextField.text {
             if twitter.hasPrefix("@") == false {
                 twitter = "@" + twitter
             }
-            _singer.twitter = twitter
+            singer.twitter = twitter
         }
 
-        _singer.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
+        singer.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
         
         CoreDataHelper.sharedHelper.saveContext()
         

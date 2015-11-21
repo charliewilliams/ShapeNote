@@ -21,8 +21,9 @@ enum Voice: String {
 
 class Singer: NSManagedObject {
     
-    @NSManaged var name: String
-    @NSManaged var shortName: String?
+    @NSManaged var displayName: String?
+    @NSManaged var firstName: String?
+    @NSManaged var lastName: String?
     @NSManaged var voice: String?
     @NSManaged var twitter: String?
     @NSManaged var facebook: String?
@@ -31,4 +32,8 @@ class Singer: NSManagedObject {
     @NSManaged var group: Group?
     @NSManaged var songs: Lesson?
     @NSManaged var minutes: NSSet?
+    
+    var name:String {
+        return displayName ?? firstName ?? ""
+    }
 }
