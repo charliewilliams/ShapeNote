@@ -18,9 +18,9 @@ class CoreDataHelper {
         return Static.instance
     }
     
-    var currentlySelectedGroup:Group {
+    var currentlySelectedGroup:Group? {
         get {
-            return groupWithName(Defaults.currentGroupName)!
+            return groupWithName(Defaults.currentGroupName)
         }
     }
     
@@ -174,7 +174,7 @@ class CoreDataHelper {
         if coordinator == nil {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext()
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()

@@ -9,7 +9,7 @@
 import Foundation
 import ParseFacebookUtils
 
-typealias Completion = ([NSDictionary] -> ())
+typealias Completion = (() -> ())
 
 class FacebookUserHelper {
     
@@ -32,16 +32,17 @@ class FacebookUserHelper {
         for singer:Singer in CoreDataHelper.sharedHelper.singers() {
             if (singer.name == user.name) {
                 singer.facebook = user.objectID
-                singer.shortName = user.first_name
+                singer.firstName = user.first_name
                 CoreDataHelper.sharedHelper.currentSinger = singer
             }
         }
         
         // ???
-        if let existingUser = PFUser.currentUser(),
-            let groups = existingUser[PFKey.groups.rawValue] as? [NSDictionary] where existingUser[PFKey.group.rawValue] == nil {
-                completion(groups)
-                return
+        if let _ = PFUser.currentUser() {
+            ParseHelper.sharedHelper.refresh({ () -> () in
+                completion()
+            })
+            return
         }
         
         // 2. Log in OR create the user on the server if they don't exist
@@ -57,7 +58,9 @@ class FacebookUserHelper {
                 print("WELCOME BACK")
             }
             
-            self?.getGroupsForUser(user)
+            ParseHelper.sharedHelper.refresh({ () -> () in
+                completion()
+            })
         }
     }
     
@@ -90,32 +93,38 @@ class FacebookUserHelper {
         PFFacebookUtils.linkUser(pfUser, permissions: permissions) { [weak self] (success:Bool, error:NSError?) -> Void in
             print(error)
             
-            if let fbUser = self?.fbUser
+            if let _ = self?.fbUser
                 where success && error == nil {
-                self?.getGroupsForUser(fbUser)
+                    
+                    ParseHelper.sharedHelper.refresh({ () -> () in
+                        
+                    })
+                    
+                // just awesome I guess
+                    
             } else {
                 self?.handleError(error)
             }
         }
     }
     
-    func getGroupsForUser(user: FBGraphUser) {
-        
-        // 3. Get the list of groups and pick the ones that say "Sacred Harp"
-        FBRequest(forGraphPath: "/\(user.objectID)/groups").startWithCompletionHandler { [weak self] (connection:FBRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
-            
-            guard let data = data as? FBGraphObject,
-                let groups = data["data"] as? [NSDictionary]
-                where error == nil
-                else { self?.handleError(error); return }
-            
-            if let user = PFUser.currentUser() {
-                user["groups"] = groups
-            }
-            // 4. Return those so a view can make a "home singing" picker
-            self?.completion?(groups)
-        }
-    }
+//    func getGroupsForUser(user: FBGraphUser) {
+//        
+//        // 3. Get the list of groups and pick the ones that say "Sacred Harp"
+//        FBRequest(forGraphPath: "/\(user.objectID)/groups").startWithCompletionHandler { [weak self] (connection:FBRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
+//            
+//            guard let data = data as? FBGraphObject,
+//                let groups = data["data"] as? [NSDictionary]
+//                where error == nil
+//                else { self?.handleError(error); return }
+//            
+//            if let user = PFUser.currentUser() where groups.count > 0 {
+//                user["groups"] = groups
+//            }
+//            // 4. Return those so a view can make a "home singing" picker
+//            self?.completion?(groups)
+//        }
+//    }
     
     func handleError(error:NSError?) {
         
