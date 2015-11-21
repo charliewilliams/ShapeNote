@@ -92,6 +92,12 @@
 		C0C1D4AE1A813B120082C0EB /* BAVPlistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D49F1A813B120082C0EB /* BAVPlistNode.m */; };
 		C0C1D4AF1A813B120082C0EB /* JSONSyntaxHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D4A11A813B120082C0EB /* JSONSyntaxHighlight.m */; };
 		C0C1D4B01A813B120082C0EB /* STHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D4A31A813B120082C0EB /* STHTTPRequest.m */; };
+		C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */; };
+		C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */; };
+		C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */; };
+		C0EA4E221BFFBF47000CCF81 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E201BFFBF47000CCF81 /* Login.storyboard */; };
+		C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */; };
+		C0EA4E261BFFC061000CCF81 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,7 +183,6 @@
 		C09A650A1A7EDA8600099E76 /* Minutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minutes.swift; sourceTree = "<group>"; };
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
 		C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		C0BE7DB41BE6359A006383CC /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		C0BE7DB61BE6A169006383CC /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +220,12 @@
 		C0C1D4A31A813B120082C0EB /* STHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTTPRequest.m; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNote-Bridging-Header.h"; sourceTree = "<group>"; };
+		C0EA4E181BFFBEBC000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Minutes.storyboard; sourceTree = "<group>"; };
+		C0EA4E1B1BFFBEE9000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongList.storyboard; sourceTree = "<group>"; };
+		C0EA4E1E1BFFBF09000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Singers.storyboard; sourceTree = "<group>"; };
+		C0EA4E211BFFBF47000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
+		C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +268,6 @@
 		0AB1ED6FCD97449B42354A2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C09A96C31A7ED65A009D1C29 /* FacebookSDK.framework */,
 				C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */,
 				C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */,
 				C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */,
@@ -301,6 +311,7 @@
 			children = (
 				C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */,
 				C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */,
+				C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */,
 				C05626931BED429000E05EBE /* GroupsPickerViewController.swift */,
 				C05626941BED429000E05EBE /* GroupsPickerViewController.xib */,
 			);
@@ -362,6 +373,11 @@
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
+				C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */,
+				C0EA4E201BFFBF47000CCF81 /* Login.storyboard */,
+				C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */,
+				C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */,
+				C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */,
 				C0515B911A7BBA810006ED16 /* Managed Objects */,
 				C02E18901BF11BB800FF2057 /* Minute-taking */,
 				C02E18911BF11BD300FF2057 /* Song Lists */,
@@ -589,9 +605,14 @@
 				C092E8601A8914B6002594A5 /* CH.json in Resources */,
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
+				C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */,
+				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
+				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
+				C0EA4E221BFFBF47000CCF81 /* Login.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
+				C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */,
 				C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */,
 				C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
@@ -692,6 +713,7 @@
 				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
+				C0EA4E261BFFC061000CCF81 /* ParseHelper.swift in Sources */,
 				C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */,
 				C0C1D4A71A813B120082C0EB /* STHTTPRequest+STTwitter.m in Sources */,
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
@@ -777,6 +799,38 @@
 				C0515B6D1A7BA59D0006ED16 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0EA4E181BFFBEBC000CCF81 /* Base */,
+			);
+			name = Minutes.storyboard;
+			sourceTree = "<group>";
+		};
+		C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0EA4E1B1BFFBEE9000CCF81 /* Base */,
+			);
+			name = SongList.storyboard;
+			sourceTree = "<group>";
+		};
+		C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0EA4E1E1BFFBF09000CCF81 /* Base */,
+			);
+			name = Singers.storyboard;
+			sourceTree = "<group>";
+		};
+		C0EA4E201BFFBF47000CCF81 /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0EA4E211BFFBF47000CCF81 /* Base */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -898,7 +952,7 @@
 					"\"$(SRCROOT)/../../Documents/FacebookSDK\"/**",
 				);
 				INFOPLIST_FILE = ShapeNote/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -939,7 +993,7 @@
 					"\"$(SRCROOT)/../../Documents/FacebookSDK\"/**",
 				);
 				INFOPLIST_FILE = ShapeNote/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

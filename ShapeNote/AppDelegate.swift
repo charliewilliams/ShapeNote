@@ -12,6 +12,10 @@ import Crashlytics
 import TwitterKit
 import ParseFacebookUtils
 
+enum Notification:String {
+    case CloudRefreshDidFinish = "CloudRefreshDidFinishNotification"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -22,11 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics(), Twitter()])
         
-        Parse.setApplicationId("MvJxV7TztlSI8c0bi59MR6HqUfe24N53Rhgsa51a", clientKey: "2exXKyLLRXMe2WM8maCDEOVB2yTrRm6i5cLTUOP6")
+        Parse.setApplicationId("0YYog5pb5aCTUfaUyZdsZ22SREVd9SVJ1NQk5wyE", clientKey: "dnD2BN0PhqOiJurEmSpLFcUTEHuneJeat4CXnnyH")
         PFFacebookUtils.initializeFacebook()
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         JSONLoader.sharedLoader.handleFirstRun()
+        
+        ParseHelper.sharedHelper.refresh { () -> () in
+            NSNotificationCenter.defaultCenter().postNotificationName(Notification.CloudRefreshDidFinish.rawValue, object: nil)
+        }
         
         return true
     }
