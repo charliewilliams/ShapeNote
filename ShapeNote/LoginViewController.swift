@@ -73,11 +73,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
             where fbSession.isOpen {
                 
                 setConstraintsForFacebookLoginStatus(true)
-                
-//                fbSession.permissions as [AnyObject]
-//                if permissions.containsObject("publish_actions") == false || permissions.containsObject("user_groups") == false {
-//                    doManualFacebookLogin()
-//                }
+
         } else {
             setConstraintsForFacebookLoginStatus(false)
         }
@@ -130,6 +126,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
                 guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
                 
                 FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () in
+                    self?.showLoggedInUserName(user)
                     if self?.shouldShowGroupsPicker() == true {
                         self?.showGroupsPicker()
                     }
@@ -141,14 +138,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
         facebookUser = user
-        self.userFullNameLabel.text = "Logged in as \(user.name)"
-        self.userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
-        
-        // TODO only if we need to download the photo!
-//        FBRequest.requestForMe().startWithCompletionHandler { (connection:FBRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
-//            
-//            print(data)
-//        }
+        showLoggedInUserName(user)
         
         guard let permissions = FBSession.activeSession().permissions as? [String] else {
             refreshPublishPermissions(FBSession.activeSession())
@@ -162,6 +152,11 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         }
     }
     
+    func showLoggedInUserName(user: FBGraphUser) {
+        self.userFullNameLabel.text = "Logged in as \(user.name)"
+        self.userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
+    }
+    
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
         userFullNameLabel.text = "Log in to find your local singing"
         userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedOutPointSize)
@@ -169,7 +164,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func shouldShowGroupsPicker() -> Bool {
-        if let user = PFUser.currentUser() where user["group"] == nil && CoreDataHelper.sharedHelper.groups().count > 0 {
+        if let user = PFUser.currentUser() where user[PFKey.group.rawValue] == nil && CoreDataHelper.sharedHelper.groups().count > 0 {
             return true
         }
         return false

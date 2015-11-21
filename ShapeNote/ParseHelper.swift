@@ -90,7 +90,7 @@ class ParseHelper {
             try CoreDataHelper.sharedHelper.persistentStoreCoordinator!.executeRequest(deleteRequest, withContext: CoreDataHelper.managedContext)
         } catch let error as NSError {
             
-            let alert = UIAlertController(title: "Internal Error", message: "Error switching groups. If you see strange things, please delete the app and reinstall.\n" + error.localizedDescription, preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Internal Error", message: "Error switching groups. If you see strange things, please delete the app and reinstall." + error.localizedDescription, preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }))
@@ -104,7 +104,8 @@ class ParseHelper {
     func refreshSingersForSelectedGroup(completion:CompletionBlock) {
         
         guard let user = PFUser.currentUser(),
-            let group = user["group"] else {
+            let singer = user["Singer"],
+            let group = singer[PFKey.group.rawValue] as? PFObject else {
                 completion()
                 return
         }

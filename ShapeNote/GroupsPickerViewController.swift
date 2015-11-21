@@ -77,10 +77,27 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
     }
     
     func saveGroup(group:Group, onUser user:PFUser) {
-        if let singer = user[PFKey.singer.rawValue] as? PFObject,
+        
+        var singer = user[PFKey.singer.rawValue] as? PFObject
+        if singer == nil {
+            singer = PFObject(className: "Singer")
+            if let firstName = user["firstName"] {
+                singer!["firstName"] = firstName
+            }
+            if let lastName = user["lastName"] {
+                singer!["lastName"] = lastName
+            }
+            user["Singer"] = singer!
+        }
+        
+        if let singer = singer,
         let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
             singer[PFKey.group.rawValue] = pfGroup
             singer.saveEventually()
+        }
+        
+        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { () -> () in
+            
         }
     }
 
