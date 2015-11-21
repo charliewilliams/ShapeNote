@@ -63,10 +63,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchController.dimsBackgroundDuringPresentation = false
         
         buildSearchBar()
-
-//        navigationController?.navigationBar.opaque = true
-//        navigationController?.navigationBar.translucent = false
-//        definesPresentationContext = true
     }
     
     func buildSearchBar() {
@@ -77,13 +73,21 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
         tableView.tableHeaderView = searchBar
         
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 128))
+        let width = UIScreen.mainScreen().bounds.size.width
+        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: width))
+//        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0))
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         searchController.active = true
         dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
-            self?.searchBar.becomeFirstResponder()
+            
+            guard let searchBar = self?.searchBar else { return }
+            searchBar.becomeFirstResponder()
+            
         }
     }
     
@@ -198,7 +202,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         } else if let newSingerName = textField.text {
             
             let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as! Singer
-            newSinger.name = newSingerName
+            
+            var components = newSingerName.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            newSinger.firstName = components.first
+            if components.count > 1 {
+                components.removeAtIndex(0)
+                newSinger.lastName = components.joinWithSeparator(" ")
+            }
             CoreDataHelper.sharedHelper.saveContext()
             chosenSingers.append(newSinger)
             searchingSingers = false
