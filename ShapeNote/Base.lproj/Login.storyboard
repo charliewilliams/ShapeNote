@@ -1,199 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="yl2-sM-qoP">
-            <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="O1G-Wh-9uq" kind="relationship" relationship="viewControllers" id="21c-aI-3mS"/>
-                        <segue destination="XrP-vU-mBa" kind="relationship" relationship="viewControllers" id="aKT-SS-2WI"/>
-                        <segue destination="Acb-V1-ENp" kind="relationship" relationship="viewControllers" id="iqc-At-rf9"/>
-                        <segue destination="REg-5d-aJe" kind="relationship" relationship="viewControllers" id="ClZ-WB-Dg9"/>
-                        <segue destination="YST-Ac-GE9" kind="relationship" relationship="viewControllers" id="6Qa-Cm-sAS"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-208.5" y="-9"/>
-        </scene>
-        <!--Test Your Knowledge-->
-        <scene sceneID="1hJ-Ks-7Di">
-            <objects>
-                <tableViewController id="cIv-xH-E25" customClass="QuizSetupViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VR8-DB-gxF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wdi-Q4-Cb9" customClass="QuizQuestionTypeTableViewCell" customModule="ShapeNote" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wdi-Q4-Cb9" id="pmn-nj-20Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOg-Lk-KF1">
-                                            <rect key="frame" x="8" y="7" width="46" height="30"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                            <connections>
-                                                <action selector="selectionButtonPressed:" destination="wdi-Q4-Cb9" eventType="touchUpInside" id="ElI-5T-v7Z"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Given the number, what's the title?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEt-um-TWg">
-                                            <rect key="frame" x="62" y="11" width="530" height="21"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                                <connections>
-                                    <outlet property="label" destination="wEt-um-TWg" id="otO-0Q-mAS"/>
-                                    <outlet property="selectionButton" destination="XOg-Lk-KF1" id="sm1-w8-sZf"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="cIv-xH-E25" id="Ra3-JK-UIW"/>
-                            <outlet property="delegate" destination="cIv-xH-E25" id="SYO-yj-DFa"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="mkj-Q7-SFH"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Test Your Knowledge" id="eqS-9g-9ix">
-                        <barButtonItem key="backBarButtonItem" title="Quiz" id="a5m-vn-gW0"/>
-                        <barButtonItem key="leftBarButtonItem" title="Show All" id="QpM-eo-7JS">
-                            <connections>
-                                <action selector="showAllButtonPressed:" destination="cIv-xH-E25" id="IsE-1v-wnz"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Go!" style="done" id="H6E-yL-qJG">
-                            <connections>
-                                <segue destination="KQO-ra-Aa8" kind="show" id="USG-sK-LCo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="goTakeQuizButton" destination="H6E-yL-qJG" id="fCJ-DI-Gnp"/>
-                        <outlet property="showAllButton" destination="QpM-eo-7JS" id="Jli-Dx-sjc"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jxw-RS-SQM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1348" y="130"/>
-        </scene>
-        <!--Question-->
-        <scene sceneID="IPn-Bs-gxI">
-            <objects>
-                <viewController id="KQO-ra-Aa8" customClass="QuizInProgressViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SXl-pR-u9I"/>
-                        <viewControllerLayoutGuide type="bottom" id="UKn-cI-2hW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6Cu-cb-Ch7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The song &quot;Evening Shade&quot; is number…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ami-W3-Ebi">
-                                <rect key="frame" x="20" y="114" width="560" height="29"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-YJ-hs2">
-                                <rect key="frame" x="20" y="193" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="471"/>
-                                <connections>
-                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="UFU-2s-x9v"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmP-cL-dVi">
-                                <rect key="frame" x="20" y="264" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="12"/>
-                                <connections>
-                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="NJm-3P-2i8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p59-MI-1ei">
-                                <rect key="frame" x="20" y="335" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="301"/>
-                                <connections>
-                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="8Dy-S7-fna"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP3-2a-sh3">
-                                <rect key="frame" x="20" y="406" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="25"/>
-                                <connections>
-                                    <action selector="answerButtonPressed:" destination="KQO-ra-Aa8" eventType="touchUpInside" id="PuH-0M-Gsb"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="fP3-2a-sh3" firstAttribute="centerX" secondItem="p59-MI-1ei" secondAttribute="centerX" id="9wO-yd-f2J"/>
-                            <constraint firstItem="fP3-2a-sh3" firstAttribute="width" secondItem="p59-MI-1ei" secondAttribute="width" id="Sv6-b1-k9q"/>
-                            <constraint firstItem="fP3-2a-sh3" firstAttribute="top" secondItem="p59-MI-1ei" secondAttribute="bottom" constant="30" id="Z3t-8h-NEC"/>
-                            <constraint firstItem="fmP-cL-dVi" firstAttribute="width" secondItem="hAY-YJ-hs2" secondAttribute="width" id="aGg-Ya-cGD"/>
-                            <constraint firstItem="hAY-YJ-hs2" firstAttribute="trailing" secondItem="6Cu-cb-Ch7" secondAttribute="trailingMargin" id="fGW-wK-N9z"/>
-                            <constraint firstItem="ami-W3-Ebi" firstAttribute="trailing" secondItem="6Cu-cb-Ch7" secondAttribute="trailingMargin" id="fWJ-QE-5bw"/>
-                            <constraint firstItem="p59-MI-1ei" firstAttribute="top" secondItem="fmP-cL-dVi" secondAttribute="bottom" constant="30" id="hZt-01-5GD"/>
-                            <constraint firstItem="hAY-YJ-hs2" firstAttribute="top" secondItem="ami-W3-Ebi" secondAttribute="bottom" constant="50" id="kbC-Us-zZ9"/>
-                            <constraint firstItem="ami-W3-Ebi" firstAttribute="leading" secondItem="6Cu-cb-Ch7" secondAttribute="leadingMargin" id="nYG-2l-ebZ"/>
-                            <constraint firstItem="fmP-cL-dVi" firstAttribute="top" secondItem="hAY-YJ-hs2" secondAttribute="bottom" constant="30" id="o3B-kQ-otX"/>
-                            <constraint firstItem="p59-MI-1ei" firstAttribute="centerX" secondItem="fmP-cL-dVi" secondAttribute="centerX" id="sDt-UB-BuH"/>
-                            <constraint firstItem="ami-W3-Ebi" firstAttribute="top" secondItem="SXl-pR-u9I" secondAttribute="bottom" constant="50" id="t1e-FD-Ic1"/>
-                            <constraint firstItem="fmP-cL-dVi" firstAttribute="centerX" secondItem="hAY-YJ-hs2" secondAttribute="centerX" id="tBe-QP-MXJ"/>
-                            <constraint firstItem="p59-MI-1ei" firstAttribute="width" secondItem="fmP-cL-dVi" secondAttribute="width" id="ukc-gY-Je3"/>
-                            <constraint firstItem="hAY-YJ-hs2" firstAttribute="leading" secondItem="6Cu-cb-Ch7" secondAttribute="leadingMargin" id="ycO-pl-F8N"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Question" id="r4P-8m-FQh">
-                        <barButtonItem key="backBarButtonItem" title="Quiz" id="dm7-e3-sGY"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="answerButton1" destination="hAY-YJ-hs2" id="jXf-5t-jtd"/>
-                        <outlet property="answerButton2" destination="fmP-cL-dVi" id="pYa-zC-cvz"/>
-                        <outlet property="answerButton3" destination="p59-MI-1ei" id="5rH-Pm-fXA"/>
-                        <outlet property="answerButton4" destination="fP3-2a-sh3" id="eZy-xY-bDr"/>
-                        <outlet property="questionLabel" destination="ami-W3-Ebi" id="pY1-gq-XdS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jKN-sb-ZHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2042" y="130"/>
-        </scene>
         <!--Delegate-->
         <scene sceneID="ek2-7Z-A7C">
             <objects>
@@ -292,29 +104,12 @@
             </objects>
             <point key="canvasLocation" x="1347" y="840"/>
         </scene>
-        <!--Quiz-->
-        <scene sceneID="G8E-Ku-qAE">
-            <objects>
-                <navigationController id="O1G-Wh-9uq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Quiz" image="top_charts" id="h6M-wy-ehY"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k44-x6-mlT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="cIv-xH-E25" kind="relationship" relationship="rootViewController" id="Bru-OB-MWf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cfy-hW-4Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="647" y="130"/>
-        </scene>
         <!--Login-->
         <scene sceneID="pbX-AK-0iB">
             <objects>
-                <navigationController id="XrP-vU-mBa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UINavigationController-XrP-vU-mBa" id="XrP-vU-mBa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Login" image="contacts" id="ovs-gf-jjK"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aqg-AC-gkJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -328,48 +123,9 @@
             </objects>
             <point key="canvasLocation" x="647" y="840"/>
         </scene>
-        <!--UINavigationController-acG-gu-NL8-->
-        <scene sceneID="6Jv-Ip-Tyh">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Minutes" referencedIdentifier="UINavigationController-acG-gu-NL8" id="Acb-V1-ENp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8vY-gZ-VmC"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pOh-o3-KSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="505.5" y="-697.5"/>
-        </scene>
-        <!--MinuteTakingViewController-->
-        <scene sceneID="HRH-PZ-QRU">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MinuteTakingViewController" storyboardName="Minutes" referencedIdentifier="MinuteTakingViewController" id="478-KE-kyy" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1aA-s1-tQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="752.5" y="-698"/>
-        </scene>
-        <!--SongList-->
-        <scene sceneID="x7S-VR-jcG">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SongList" id="REg-5d-aJe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fyj-Gt-FOF"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m1v-99-TzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="452" y="-554"/>
-        </scene>
-        <!--Singers-->
-        <scene sceneID="Xee-OT-WeM">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Singers" id="YST-Ac-GE9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gpI-K0-a66"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TJH-ZN-eV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="424" y="-269"/>
-        </scene>
     </scenes>
     <resources>
         <image name="contacts" width="32" height="32"/>
         <image name="leading" width="600" height="931"/>
-        <image name="top_charts" width="32" height="32"/>
     </resources>
 </document>
