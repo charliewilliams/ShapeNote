@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>5</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -69,6 +69,10 @@
 	<string>340955376092604</string>
 	<key>FacebookDisplayName</key>
 	<string>ShapeNote</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>

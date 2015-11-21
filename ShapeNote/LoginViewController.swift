@@ -33,6 +33,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         
         self.facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
         self.facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -54,11 +56,11 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     // MARK: ----------- Facebook functions
     func requiredFacebookReadPermissions() -> [String] {
-        return ["public_profile", "user_friends", "email", "user_likes"]
+        return ["public_profile", "user_friends", "email", "user_likes", "user_managed_groups", "user_groups"]
     }
     
     func requiredFacebookWritePermissions() -> [String] {
-        return ["publish_actions"]
+        return ["publish_actions", "publish_pages", "manage_pages"]
     }
     
     func allRequiredFacebookPermissions() -> [String] {
@@ -112,7 +114,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     func refreshPublishPermissions(session:FBSession!) {
         
-        let permissions = session.permissions as! [String]
+        let permissions = session.permissions as? [String] ?? [String]()
         let missingPermissions = allRequiredFacebookPermissions().filter { (element:String) -> Bool in
             return !permissions.contains(element)
         }
@@ -127,9 +129,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
                 
                 guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
                 
-                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (groups:[NSDictionary]) in
+                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () in
                     if self?.shouldShowGroupsPicker() == true {
-                        self?.showGroupsPicker(groups)
+                        self?.showGroupsPicker()
                     }
                 }
             }
@@ -148,11 +150,14 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
 //            print(data)
 //        }
         
-        guard let permissions = FBSession.activeSession().permissions as? [String] else { return }
+        guard let permissions = FBSession.activeSession().permissions as? [String] else {
+            refreshPublishPermissions(FBSession.activeSession())
+            return
+        }
         
-        FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (groups:[NSDictionary]) -> () in
+        FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () -> () in
             if self?.shouldShowGroupsPicker() == true {
-                self?.showGroupsPicker(groups)
+                self?.showGroupsPicker()
             }
         }
     }
@@ -164,17 +169,15 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func shouldShowGroupsPicker() -> Bool {
-        if let user = PFUser.currentUser() where user["group"] == nil {
+        if let user = PFUser.currentUser() where user["group"] == nil && CoreDataHelper.sharedHelper.groups().count > 0 {
             return true
         }
         return false
     }
     
-    func showGroupsPicker(groups:[NSDictionary]) {
+    func showGroupsPicker() {
         let pickerVC = GroupsPickerViewController(nibName:"GroupsPickerViewController", bundle: nil)
-        pickerVC.groups = groups
         self.presentViewController(pickerVC, animated: true, completion: nil)
-//        self.showViewController(pickerVC, sender: nil)
     }
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {

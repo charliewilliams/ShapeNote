@@ -49,7 +49,7 @@ class Lesson: NSManagedObject {
                     if (useTwitterHandles == true && singer.twitter != nil) {
                         name = singer.twitter!
                     } else {
-                        name = singer.shortName ?? singer.name
+                        name = singer.firstName ?? singer.name
                     }
                     
                     switch index {
