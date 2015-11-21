@@ -1094,13 +1094,7 @@ downloadProgressBlock:nil
 - (NSString *)urlEscapedUTF8EncodedSearchString:(NSString *)s {
     
     // don't encode colon ':' because we need to accept "from:username", see https://github.com/nst/STTwitter/issues/156
-    
-    NSString *s2 = (__bridge_transfer NSString *)(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                         (CFStringRef)s,
-                                                                                         NULL,
-                                                                                         CFSTR("!*'();@&=+$,/?%#[]"),
-                                                                                         kCFStringEncodingUTF8));
-    return s2;
+    return [s stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!*'();@&=+$,/?%#[]"] invertedSet]];
 }
 
 - (void)getSearchTweetsWithQuery:(NSString *)q

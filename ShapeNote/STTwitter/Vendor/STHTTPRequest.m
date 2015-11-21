@@ -979,12 +979,7 @@ static NSMutableArray *localCookiesStorage = nil;
 @implementation NSString (RFC3986)
 - (NSString *)st_stringByAddingRFC3986PercentEscapesUsingEncoding:(NSStringEncoding)encoding {
     
-    NSString *s = (__bridge_transfer NSString *)(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                         (CFStringRef)self,
-                                                                                         NULL,
-                                                                                         CFSTR("!*'();:@&=+$,/?%#[]"),
-                                                                                         kCFStringEncodingUTF8));
-    return s;
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!*'();@&=+$,/?%#[]"] invertedSet]];
 }
 @end
 
