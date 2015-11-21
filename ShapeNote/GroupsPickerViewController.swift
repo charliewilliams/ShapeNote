@@ -8,151 +8,80 @@
 
 import UIKit
 
-enum PFClass:String {
-    case LocalSinging = "LocalSinging"
-}
-
 enum PFKey:String {
     case name = "name"
     case group = "group"
+    case singer = "singer"
     case groups = "groups"
     case fbGroupID = "fbGroupID"
 }
 
 class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var groups:[NSDictionary]? {
-        didSet {
-            if let groups = groups where groups.count > 0 {
-                checkGroupsAgainstExistingOnServer(groups)
-            }
+    var _groups:[Group]?
+    var groups:[Group] {
+        if _groups == nil {
+            _groups = CoreDataHelper.sharedHelper.groups()
         }
+        return _groups!
     }
     var filtering = true
     @IBOutlet var pickerView: UIPickerView!
-    @IBOutlet var showAllGroupsButton: UIBarButtonItem!
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        guard let groups = groups else { return 0 }
-        
-        if filtering {
-            if let filteredGroups = filteredGroups
-            where filteredGroups.count > 0 {
-                return filteredGroups.count
-            }
-        }
-        
         return groups.count
     }
     
-    var filteredGroups:[NSDictionary]? {
-        return groups?.filter({ (element:NSDictionary) -> Bool in
-            if element["name"]?.containsString("Sacred") == true {
-                return true
-            }
-            if element["name"]?.containsString("Harp") == true {
-                return true
-            }
-            if element["name"]?.containsString("Shapenote") == true {
-                return true
-            }
-            if element["name"]?.containsString("Shape note") == true {
-                return true
-            }
-            
-            return false
-        })
-    }
-    
-    func checkGroupsAgainstExistingOnServer(newGroups:[NSDictionary]) {
-        
-        PFQuery(className: PFClass.LocalSinging.rawValue).findObjectsInBackgroundWithBlock { [weak self] (results:[PFObject]?, error:NSError?) -> Void in
-            
-            guard let results = results where error == nil  else { self?.handleError(error); return }
-            
-            let unknownGroups = newGroups.filter({ (group:NSDictionary) -> Bool in
-                
-                for result in results {
-                    if let storedGroupID = result[PFKey.fbGroupID.rawValue] as? String,
-                        let newGroupID = group["id"] as? String
-                        where storedGroupID == newGroupID {
-                        return true
-                    }
-                }
-                return false
-            })
-            
-            print(unknownGroups)
-            
-            var newGroupObjects = [PFObject]()
-            for newGroup in unknownGroups {
-                
-                let newGroupObject = PFObject(className: PFClass.LocalSinging.rawValue)
-                newGroupObject[PFKey.fbGroupID.rawValue] = newGroup["id"]
-                newGroupObject[PFKey.name.rawValue] = newGroup["name"]
-                newGroupObjects.append(newGroupObject)
-            }
-            
-            PFObject.saveAllInBackground(newGroupObjects, block: { (success:Bool, error:NSError?) -> Void in
-                self?.pickerView.reloadComponent(0)
-            })
-        }
-    }
-    
-    @IBAction func showAllGroupsPressed(sender: AnyObject) {
-        self.filtering = !self.filtering
-        self.pickerView.reloadAllComponents()
-        
-        if filtering {
-            self.showAllGroupsButton.title = "Turn Smart Filter On"
-        } else {
-            self.showAllGroupsButton.title = "Show All Groups"
-        }
-    }
-    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        guard let groups = groups else { return "" }
-        
-        if filtering {
-            if let filteredGroups = filteredGroups
-                where filteredGroups.count > 0 {
-                    return filteredGroups[row]["name"] as? String
-            }
-        }
-        
-        return groups[row]["name"] as? String
+        return groups[row].name
     }
     
-    @IBAction func donePressed(sender: AnyObject) {
-        
-        let index = pickerView.selectedRowInComponent(0)
-        if let group = groups?[index],
-            let user = PFUser.currentUser() {
-            print("Picked: \(group["name"])")
-                
-                if let existingGroup = user[PFKey.group.rawValue] {
-                    
-                    let alert = UIAlertController(title: "Replace \(existingGroup[PFKey.name.rawValue])?", message: nil, preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) -> Void in
-                        user[PFKey.group.rawValue] = group
-                        user.saveEventually()
-                    }))
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    
-                } else {
-                    user[PFKey.group.rawValue] = group
-                    user.saveEventually()
-                }
-        }
-        
+    @IBAction func cancelPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func setGroupPressed(sender: AnyObject) {
+        finish()
+    }
+    
+    @IBAction func donePressed(sender: UIBarButtonItem) {
+        finish()
+    }
+    
+    func finish() {
+    
+        let index = pickerView.selectedRowInComponent(0)
+        let group = groups[index]
+        guard let user = PFUser.currentUser() else { fatalError() }
+        
+        print("Picked: \(group.name)")
+        
+        if let existingGroup = user[PFKey.group.rawValue] as? PFObject where existingGroup[PFKey.name.rawValue] as! String != group.name {
+            
+            let alert = UIAlertController(title: "Replace \(existingGroup[PFKey.name.rawValue])?", message: nil, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) -> Void in
+                self.saveGroup(group, onUser: user)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        } else {
+            saveGroup(group, onUser: user)
+        }
+    
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func saveGroup(group:Group, onUser user:PFUser) {
+        if let singer = user[PFKey.singer.rawValue] as? PFObject,
+        let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
+            singer[PFKey.group.rawValue] = pfGroup
+            singer.saveEventually()
+        }
     }
 
     func handleError(error:NSError?) {

@@ -14,6 +14,5 @@ import CoreData
 class Group: NSManagedObject {
 
     @NSManaged var name: String
-    @NSManaged var singer: Singer
-
+    @NSManaged var singers: [Singer]
 }
