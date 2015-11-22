@@ -36,7 +36,15 @@ class MinutesListViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        TabBarManager.sharedManager.tabBarController = tabBarController
+        
         super.viewWillAppear(animated)
+        
+        if Defaults.isFirstRun {
+            handleFirstRun()
+            return
+        }
         _allMinutes = nil
         self.tableView.reloadData()
         
@@ -53,6 +61,11 @@ class MinutesListViewController: UITableViewController {
             
             noMinutesYetView.bounds.size.height = height
         }
+    }
+    
+    func handleFirstRun() {
+        let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController()
+        self.presentViewController(introVC!, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source

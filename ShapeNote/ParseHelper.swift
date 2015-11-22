@@ -104,10 +104,14 @@ class ParseHelper {
     func refreshSingersForSelectedGroup(completion:CompletionBlock) {
         
         guard let user = PFUser.currentUser(),
-            let singer = user["Singer"],
-            let group = singer[PFKey.group.rawValue] as? PFObject else {
-                completion()
-                return
+            let singer = user["Singer"] as? PFObject else { fatalError() }
+        
+
+        /// THIS IS FAILING
+        guard let group = singer[PFKey.group.rawValue] as? PFObject else {
+            fatalError()
+//                completion()
+//            return
         }
         
         let query = group.relationForKey("singers").query()
@@ -139,7 +143,7 @@ class ParseHelper {
                 }
             }
             CoreDataHelper.sharedHelper.saveContext()
+            TabBarManager.sharedManager.badgeSingersTab()
         })
     }
-    
 }

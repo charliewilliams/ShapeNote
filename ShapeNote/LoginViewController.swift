@@ -137,6 +137,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
+        TabBarManager.sharedManager.clearLoginTab()
+        Defaults.neverLoggedIn = false
+        
         facebookUser = user
         showLoggedInUserName(user)
         
