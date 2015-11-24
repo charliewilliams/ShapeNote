@@ -91,7 +91,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2G-A5-JWa">
-                                <rect key="frame" x="180" y="260" width="240" height="200"/>
+                                <rect key="frame" x="180" y="240" width="240" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•Keep track of your favorite songs here, instead of folding down page corners" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzh-Tv-6oE">
                                         <rect key="frame" x="8" y="8" width="224" height="50.5"/>
@@ -100,22 +100,29 @@
                                         <color key="textColor" red="0.43573717948717938" green="0.43573717948717938" blue="0.43573717948717938" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•Filter favorites by type, like &quot;Major Plaintune in 3&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wg-N9-lqa">
+                                        <rect key="frame" x="8" y="68" width="224" height="33.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•Easily post minutes to facebook (the app never posts unless you tell it to)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBi-P6-gOV">
-                                        <rect key="frame" x="8" y="66.5" width="224" height="50.5"/>
+                                        <rect key="frame" x="8" y="112" width="224" height="50.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.43573717948717938" green="0.43573717948717938" blue="0.43573717948717938" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•Live-tweet your singings automatically as you take minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MU4-x1-dfx">
-                                        <rect key="frame" x="8" y="125" width="224" height="33.5"/>
+                                        <rect key="frame" x="8" y="170" width="224" height="33.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.43573717948717938" green="0.43573717948717938" blue="0.43573717948717938" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•Also, there's a Shapenote quiz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nU-fr-bA2">
-                                        <rect key="frame" x="8" y="166.5" width="224" height="17"/>
+                                        <rect key="frame" x="8" y="212" width="224" height="17"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.43573717948717938" green="0.43573717948717938" blue="0.43573717948717938" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,19 +132,22 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="iBi-P6-gOV" firstAttribute="top" secondItem="8Wg-N9-lqa" secondAttribute="bottom" constant="10" id="1ZO-68-o5G"/>
                                     <constraint firstItem="2nU-fr-bA2" firstAttribute="width" secondItem="MU4-x1-dfx" secondAttribute="width" id="KvZ-Aj-PrO"/>
-                                    <constraint firstAttribute="height" constant="200" id="NZm-MC-r46"/>
+                                    <constraint firstAttribute="height" constant="240" id="NZm-MC-r46"/>
                                     <constraint firstItem="iBi-P6-gOV" firstAttribute="width" secondItem="kzh-Tv-6oE" secondAttribute="width" id="UlE-4q-yf7"/>
                                     <constraint firstItem="kzh-Tv-6oE" firstAttribute="leading" secondItem="e2G-A5-JWa" secondAttribute="leading" constant="8" id="VaJ-AQ-EDt"/>
+                                    <constraint firstItem="8Wg-N9-lqa" firstAttribute="centerX" secondItem="kzh-Tv-6oE" secondAttribute="centerX" id="Zfr-zs-ESH"/>
                                     <constraint firstItem="MU4-x1-dfx" firstAttribute="centerX" secondItem="iBi-P6-gOV" secondAttribute="centerX" id="dRQ-ak-siV"/>
                                     <constraint firstItem="iBi-P6-gOV" firstAttribute="centerX" secondItem="kzh-Tv-6oE" secondAttribute="centerX" id="dSE-dy-kkk"/>
-                                    <constraint firstItem="iBi-P6-gOV" firstAttribute="top" secondItem="kzh-Tv-6oE" secondAttribute="bottom" constant="8" id="gq6-Hd-1mf"/>
                                     <constraint firstItem="kzh-Tv-6oE" firstAttribute="top" secondItem="e2G-A5-JWa" secondAttribute="top" constant="8" id="gzS-bV-dmm"/>
                                     <constraint firstItem="MU4-x1-dfx" firstAttribute="width" secondItem="iBi-P6-gOV" secondAttribute="width" id="pf1-tM-MTT"/>
+                                    <constraint firstItem="8Wg-N9-lqa" firstAttribute="top" secondItem="kzh-Tv-6oE" secondAttribute="bottom" constant="10" id="qwx-Se-0s0"/>
                                     <constraint firstItem="MU4-x1-dfx" firstAttribute="top" secondItem="iBi-P6-gOV" secondAttribute="bottom" constant="8" id="tS9-3u-bSR"/>
                                     <constraint firstAttribute="width" constant="240" id="tpl-9r-qMY"/>
                                     <constraint firstItem="2nU-fr-bA2" firstAttribute="top" secondItem="MU4-x1-dfx" secondAttribute="bottom" constant="8" id="vKs-tT-alP"/>
                                     <constraint firstAttribute="trailing" secondItem="kzh-Tv-6oE" secondAttribute="trailing" constant="8" id="vLN-96-leT"/>
+                                    <constraint firstItem="8Wg-N9-lqa" firstAttribute="width" secondItem="kzh-Tv-6oE" secondAttribute="width" id="zTl-Er-JG0"/>
                                     <constraint firstItem="2nU-fr-bA2" firstAttribute="centerX" secondItem="MU4-x1-dfx" secondAttribute="centerX" id="ziF-eK-fN7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -177,7 +187,6 @@
                             <constraint firstItem="W3D-6c-syX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Beq-f7-VEY" secondAttribute="leadingMargin" constant="20" id="SUT-Ab-p8W"/>
                             <constraint firstItem="vJE-uu-vIL" firstAttribute="top" secondItem="cpa-lo-emC" secondAttribute="bottom" id="TCE-Pb-RmC"/>
                             <constraint firstAttribute="trailing" secondItem="yZY-V4-Gcn" secondAttribute="trailing" id="Tl9-Y4-2jZ"/>
-                            <constraint firstItem="vJE-uu-vIL" firstAttribute="top" secondItem="W3D-6c-syX" secondAttribute="bottom" constant="20" id="dBA-hQ-WUb"/>
                             <constraint firstItem="W3D-6c-syX" firstAttribute="top" secondItem="MtB-h6-V18" secondAttribute="bottom" constant="10" id="eDE-SX-C0o"/>
                             <constraint firstAttribute="trailing" secondItem="GoS-6a-9FO" secondAttribute="trailing" id="eyp-LP-fJ5"/>
                             <constraint firstItem="cpa-lo-emC" firstAttribute="top" secondItem="W3D-6c-syX" secondAttribute="bottom" constant="-13.5" id="fwt-ql-0zT"/>
@@ -187,11 +196,6 @@
                             <constraint firstItem="Jp2-mJ-w9Z" firstAttribute="top" secondItem="GoS-6a-9FO" secondAttribute="bottom" id="uzg-vi-dLW"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="W3D-6c-syX" secondAttribute="trailing" constant="20" id="wHm-qh-XjR"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="dBA-hQ-WUb"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yJ2-7X-z5G" userLabel="First Responder" sceneMemberID="firstResponder"/>
