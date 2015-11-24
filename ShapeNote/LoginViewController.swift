@@ -9,6 +9,7 @@
 import UIKit
 import Twitter
 import TwitterKit
+import Instructions
 
 let loggedOutVerticalConstant:CGFloat = 10
 let loggedInVerticalConstant:CGFloat = -62
@@ -16,7 +17,7 @@ let loggedInPointSize:CGFloat = 14
 let loggedOutPointSize:CGFloat = 17
 let userCanceled = 2
 
-class LoginViewController: UIViewController, FBLoginViewDelegate {
+class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksControllerDataSource {
     
     @IBOutlet weak var twitterLoginButton: TWTRLogInButton!
     @IBOutlet weak var facebookLoginButton: FBLoginView!
@@ -27,6 +28,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     var loggingIn:Bool = false
     var session: TWTRSession?
     var facebookUser: FBGraphUser?
+    var coachMarksController: CoachMarksController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         self.facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
         self.facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
         
-
+        self.coachMarksController = CoachMarksController()
+        self.coachMarksController?.datasource = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +55,12 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         }
         
         checkFacebookLoginStatus()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.coachMarksController?.startOn(self)
     }
     
     // MARK: ----------- Facebook functions
@@ -242,5 +251,37 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - Protocol Conformance | CoachMarksControllerDataSource
+    func numberOfCoachMarksForCoachMarksController(coachMarksController: CoachMarksController) -> Int {
+        return 1
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex index: Int) -> CoachMark {
+        switch(index) {
+        case 0:
+            return coachMarksController.coachMarkForView(self.navigationController?.navigationBar) { (frame: CGRect) -> UIBezierPath in
+                // This will make a cutoutPath matching the shape of
+                // the component (no padding, no rounded corners).
+                return UIBezierPath(rect: frame)
+            }
+        default:
+            return coachMarksController.coachMarkForView()
+        }
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex index: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        
+        let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation)
+        
+        switch(index) {
+        case 0:
+            coachViews.bodyView.hintLabel.text = "Hint label"
+            coachViews.bodyView.nextLabel.text = "OK"
+        default: break
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
 }
