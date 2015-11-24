@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -53,7 +52,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to find your local singing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0f-BL-9tb">
-                                <rect key="frame" x="173" y="416.5" width="254" height="21.5"/>
+                                <rect key="frame" x="173" y="416" width="254" height="21.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -61,10 +60,67 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.57230603449999995" colorSpace="deviceRGB"/>
                                 <size key="shadowOffset" width="1" height="-1"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0C6-5U-Fmd" userLabel="Pitch Container View">
+                                <rect key="frame" x="180" y="185" width="240" height="230"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Log in to easily post minutes to your local singing's Facebook group" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5i-a8-b3F">
+                                        <rect key="frame" x="8" y="8" width="224" height="50.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ List singers once, and everyone else in your group will get the list when they log in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-iV-qd7">
+                                        <rect key="frame" x="8" y="68" width="224" height="50.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ The app will never post anything without your permission (of course!)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="770-dQ-41v">
+                                        <rect key="frame" x="8" y="128" width="224" height="50.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Log in to Twitter to live-tweet your minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztB-ji-2sW">
+                                        <rect key="frame" x="8" y="187" width="224" height="33.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="770-dQ-41v" firstAttribute="width" secondItem="s5i-a8-b3F" secondAttribute="width" id="3an-RE-5vL"/>
+                                    <constraint firstItem="ztB-ji-2sW" firstAttribute="centerX" secondItem="770-dQ-41v" secondAttribute="centerX" id="5Xt-gt-x0Z"/>
+                                    <constraint firstItem="770-dQ-41v" firstAttribute="top" secondItem="G7e-iV-qd7" secondAttribute="bottom" constant="10" id="8aR-Dc-b7S"/>
+                                    <constraint firstAttribute="width" constant="240" id="FfY-Bz-yvi"/>
+                                    <constraint firstAttribute="trailing" secondItem="s5i-a8-b3F" secondAttribute="trailing" constant="8" id="Ggz-hr-xkr"/>
+                                    <constraint firstItem="G7e-iV-qd7" firstAttribute="top" secondItem="s5i-a8-b3F" secondAttribute="bottom" constant="10" id="JWO-l6-1ZP"/>
+                                    <constraint firstItem="ztB-ji-2sW" firstAttribute="width" secondItem="770-dQ-41v" secondAttribute="width" id="PCU-jd-gvu"/>
+                                    <constraint firstItem="ztB-ji-2sW" firstAttribute="top" secondItem="770-dQ-41v" secondAttribute="bottom" constant="8" id="QzJ-RO-Fko"/>
+                                    <constraint firstItem="770-dQ-41v" firstAttribute="centerX" secondItem="s5i-a8-b3F" secondAttribute="centerX" id="So4-GU-AEg"/>
+                                    <constraint firstItem="G7e-iV-qd7" firstAttribute="centerX" secondItem="s5i-a8-b3F" secondAttribute="centerX" id="URV-p8-mJ9"/>
+                                    <constraint firstItem="s5i-a8-b3F" firstAttribute="leading" secondItem="0C6-5U-Fmd" secondAttribute="leading" constant="8" id="UxK-OS-KQK"/>
+                                    <constraint firstItem="s5i-a8-b3F" firstAttribute="top" secondItem="0C6-5U-Fmd" secondAttribute="top" constant="8" id="pAZ-T5-gR3"/>
+                                    <constraint firstAttribute="height" constant="230" id="sSi-hE-aYb"/>
+                                    <constraint firstItem="G7e-iV-qd7" firstAttribute="width" secondItem="s5i-a8-b3F" secondAttribute="width" id="zuZ-Ag-FQM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0C6-5U-Fmd" firstAttribute="centerX" secondItem="vVb-is-39s" secondAttribute="centerX" id="4Io-qa-0do"/>
                             <constraint firstItem="Y81-mW-EXB" firstAttribute="top" secondItem="vVb-is-39s" secondAttribute="top" id="540-cY-q9a"/>
                             <constraint firstItem="EU0-fi-kwv" firstAttribute="top" secondItem="n0f-BL-9tb" secondAttribute="bottom" constant="90" id="9b9-uO-rLa"/>
                             <constraint firstItem="Y81-mW-EXB" firstAttribute="leading" secondItem="vVb-is-39s" secondAttribute="leading" id="D8v-St-ZdV"/>
@@ -73,6 +129,7 @@
                             <constraint firstItem="n0f-BL-9tb" firstAttribute="centerX" secondItem="oAM-VT-7h5" secondAttribute="centerX" id="J3o-hj-QRc"/>
                             <constraint firstAttribute="centerX" secondItem="EU0-fi-kwv" secondAttribute="centerX" id="JDj-It-DnT"/>
                             <constraint firstItem="oAM-VT-7h5" firstAttribute="width" secondItem="EU0-fi-kwv" secondAttribute="width" id="Lzz-r5-Jm7"/>
+                            <constraint firstItem="0C6-5U-Fmd" firstAttribute="centerY" secondItem="vVb-is-39s" secondAttribute="centerY" id="V6W-JD-DNM"/>
                             <constraint firstItem="oAM-VT-7h5" firstAttribute="height" secondItem="EU0-fi-kwv" secondAttribute="height" id="b5T-WQ-4XB"/>
                             <constraint firstAttribute="centerX" secondItem="oAM-VT-7h5" secondAttribute="centerX" id="dWq-UU-Q1y"/>
                             <constraint firstItem="Y81-mW-EXB" firstAttribute="width" secondItem="oAM-VT-7h5" secondAttribute="width" id="erJ-1f-lc2"/>
@@ -94,6 +151,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="facebookLoginButton" destination="EU0-fi-kwv" id="9cn-za-7I0"/>
+                        <outlet property="loginBenefitsView" destination="0C6-5U-Fmd" id="tHZ-2J-j9T"/>
                         <outlet property="twitterLoginButton" destination="oAM-VT-7h5" id="i5X-5r-kDH"/>
                         <outlet property="userFullNameLabel" destination="n0f-BL-9tb" id="vpS-H2-Rh0"/>
                         <outlet property="userImageView" destination="Y81-mW-EXB" id="FBi-dd-T5W"/>
