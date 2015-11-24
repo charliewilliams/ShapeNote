@@ -10,6 +10,7 @@ import UIKit
 
 class IntroPopupViewController: UIViewController {
     
+    @IBOutlet var doneButton: UIButton!
     @IBAction func doneButtonPressed(sender: UIButton) {
         
         Defaults.isFirstRun = false

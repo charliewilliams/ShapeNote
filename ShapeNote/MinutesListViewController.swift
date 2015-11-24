@@ -64,8 +64,10 @@ class MinutesListViewController: UITableViewController {
     }
     
     func handleFirstRun() {
-        let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController()
-        self.presentViewController(introVC!, animated: true, completion: nil)
+        let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController() as! IntroPopupViewController
+        let _ = introVC.view
+        introVC.doneButton.hidden = false
+        self.presentViewController(introVC, animated: false, completion: nil)
     }
     
     // MARK: - Table view data source

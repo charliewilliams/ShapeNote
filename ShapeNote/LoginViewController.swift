@@ -17,27 +17,24 @@ let loggedInPointSize:CGFloat = 14
 let loggedOutPointSize:CGFloat = 17
 let userCanceled = 2
 
-class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksControllerDataSource {
+class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     @IBOutlet weak var twitterLoginButton: TWTRLogInButton!
     @IBOutlet weak var facebookLoginButton: FBLoginView!
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var userFullNameLabel: UILabel!
     @IBOutlet var userInfoVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet var loginBenefitsView: UIView!
     
     var loggingIn:Bool = false
     var session: TWTRSession?
     var facebookUser: FBGraphUser?
-    var coachMarksController: CoachMarksController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
         self.facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
-        
-        self.coachMarksController = CoachMarksController()
-        self.coachMarksController?.datasource = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,12 +52,6 @@ class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksCont
         }
         
         checkFacebookLoginStatus()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.coachMarksController?.startOn(self)
     }
     
     // MARK: ----------- Facebook functions
@@ -112,8 +103,10 @@ class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksCont
         
         if loggedIn == true {
             userInfoVerticalConstraint.constant = loggedInVerticalConstant
+            loginBenefitsView.alpha = 0
         } else {
             userInfoVerticalConstraint.constant = loggedOutVerticalConstant
+            loginBenefitsView.alpha = 1
         }
     }
     
@@ -126,7 +119,23 @@ class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksCont
         
         if missingPermissions.count == 0 { return }
         
-        session.requestNewPublishPermissions(missingPermissions, defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
+//        session.reauthorizeWithPublishPermissions(requiredFacebookWritePermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
+//            if publishError != nil {
+//                print(publishError)
+//            } else if let user = self?.facebookUser {
+//                
+//                guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
+//                
+//                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () in
+//                    self?.showLoggedInUserName(user)
+//                    if self?.shouldShowGroupsPicker() == true {
+//                        self?.showGroupsPicker()
+//                    }
+//                }
+//            }
+//        }
+        
+        session.requestNewPublishPermissions(allRequiredFacebookPermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
             
             if publishError != nil {
                 print(publishError)
@@ -152,8 +161,13 @@ class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksCont
         facebookUser = user
         showLoggedInUserName(user)
         
-        guard let permissions = FBSession.activeSession().permissions as? [String] else {
-            refreshPublishPermissions(FBSession.activeSession())
+        guard let session = FBSession.activeSession() where session.isOpen && session.state != .CreatedOpening else {
+            doManualFacebookLogin();
+            return
+        }
+        
+        guard let permissions = session.permissions as? [String] else {
+            refreshPublishPermissions(session)
             return
         }
         
@@ -251,37 +265,5 @@ class LoginViewController: UIViewController, FBLoginViewDelegate, CoachMarksCont
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    //MARK: - Protocol Conformance | CoachMarksControllerDataSource
-    func numberOfCoachMarksForCoachMarksController(coachMarksController: CoachMarksController) -> Int {
-        return 1
-    }
-    
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex index: Int) -> CoachMark {
-        switch(index) {
-        case 0:
-            return coachMarksController.coachMarkForView(self.navigationController?.navigationBar) { (frame: CGRect) -> UIBezierPath in
-                // This will make a cutoutPath matching the shape of
-                // the component (no padding, no rounded corners).
-                return UIBezierPath(rect: frame)
-            }
-        default:
-            return coachMarksController.coachMarkForView()
-        }
-    }
-    
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex index: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-        
-        let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation)
-        
-        switch(index) {
-        case 0:
-            coachViews.bodyView.hintLabel.text = "Hint label"
-            coachViews.bodyView.nextLabel.text = "OK"
-        default: break
-        }
-        
-        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
 }
