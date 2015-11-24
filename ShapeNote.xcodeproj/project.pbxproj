@@ -30,7 +30,6 @@
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
 		C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0515B6A1A7BA59D0006ED16 /* Images.xcassets */; };
-		C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */; };
 		C0515B7A1A7BA59D0006ED16 /* ShapeNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */; };
 		C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */; };
 		C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B851A7BADFE0006ED16 /* JSONLoader.swift */; };
@@ -140,7 +139,6 @@
 		C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShapeNote.xcdatamodel; sourceTree = "<group>"; };
 		C0515B681A7BA59D0006ED16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0515B6A1A7BA59D0006ED16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C0515B6D1A7BA59D0006ED16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C0515B731A7BA59D0006ED16 /* ShapeNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShapeNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B781A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeNoteTests.swift; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0EA4E291C01B258000CCF81 /* Intro.storyboard */,
 				C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */,
-				C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0C1D4861A813B120082C0EB /* STTwitter */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
@@ -615,7 +612,6 @@
 				C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */,
 				C092E8601A8914B6002594A5 /* CH.json in Resources */,
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
-				C0515B6E1A7BA59D0006ED16 /* LaunchScreen.xib in Resources */,
 				C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
@@ -805,14 +801,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		C0515B6C1A7BA59D0006ED16 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0515B6D1A7BA59D0006ED16 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -891,6 +879,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
