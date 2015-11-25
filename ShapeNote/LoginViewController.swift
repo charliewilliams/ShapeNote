@@ -26,9 +26,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     @IBOutlet var userInfoVerticalConstraint: NSLayoutConstraint!
     @IBOutlet var loginBenefitsView: UIView!
     
-    var loggingIn:Bool = false
     var session: TWTRSession?
     var facebookUser: FBGraphUser?
+    var showingGroupsPicker = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,7 +190,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func shouldShowGroupsPicker() -> Bool {
-        if let user = PFUser.currentUser() where user[PFKey.group.rawValue] == nil && CoreDataHelper.sharedHelper.groups().count > 0 {
+        if let user = PFUser.currentUser() where user[PFKey.group.rawValue] == nil && CoreDataHelper.sharedHelper.groups().count > 0 && showingGroupsPicker == false {
+            showingGroupsPicker = true
             return true
         }
         return false

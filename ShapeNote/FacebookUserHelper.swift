@@ -38,7 +38,9 @@ class FacebookUserHelper {
         // ???
         if let _ = PFUser.currentUser() {
             ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
-                completion(result)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completion(result)
+                })
             })
             return
         }
@@ -60,7 +62,9 @@ class FacebookUserHelper {
             self.copyDataFromFacebookUser(user, toParseUser: pfUser)
             
             ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
-                completion(result)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completion(result)
+                })
             })
         }
     }
@@ -98,7 +102,7 @@ class FacebookUserHelper {
             print(error)
             
             if let _ = self?.fbUser
-                where success && error == nil {
+                where success == true && error == nil {
                     
                     ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
                         

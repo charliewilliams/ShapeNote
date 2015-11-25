@@ -127,8 +127,11 @@ class CoreDataHelper {
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = NSBundle.mainBundle().URLForResource("ShapeNote", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        return NSManagedObjectModel(contentsOfURL: self.modelURL)!
+    }()
+    
+    lazy var modelURL:NSURL = {
+        return NSBundle.mainBundle().URLForResource("ShapeNote", withExtension: "momd")!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
@@ -139,9 +142,7 @@ class CoreDataHelper {
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         
-        let options = [NSMigratePersistentStoresAutomaticallyOption:true,
-            NSInferMappingModelAutomaticallyOption:true
-        ]
+        let options = [NSMigratePersistentStoresAutomaticallyOption:true, NSInferMappingModelAutomaticallyOption:true]
         
         do {
             try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
@@ -170,8 +171,7 @@ class CoreDataHelper {
     
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
-        let coordinator = self.persistentStoreCoordinator
-        if coordinator == nil {
+        guard let coordinator = self.persistentStoreCoordinator else {
             return nil
         }
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
@@ -182,17 +182,23 @@ class CoreDataHelper {
     // MARK: - Core Data Saving support
     
     func saveContext () {
-        if let moc = self.managedObjectContext {
-            if moc.hasChanges {
-                do {
-                    try moc.save()
-                } catch let error as NSError {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    NSLog("Unresolved error \(error), \(error.userInfo)")
-                    abort()
-                }
+        if let moc = self.managedObjectContext where moc.hasChanges {
+            
+            do {
+                try moc.save()
+            } catch let error as NSError {
+                // Replace this implementation with code to handle the error appropriately.
+                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                NSLog("Unresolved error \(error), \(error.userInfo)")
+                //                    abort()
+                
+                // The next most nuclear thing after just abort() is:
+                deleteLocalDatabaseFile()
             }
         }
+    }
+    
+    func deleteLocalDatabaseFile() {
+        try! NSFileManager.defaultManager().removeItemAtURL(self.modelURL)
     }
 }

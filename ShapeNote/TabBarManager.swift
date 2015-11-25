@@ -40,7 +40,7 @@ class TabBarManager {
         
         let tabArray = tabBarController.tabBar.items as NSArray!
         let tabItem = tabArray.objectAtIndex(index.rawValue) as! UITabBarItem
-        tabItem.badgeValue = badged ? " " : ""
+        tabItem.badgeValue = badged ? " " : nil
     }
     
     func badgeSingersTab() {

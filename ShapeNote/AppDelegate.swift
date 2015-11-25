@@ -33,7 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JSONLoader.sharedLoader.handleFirstRun()
         
         ParseHelper.sharedHelper.refresh { (result:RefreshCompletionAction) in
-            NSNotificationCenter.defaultCenter().postNotificationName(Notification.CloudRefreshDidFinish.rawValue, object: nil)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName(Notification.CloudRefreshDidFinish.rawValue, object: nil)
+            })
         }
         
         return true

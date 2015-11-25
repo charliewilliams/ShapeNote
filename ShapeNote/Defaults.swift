@@ -10,6 +10,7 @@ import UIKit
 
 let firstRunKey = "firstRunHappened"
 let loggedInOnce = "loggedInOnce"
+let hasBadgedSingersTabOnce = "badgedSingersTabOnce"
 let bookKey = "currentBook"
 let groupKey = "currentGroup"
 
@@ -30,6 +31,15 @@ class Defaults: NSObject {
         }
         set {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: loggedInOnce)
+        }
+    }
+    
+    class var badgedSingersTabOnce:Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(hasBadgedSingersTabOnce)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().boolForKey(hasBadgedSingersTabOnce)
         }
     }
     
