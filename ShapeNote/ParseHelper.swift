@@ -35,13 +35,7 @@ class ParseHelper {
     func refresh(completion:RefreshCompletionBlock) {
         
         // TODO Get location
-        
-        
-        // Get all groups nearby
-        
-        // Store them somewhere so we can put them in the UI
-        
-        // Update the singers in the local group
+        // then get all groups nearby / sort
         
         PFQuery(className: "Group").findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
             
@@ -117,11 +111,14 @@ class ParseHelper {
                 return
         }
         
-        do {
-            try singer.fetch()
-        } catch let error {
-            print(error)
-        }
+        singer.fetchIfNeededInBackgroundWithBlock({ (singer:PFObject?, error:NSError?) -> Void in
+            guard let singer = singer else { completion(.Error); return }
+            self.finishRefreshWithFetchedSinger(singer, completion: completion)
+        })
+    }
+    
+    func finishRefreshWithFetchedSinger(singer:PFObject, completion:RefreshCompletionBlock) {
+        
         guard let group = singer[PFKey.group.rawValue] as? PFObject else {
             completion(.NoGroupOnUser)
             return
@@ -156,7 +153,10 @@ class ParseHelper {
                 }
             }
             CoreDataHelper.sharedHelper.saveContext()
-            TabBarManager.sharedManager.badgeSingersTab()
+            if PFUser.currentUser() != nil && objects.count > 0 && !Defaults.badgedSingersTabOnce {
+                TabBarManager.sharedManager.badgeSingersTab()
+                Defaults.badgedSingersTabOnce = true
+            }
         })
     }
 }
