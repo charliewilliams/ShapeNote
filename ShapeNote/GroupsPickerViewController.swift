@@ -63,7 +63,7 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
         if let existingGroup = user[PFKey.group.rawValue] as? PFObject where existingGroup[PFKey.name.rawValue] as! String != group.name {
             
             let alert = UIAlertController(title: "Replace \(existingGroup[PFKey.name.rawValue])?", message: nil, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) -> Void in
+            alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) in
                 self.saveGroup(group, onUser: user)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
@@ -96,7 +96,7 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
             singer.saveEventually()
         }
         
-        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { () -> () in
+        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) in
             
         }
     }

@@ -10,7 +10,15 @@ import Foundation
 import Parse
 import CoreData
 
+enum RefreshCompletionAction {
+    case NoNewUsersFound
+    case NewUsersFound
+    case NoGroupOnUser
+    case Error
+}
+
 typealias CompletionBlock = (() -> ())
+typealias RefreshCompletionBlock = (RefreshCompletionAction -> ())
 
 class ParseHelper {
     
@@ -24,7 +32,7 @@ class ParseHelper {
     var pfGroups:[PFObject]?
     var groups:[Group]?
     
-    func refresh(completion:CompletionBlock) {
+    func refresh(completion:RefreshCompletionBlock) {
         
         // TODO Get location
         
@@ -39,7 +47,7 @@ class ParseHelper {
             
             guard let objects = objects where error == nil else {
                 print(error)
-                completion()
+                completion(.Error)
                 return
             }
             
@@ -80,7 +88,7 @@ class ParseHelper {
         return nil
     }
     
-    func didChangeGroup(completion:CompletionBlock) {
+    func didChangeGroup(completion:RefreshCompletionBlock) {
         
         // delete all local singers
         let fetchRequest = NSFetchRequest(entityName: "Singer")
@@ -101,17 +109,22 @@ class ParseHelper {
         refreshSingersForSelectedGroup(completion)
     }
 
-    func refreshSingersForSelectedGroup(completion:CompletionBlock) {
+    func refreshSingersForSelectedGroup(completion:RefreshCompletionBlock) {
         
         guard let user = PFUser.currentUser(),
-            let singer = user["Singer"] as? PFObject else { fatalError() }
+            let singer = user["Singer"] as? PFObject else {
+                completion(.Error)
+                return
+        }
         
-
-        /// THIS IS FAILING
+        do {
+            try singer.fetch()
+        } catch let error {
+            print(error)
+        }
         guard let group = singer[PFKey.group.rawValue] as? PFObject else {
-            fatalError()
-//                completion()
-//            return
+            completion(.NoGroupOnUser)
+            return
         }
         
         let query = group.relationForKey("singers").query()
@@ -119,7 +132,7 @@ class ParseHelper {
             
             guard let objects = objects where error == nil else {
                 print(error)
-                completion()
+                completion(.Error)
                 return
             }
             

@@ -19,13 +19,11 @@ class FacebookUserHelper {
         }
         return Static.instance
     }
-    
-    var completion:Completion?
+
     var fbUser:FBGraphUser?
     
-    func singerLoggedInToFacebook(user: FBGraphUser, permissions:[String]?, completion:Completion) {
+    func singerLoggedInToFacebook(user: FBGraphUser, permissions:[String]?, completion:RefreshCompletionBlock) {
         
-        self.completion = completion
         self.fbUser = user
         
         // 1. Get user name / first_name / id etc and put it on the user here
@@ -39,17 +37,17 @@ class FacebookUserHelper {
         
         // ???
         if let _ = PFUser.currentUser() {
-            ParseHelper.sharedHelper.refresh({ () -> () in
-                completion()
+            ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
+                completion(result)
             })
             return
         }
         
         // 2. Log in OR create the user on the server if they don't exist
-        PFFacebookUtils.logInWithPermissions(permissions) { [weak self] (pfUser:PFUser?, error:NSError?) -> Void in
+        PFFacebookUtils.logInWithPermissions(permissions) { (pfUser:PFUser?, error:NSError?) in
             
             guard let pfUser = pfUser else {
-                self?.signUpNewUser(user, permissions:permissions)
+                self.signUpNewUser(user, permissions:permissions)
                 return
             }
             if (pfUser.isNew) {
@@ -57,9 +55,12 @@ class FacebookUserHelper {
             } else {
                 print("WELCOME BACK")
             }
+        
+            let user = user as! FBGraphObject
+            self.copyDataFromFacebookUser(user, toParseUser: pfUser)
             
-            ParseHelper.sharedHelper.refresh({ () -> () in
-                completion()
+            ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
+                completion(result)
             })
         }
     }
@@ -70,33 +71,36 @@ class FacebookUserHelper {
         
         let userObject = fbUser as! FBGraphObject
         let pfUser = PFUser()
-        pfUser.username = userObject["email"] as? String
-        pfUser["first_name"] = userObject["first_name"] as? String
-        pfUser["last_name"] = userObject["last_name"] as? String
-        pfUser["name"] = userObject["name"] as? String
-        pfUser["gender"] = userObject["gender"] as? String
-        pfUser["locale"] = userObject["locale"] as? String
-        pfUser["id"] = userObject["id"] as? String
-        pfUser["timezone"] = userObject["timezone"] as? Int
-        pfUser["fbProfileURL"] = userObject["link"] as? String
-        pfUser["verified"] = userObject["verified"] as? Bool
-        
-        pfUser.password = "\(fbUser.hash)"
+        copyDataFromFacebookUser(userObject, toParseUser:pfUser)
         
         pfUser.signUpInBackgroundWithBlock { [weak self] (success:Bool, error:NSError?) -> Void in
             self?.linkUser(pfUser, permissions: permissions)
         }
     }
     
+    func copyDataFromFacebookUser(facebookUser:FBGraphObject, toParseUser pfUser:PFUser) {
+        
+        pfUser.username = facebookUser["email"] as? String
+        pfUser["first_name"] = facebookUser["first_name"] as? String
+        pfUser["last_name"] = facebookUser["last_name"] as? String
+        pfUser["name"] = facebookUser["name"] as? String
+        pfUser["gender"] = facebookUser["gender"] as? String
+        pfUser["locale"] = facebookUser["locale"] as? String
+        pfUser["id"] = facebookUser["id"] as? String
+        pfUser["timezone"] = facebookUser["timezone"] as? Int
+        pfUser["fbProfileURL"] = facebookUser["link"] as? String
+        pfUser["verified"] = facebookUser["verified"] as? Bool
+    }
+    
     func linkUser(pfUser: PFUser, permissions:[String]?) {
         
-        PFFacebookUtils.linkUser(pfUser, permissions: permissions) { [weak self] (success:Bool, error:NSError?) -> Void in
+        PFFacebookUtils.linkUser(pfUser, permissions: permissions) { [weak self] (success:Bool, error:NSError?) in
             print(error)
             
             if let _ = self?.fbUser
                 where success && error == nil {
                     
-                    ParseHelper.sharedHelper.refresh({ () -> () in
+                    ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
                         
                     })
                     

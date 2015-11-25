@@ -514,8 +514,8 @@
 			isa = PBXGroup;
 			children = (
 				C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */,
-				C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */,
 				C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */,
+				C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */,
 				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
 			);
 			name = "Singer Lists";

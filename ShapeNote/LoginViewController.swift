@@ -143,7 +143,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
                 
                 guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
                 
-                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () in
+                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (result:RefreshCompletionAction) in
                     self?.showLoggedInUserName(user)
                     if self?.shouldShowGroupsPicker() == true {
                         self?.showGroupsPicker()
@@ -171,7 +171,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
             return
         }
         
-        FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () -> () in
+        FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (result:RefreshCompletionAction) in
             if self?.shouldShowGroupsPicker() == true {
                 self?.showGroupsPicker()
             }

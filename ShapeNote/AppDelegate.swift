@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         JSONLoader.sharedLoader.handleFirstRun()
         
-        ParseHelper.sharedHelper.refresh { () -> () in
+        ParseHelper.sharedHelper.refresh { (result:RefreshCompletionAction) in
             NSNotificationCenter.defaultCenter().postNotificationName(Notification.CloudRefreshDidFinish.rawValue, object: nil)
         }
         
@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let session = PFFacebookUtils.session()
         let session = FBSession.activeSession()
         FBAppCall.handleDidBecomeActiveWithSession(session)
+//        session.handleDidBecomeActive()
     }
 
     func applicationWillTerminate(application: UIApplication) {
