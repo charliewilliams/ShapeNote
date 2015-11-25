@@ -30,9 +30,22 @@ class SingersListTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
         
+        updateNoSingersView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        TabBarManager.sharedManager.clearSingersTab()
+    }
+    
+    func updateNoSingersView() {
+        
         if singers.count > 0 {
             noSingersYetView.hidden = true
+            tableView.scrollEnabled = true
         } else {
+            noSingersYetView.hidden = false
+            tableView.scrollEnabled = false
             var height = UIScreen.mainScreen().bounds.size.height
             height -= UIApplication.sharedApplication().statusBarFrame.height
             if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
@@ -43,11 +56,6 @@ class SingersListTableViewController: UITableViewController {
             noSingersYetView.hidden = false
             noSingersYetView.bounds.size.height = height
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        TabBarManager.sharedManager.clearSingersTab()
     }
     
     // MARK: - Table view data source
@@ -86,11 +94,9 @@ class SingersListTableViewController: UITableViewController {
     
     @IBAction func loginToFacebookButtonPressed(sender: UIButton) {
         
-        if let loginModalViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") {
-            self.presentViewController(loginModalViewController, animated: true, completion: nil)
-        }
+        let loginModalViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController")
+        self.presentViewController(loginModalViewController, animated: true, completion: nil)
     }
-    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 

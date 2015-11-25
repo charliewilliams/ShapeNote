@@ -48,9 +48,23 @@ class MinutesListViewController: UITableViewController {
         _allMinutes = nil
         self.tableView.reloadData()
         
+        updateNoMinutesView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        updateNoMinutesView()
+    }
+    
+    func updateNoMinutesView() {
+        
         if allMinutes.count > 0 {
             noMinutesYetView.hidden = true
+            tableView.scrollEnabled = true
         } else {
+            tableView.scrollEnabled = false
+            noMinutesYetView.hidden = false
             var height = UIScreen.mainScreen().bounds.size.height
             height -= UIApplication.sharedApplication().statusBarFrame.height
             height -= tableViewHeaderHeight
