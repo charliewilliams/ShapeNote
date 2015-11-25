@@ -217,6 +217,7 @@
 		C0C1D4A31A813B120082C0EB /* STHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTTPRequest.m; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNote-Bridging-Header.h"; sourceTree = "<group>"; };
+		C0DBE9251C05D2CD0060344F /* ShapeNote 0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.3.xcdatamodel"; sourceTree = "<group>"; };
 		C0EA4E181BFFBEBC000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Minutes.storyboard; sourceTree = "<group>"; };
 		C0EA4E1B1BFFBEE9000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongList.storyboard; sourceTree = "<group>"; };
 		C0EA4E1E1BFFBF09000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Singers.storyboard; sourceTree = "<group>"; };
@@ -1078,6 +1079,7 @@
 		C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C0DBE9251C05D2CD0060344F /* ShapeNote 0.3.xcdatamodel */,
 				C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */,
 				C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */,
 				C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */,
