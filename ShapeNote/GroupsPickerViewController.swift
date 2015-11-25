@@ -18,6 +18,8 @@ enum PFKey:String {
 
 class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    // TODO sort by distance!
+    
     var _groups:[Group]?
     var groups:[Group] {
         if _groups == nil {
@@ -91,13 +93,22 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
         }
         
         if let singer = singer,
-        let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
-            singer[PFKey.group.rawValue] = pfGroup
-            singer.saveEventually()
-        }
-        
-        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) in
-            
+            let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
+                
+                singer[PFKey.group.rawValue] = pfGroup
+                
+                let relation = pfGroup.relationForKey("singers")
+                relation.addObject(singer)
+                
+                singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        TabBarManager.sharedManager.clearLoginTab()
+                        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) in
+                        }
+                    })
+                })
+        } else {
+            print("Error saving group onto singer object");
         }
     }
 
