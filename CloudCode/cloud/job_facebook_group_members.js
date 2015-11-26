@@ -95,24 +95,25 @@ function setNextGroupIDInMetadata() {
         for (i = 0; i < results.length; i++) {
 
           var groupToTest = results[i];
-          if (group.get("objectId") === groupToTest.get("objectId")) {
+          if (group.get("fbGroupID") === groupToTest.get("fbGroupID")) {
 
             found = true;
             var index = (i + 1) % results.length;
             var nextGroup = results[index];
-            console.log("HI " + nextGroup.get("objectId"));
+            var nextGroupID = nextGroup.get("fbGroupID");
+            console.log("HI " + nextGroupID);
             metadata.set(lastGroupQueriedForMembersJob, nextGroup);
-            metadata.save().then(promise.resolve(nextGroup.get("objectId")));
+            metadata.save().then(promise.resolve(nextGroupID));
             break;
           }
         }
 
-        if (found == false) {
+        if (found === false) {
           // If we haven't found anything, start over at 0
           var nextGroup = results[0];
           metadata.set(lastGroupQueriedForMembersJob, nextGroup);
           console.log("DEFAULT to groupID " + nextGroup);
-          metadata.save().then(promise.resolve(nextGroup.get("objectId")));
+          metadata.save().then(promise.resolve(nextGroup.get("fbGroupID")));
         }
     });
   });
