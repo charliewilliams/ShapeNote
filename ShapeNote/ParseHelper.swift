@@ -102,6 +102,73 @@ class ParseHelper {
         // reload from server
         refreshSingersForSelectedGroup(completion)
     }
+    
+    func saveNewLocalSinger(singer:Singer) {
+        
+        let pfSinger = PFObject(className: "Singer")
+        pfSinger["firstName"] = singer.firstName
+        pfSinger["lastName"] = singer.lastName
+        if let displayName = singer.displayName { pfSinger["displayName"] = displayName }
+        // TODO etc with voicetype
+        
+        guard let user = PFUser.currentUser(),
+            let singer = user["Singer"] as? PFObject else {
+                fatalError()
+        }
+        
+        singer.fetchIfNeededInBackgroundWithBlock({ (pfSinger:PFObject?, error:NSError?) -> Void in
+            guard let pfSinger = pfSinger,
+            let localGroup = pfSinger["group"] where error == nil
+                else { self.handleError(error); return }
+            
+            localGroup.fetchIfNeededInBackgroundWithBlock({ (pfGroup:PFObject?, error:NSError?) -> Void in
+                guard let pfGroup = pfGroup where error == nil else { self.handleError(error); return }
+                
+                self.saveGroup(pfGroup, onSinger: singer)
+            })
+        })
+    }
+    
+    func saveGroup(group:Group, onUser user:PFUser) {
+        
+        var singer = user[PFKey.singer.rawValue] as? PFObject
+        if singer == nil {
+            singer = PFObject(className: "Singer")
+            if let firstName = user["firstName"] {
+                singer!["firstName"] = firstName
+            }
+            if let lastName = user["lastName"] {
+                singer!["lastName"] = lastName
+            }
+            user["Singer"] = singer!
+        }
+        
+        if let singer = singer,
+            let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
+                saveGroup(pfGroup, onSinger: singer)
+                
+        } else {
+            print("Error saving group onto singer object");
+        }
+    }
+    
+    func saveGroup(pfGroup:PFObject, onSinger singer:PFObject) {
+        
+        singer[PFKey.group.rawValue] = pfGroup
+        singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) -> Void in
+            
+            guard let _ = singer.objectId where error == nil && saved == true else { return }
+            
+            let relation = pfGroup.relationForKey("singers")
+            relation.addObject(singer)
+            
+            singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    TabBarManager.sharedManager.clearLoginTab()
+                })
+            })
+        })
+    }
 
     func refreshSingersForSelectedGroup(completion:RefreshCompletionBlock) {
         
@@ -158,5 +225,11 @@ class ParseHelper {
                 Defaults.badgedSingersTabOnce = true
             }
         })
+    }
+    
+    func handleError(error:NSError?) {
+        
+        print(error)
+        // TODO
     }
 }

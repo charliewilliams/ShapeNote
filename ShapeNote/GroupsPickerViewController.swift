@@ -66,51 +66,19 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
             
             let alert = UIAlertController(title: "Replace \(existingGroup[PFKey.name.rawValue])?", message: nil, preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) in
-                self.saveGroup(group, onUser: user)
+                ParseHelper.sharedHelper.saveGroup(group, onUser: user)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            saveGroup(group, onUser: user)
+            ParseHelper.sharedHelper.saveGroup(group, onUser: user)
         }
     
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func saveGroup(group:Group, onUser user:PFUser) {
-        
-        var singer = user[PFKey.singer.rawValue] as? PFObject
-        if singer == nil {
-            singer = PFObject(className: "Singer")
-            if let firstName = user["firstName"] {
-                singer!["firstName"] = firstName
-            }
-            if let lastName = user["lastName"] {
-                singer!["lastName"] = lastName
-            }
-            user["Singer"] = singer!
-        }
-        
-        if let singer = singer,
-            let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
-                
-                singer[PFKey.group.rawValue] = pfGroup
-                
-                let relation = pfGroup.relationForKey("singers")
-                relation.addObject(singer)
-                
-                singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) in
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        TabBarManager.sharedManager.clearLoginTab()
-                        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) in
-                        }
-                    })
-                })
-        } else {
-            print("Error saving group onto singer object");
-        }
-    }
+
 
     func handleError(error:NSError?) {
         
