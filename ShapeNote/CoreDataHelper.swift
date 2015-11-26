@@ -184,6 +184,8 @@ class CoreDataHelper {
     func saveContext () {
         if let moc = self.managedObjectContext where moc.hasChanges {
             
+            print("Managed Object Count: \(moc.registeredObjects.count)")
+            
             do {
                 try moc.save()
             } catch let error as NSError {
