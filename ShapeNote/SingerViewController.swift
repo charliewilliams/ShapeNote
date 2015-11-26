@@ -13,12 +13,13 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     
     var singer:Singer?
     
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var displayNameTextField: UITextField!
-    @IBOutlet weak var homeSingingTextField: UITextField!
-    @IBOutlet weak var voiceTypeTextField: UITextField!
-    @IBOutlet weak var twitterHandleTextField: UITextField!
-    @IBOutlet weak var tagOnFacebookSwitch: UISwitch!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var lastNameTextField: UITextField!
+    @IBOutlet var displayNameTextField: UITextField!
+    @IBOutlet var homeSingingTextField: UITextField!
+    @IBOutlet var voiceTypeTextField: UITextField!
+    @IBOutlet var twitterHandleTextField: UITextField!
+    @IBOutlet var tagOnFacebookSwitch: UISwitch!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,17 +38,10 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
         
         title = singer.firstName
-        if let first = singer.firstName {
-            nameTextField.text = first
-            if let last = singer.lastName {
-                nameTextField.text = first + " " + last
-            }
-        }
-        displayNameTextField.text = singer.firstName
-        
-        if singer.group?.fault == false {
-            homeSingingTextField.text = singer.group?.name
-        }
+        nameTextField.text = singer.firstName
+        lastNameTextField.text = singer.lastName
+        displayNameTextField.text = singer.displayName
+        homeSingingTextField.text = singer.group?.name
         
         twitterHandleTextField.text = singer.twitter
         tagOnFacebookSwitch.on = singer.facebook != nil
@@ -64,14 +58,21 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             singer = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as? Singer
         }
         
-        guard let singer = singer else { return }
-        singer.firstName = name.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).first
-        singer.lastName = name.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).last
-        singer.displayName = displayNameTextField.text ?? singer.firstName
+        guard let singer = singer else { fatalError() }
+        singer.firstName = name
+        singer.lastName = lastNameTextField.text
         
-        if let homeSingingName = homeSingingTextField.text, let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName) {
+        if let displayName = displayNameTextField.text {
+            singer.displayName = displayName
+        }
+        
+        if let homeSingingName = homeSingingTextField.text,
+            let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName) {
             singer.group = group
         }
+//        else {
+//            singer.group = CoreDataHelper.sharedHelper.localGroup()
+//        }
         
         if let voiceType = voiceTypeTextField.text {
             singer.voice = validatedVoiceType(voiceType).rawValue
@@ -85,6 +86,8 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
 
         singer.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
+        
+        ParseHelper.sharedHelper.saveNewLocalSinger(singer)
         
         CoreDataHelper.sharedHelper.saveContext()
         

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9XQ-5N-jhl">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -89,7 +88,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Srv-N5-ENC">
                         <barButtonItem key="backBarButtonItem" title="Group Name" id="O16-tR-PCE"/>
-                        <barButtonItem key="leftBarButtonItem" title="Change Location" id="TSW-IH-scJ"/>
+                        <barButtonItem key="leftBarButtonItem" title="Change Group" id="TSW-IH-scJ">
+                            <connections>
+                                <action selector="changeGroupButtonPressed:" destination="i1v-MA-Y8G" id="e1f-Gc-Nrc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+ New Singer" id="G2I-Nl-R25">
                             <connections>
                                 <segue destination="qmh-zR-vgU" kind="show" id="1sr-LM-wT2"/>
@@ -298,8 +301,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="95e-h7-Sjn">
-                                <rect key="frame" x="20" y="115" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="95e-h7-Sjn">
+                                <rect key="frame" x="20" y="115" width="270" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -307,7 +310,16 @@
                                     <outlet property="delegate" destination="qmh-zR-vgU" id="R9D-DO-GAg"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display name (if different)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ups-YM-BRJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bli-uj-Ds2" userLabel="Last Name Text Field">
+                                <rect key="frame" x="310" y="115" width="270" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qmh-zR-vgU" id="uz2-bv-JMc"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display name (optional — i.e. Sam H)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ups-YM-BRJ">
                                 <rect key="frame" x="20" y="153" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -316,7 +328,7 @@
                                     <outlet property="delegate" destination="qmh-zR-vgU" id="cbX-dD-mRO"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home singing" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPe-3r-lQh">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home singing (leave blank if local)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPe-3r-lQh">
                                 <rect key="frame" x="20" y="191" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -325,7 +337,7 @@
                                     <outlet property="delegate" destination="qmh-zR-vgU" id="zoO-gA-vz5"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Voice type" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OQE-uO-GrN">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Voice type (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OQE-uO-GrN">
                                 <rect key="frame" x="20" y="229" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -334,7 +346,7 @@
                                     <outlet property="delegate" destination="qmh-zR-vgU" id="Nt7-rs-8hb"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="@twitter handle" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onz-aj-beP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="@twitter handle (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onz-aj-beP">
                                 <rect key="frame" x="20" y="267" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -350,7 +362,7 @@
                                     <action selector="tagOnFacebookSwitchChanged:" destination="qmh-zR-vgU" eventType="valueChanged" id="lmi-YV-j31"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag on Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-NO-YGo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag on Facebook (beta)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-NO-YGo">
                                 <rect key="frame" x="77" y="313" width="503" height="16"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -364,8 +376,11 @@
                             <constraint firstItem="95e-h7-Sjn" firstAttribute="trailing" secondItem="d1i-eR-XLs" secondAttribute="trailingMargin" id="1pn-us-S9T"/>
                             <constraint firstItem="Wkq-NO-YGo" firstAttribute="leading" secondItem="kVQ-Tz-Afg" secondAttribute="trailing" constant="8" id="4PL-0S-8Rf"/>
                             <constraint firstItem="Wkq-NO-YGo" firstAttribute="centerY" secondItem="kVQ-Tz-Afg" secondAttribute="centerY" id="5qZ-jU-Tk3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bli-uj-Ds2" secondAttribute="trailing" id="63L-ir-N8Q"/>
+                            <constraint firstItem="Bli-uj-Ds2" firstAttribute="leading" secondItem="95e-h7-Sjn" secondAttribute="trailing" constant="20" id="6hk-hK-H8E"/>
                             <constraint firstItem="ups-YM-BRJ" firstAttribute="trailing" secondItem="d1i-eR-XLs" secondAttribute="trailingMargin" id="7Yd-xm-pOT"/>
                             <constraint firstItem="onz-aj-beP" firstAttribute="leading" secondItem="d1i-eR-XLs" secondAttribute="leadingMargin" id="A6b-NU-KfG"/>
+                            <constraint firstItem="Bli-uj-Ds2" firstAttribute="centerY" secondItem="95e-h7-Sjn" secondAttribute="centerY" id="ABB-aP-Tix"/>
                             <constraint firstItem="kVQ-Tz-Afg" firstAttribute="leading" secondItem="d1i-eR-XLs" secondAttribute="leadingMargin" id="EHh-9s-6yh"/>
                             <constraint firstItem="95e-h7-Sjn" firstAttribute="leading" secondItem="d1i-eR-XLs" secondAttribute="leadingMargin" id="I3Z-5B-EPb"/>
                             <constraint firstItem="iPe-3r-lQh" firstAttribute="trailing" secondItem="d1i-eR-XLs" secondAttribute="trailingMargin" id="IGx-ke-Nem"/>
@@ -379,9 +394,15 @@
                             <constraint firstItem="OQE-uO-GrN" firstAttribute="leading" secondItem="d1i-eR-XLs" secondAttribute="leadingMargin" id="bMp-RI-DOA"/>
                             <constraint firstItem="onz-aj-beP" firstAttribute="trailing" secondItem="d1i-eR-XLs" secondAttribute="trailingMargin" id="gs9-6B-Rmz"/>
                             <constraint firstItem="ups-YM-BRJ" firstAttribute="leading" secondItem="d1i-eR-XLs" secondAttribute="leadingMargin" id="jPK-xX-bR6"/>
+                            <constraint firstItem="Bli-uj-Ds2" firstAttribute="width" secondItem="95e-h7-Sjn" secondAttribute="width" id="jWr-Jj-V7o"/>
                             <constraint firstItem="OQE-uO-GrN" firstAttribute="top" secondItem="iPe-3r-lQh" secondAttribute="bottom" constant="8" id="rCo-Rl-i9z"/>
                             <constraint firstItem="kVQ-Tz-Afg" firstAttribute="top" secondItem="onz-aj-beP" secondAttribute="bottom" constant="8" id="xHQ-Ak-qY2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1pn-us-S9T"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="dcW-Yo-awd">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="QNW-9K-89S">
@@ -393,6 +414,7 @@
                     <connections>
                         <outlet property="displayNameTextField" destination="ups-YM-BRJ" id="ogK-fk-O4r"/>
                         <outlet property="homeSingingTextField" destination="iPe-3r-lQh" id="ZAO-kX-1mb"/>
+                        <outlet property="lastNameTextField" destination="Bli-uj-Ds2" id="cW3-A1-AJp"/>
                         <outlet property="nameTextField" destination="95e-h7-Sjn" id="hrI-sX-UOt"/>
                         <outlet property="tagOnFacebookSwitch" destination="kVQ-Tz-Afg" id="orl-4r-Ezk"/>
                         <outlet property="twitterHandleTextField" destination="onz-aj-beP" id="LA2-yA-ANx"/>

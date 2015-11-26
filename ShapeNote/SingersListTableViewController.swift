@@ -58,6 +58,12 @@ class SingersListTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func changeGroupButtonPressed(sender: UIBarButtonItem) {
+        
+        let pickerVC = GroupsPickerViewController(nibName:"GroupsPickerViewController", bundle: nil)
+        self.presentViewController(pickerVC, animated: true, completion: nil)
+    }
+
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -73,7 +79,15 @@ class SingersListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         
         let singer = singers[indexPath.row]
-        cell.textLabel?.text = singer.name
+        if let firstName = singer.firstName {
+            if let lastName = singer.lastName {
+                cell.textLabel?.text = "\(firstName) \(lastName)"
+            } else {
+                cell.textLabel?.text = firstName
+            }
+        } else {
+            cell.textLabel?.text = "(#Error in Core Data — swipe left to delete this row)"
+        }
         
         return cell
     }
