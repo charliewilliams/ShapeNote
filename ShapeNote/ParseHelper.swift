@@ -83,21 +83,6 @@ class ParseHelper {
     }
     
     func didChangeGroup(completion:RefreshCompletionBlock) {
-        
-        // delete all local singers
-        let fetchRequest = NSFetchRequest(entityName: "Singer")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try CoreDataHelper.sharedHelper.persistentStoreCoordinator!.executeRequest(deleteRequest, withContext: CoreDataHelper.managedContext)
-        } catch let error as NSError {
-            
-            let alert = UIAlertController(title: "Internal Error", message: "Error switching groups. If you see strange things, please delete the app and reinstall." + error.localizedDescription, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction) -> Void in
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
-        }
 
         // reload from server
         refreshSingersForSelectedGroup(completion)
