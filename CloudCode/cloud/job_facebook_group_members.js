@@ -20,7 +20,7 @@ Parse.Cloud.job("updateMembersOfFacebookGroups", function(request, response) {
     
       getMembersOfFacebookGroupFromID(groupID).then(function(users) {
 
-        checkGroupListAgainstExistingMembersOfGroup(users["data"], group);
+        checkGroupListAgainstExistingMembersOfGroup(users["data"], group)
         .then(group.save())
         .then(setNextGroupIDInMetadata())
         .then(function() {
@@ -77,13 +77,18 @@ function checkGroupListAgainstExistingMembersOfGroup(users, group) {
         copyDetailsFromFBUserToSinger(user, newSinger);
         
         var relationPromise = new Parse.Promise();
-        promises.push(relationPromise);
 
-        newSinger.save().then(function() {
-          singersRelation.add(newSinger);
-          singers.push(newSinger);
+        newSinger.save().then(function(savedSinger) {
+          singersRelation.add(savedSinger);
+          singers.push(savedSinger);
           relationPromise.resolve();
+
+        }, function(error) {
+          console.log(error);
+          relationPromise.reject();
         });
+
+        promises.push(relationPromise);
       }
     }
 
