@@ -9,6 +9,13 @@
 import Foundation
 import CoreData
 
+enum ManagedClass:String {
+    case Singer = "Singer"
+    case Book = "Book"
+    case Song = "Song"
+    case Group = "Group"
+}
+
 class CoreDataHelper {
 
     class var sharedHelper : CoreDataHelper {
@@ -32,24 +39,40 @@ class CoreDataHelper {
     
     var currentSinger: Singer?
     
+    func singersInCurrentGroup() -> [Singer]? {
+        if let group = currentlySelectedGroup {
+            return singers(inGroup: group)
+        }
+        return nil
+    }
+    
+    func singers(inGroup group:Group) -> [Singer]? {
+        if let results = resultsForEntityName(ManagedClass.Singer.rawValue, matchingObject: group, inQueryString: "group == %@") as? [Singer] {
+            return results.sort({ (a:Singer, b:Singer) -> Bool in
+                return a.lastName > b.lastName
+            })
+        }
+        return nil
+    }
+    
     func singers() -> [Singer] {
-        return resultsForEntityName("Singer") as! [Singer]
+        return resultsForEntityName(ManagedClass.Singer.rawValue) as! [Singer]
     }
     
     func books() -> [Book] {
-        return resultsForEntityName("Book") as! [Book]
+        return resultsForEntityName(ManagedClass.Book.rawValue) as! [Book]
     }
     
     func book(title:String) -> Book? {
-        return singleResultForEntityName("Book", matchingObject: title, inQueryString: "title == %@") as! Book?
+        return singleResultForEntityName(ManagedClass.Book.rawValue, matchingObject: title, inQueryString: "title == %@") as! Book?
     }
     
     func songs() -> [Song] {
         return songs(currentlySelectedBook.title)
     }
     
-    func songs(inBook:Book) -> [Song] {
-        let results = resultsForEntityName("Song", matchingObject: inBook, inQueryString: "book == %@") as! [Song]
+    func songs(inBook book:Book) -> [Song] {
+        let results = resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: book, inQueryString: "book == %@") as! [Song]
         return results.sort({ (a:Song, b:Song) -> Bool in
             return a.compare(b)
         })
@@ -57,16 +80,16 @@ class CoreDataHelper {
     
     func songs(inBookTitle:String) -> [Song] {
         let bookObject = book(inBookTitle)!
-        return songs(bookObject)
+        return songs(inBook: bookObject)
     }
     
     func groups() -> [Group] {
-        return resultsForEntityName("Group") as! [Group]
+        return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }
     
     func groupWithName(name:String) -> Group? {
         
-        let fetchRequest = NSFetchRequest(entityName: "Group")
+        let fetchRequest = NSFetchRequest(entityName: ManagedClass.Group.rawValue)
         
         let resultPredicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
         fetchRequest.predicate = resultPredicate

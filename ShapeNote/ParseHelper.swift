@@ -37,7 +37,9 @@ class ParseHelper {
         // TODO Get location
         // then get all groups nearby / sort
         
-        PFQuery(className: "Group").findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
+        let query = PFQuery(className: "Group")
+        query.limit = 1000;
+        query.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
             
             guard let objects = objects where error == nil else {
                 print(error)
@@ -116,6 +118,7 @@ class ParseHelper {
     
     func saveGroup(group:Group, onUser user:PFUser) {
         
+        Defaults.currentGroupName = group.name
         var singer = user[PFKey.singer.rawValue] as? PFObject
         if singer == nil {
             singer = PFObject(className: "Singer")
@@ -142,7 +145,7 @@ class ParseHelper {
         singer[PFKey.group.rawValue] = pfGroup
         singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) -> Void in
             
-            guard let _ = singer.objectId where error == nil && saved == true else { return }
+            guard let _ = singer.objectId where error == nil && saved == true else { self.handleError(error); return }
             
             let relation = pfGroup.relationForKey("singers")
             relation.addObject(singer)
@@ -177,6 +180,7 @@ class ParseHelper {
         }
         
         let query = group.relationForKey("singers").query()
+        query.limit = 1000;
         query.findObjectsInBackgroundWithBlock({ (objects:[PFObject]?, error:NSError?) -> Void in
             
             guard let objects = objects where error == nil else {
@@ -214,7 +218,9 @@ class ParseHelper {
     
     func handleError(error:NSError?) {
         
-        print(error)
+        if let error = error {
+            print(error)
+        }
         // TODO
     }
 }

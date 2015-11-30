@@ -534,9 +534,9 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 let oneDayAgoSecs = -60*60*24
                 let yesterday = NSDate(timeInterval: NSTimeInterval(oneDayAgoSecs), sinceDate: NSDate())
                 let lastWeekPlusOneDay = NSTimeInterval(oneDayAgoSecs * 8)
-                let singers = CoreDataHelper.sharedHelper.singers().sort({ (s1:Singer, s2:Singer) -> Bool in
+                guard let singers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sort({ (s1:Singer, s2:Singer) -> Bool in
                     return s1.lastSingDate > s2.lastSingDate // overall, most recent first
-                })
+                }) else { return [Singer](); }
                     
                 let todaySingers = singers.filter({ (s:Singer) -> Bool in
                     return s.lastSingDate > yesterday.timeIntervalSince1970

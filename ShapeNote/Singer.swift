@@ -17,6 +17,10 @@ enum Voice: String {
     case Alto = "Alto"
 }
 
+func ==(lhs: Singer, rhs: Singer) -> Bool {
+    return lhs.facebook == rhs.facebook
+}
+
 @objc(Singer)
 
 class Singer: NSManagedObject {

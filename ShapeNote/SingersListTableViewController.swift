@@ -11,7 +11,7 @@ import UIKit
 class SingersListTableViewController: UITableViewController {
 
     var singers:[Singer] {
-        let s:[Singer] = CoreDataHelper.sharedHelper.singers() as [Singer]
+        guard let s = CoreDataHelper.sharedHelper.singersInCurrentGroup() else { return [Singer]() }
         let sortedSingers = s.sort { (a:Singer, b:Singer) -> Bool in
             
 //            // group by voice type
@@ -28,6 +28,8 @@ class SingersListTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        title = Defaults.currentGroupName
         self.tableView.reloadData()
         
         updateNoSingersView()

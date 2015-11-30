@@ -41,9 +41,6 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-QX-X1a">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                     <animations/>
-                                    <connections>
-                                        <action selector="loginToFacebookButtonPressed:" destination="i1v-MA-Y8G" eventType="touchUpInside" id="UIw-Us-vDp"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <animations/>
