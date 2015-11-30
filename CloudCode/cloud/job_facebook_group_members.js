@@ -1,6 +1,9 @@
 var fbGroupID = "fbGroupID";
+var fbID = "fbID";
 var Group = "Group";
 var Singer = "Singer";
+var singers = "singers";
+var groups = "groups";
 var JobMetadata = "JobMetadata";
 var lastGroupQueriedForMembersJob = "lastGroupQueriedForMembersJob";
 
@@ -9,10 +12,14 @@ Parse.Cloud.job("updateMembersOfFacebookGroups", function(request, response) {
   var dummy = new Parse.Promise();
   var promises = [dummy];
   Parse.Cloud.useMasterKey();
-  var query = new Parse.Query(Group);
-  query.find().then(function(groups) {
 
-    groups.forEach(function(group) {
+  var metaQuery = new Parse.Query(JobMetadata);
+  metaQuery.include(lastGroupQueriedForMembersJob);
+  metaQuery.first().then(function(metadata) {
+  var lastGroup = metadata.get(lastGroupQueriedForMembersJob);
+    var query = new Parse.Query(Group);
+    query.equalTo(fbGroupID, lastGroup.get(fbGroupID));
+    query.first().then(function(group) {
 
       var promise = new Parse.Promise();
       promises.push(promise);
@@ -21,32 +28,34 @@ Parse.Cloud.job("updateMembersOfFacebookGroups", function(request, response) {
       console.log("GROUP " + groupID + " / " + group.id);
     
       getMembersOfFacebookGroupFromID(groupID).then(function(users) {
-        checkGroupListAgainstExistingMembersOfGroup(users["data"], group).then(function() {
+        checkGroupListAgainstExistingMembersOfGroup(users.data, group).then(function() {
+          setNextGroupIDInMetadata().then(function() {
             promise.resolve();
           });
+        });
       });
+
+    }).then(function() {
+
+      dummy.resolve();
+      Parse.Promise.when(promises).then(function() {
+        console.log("DONE. ");
+        response.success("DONE. ");
+      });
+
+    }, function(error) {
+        console.log(error);
+        promise.reject(error);
+        response.error(error);
     });
-
-  }).then(function() {
-
-    dummy.resolve();
-    Parse.Promise.when(promises).then(function() {
-      console.log("DONE. ");
-      response.success("DONE. ");
-    });
-
-  }, function(error) {
-      console.log(error);
-      promise.reject(error);
-      response.error(error);
   });
 })
 
 function checkGroupListAgainstExistingMembersOfGroup(users, group) {
 
-  var debugMax = 10; // 1000
+  var debugMax = 1000;
   var promise = new Parse.Promise();
-  var singersRelation = group.relation("singers");
+  var singersRelation = group.relation(singers);
   var singersQuery = singersRelation.query();
   singersQuery.limit(debugMax);
   singersQuery.find().then(function(singers) {
@@ -71,48 +80,18 @@ function checkGroupListAgainstExistingMembersOfGroup(users, group) {
         var singer = remainingSingers[i];
           
         // If you did find one, update the info
-        if (singer.get("fbID") === user["id"]) {
+        if (singer.get(fbID) === user.id) {
           foundIndex = i;
           copyDetailsFromFBUserToSinger(user, singer);
           promises.push(singer.save());
+          remainingSingers.splice(foundIndex, 1);
         }
       }
 
-      // If you haven't found one, query to see if they exist and are tied to another group
-      var singerQuery = new Parse.Query(Singer);
-      singerQuery.equalTo(fbID, user["id"]);
-      var queryPromise = singerQuery.first();
-      promises.push(queryPromise);
-      queryPromise.then(function(existingSinger) {
-        existingSinger.addUnique("groups", group.id);
-        foundIndex = 0;
-        queryPromise.resolve();
-      }, function(error) {
-        console.log("Error looking up existing singer! " + error);
-        queryPromise.resolve();
-      });
-
-      // If you STILL haven't found one, make a new singer
       if (foundIndex === -1) {
-        var SingerClass = Parse.Object.extend("Singer");
-        var newSinger = new SingerClass();
-        copyDetailsFromFBUserToSinger(user, newSinger);
-        newSinger.addUnique("groups", group.id);
-
-        var savePromise = newSinger.save();
-
-        savePromise.then(function(savedSinger) {
-          singersRelation.add(savedSinger);
-          singers.push(savedSinger);
-
-        }, function(error) {
-          console.log(error);
-        });
-
-        promises.push(savePromise);
-
-      } else {
-        remainingSingers.splice(foundIndex, 0);
+        // If you haven't found one, query to see if they exist and are tied to another group
+        var lookupPromise = searchForSingerInOtherGroupAndAddIfNotFound(user, group);
+        promises.push(lookupPromise);
       }
     }
 
@@ -125,9 +104,13 @@ function checkGroupListAgainstExistingMembersOfGroup(users, group) {
 
     console.log("Resolving dummy");
     dummy.resolve();
-    Parse.Promise.when(promises).then([Parse.Object.saveAll(singers)], group.save()).then(function() {
-      console.log("Found " + singers.length + " singers and " + users.length + " facebookers in group");
-      promise.resolve();
+    Parse.Promise.when(promises).then(function() {
+      Parse.Object.saveAll(singers).then(function() {
+        group.save().then(function() {
+          console.log("Found " + singers.length + " singers and " + users.length + " facebookers in group");
+          promise.resolve();
+        });
+      });
     });
 
   }, function(error) {
@@ -138,13 +121,74 @@ function checkGroupListAgainstExistingMembersOfGroup(users, group) {
   return promise;
 }
 
+function searchForSingerInOtherGroupAndAddIfNotFound(user, group) {
+
+  var promise = new Parse.Promise();
+  var query = new Parse.Query(Singer);
+  query.equalTo(fbID, user.id);
+  query.first().then(function(existingSinger) {
+
+    if (existingSinger != undefined) {
+      // console.log("Found singer hiding in another group: " + existingSinger.get("firstName") + " " + existingSinger.get("lastName"));
+      var singersRelation = group.relation(singers);
+      singersRelation.add(existingSinger);
+      existingSinger.save().then(function(savedSinger) {
+        savedSinger.addUnique(groups, group.id);
+        savedSinger.save().then(function(savedAgainSinger) {
+          promise.resolve(savedAgainSinger);
+        });
+      });
+    } else {
+      // console.log("Singer doesn't exist! Making a new one…");
+      makeANewSingerInGroup(user, group).then(function() {
+        promise.resolve();
+      });
+    }
+
+  }, function(error) {
+
+    console.log("Error looking for singer in other groups: " + error);
+    promise.reject(error);
+  });
+
+  return promise;
+}
+
 function copyDetailsFromFBUserToSinger(fbUser, singer) {
-  var name = fbUser["name"];
+  var name = fbUser.name;
   var components = name.split(" ");
   singer.set("firstName", components.shift());
   singer.set("lastName", components.join(" "));
-  singer.set("fbID", fbUser["id"]);
-  singer.set("fbGroupAdmin", fbUser["administrator"]);
+  singer.set(fbID, fbUser.id);
+  singer.set("fbGroupAdmin", fbUser.administrator);
+}
+
+function makeANewSingerInGroup(user, group) {
+
+  var promise = new Parse.Promise();
+  // If you STILL haven't found one, make a new singer
+  var SingerClass = Parse.Object.extend("Singer");
+  var newSinger = new SingerClass();
+  copyDetailsFromFBUserToSinger(user, newSinger);
+  newSinger.addUnique(groups, group.id);
+
+  var savePromise = newSinger.save();
+
+  savePromise.then(function(savedSinger) {
+    var singersRelation = group.relation(singers);
+    singersRelation.add(savedSinger);
+    savedSinger.save().then(function(newSavedSinger) {
+      newSavedSinger.save().then(function() {
+        promise.resolve();
+      });
+    });
+
+  }, function(error) {
+    console.log(error);
+    promise.reject(error);
+  });
+
+  return promise;
 }
 
 function getMembersOfFacebookGroupFromID(facebookGroupID) {
@@ -181,51 +225,50 @@ function getMembersOfFacebookGroupFromID(facebookGroupID) {
     return promise;
 }
 
-// function setNextGroupIDInMetadata() {
+function setNextGroupIDInMetadata() {
 
-//   var promise = new Parse.Promise();
-//   var lastGroupQuery = new Parse.Query(JobMetadata);
-//   lastGroupQuery.include(lastGroupQueriedForMembersJob);
-//   lastGroupQuery.find().then(function(metadataResults) {
+  var promise = new Parse.Promise();
+  var lastGroupQuery = new Parse.Query(JobMetadata);
+  lastGroupQuery.include(lastGroupQueriedForMembersJob);
+  lastGroupQuery.first().then(function(metadata) {
 
-//     var metadata = metadataResults[0];
-//     var group = metadata.get(lastGroupQueriedForMembersJob);
-//     var query = new Parse.Query(Group);
-//     group.fetch().then(query.find()).then(function(results) {
+    var group = metadata.get(lastGroupQueriedForMembersJob);
+    var query = new Parse.Query(Group);
+    query.find().then(function(results) {
 
-//       console.log(JSON.stringify(results));
-//       var found = false;
-//       for (var i = 0; i < results.length; i++) {
+      console.log(JSON.stringify(results));
+      var found = false;
+      for (var i = 0; i < results.length; i++) {
 
-//         var groupToTest = results[i];
-//         console.log("Comparing " + group.get(fbGroupID) + " with " + groupToTest.get(fbGroupID));
-//         if (group.get(fbGroupID) === groupToTest.get(fbGroupID)) {
+        var groupToTest = results[i];
+        // console.log("Comparing " + group.get(fbGroupID) + " with " + groupToTest.get(fbGroupID));
+        if (group.get(fbGroupID) === groupToTest.get(fbGroupID)) {
 
-//           found = true;
-//           var index = (i + 1) % results.length;
-//           var nextGroup = results[index];
-//           var nextGroupID = nextGroup.get(fbGroupID);
-//           metadata.set(lastGroupQueriedForMembersJob, nextGroup);
-//           console.log("Saving next group with ID " + nextGroup.id + " / " + nextGroupID);
-//           metadata.save().then(promise.resolve(nextGroupID));
-//         }
-//       }
+          found = true;
+          var index = (i + 1) % results.length;
+          var nextGroup = results[index];
+          var nextGroupID = nextGroup.get(fbGroupID);
+          metadata.set(lastGroupQueriedForMembersJob, nextGroup);
+          console.log("Saving next group with ID " + nextGroup.id + " / " + nextGroupID);
+          metadata.save().then(promise.resolve(nextGroupID));
+        }
+      }
 
-//       if (found === false) {
-//         // If we haven't found anything, start over at 0
-//         console.log("Defaulting to first group");
-//         var nextGroup = results[0];
-//         metadata.set(lastGroupQueriedForMembersJob, nextGroup);
-//         metadata.save().then(promise.resolve(nextGroup.get(fbGroupID)));
-//       }
-//     }, function(error) {
-//       console.log(error);
-//       promise.reject(error);
-//     });
-//   });
+      if (found === false) {
+        // If we haven't found anything, start over at 0
+        console.log("Defaulting to first group");
+        var nextGroup = results[0];
+        metadata.set(lastGroupQueriedForMembersJob, nextGroup);
+        metadata.save().then(promise.resolve(nextGroup.get(fbGroupID)));
+      }
+    }, function(error) {
+      console.log(error);
+      promise.reject(error);
+    });
+  });
 
-//   return promise;
-// }
+  return promise;
+}
 
 // Jobs for testing
 
