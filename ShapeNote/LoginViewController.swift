@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(!isModal, animated: true)
         
         // If we have a local user with info, set that before hitting the network!
         
@@ -52,6 +52,12 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         }
         
         checkFacebookLoginStatus()
+    }
+    
+    var isModal: Bool {
+        return self.presentingViewController?.presentedViewController == self
+            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
+            || self.tabBarController?.presentingViewController is UITabBarController
     }
     
     // MARK: ----------- Facebook functions

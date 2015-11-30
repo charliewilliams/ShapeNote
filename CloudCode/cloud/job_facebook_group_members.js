@@ -102,7 +102,7 @@ function checkGroupListAgainstExistingMembersOfGroup(users, group) {
       singers.push(singer);
     }
 
-    console.log("Resolving dummy");
+    // console.log("Resolving dummy");
     dummy.resolve();
     Parse.Promise.when(promises).then(function() {
       Parse.Object.saveAll(singers).then(function() {
@@ -236,7 +236,7 @@ function setNextGroupIDInMetadata() {
     var query = new Parse.Query(Group);
     query.find().then(function(results) {
 
-      console.log(JSON.stringify(results));
+      // console.log(JSON.stringify(results));
       var found = false;
       for (var i = 0; i < results.length; i++) {
 
@@ -249,7 +249,7 @@ function setNextGroupIDInMetadata() {
           var nextGroup = results[index];
           var nextGroupID = nextGroup.get(fbGroupID);
           metadata.set(lastGroupQueriedForMembersJob, nextGroup);
-          console.log("Saving next group with ID " + nextGroup.id + " / " + nextGroupID);
+          console.log("Saving next group with ID " + nextGroup.id + " / " + nextGroupID + " (" + nextGroup.get("name") + ")");
           metadata.save().then(promise.resolve(nextGroupID));
         }
       }
