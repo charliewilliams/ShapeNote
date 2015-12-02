@@ -14,12 +14,14 @@ PODS:
     - Bolts/Tasks (~> 1.5)
     - Facebook-iOS-SDK (~> 3.24)
     - Parse (~> 1.9)
+  - SwiftSpinner (0.8.0)
 
 DEPENDENCIES:
   - Bolts
   - Instructions
   - Parse
   - ParseFacebookUtils
+  - SwiftSpinner
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
@@ -27,5 +29,6 @@ SPEC CHECKSUMS:
   Instructions: 9434fd16d3c53c85b92d3faa33f36983add62369
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseFacebookUtils: 14016713d460f605e8b4834cd616f19339d7e9c0
+  SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
 
 COCOAPODS: 0.39.0

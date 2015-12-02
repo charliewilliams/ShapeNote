@@ -5,3 +5,4 @@ pod 'Parse'
 pod 'ParseFacebookUtils', :inhibit_warnings => true
 pod 'Bolts'
 pod 'Instructions'
+pod 'SwiftSpinner'
