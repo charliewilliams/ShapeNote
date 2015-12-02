@@ -11,15 +11,12 @@ import UIKit
 class SingersListTableViewController: UITableViewController {
 
     var singers:[Singer] {
-        guard let s = CoreDataHelper.sharedHelper.singersInCurrentGroup() else { return [Singer]() }
+        guard let s = CoreDataHelper.sharedHelper.singersInCurrentGroup() else {
+            // handle no singers here!
+            return [Singer]()
+        }
         let sortedSingers = s.sort { (a:Singer, b:Singer) -> Bool in
-            
-//            // group by voice type
-//            if (a.voice == b.voice) {
-                return a.name < b.name
-//            } else {
-//                return a.voice < b.voice
-//            }
+            return a.name < b.name
         }
         return sortedSingers
     }
@@ -107,12 +104,6 @@ class SingersListTableViewController: UITableViewController {
     }
 
     // MARK: - Navigation
-    
-    @IBAction func loginToFacebookButtonPressed(sender: UIButton) {
-        
-        let loginModalViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController")
-        self.presentViewController(loginModalViewController, animated: true, completion: nil)
-    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
