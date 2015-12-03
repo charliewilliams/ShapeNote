@@ -70,9 +70,9 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName) {
             singer.group = group
         }
-//        else {
-//            singer.group = CoreDataHelper.sharedHelper.localGroup()
-//        }
+        else {
+            singer.group = CoreDataHelper.sharedHelper.currentlySelectedGroup
+        }
         
         if let voiceType = voiceTypeTextField.text {
             singer.voice = validatedVoiceType(voiceType).rawValue
@@ -87,11 +87,11 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
 
         singer.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
         
-        ParseHelper.sharedHelper.saveNewLocalSinger(singer)
+        ParseHelper.sharedHelper.saveNewLocalSinger(singer, completion: { [weak self] in
+            self?.navigationController?.popViewControllerAnimated(true)
+        })
         
         CoreDataHelper.sharedHelper.saveContext()
-        
-        navigationController?.popViewControllerAnimated(true)
     }
     
     func validatedVoiceType(voiceType:String) -> Voice {

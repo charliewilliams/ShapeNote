@@ -39,7 +39,7 @@ class Defaults: NSObject {
             return NSUserDefaults.standardUserDefaults().boolForKey(hasBadgedSingersTabOnce)
         }
         set {
-            NSUserDefaults.standardUserDefaults().boolForKey(hasBadgedSingersTabOnce)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: hasBadgedSingersTabOnce)
         }
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import Twitter
 import TwitterKit
-import Instructions
+import SwiftSpinner
 
 let loggedOutVerticalConstant:CGFloat = 10
 let loggedInVerticalConstant:CGFloat = -62
@@ -177,7 +177,10 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
             return
         }
         
+        SwiftSpinner.show("Logging into Facebook", animated: true)
         FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (result:RefreshCompletionAction) in
+            
+            SwiftSpinner.hide()
             if self?.shouldShowGroupsPicker() == true {
                 self?.showGroupsPicker()
             }
@@ -210,6 +213,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     func loginView(loginView: FBLoginView!, handleError error: NSError!) {
         
+        SwiftSpinner.hide()
         if error.code != userCanceled {
             handleError(error)
         }
@@ -218,9 +222,11 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     // MARK: ----------- Twitter functions
     @IBAction func twitterLoginButtonPressed(sender: TWTRLogInButton) {
-        
+
+        SwiftSpinner.show("Logging into Twitter", animated: true)
         twitterLoginButton.logInCompletion = {(session:TWTRSession?, error:NSError?) -> Void in
             
+            SwiftSpinner.hide()
             if error != nil {
                 print(error)
             }

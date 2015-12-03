@@ -47,9 +47,16 @@ class CoreDataHelper {
     }
     
     func singers(inGroup group:Group) -> [Singer]? {
-        if let results = resultsForEntityName(ManagedClass.Singer.rawValue, matchingObject: group, inQueryString: "group == %@") as? [Singer] {
+        if let results = resultsForEntityName(ManagedClass.Singer.rawValue, matchingObject: group, inQueryString: "group == %@") as? [Singer] where results.count > 0 {
             return results.sort({ (a:Singer, b:Singer) -> Bool in
                 return a.lastName > b.lastName
+            })
+        }
+        
+        // If there are no singers here we have a problem
+        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) -> () in
+            ParseHelper.sharedHelper.didChangeGroup({ (result:RefreshCompletionAction) -> () in
+                
             })
         }
         return nil

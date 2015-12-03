@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 enum PFKey:String {
     case name = "name"
@@ -55,30 +56,53 @@ class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPi
     }
     
     func finish() {
-    
+        
         let index = pickerView.selectedRowInComponent(0)
         let group = groups[index]
-        guard let user = PFUser.currentUser() else { fatalError() }
-        
         print("Picked: \(group.name)")
         
+        guard let user = PFUser.currentUser() else {
+            Defaults.currentGroupName = group.name
+            ParseHelper.sharedHelper.didChangeGroup { [weak self] (result:RefreshCompletionAction) -> () in
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            }
+            return
+        }
+        
+        SwiftSpinner.show("Saving…", animated: true)
+        let saveGroup = dispatch_group_create()
+        dispatch_group_enter(saveGroup)
         if let existingGroup = user[PFKey.group.rawValue] as? PFObject where existingGroup[PFKey.name.rawValue] as! String != group.name {
             
             let alert = UIAlertController(title: "Replace \(existingGroup[PFKey.name.rawValue])?", message: nil, preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Replace", style: .Default, handler: { (action:UIAlertAction) in
-                ParseHelper.sharedHelper.saveGroup(group, onUser: user)
+                
+                ParseHelper.sharedHelper.saveGroup(group, onUser: user, completion: {
+                    dispatch_group_leave(saveGroup)
+                })
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action:UIAlertAction) in
+                dispatch_group_leave(saveGroup)
+            }))
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            ParseHelper.sharedHelper.saveGroup(group, onUser: user)
+            
+            ParseHelper.sharedHelper.saveGroup(group, onUser: user, completion: {
+                dispatch_group_leave(saveGroup)
+            })
         }
-    
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        dispatch_group_enter(saveGroup)
+        ParseHelper.sharedHelper.didChangeGroup { (result:RefreshCompletionAction) -> () in
+            dispatch_group_leave(saveGroup)
+        }
+        
+        dispatch_group_notify(saveGroup, dispatch_get_main_queue()) { [weak self] () -> Void in
+            SwiftSpinner.hide()
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
-    
-
 
     func handleError(error:NSError?) {
         

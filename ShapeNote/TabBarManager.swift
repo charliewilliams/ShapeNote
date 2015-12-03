@@ -44,6 +44,7 @@ class TabBarManager {
     }
     
     func badgeSingersTab() {
+        Defaults.badgedSingersTabOnce = true
         badgeTabAtIndex(.Singers, badged: true)
     }
     
