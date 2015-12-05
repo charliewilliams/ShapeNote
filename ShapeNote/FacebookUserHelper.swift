@@ -49,6 +49,20 @@ class FacebookUserHelper {
         PFFacebookUtils.logInWithPermissions(permissions) { (pfUser:PFUser?, error:NSError?) in
             
             guard let pfUser = pfUser else {
+                
+                if let error = error {
+                    print(error.userInfo)
+                    
+                    switch error.code {
+                    case PFErrorCode.ErrorConnectionFailed.rawValue:
+                        print("ConnectionFailed")
+                    case PFErrorCode.ErrorObjectNotFound.rawValue:
+                        print("ObjectNotFound")
+                    default:
+                        break
+                    }
+                }
+                
                 self.signUpNewUser(user, permissions:permissions)
                 return
             }
@@ -146,6 +160,6 @@ class FacebookUserHelper {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        UIApplication.sharedApplication().keyWindow!.rootViewController!.presentViewController(alert, animated: true, completion: nil)
     }
 }

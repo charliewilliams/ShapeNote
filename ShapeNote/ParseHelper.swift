@@ -131,13 +131,10 @@ class ParseHelper {
         var singer = user[PFKey.singer.rawValue] as? PFObject
         if singer == nil {
             singer = PFObject(className: "Singer")
-            if let firstName = user["firstName"] {
-                singer!["firstName"] = firstName
-            }
-            if let lastName = user["lastName"] {
-                singer!["lastName"] = lastName
-            }
+            singer!["firstName"] = user["firstName"]
+            singer!["lastName"] = user["lastName"]
             user["Singer"] = singer!
+            user.saveInBackground()
         }
         
         if let singer = singer,
@@ -157,7 +154,10 @@ class ParseHelper {
         singer[PFKey.group.rawValue] = pfGroup
         singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) -> Void in
             
-            guard let _ = singer.objectId where error == nil && saved == true else { self.handleError(error); return }
+            guard let _ = singer.objectId where error == nil && saved == true else {
+                self.handleError(error)
+                return
+            }
             
             let relation = pfGroup.relationForKey("singers")
             relation.addObject(singer)
@@ -229,13 +229,14 @@ class ParseHelper {
         }
         
         let singers = CoreDataHelper.sharedHelper.singers()
+        let group = CoreDataHelper.sharedHelper.currentlySelectedGroup
         
         for object in objects {
             
             var found = false
             for singer in singers {
                 
-                if singer.firstName == object["firstName"] as? String && singer.lastName == object["lastName"] as? String {
+                if singer.facebook == object["fbID"] as? String {
                     found = true
                 }
             }
@@ -245,19 +246,27 @@ class ParseHelper {
                 let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as! Singer
                 newSinger.firstName = object["firstName"] as? String
                 newSinger.lastName = object["lastName"] as? String
+                newSinger.facebook = object["fbID"] as? String
+                newSinger.displayName = object["displayName"] as? String
+                newSinger.group = group
             }
         }
         
         SwiftSpinner.hide()
         CoreDataHelper.sharedHelper.saveContext()
-        if objects.count > 0 && !Defaults.badgedSingersTabOnce {
+        if objects.count > 0 && !Defaults.badgedSingersTabOnce && !Defaults.neverLoggedIn {
             TabBarManager.sharedManager.badgeSingersTab()
         }
         
         completion(.NewUsersFound)
     }
     
-    func loadSingersForGroupByName(name:String, completion:RefreshCompletionBlock) {
+    func loadSingersForGroupByName(name:String?, completion:RefreshCompletionBlock) {
+        
+        guard let name = name else {
+            completion(.NoGroupOnUser)
+            return
+        }
         
         let query:PFQuery = PFQuery(className: ManagedClass.Group.rawValue)
         query.whereKey("name", equalTo: name)
@@ -276,9 +285,16 @@ class ParseHelper {
     
     func handleError(error:NSError?) {
         
-        if let error = error {
-            print(error)
+        var message = "There was an error talking to the cloud. That's all we know."
+        if let error = error
+            where error.localizedDescription.characters.count > 4 {
+                message = error.localizedDescription
         }
-        // TODO
+        let alert = UIAlertController(title: "Network Error", message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        UIApplication.sharedApplication().keyWindow!.rootViewController!.presentViewController(alert, animated: true, completion: nil)
+        
     }
 }

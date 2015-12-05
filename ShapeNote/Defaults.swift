@@ -56,13 +56,9 @@ class Defaults: NSObject {
         }
     }
     
-    class var currentGroupName:String {
+    class var currentGroupName:String? {
         get {
-        if let stored = NSUserDefaults.standardUserDefaults().objectForKey(groupKey) as? String {
-            return stored
-        } else {
-            return "Bristol"
-            }
+            return NSUserDefaults.standardUserDefaults().objectForKey(groupKey) as? String
         }
         set(groupName) {
             NSUserDefaults.standardUserDefaults().setObject(groupName, forKey: groupKey)

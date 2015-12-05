@@ -94,7 +94,9 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }
     
-    func groupWithName(name:String) -> Group? {
+    func groupWithName(name:String?) -> Group? {
+        
+        guard let name = name else { return nil }
         
         let fetchRequest = NSFetchRequest(entityName: ManagedClass.Group.rawValue)
         
@@ -187,8 +189,12 @@ class CoreDataHelper {
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error.userInfo)")
-            abort()
+            CoreDataHelper.sharedHelper.deleteLocalDatabaseFile()
+            CoreDataHelper.sharedHelper.handleError(error)
+            
         } catch {
+            
+            CoreDataHelper.sharedHelper.handleError(nil)
             fatalError()
         }
         
@@ -218,6 +224,8 @@ class CoreDataHelper {
             
             do {
                 try moc.save()
+                moc.reset()
+                
             } catch let error as NSError {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -226,11 +234,26 @@ class CoreDataHelper {
                 
                 // The next most nuclear thing after just abort() is:
                 deleteLocalDatabaseFile()
+                moc.reset()
             }
         }
     }
     
     func deleteLocalDatabaseFile() {
         try! NSFileManager.defaultManager().removeItemAtURL(self.modelURL)
+    }
+    
+    func handleError(error:NSError?) {
+        
+        var message = "Please email Charlie a description of what just happened so he can fix it.\n\nThis problem might also be fixed by deleting and reinstalling the app. (Sorry.)"
+        if let error = error
+            where error.localizedDescription.characters.count > 4 {
+                message = error.localizedDescription
+        }
+        let alert = UIAlertController(title: "Core Data Error", message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        UIApplication.sharedApplication().keyWindow!.rootViewController!.presentViewController(alert, animated: true, completion: nil)
     }
 }
