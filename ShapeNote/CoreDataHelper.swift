@@ -119,11 +119,11 @@ class CoreDataHelper {
         return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
     }
     
-    func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> AnyObject? {
+    func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSManagedObject? {
         return resultsForEntityName(entityName, matchingObject: object, inQueryString: queryString)?.first
     }
     
-    func resultsForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> [AnyObject]? {
+    func resultsForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> [NSManagedObject]? {
         
         let fetchRequest = NSFetchRequest(entityName:entityName)
         fetchRequest.returnsObjectsAsFaults = false
@@ -136,20 +136,15 @@ class CoreDataHelper {
             fetchRequest.predicate = resultPredicate
         }
         
-        var results: [AnyObject]? = nil
-        
         do {
-            let fetchedResults = try managedObjectContext!.executeFetchRequest(fetchRequest)
-            results = fetchedResults as? [NSManagedObject]
+            return try managedObjectContext!.executeFetchRequest(fetchRequest) as? [NSManagedObject]
         } catch {
             return nil
         }
-        
-        return results
     }
     
-    func resultsForEntityName(entityName:String) -> [NSManagedObject] {
-        return resultsForEntityName(entityName, matchingObject: nil, inQueryString: nil) as! [NSManagedObject]
+    func resultsForEntityName(entityName:String) -> [NSManagedObject]? {
+        return resultsForEntityName(entityName, matchingObject: nil, inQueryString: nil)
     }
     
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -224,7 +219,7 @@ class CoreDataHelper {
             
             do {
                 try moc.save()
-                moc.reset()
+//                moc.reset()
                 
             } catch let error as NSError {
                 // Replace this implementation with code to handle the error appropriately.

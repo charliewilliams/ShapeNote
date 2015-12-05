@@ -16,6 +16,10 @@ class SingersListTableViewController: UITableViewController {
             return [Singer]()
         }
         let sortedSingers = s.sort { (a:Singer, b:Singer) -> Bool in
+            
+            if a.lastSingDate != b.lastSingDate {
+                return a.lastSingDate > b.lastSingDate
+            }
             return a.name < b.name
         }
         return sortedSingers

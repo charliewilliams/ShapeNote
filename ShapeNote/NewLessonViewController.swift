@@ -500,10 +500,15 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     @IBAction func donePressed(sender: AnyObject) {
         
-        guard let context = minutes?.managedObjectContext else { fatalError() }
-        let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: context) as! Lesson
+        guard let minutes = minutes else { fatalError() }
+        
+        if minutes.managedObjectContext == nil {
+            CoreDataHelper.managedContext.refreshObject(minutes, mergeChanges: true)
+        }
+        
+        let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: minutes.managedObjectContext!) as! Lesson
         lesson.date = NSDate()
-        lesson.minutes = minutes!
+        lesson.minutes = minutes
         
         if let song = chosenSong {
             lesson.song = song
@@ -515,7 +520,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         lesson.dedication = dedication
         lesson.otherEvent = otherEvent
         
-        minutes?.singers.addObjectsFromArray(chosenSingers)
+        minutes.singers.addObjectsFromArray(chosenSingers)
         
         TwitterShareHelper.sharedHelper.postLesson(lesson)
         

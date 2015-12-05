@@ -113,6 +113,7 @@ class MinutesListViewController: UITableViewController {
     func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath) -> MinuteTakingViewController {
         
         let m = allMinutes[indexPath.row]
+//        CoreDataHelper.sharedHelper.managedObjectContext?.insertObject(m)
         let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         
@@ -134,6 +135,19 @@ class MinutesListViewController: UITableViewController {
     }
     
     // MARK: Navigation
+    @IBAction func newMinutesButtonPressed(sender: UIButton) {
+        
+        if let _ = CoreDataHelper.sharedHelper.currentlySelectedGroup,
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") {
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } else {
+            
+            let vc = GroupsPickerViewController()
+            self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
