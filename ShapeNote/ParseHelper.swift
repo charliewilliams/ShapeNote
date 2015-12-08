@@ -129,12 +129,32 @@ class ParseHelper {
         SwiftSpinner.show("Loading singers…", animated: true)
         Defaults.currentGroupName = group.name
         var singer = user[PFKey.singer.rawValue] as? PFObject
-        if singer == nil {
-            singer = PFObject(className: "Singer")
-            singer!["firstName"] = user["firstName"]
-            singer!["lastName"] = user["lastName"]
-            user["Singer"] = singer!
-            user.saveInBackground()
+        
+        if let firstName = user["firstName"],
+            let lastName = user["lastName"] where singer == nil {
+                singer = PFObject(className: "Singer")
+                singer!["firstName"] = firstName
+                singer!["lastName"] = lastName
+        }
+        
+        if let firstName = user["first_name"],
+            let lastName = user["last_name"] where singer == nil {
+                singer = PFObject(className: "Singer")
+                singer!["firstName"] = firstName
+                singer!["lastName"] = lastName
+        }
+        
+        if let singer = singer {
+            user["Singer"] = singer
+            user[PFKey.group.rawValue] = group
+        }
+        
+        do {
+            try user.save()
+        } catch let error as NSError {
+            handleError(error)
+            completion()
+            return
         }
         
         if let singer = singer,
@@ -144,8 +164,10 @@ class ParseHelper {
         } else {
             
             SwiftSpinner.hide()
-            print("Error saving group onto singer object");
-            handleError(nil)
+            PFUser.logOut()
+            FBSession.activeSession().closeAndClearTokenInformation()
+            handleError("Error saving group onto singer object")
+            completion()
         }
     }
     
@@ -156,6 +178,7 @@ class ParseHelper {
             
             guard let _ = singer.objectId where error == nil && saved == true else {
                 self.handleError(error)
+                completion()
                 return
             }
             
@@ -186,6 +209,10 @@ class ParseHelper {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in                
                 guard let singer = singer else {
                     SwiftSpinner.hide()
+                    if let error = error where error.code == PFErrorCode.ErrorObjectNotFound.rawValue {
+                        self.loadSingersForGroupByName(Defaults.currentGroupName, completion: completion)
+                        return
+                    }
                     completion(.Error);
                     self.handleError(error);
                     return
@@ -290,11 +317,20 @@ class ParseHelper {
             where error.localizedDescription.characters.count > 4 {
                 message = error.localizedDescription
         }
-        let alert = UIAlertController(title: "Network Error", message: message, preferredStyle: .Alert)
+        handleError(message)
+    }
+    
+    func handleError(text:String) {
+    
+        let alert = UIAlertController(title: "Network Error", message: text, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
-        UIApplication.sharedApplication().keyWindow!.rootViewController!.presentViewController(alert, animated: true, completion: nil)
         
+        let tempWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
+        tempWindow.rootViewController = UIViewController()
+        tempWindow.windowLevel = UIWindowLevelAlert + 1
+        tempWindow.makeKeyAndVisible()
+        tempWindow.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
 }

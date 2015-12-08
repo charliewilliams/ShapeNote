@@ -43,6 +43,12 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         displayNameTextField.text = singer.displayName
         homeSingingTextField.text = singer.group?.name
         
+        if let firstName = singer.firstName,
+            let lastName = singer.lastName where singer.displayName == nil {
+                let lastInitial = lastName.substringToIndex(lastName.startIndex.advancedBy(1))
+                displayNameTextField.placeholder = "Display name (optional — i.e. \(firstName) \(lastInitial))"
+        }
+        
         twitterHandleTextField.text = singer.twitter
         tagOnFacebookSwitch.on = singer.facebook != nil
         voiceTypeTextField.text = singer.voice

@@ -144,7 +144,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         session.requestNewPublishPermissions(allRequiredFacebookPermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
             
             if publishError != nil {
-                print(publishError)
+                self?.handleError(publishError)
             } else if let user = self?.facebookUser {
                 
                 guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
@@ -199,7 +199,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func shouldShowGroupsPicker() -> Bool {
-        if let user = PFUser.currentUser() where user[PFKey.group.rawValue] == nil && CoreDataHelper.sharedHelper.groups().count > 0 && showingGroupsPicker == false {
+        if let user = PFUser.currentUser() where user[PFKey.group.rawValue] == nil
+            && CoreDataHelper.sharedHelper.groups().count > 0
+            && showingGroupsPicker == false {
             showingGroupsPicker = true
             return true
         }
@@ -224,16 +226,16 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     @IBAction func twitterLoginButtonPressed(sender: TWTRLogInButton) {
 
         SwiftSpinner.show("Logging into Twitter", animated: true)
-        twitterLoginButton.logInCompletion = {(session:TWTRSession?, error:NSError?) -> Void in
+        twitterLoginButton.logInCompletion = { [weak self] (session:TWTRSession?, error:NSError?) -> Void in
             
             SwiftSpinner.hide()
             if error != nil {
-                print(error)
+                self?.handleError(error)
             }
             
             if session != nil {
-                self.session = session
-                self.fixTwitterLoginStateForSession(session!)
+                self?.session = session
+                self?.fixTwitterLoginStateForSession(session!)
             }
         }
     }

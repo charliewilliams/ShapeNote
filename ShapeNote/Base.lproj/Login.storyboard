@@ -67,28 +67,28 @@
                                         <rect key="frame" x="8" y="8" width="224" height="50.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ List singers once, and everyone else in your group will get the list when they log in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-iV-qd7">
                                         <rect key="frame" x="8" y="68" width="224" height="50.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ The app will never post anything without your permission (of course!)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="770-dQ-41v">
                                         <rect key="frame" x="8" y="128" width="224" height="50.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Log in to Twitter to live-tweet your minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztB-ji-2sW">
                                         <rect key="frame" x="8" y="187" width="224" height="33.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.43573717950000002" green="0.43573717950000002" blue="0.43573717950000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -129,7 +129,8 @@
                             <constraint firstItem="n0f-BL-9tb" firstAttribute="centerX" secondItem="oAM-VT-7h5" secondAttribute="centerX" id="J3o-hj-QRc"/>
                             <constraint firstAttribute="centerX" secondItem="EU0-fi-kwv" secondAttribute="centerX" id="JDj-It-DnT"/>
                             <constraint firstItem="oAM-VT-7h5" firstAttribute="width" secondItem="EU0-fi-kwv" secondAttribute="width" id="Lzz-r5-Jm7"/>
-                            <constraint firstItem="0C6-5U-Fmd" firstAttribute="centerY" secondItem="vVb-is-39s" secondAttribute="centerY" id="V6W-JD-DNM"/>
+                            <constraint firstItem="n0f-BL-9tb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0C6-5U-Fmd" secondAttribute="bottom" constant="1" id="UfS-gj-bGT"/>
+                            <constraint firstItem="0C6-5U-Fmd" firstAttribute="centerY" secondItem="vVb-is-39s" secondAttribute="centerY" priority="750" id="V6W-JD-DNM"/>
                             <constraint firstItem="oAM-VT-7h5" firstAttribute="height" secondItem="EU0-fi-kwv" secondAttribute="height" id="b5T-WQ-4XB"/>
                             <constraint firstAttribute="centerX" secondItem="oAM-VT-7h5" secondAttribute="centerX" id="dWq-UU-Q1y"/>
                             <constraint firstItem="Y81-mW-EXB" firstAttribute="width" secondItem="oAM-VT-7h5" secondAttribute="width" id="erJ-1f-lc2"/>
