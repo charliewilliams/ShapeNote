@@ -76,6 +76,8 @@
 		C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */; };
 		C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */; };
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
+		C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C964501C176E8000CB1444 /* HelloCWViewController.swift */; };
+		C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C964511C176E8000CB1444 /* HelloCWViewController.xib */; };
 		C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */; };
 		C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */; };
 		C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */; };
@@ -174,6 +176,8 @@
 		C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCompletedViewController.swift; sourceTree = "<group>"; };
 		C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizCompletedViewController.xib; sourceTree = "<group>"; };
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
+		C0C964501C176E8000CB1444 /* HelloCWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloCWViewController.swift; sourceTree = "<group>"; };
+		C0C964511C176E8000CB1444 /* HelloCWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelloCWViewController.xib; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNote-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0DBE9251C05D2CD0060344F /* ShapeNote 0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.3.xcdatamodel"; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0EA4E291C01B258000CCF81 /* Intro.storyboard */,
 				C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */,
+				C0C964501C176E8000CB1444 /* HelloCWViewController.swift */,
+				C0C964511C176E8000CB1444 /* HelloCWViewController.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -542,6 +548,7 @@
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
 				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
+				C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +649,7 @@
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
 				C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */,
 				C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */,
+				C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */,
 				C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,
 				C0EA4E2E1C01BC3B000CCF81 /* TabBarManager.swift in Sources */,
@@ -864,7 +872,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShapeNote/ShapeNote-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -904,7 +912,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShapeNote/ShapeNote-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
