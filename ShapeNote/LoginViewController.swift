@@ -199,11 +199,21 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func shouldShowGroupsPicker() -> Bool {
-        if let user = PFUser.currentUser() where user[PFKey.group.rawValue] == nil
+        guard let user = PFUser.currentUser(),
+            let singer = user[PFKey.singer.rawValue] as? PFObject else { return false }
+        
+        do {
+            try singer.fetchIfNeeded()
+        } catch let error as NSError {
+            handleError(error)
+            return false
+        }
+        
+        if singer[PFKey.group.rawValue] == nil
             && CoreDataHelper.sharedHelper.groups().count > 0
             && showingGroupsPicker == false {
-            showingGroupsPicker = true
-            return true
+                showingGroupsPicker = true
+                return true
         }
         return false
     }

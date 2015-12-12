@@ -97,14 +97,14 @@ class ParseHelper {
     
     func saveNewLocalSinger(singer:Singer, completion:CompletionBlock) {
         
-        let pfSinger = PFObject(className: "Singer")
+        let pfSinger = PFObject(className: PFKey.singer.rawValue)
         pfSinger["firstName"] = singer.firstName
         pfSinger["lastName"] = singer.lastName
         if let displayName = singer.displayName { pfSinger["displayName"] = displayName }
         // TODO etc with voicetype
         
         guard let user = PFUser.currentUser(),
-            let singer = user["Singer"] as? PFObject else {
+            let singer = user[PFKey.singer.rawValue] as? PFObject else {
                 fatalError()
         }
         
@@ -130,32 +130,58 @@ class ParseHelper {
         Defaults.currentGroupName = group.name
         var singer = user[PFKey.singer.rawValue] as? PFObject
         
-        if let firstName = user["firstName"],
-            let lastName = user["lastName"] where singer == nil {
-                singer = PFObject(className: "Singer")
-                singer!["firstName"] = firstName
-                singer!["lastName"] = lastName
+        // First, query for a singer with that name
+        let query = PFQuery(className: PFKey.singer.rawValue)
+        query.whereKey("fbID", equalTo: user["id"])
+        query.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            
+            if let error = error {
+                self.handleError(error)
+                return
+            }
+            
+            if let results = results where results.count > 0 {
+                
+                user[PFKey.singer.rawValue] = results.first
+            }
+            
+            if let firstName = user["firstName"],
+                let lastName = user["lastName"] where singer == nil {
+                    
+                    // If there isn't one, make a new one
+                    singer = PFObject(className: PFKey.singer.rawValue)
+                    singer!["firstName"] = firstName
+                    singer!["lastName"] = lastName
+            }
+            
+            // Bah! Which of these is right?
+            if let firstName = user["first_name"],
+                let lastName = user["last_name"] where singer == nil {
+                    singer = PFObject(className: PFKey.singer.rawValue)
+                    singer!["firstName"] = firstName
+                    singer!["lastName"] = lastName
+            }
+            
+            if let singer = singer {
+                user[PFKey.singer.rawValue] = singer
+            }
+            
+            user.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if let error = error {
+                        self.handleError(error)
+                        completion()
+                        return
+                    }
+                    
+                    self.finishSaveWithSinger(singer, group:group, completion:completion)
+                })
+            })
         }
-        
-        if let firstName = user["first_name"],
-            let lastName = user["last_name"] where singer == nil {
-                singer = PFObject(className: "Singer")
-                singer!["firstName"] = firstName
-                singer!["lastName"] = lastName
-        }
-        
-        if let singer = singer {
-            user["Singer"] = singer
-            user[PFKey.group.rawValue] = group
-        }
-        
-        do {
-            try user.save()
-        } catch let error as NSError {
-            handleError(error)
-            completion()
-            return
-        }
+    }
+    
+    func finishSaveWithSinger(singer:PFObject?, group:Group, completion:CompletionBlock) {
         
         if let singer = singer,
             let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
@@ -198,7 +224,7 @@ class ParseHelper {
     func refreshSingersForSelectedGroup(completion:RefreshCompletionBlock) {
         
         guard let user = PFUser.currentUser(),
-            let singer = user["Singer"] as? PFObject else {
+            let singer = user[PFKey.singer.rawValue] as? PFObject else {
                 loadSingersForGroupByName(Defaults.currentGroupName, completion: completion)
                 return
         }
@@ -227,7 +253,7 @@ class ParseHelper {
         guard let group = singer[PFKey.group.rawValue] as? PFObject else {
             SwiftSpinner.hide()
             completion(.NoGroupOnUser)
-            handleError(nil)
+//            handleError(nil)
             return
         }
         

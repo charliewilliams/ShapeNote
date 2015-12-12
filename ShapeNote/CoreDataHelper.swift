@@ -54,11 +54,11 @@ class CoreDataHelper {
         }
         
         // If there are no singers here we have a problem
-        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) -> () in
-            ParseHelper.sharedHelper.didChangeGroup({ (result:RefreshCompletionAction) -> () in
-                
-            })
-        }
+//        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) -> () in
+//            ParseHelper.sharedHelper.didChangeGroup({ (result:RefreshCompletionAction) -> () in
+//                
+//            })
+//        }
         return nil
     }
     

@@ -25,13 +25,16 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="64"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="64"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AoR-Kr-RTg">
                     <rect key="frame" x="20" y="193" width="560" height="327"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">This app is a gift to the Sacred Harp community. I hope you find it useful.  This app is currently in its beta stage, which means it's still sort of a caterpillar, rather than a butterfyl—  I'm not yet finished with it, but I need people to start using it to know what needs fixing.  There are probably things that don't work right. If you see something that confuses you, please tell me about it so that I can fix it and make it better!  Please email me (c@charliewilliams.org), message me on Facebook, or tell me in real life at a Bristol singing.</mutableString>
+                    <string key="text">This app is a gift to the Sacred Harp community. I hope you find it useful.  This app is currently in its beta stage, which means it's still sort of a caterpillar, rather than a butterfyl—  I'm not yet finished with it, but I need people to start using it to know what needs fixing.  There are probably things that don't work right. If you see something that confuses you, please tell me about it so that I can fix it and make it better!  Please email me (c@charliewilliams.org), message me on Facebook, or tell me in real life at a Bristol singing.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
