@@ -57,8 +57,18 @@ class QuizSetupViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Given the \(quizQuestionProvider.questionTypes[section])…"
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if let headerView = view as? UITableViewHeaderFooterView {
+            
+            headerView.contentView.backgroundColor = blueColor
+            headerView.textLabel?.textColor = UIColor.whiteColor()
+            headerView.textLabel?.text = "Given the \(quizQuestionProvider.questionTypes[section])…"
+        }
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UITableViewHeaderFooterView()
     }
         
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -20,12 +20,16 @@ class MinuteTakingViewController: UITableViewController {
     var lessons:[Lesson]? { // all of the lessons from the minutes object
         get {
             
-            guard let minutes = minutes else { fatalError() }
+            if minutes == nil {
+                minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext) as? Minutes
+                minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
+                CoreDataHelper.sharedHelper.saveContext()
+            }
             
             if _lessons == nil {
                 
                 var templessons = [Lesson]()
-                if let loadedArray:NSOrderedSet = minutes.songs {
+                if let loadedArray:NSOrderedSet = minutes?.songs {
                     
                     loadedArray.enumerateObjectsUsingBlock { (lesson:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
                         
