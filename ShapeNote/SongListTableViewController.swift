@@ -22,7 +22,7 @@ enum FilterType {
     case NoNotes
 }
 
-class SongListTableViewController: UITableViewController {
+class SongListTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     var _songs:[Song]?
     var songs:[Song] {
@@ -37,10 +37,30 @@ class SongListTableViewController: UITableViewController {
     }
     var activeFilters = [FilterType]()
     
+    var searchController: UISearchController!
+    var searchTableView: SearchResultsTableViewController!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        searchTableView = SearchResultsTableViewController()
+        searchTableView.tableView.delegate = self
+        searchController = UISearchController(searchResultsController: searchTableView)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        
+        definesPresentationContext = true
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         _songs = nil
-        self.tableView.reloadData()
+        tableView.reloadData()
+        tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height)
     }
     
     // MARK: - Filtering
@@ -79,7 +99,100 @@ class SongListTableViewController: UITableViewController {
         
         return filteredSongs
     }
+    
+    // MARK: - Pull to search
+    // MARK: UISearchBarDelegate
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    // MARK: UISearchControllerDelegate
+    
+    func presentSearchController(searchController: UISearchController) {
+        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
+    }
+    
+    func willPresentSearchController(searchController: UISearchController) {
+        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
+    }
+    
+    func didPresentSearchController(searchController: UISearchController) {
+        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
+    }
+    
+    func willDismissSearchController(searchController: UISearchController) {
+        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
+    }
+    
+    func didDismissSearchController(searchController: UISearchController) {
+        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
+    }
+    
+    // MARK: UISearchResultsUpdating
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
 
+        let searchResults = songs
+        
+        let fullSearchText = searchController.searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let searchItems = fullSearchText.componentsSeparatedByString(" ") as [String]
+        
+        // Build all the "AND" expressions for each value in the searchString.
+        let andMatchPredicates: [NSPredicate] = searchItems.map { searchString in
+            // Each searchString creates an OR predicate for: name, yearIntroduced, introPrice.
+            //
+            // Example if searchItems contains "iphone 599 2007":
+            //      name CONTAINS[c] "iphone"
+            //      name CONTAINS[c] "599", yearIntroduced ==[c] 599, introPrice ==[c] 599
+            //      name CONTAINS[c] "2007", yearIntroduced ==[c] 2007, introPrice ==[c] 2007
+            //
+            var searchItemsPredicate = [NSPredicate]()
+            
+            // Below we use NSExpression represent expressions in our predicates.
+            // NSPredicate is made up of smaller, atomic parts: two NSExpressions (a left-hand value and a right-hand value).
+            
+            for field in ["title", "lyrics", "number", "composer", "lyricist"] {
+                
+                let expression = NSExpression(forKeyPath: field)
+                let searchStringExpression = NSExpression(forConstantValue: searchString)
+                let searchComparisonPredicate = NSComparisonPredicate(leftExpression: expression, rightExpression: searchStringExpression, modifier: .DirectPredicateModifier, type: .ContainsPredicateOperatorType, options: .CaseInsensitivePredicateOption)
+                searchItemsPredicate.append(searchComparisonPredicate)
+            }
+            
+            let numberFormatter = NSNumberFormatter()
+            numberFormatter.numberStyle = .NoStyle
+            numberFormatter.formatterBehavior = .BehaviorDefault
+            
+            let targetNumber = numberFormatter.numberFromString(searchString)
+            if targetNumber != nil {
+
+                let targetNumberExpression = NSExpression(forConstantValue: targetNumber!)
+                
+                // search by year
+                let yearSearchExpression = NSExpression(forKeyPath: "year")
+                let yearPredicate = NSComparisonPredicate(leftExpression: yearSearchExpression, rightExpression: targetNumberExpression, modifier: .DirectPredicateModifier, type: .EqualToPredicateOperatorType, options: .CaseInsensitivePredicateOption)
+                searchItemsPredicate.append(yearPredicate)
+            }
+            
+            // Add this OR predicate to our master AND predicate.
+            let orMatchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates:searchItemsPredicate)
+            
+            return orMatchPredicate
+        }
+        
+        // Match up the fields of the Product object.
+        let finalCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: andMatchPredicates)
+        
+        let filteredResults = searchResults.filter { finalCompoundPredicate.evaluateWithObject($0) }
+        
+        // Hand over the filtered results to our search results table.
+        let resultsController = searchController.searchResultsController as! SearchResultsTableViewController
+        resultsController.results = filteredResults
+        resultsController.tableView.reloadData()
+    }
+
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
