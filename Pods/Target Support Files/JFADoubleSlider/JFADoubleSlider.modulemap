@@ -1,0 +1,6 @@
+framework module JFADoubleSlider {
+  umbrella header "JFADoubleSlider-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,6 +8,7 @@ PODS:
   - Facebook-iOS-SDK (3.24.1):
     - Bolts (~> 1.2)
   - Instructions (0.3.0)
+  - JFADoubleSlider (1.0.0)
   - Parse (1.10.0):
     - Bolts/Tasks (~> 1.5)
   - ParseFacebookUtils (1.9.1):
@@ -20,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - Bolts
   - Instructions
+  - JFADoubleSlider
   - Parse
   - ParseFacebookUtils
   - STTwitter
@@ -29,6 +31,7 @@ SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   Facebook-iOS-SDK: 08689c2690dc4e087b9c8e171e48667608b72a2a
   Instructions: 9434fd16d3c53c85b92d3faa33f36983add62369
+  JFADoubleSlider: 840e16fb74112dd1de6855932f67e773e0818941
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseFacebookUtils: 14016713d460f605e8b4834cd616f19339d7e9c0
   STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
