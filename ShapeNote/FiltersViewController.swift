@@ -8,9 +8,30 @@
 
 import UIKit
 
+enum FilterType {
+    case Unfavorited
+    case Favorited
+    case Fugue
+    case Plain
+    case Major
+    case Minor
+    case Duple
+    case Triple
+    case Notes
+    case NoNotes
+}
+
+enum PopularityFilterType:Int {
+    case Top10Pct = 0
+    case Top20Pct
+    case Top50Pct
+    case Bottom50Pct
+    case Bottom20Pct
+}
+
 class FiltersViewController: UIViewController {
     
-    var songListViewController: SongListTableViewController?
+    var songListViewController: SongListTableViewController!
     @IBOutlet var filteredSongsCountLabel: UILabel!
     
     @IBOutlet weak var favoritedSegmentedControl: UISegmentedControl!
@@ -18,11 +39,11 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var plainFugueSegmentedControl: UISegmentedControl!
     @IBOutlet weak var dupleTripleSegmentedControl: UISegmentedControl!
     @IBOutlet var notesSegmentedControl: UISegmentedControl!
+    @IBOutlet var popularitySegmentedControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        guard let filters = songListViewController?.activeFilters else { return }
-        for filter in filters {
+        for filter in songListViewController.activeFilters {
             switch filter {
             case .Unfavorited:
                 favoritedSegmentedControl.selectedSegmentIndex = 2
@@ -46,18 +67,21 @@ class FiltersViewController: UIViewController {
                 notesSegmentedControl.selectedSegmentIndex = 2
             }
         }
+        if let popularityFilter = songListViewController.popularityFilter {
+            popularitySegmentedControl.selectedSegmentIndex = popularityFilter.rawValue
+        }
         updateCount()
     }
     
     func add(toAdd:FilterType, remove toRemove:FilterType) {
-        guard var filters = songListViewController?.activeFilters else { return }
+        var filters = songListViewController.activeFilters
         if let index = filters.indexOf(toRemove) { filters.removeAtIndex(index) }
         filters.append(toAdd)
         songListViewController?.activeFilters = filters
     }
     
     func remove(toRemove:[FilterType]) {
-        guard var filters = songListViewController?.activeFilters else { return }
+        var filters = songListViewController.activeFilters
         for filter in toRemove {
             if let index = filters.indexOf(filter) { filters.removeAtIndex(index) }
         }
@@ -136,6 +160,12 @@ class FiltersViewController: UIViewController {
         default:
             fatalError("Storyboard incorrect")
         }
+        updateCount()
+    }
+    
+    @IBAction func popularityStatusChanged(sender: UISegmentedControl) {
+        // "All" makes a nil filter
+        songListViewController.popularityFilter = PopularityFilterType(rawValue: sender.selectedSegmentIndex)
         updateCount()
     }
     

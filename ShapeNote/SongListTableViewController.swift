@@ -9,19 +9,6 @@
 import UIKit
 import CoreData
 
-enum FilterType {
-    case Unfavorited
-    case Favorited
-    case Fugue
-    case Plain
-    case Major
-    case Minor
-    case Duple
-    case Triple
-    case Notes
-    case NoNotes
-}
-
 class SongListTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     var _songs:[Song]?
@@ -36,12 +23,15 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         }
     }
     var activeFilters = [FilterType]()
+    var popularityFilter:PopularityFilterType?
     
     var searchController: UISearchController!
     var searchTableView: SearchResultsTableViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.registerNib(UINib(nibName: "SongListTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         
         searchTableView = SearchResultsTableViewController()
         searchTableView.tableView.delegate = self
@@ -68,7 +58,9 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     var filteredSongs:[Song] {
         
         var filteredSongs = songs
-        for filter in activeFilters {
+        let totalSongs = CoreDataHelper.sharedHelper.numberOfSongsInCurrentBook
+        
+        for filter in activeFilters {    
             filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
                 switch filter {
                 case .Unfavorited:
@@ -95,6 +87,25 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
             })
         }
         
+        if let popularityFilter = popularityFilter {
+            filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
+                
+                let percentage = song.popularityAsPercentOfTotalSongs(totalSongs)
+                
+                switch popularityFilter {
+                case .Top10Pct:
+                    return percentage <= 0.1
+                case .Top20Pct:
+                    return percentage <= 0.2
+                case .Top50Pct:
+                    return percentage <= 0.5
+                case .Bottom50Pct:
+                    return percentage < 0.5
+                case .Bottom20Pct:
+                    return percentage < 0.2
+                }
+            })
+        }
         // TODO show something in the background if you've filtered out everything
         
         return filteredSongs
@@ -105,28 +116,6 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-    
-    // MARK: UISearchControllerDelegate
-    
-    func presentSearchController(searchController: UISearchController) {
-        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
-    }
-    
-    func willPresentSearchController(searchController: UISearchController) {
-        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
-    }
-    
-    func didPresentSearchController(searchController: UISearchController) {
-        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
-    }
-    
-    func willDismissSearchController(searchController: UISearchController) {
-        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
-    }
-    
-    func didDismissSearchController(searchController: UISearchController) {
-        //debugPrint("UISearchControllerDelegate invoked method: \(__FUNCTION__).")
     }
     
     // MARK: UISearchResultsUpdating
@@ -194,6 +183,10 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
 
     
     // MARK: - Table view data source
+    
+    var filtering:Bool {
+        return activeFilters.count > 0 || popularityFilter != nil
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -201,7 +194,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if (activeFilters.count > 0) {
+        if (filtering) {
             return filteredSongs.count
         }
         return songs.count
@@ -211,7 +204,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SongListTableViewCell
         let song:Song
-        if (activeFilters.count > 0) {
+        if (filtering) {
             song = filteredSongs[indexPath.row]
         } else {
             song = songs[indexPath.row]

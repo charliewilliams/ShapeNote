@@ -90,6 +90,21 @@ class CoreDataHelper {
         return songs(inBook: bookObject)
     }
     
+    func fastUnsortedSongs() -> [Song] {
+        return resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: currentlySelectedBook, inQueryString: "book == %@") as! [Song]
+    }
+    
+    var numberOfSongsInCurrentBook:Int {
+        
+        let fetchRequest = NSFetchRequest(entityName: ManagedClass.Song.rawValue)
+        fetchRequest.predicate = NSPredicate(format: "book == %@", currentlySelectedBook)
+        let error = NSErrorPointer()
+        if let count = managedObjectContext?.countForFetchRequest(fetchRequest, error: error) {
+            return count
+        }
+        return 0
+    }
+    
     func groups() -> [Group] {
         return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }

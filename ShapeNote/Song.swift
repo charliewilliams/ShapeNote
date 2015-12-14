@@ -28,10 +28,11 @@ class Song: NSManagedObject {
     @NSManaged var favorited: Bool
     @NSManaged var notes: String?
     @NSManaged var lyrics: String?
+    @NSManaged var popularity: Int16
     
     class var keys: [String:String] {
         
-        //[{"Number":"073b","Song Title":"Arlington","Key":"Major","Fugue/Plain":"Plain","Time Signature":"3/2","Meter":"CM","Parts":4,"Year":1762,"Composer":"Arne, Thomas A.","Lyricist":null},
+        //[{"Number":"073b","Song Title":"Arlington","Key":"Major","Fugue/Plain":"Plain","Time Signature":"3/2","Meter":"CM","Parts":4,"Year":1762,"Composer":"Arne, Thomas A.","Lyricist":null, "popularity":176},
         return ["number":"Number",
             "title":"Song Title",
             "composer":"Composer",
@@ -43,7 +44,8 @@ class Song: NSManagedObject {
             "parts":"Parts",
             "source":"Source Abbr.",
             "key":"Key",
-            "lyrics":"lyrics"]
+            "lyrics":"lyrics",
+            "popularity":"popularity"]
     }
     
     func configureWithDict(dict:NSDictionary) {
@@ -105,6 +107,11 @@ class Song: NSManagedObject {
         }
         
         return line
+    }
+    
+    func popularityAsPercentOfTotalSongs(totalSongs:Int) -> Float {
+        assert(totalSongs > 0)
+        return Float(popularity) / Float(totalSongs)
     }
 
     //MARK: Sorting
