@@ -79,6 +79,7 @@
 		C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C964501C176E8000CB1444 /* HelloCWViewController.swift */; };
 		C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C964511C176E8000CB1444 /* HelloCWViewController.xib */; };
 		C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */; };
+		C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */; };
 		C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */; };
 		C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */; };
 		C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */; };
@@ -181,6 +182,7 @@
 		C0C964511C176E8000CB1444 /* HelloCWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelloCWViewController.xib; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongListTableViewCell.xib; sourceTree = "<group>"; };
 		C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNote-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0DBE9251C05D2CD0060344F /* ShapeNote 0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.3.xcdatamodel"; sourceTree = "<group>"; };
 		C0EA4E181BFFBEBC000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Minutes.storyboard; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			children = (
 				C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
+				C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */,
 				C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */,
 				C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */,
 				C0BE7DB61BE6A169006383CC /* NotesViewController.swift */,
@@ -549,6 +552,7 @@
 				C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */,
 				C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
+				C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */,
 				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
 				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
 				C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */,

@@ -18,6 +18,7 @@ class SongListTableViewCell: UITableViewCell {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var lyricsLabel: UILabel!
     @IBOutlet weak var localChampionLabel: UILabel!
     @IBOutlet weak var meterAndTypeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
@@ -61,6 +62,10 @@ class SongListTableViewCell: UITableViewCell {
             if !type.hasPrefix("None") {
                 infoString += " " + type
             }
+        }
+        
+        if let lyrics = song.lyrics where lyricsLabel != nil {
+            lyricsLabel.text = lyrics.stringByReplacingOccurrencesOfString("\n", withString: " ")
         }
         
         favoriteButton.setTitle(favoriteStateString, forState: .Normal)

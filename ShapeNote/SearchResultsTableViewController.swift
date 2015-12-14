@@ -15,8 +15,8 @@ class SearchResultsTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(SongListTableViewCell.self, forCellReuseIdentifier: "Cell")
-
+//        tableView.registerClass(SongListTableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        tableView.registerNib(UINib(nibName: "SongListTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -24,15 +24,14 @@ class SearchResultsTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results?.count ?? 08
+        return results?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SongListTableViewCell
         let song = results![indexPath.row]
-        cell.textLabel?.text = "\(song.number) — \(song.title)"
+        cell.configureWithSong(song)
         
         return cell
     }
