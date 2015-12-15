@@ -9,3 +9,4 @@
 #import <Bolts/Bolts.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 @import Social;
+#import <JFADoubleSlider/JFADoubleSlider.h>

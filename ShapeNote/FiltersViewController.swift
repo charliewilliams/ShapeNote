@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JFADoubleSlider
 
 enum FilterType {
     case Unfavorited
@@ -21,15 +22,9 @@ enum FilterType {
     case NoNotes
 }
 
-enum PopularityFilterType:Int {
-    case Top10Pct = 0
-    case Top20Pct
-    case Top50Pct
-    case Bottom50Pct
-    case Bottom20Pct
-}
+typealias PopularityFilterPair = (minValue:Float, maxValue:Float)
 
-class FiltersViewController: UIViewController {
+class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     
     var songListViewController: SongListTableViewController!
     @IBOutlet var filteredSongsCountLabel: UILabel!
@@ -39,7 +34,7 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var plainFugueSegmentedControl: UISegmentedControl!
     @IBOutlet weak var dupleTripleSegmentedControl: UISegmentedControl!
     @IBOutlet var notesSegmentedControl: UISegmentedControl!
-    @IBOutlet var popularitySegmentedControl: UISegmentedControl!
+    @IBOutlet var popularitySlider: JFADoubleSlider!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,7 +63,8 @@ class FiltersViewController: UIViewController {
             }
         }
         if let popularityFilter = songListViewController.popularityFilter {
-            popularitySegmentedControl.selectedSegmentIndex = popularityFilter.rawValue
+            popularitySlider.curMaxVal = popularityFilter.maxValue
+            popularitySlider.curMinVal = popularityFilter.minValue
         }
         updateCount()
     }
@@ -154,18 +150,24 @@ class FiltersViewController: UIViewController {
         case 0:
             add(.Notes, remove: .NoNotes)
         case 1:
-            remove([.Notes, .Notes])
+            remove([.Notes, .NoNotes])
         case 2:
-            add(.Notes, remove: .Notes)
+            add(.NoNotes, remove: .Notes)
         default:
             fatalError("Storyboard incorrect")
         }
         updateCount()
     }
     
-    @IBAction func popularityStatusChanged(sender: UISegmentedControl) {
-        // "All" makes a nil filter
-        songListViewController.popularityFilter = PopularityFilterType(rawValue: sender.selectedSegmentIndex)
+    func minValueChanged(newValue:Float) {
+        print(newValue)
+        songListViewController.popularityFilter = (minValue:newValue, maxValue:songListViewController.popularityFilter?.maxValue ?? 1.0)
+        updateCount()
+    }
+    
+    func maxValueChanged(newValue:Float) {
+        print(newValue)
+        songListViewController.popularityFilter = (minValue:songListViewController.popularityFilter?.minValue ?? 0.0, maxValue:newValue)
         updateCount()
     }
     
@@ -174,6 +176,15 @@ class FiltersViewController: UIViewController {
         tableView.reloadData()
         let count = tableView.numberOfRowsInSection(0)
         self.filteredSongsCountLabel.text = "\(count) songs"
+    }
+    
+    @IBAction func clearAllButtonPressed(sender: UIBarButtonItem) {
+        remove([.Unfavorited, .Favorited, .Fugue, .Plain, .Major, .Minor, .Duple, .Triple, .Notes, .NoNotes])
+        for slider in [favoritedSegmentedControl, majorMinorSegmentedControl, plainFugueSegmentedControl, dupleTripleSegmentedControl, notesSegmentedControl] {
+            slider.selectedSegmentIndex = 1
+        }
+        popularitySlider.curMinVal = 0.0
+        popularitySlider.curMaxVal = 1.0
     }
     
     @IBAction func doneBarButtonPressed(sender: UIBarButtonItem) {

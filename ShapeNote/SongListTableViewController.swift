@@ -23,7 +23,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         }
     }
     var activeFilters = [FilterType]()
-    var popularityFilter:PopularityFilterType?
+    var popularityFilter:PopularityFilterPair?
     
     var searchController: UISearchController!
     var searchTableView: SearchResultsTableViewController!
@@ -58,7 +58,6 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     var filteredSongs:[Song] {
         
         var filteredSongs = songs
-        let totalSongs = CoreDataHelper.sharedHelper.numberOfSongsInCurrentBook
         
         for filter in activeFilters {    
             filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
@@ -90,20 +89,8 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         if let popularityFilter = popularityFilter {
             filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
                 
-                let percentage = song.popularityAsPercentOfTotalSongs(totalSongs)
-                
-                switch popularityFilter {
-                case .Top10Pct:
-                    return percentage <= 0.1
-                case .Top20Pct:
-                    return percentage <= 0.2
-                case .Top50Pct:
-                    return percentage <= 0.5
-                case .Bottom50Pct:
-                    return percentage < 0.5
-                case .Bottom20Pct:
-                    return percentage < 0.2
-                }
+                let percentage = song.popularityAsPercentOfTotalSongs(songs.count)
+                return percentage <= popularityFilter.maxValue && percentage >= popularityFilter.minValue
             })
         }
         // TODO show something in the background if you've filtered out everything
