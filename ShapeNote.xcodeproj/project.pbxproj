@@ -22,6 +22,8 @@
 		C0134F971ABF43B200B62BA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */; };
 		C0134F991ABF43BA00B62BA3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F981ABF43BA00B62BA3 /* libz.dylib */; };
 		C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */; };
+		C021FD9F1C21EFAD009A972A /* FacebookShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */; };
+		C021FDA01C21EFAD009A972A /* FacebookShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */; };
 		C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */; };
 		C02E18A41BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */; };
 		C02E18A61BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */; };
@@ -53,7 +55,6 @@
 		C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */; };
 		C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */; };
 		C064B5F51BECAC840021F2B0 /* FacebookUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */; };
-		C06AAE361A8D6ED400EB7612 /* FacebookShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06AAE351A8D6ED400EB7612 /* FacebookShareHelper.swift */; };
 		C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A721A86C25000E10773 /* Crashlytics.framework */; };
 		C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A731A86C25000E10773 /* Fabric.framework */; };
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
@@ -119,6 +120,9 @@
 		C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C0134F981ABF43BA00B62BA3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C021FD9C1C21EAEA009A972A /* ShapeNote 0.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.5.xcdatamodel"; sourceTree = "<group>"; };
+		C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareViewController.swift; sourceTree = "<group>"; };
+		C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookShareViewController.xib; sourceTree = "<group>"; };
 		C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.1.xcdatamodel"; sourceTree = "<group>"; };
 		C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonAssistantTableViewCell.swift; sourceTree = "<group>"; };
@@ -155,7 +159,6 @@
 		C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DigitsKit.framework; path = Fabric/DigitsKit.framework; sourceTree = SOURCE_ROOT; };
 		C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = Fabric/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUserHelper.swift; sourceTree = "<group>"; };
-		C06AAE351A8D6ED400EB7612 /* FacebookShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareHelper.swift; sourceTree = "<group>"; };
 		C06D7A721A86C25000E10773 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A731A86C25000E10773 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
@@ -300,6 +303,8 @@
 				C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */,
 				C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */,
 				C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */,
+				C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */,
+				C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */,
 			);
 			name = "Minute-taking";
 			sourceTree = "<group>";
@@ -353,7 +358,6 @@
 				C02E18911BF11BD300FF2057 /* Song Lists */,
 				C0EA4E271C00DF83000CCF81 /* Singer Lists */,
 				C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */,
-				C06AAE351A8D6ED400EB7612 /* FacebookShareHelper.swift */,
 				C02E188F1BF11BAA00FF2057 /* Users & Groups */,
 				C05626A51BEFD1B700E05EBE /* Quiz */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
@@ -538,6 +542,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C021FDA01C21EFAD009A972A /* FacebookShareViewController.xib in Resources */,
 				C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */,
 				C092E8601A8914B6002594A5 /* CH.json in Resources */,
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
@@ -660,6 +665,7 @@
 				C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */,
 				C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,
+				C021FD9F1C21EFAD009A972A /* FacebookShareViewController.swift in Sources */,
 				C0EA4E2E1C01BC3B000CCF81 /* TabBarManager.swift in Sources */,
 				C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */,
 				C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */,
@@ -670,7 +676,6 @@
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
 				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
 				C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */,
-				C06AAE361A8D6ED400EB7612 /* FacebookShareHelper.swift in Sources */,
 				C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */,
 				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
@@ -999,13 +1004,14 @@
 		C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C021FD9C1C21EAEA009A972A /* ShapeNote 0.5.xcdatamodel */,
 				C09ABE1B1C1F6E2800310195 /* ShapeNote 0.4.xcdatamodel */,
 				C0DBE9251C05D2CD0060344F /* ShapeNote 0.3.xcdatamodel */,
 				C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */,
 				C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */,
 				C0515B631A7BA59D0006ED16 /* ShapeNote.xcdatamodel */,
 			);
-			currentVersion = C09ABE1B1C1F6E2800310195 /* ShapeNote 0.4.xcdatamodel */;
+			currentVersion = C021FD9C1C21EAEA009A972A /* ShapeNote 0.5.xcdatamodel */;
 			path = ShapeNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

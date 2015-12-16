@@ -1,27 +1,32 @@
 //
-//  FacebookShareHelper.swift
+//  FacebookShareViewController.swift
 //  ShapeNote
 //
-//  Created by Charlie Williams on 12/02/2015.
-//  Copyright (c) 2015 Charlie Williams. All rights reserved.
+//  Created by Charlie Williams on 16/12/2015.
+//  Copyright © 2015 Charlie Williams. All rights reserved.
 //
 
 import UIKit
 
-let groupGraphString = "/159750340866331/feed"
+class FacebookShareViewController: UIViewController {
 
-class FacebookShareHelper: NSObject {
-    
     class func canPostToFacebook() -> Bool {
         
         let permissions:NSArray = FBSession.activeSession().permissions
         return permissions.containsObject("publish_actions")
     }
     
-    class func postMinutesToFacebook(minutes:Minutes) {
+    func postMinutesToFacebook(minutes:Minutes) {
         
         let params = ["message": minutes.stringForSocialMedia()]
-
+        
+        guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else { return }
+        let groupGraphString = "/\(group.facebookID)/feed"
+        
+        UIPasteboard.generalPasteboard().string = minutes.stringForSocialMedia()
+        
+        // Show UI saying "write your message here…"
+        
         FBRequestConnection.startWithGraphPath(groupGraphString, parameters: params, HTTPMethod: "POST") { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             
             if error != nil {
@@ -35,4 +40,5 @@ class FacebookShareHelper: NSObject {
             }
         }
     }
+
 }

@@ -15,4 +15,5 @@ class Group: NSManagedObject {
 
     @NSManaged var name: String
     @NSManaged var singers: [Singer]
+    @NSManaged var facebookID: String
 }

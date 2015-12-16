@@ -61,7 +61,7 @@ class ParseHelper {
                 var found = false
                 for group in groups {
                     
-                    if group.name == object["name"] as? String {
+                    if group.facebookID == object["fbGroupID"] as? String {
                         found = true
                     }
                 }
@@ -70,6 +70,7 @@ class ParseHelper {
                     
                     let newGroup = NSEntityDescription.insertNewObjectForEntityForName("Group", inManagedObjectContext: CoreDataHelper.managedContext) as! Group
                     newGroup.name = object["name"] as! String
+                    newGroup.facebookID = object["fbGroupID"] as! String
                 }
             }
             CoreDataHelper.sharedHelper.saveContext()
