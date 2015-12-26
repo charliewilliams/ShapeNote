@@ -73,21 +73,24 @@ class MinuteTakingViewController: UITableViewController {
     
         minutes?.complete = true
         CoreDataHelper.sharedHelper.saveContext()
+        let shareVC = FacebookShareViewController()
         
-        guard FacebookShareHelper.canPostToFacebook() else { self.navigationController?.popViewControllerAnimated(true); return }
+        guard shareVC.canPostToFacebook() && minutes != nil else { self.navigationController?.popViewControllerAnimated(true); return }
 
         let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Post", style: .Default) { (action:UIAlertAction) -> Void in
             
-            FacebookShareHelper.postMinutesToFacebook(self.minutes!)
-            self.navigationController?.popViewControllerAnimated(true)
+            shareVC.minutes = self.minutes!
+            self.presentViewController(shareVC, animated: true, completion: {
+                self.navigationController?.popViewControllerAnimated(false)
+            })
         }
-        let cancel = UIAlertAction(title: "Don't post", style: UIAlertActionStyle.Cancel) { (cancel:UIAlertAction!) -> Void in
+        let cancel = UIAlertAction(title: "Don't post", style: .Cancel) { (cancel:UIAlertAction!) -> Void in
             self.navigationController?.popViewControllerAnimated(true)
         }
         
+        alert.addAction(cancel) // first
         alert.addAction(action)
-        alert.addAction(cancel)
         
         self.presentViewController(alert, animated: true, completion: nil)
     }

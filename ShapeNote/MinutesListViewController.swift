@@ -113,7 +113,6 @@ class MinutesListViewController: UITableViewController {
     func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath) -> MinuteTakingViewController {
         
         let m = allMinutes[indexPath.row]
-//        CoreDataHelper.sharedHelper.managedObjectContext?.insertObject(m)
         let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         

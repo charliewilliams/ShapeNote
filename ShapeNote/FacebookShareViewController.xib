@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FacebookShareViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FacebookShareViewController" customModule="ShapeNote" customModuleProvider="target">
             <connections>
+                <outlet property="postButton" destination="xcF-6N-YcY" id="Ubq-1C-phX"/>
+                <outlet property="postComposeTextView" destination="0cS-bb-qBU" id="IB4-Hp-eQt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +17,67 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The text of the minutes has been copied to the clipboard." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-8O-dQ9">
+                    <rect key="frame" x="8" y="66" width="584" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you wish to post it you may paste it here by long-pressing in the text field and then choosing 'Paste':" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-kL-Rzt">
+                    <rect key="frame" x="8" y="93" width="584" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0cS-bb-qBU">
+                    <rect key="frame" x="8" y="136.5" width="584" height="355.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcF-6N-YcY">
+                    <rect key="frame" x="0.0" y="512" width="600" height="88"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="88" id="id7-NJ-pW0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                    <state key="normal" title="Post to Facebook"/>
+                    <connections>
+                        <action selector="postButtonPressed:" destination="-1" eventType="touchUpInside" id="wKZ-5u-APq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.88207013574660631" green="0.88207013574660631" blue="0.88207013574660631" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="E6d-8O-dQ9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="1zi-IR-oom"/>
+                <constraint firstItem="kHe-kL-Rzt" firstAttribute="bottom" secondItem="0cS-bb-qBU" secondAttribute="top" constant="-10" id="2rX-9w-8Yr"/>
+                <constraint firstItem="0cS-bb-qBU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.66667" id="F65-Es-NyB"/>
+                <constraint firstItem="kHe-kL-Rzt" firstAttribute="leading" secondItem="0cS-bb-qBU" secondAttribute="leading" id="K54-1j-XZx"/>
+                <constraint firstAttribute="bottom" secondItem="xcF-6N-YcY" secondAttribute="bottom" id="NV4-OK-U7e"/>
+                <constraint firstItem="0cS-bb-qBU" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottomMargin" id="SGN-7J-cvV"/>
+                <constraint firstItem="kHe-kL-Rzt" firstAttribute="top" secondItem="E6d-8O-dQ9" secondAttribute="bottom" constant="10" id="UR5-5A-iv8"/>
+                <constraint firstAttribute="trailing" secondItem="xcF-6N-YcY" secondAttribute="trailing" id="dX1-qD-YpA"/>
+                <constraint firstItem="xcF-6N-YcY" firstAttribute="top" secondItem="0cS-bb-qBU" secondAttribute="bottom" constant="20" id="fA6-TQ-rSk"/>
+                <constraint firstItem="xcF-6N-YcY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fa6-ra-zvD"/>
+                <constraint firstItem="kHe-kL-Rzt" firstAttribute="leading" secondItem="E6d-8O-dQ9" secondAttribute="leading" id="hUR-HK-qTJ"/>
+                <constraint firstItem="0cS-bb-qBU" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="sGk-ty-0Ub"/>
+                <constraint firstItem="0cS-bb-qBU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="sjW-Lw-V5a"/>
+                <constraint firstItem="kHe-kL-Rzt" firstAttribute="trailing" secondItem="0cS-bb-qBU" secondAttribute="trailing" id="tCu-AN-Szx"/>
+                <constraint firstItem="kHe-kL-Rzt" firstAttribute="trailing" secondItem="E6d-8O-dQ9" secondAttribute="trailing" id="zFH-PN-Qlm"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="F65-Es-NyB"/>
+                    <exclude reference="SGN-7J-cvV"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
