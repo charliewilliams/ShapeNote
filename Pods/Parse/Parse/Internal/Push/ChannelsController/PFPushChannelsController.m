@@ -28,10 +28,6 @@
 #pragma mark - Init
 ///--------------------------------------
 
-- (instancetype)init {
-    PFNotDesignatedInitializer();
-}
-
 - (instancetype)initWithDataSource:(nonnull id<PFCurrentInstallationControllerProvider>)dataSource {
     self = [super init];
     if (!self) return nil;
@@ -49,7 +45,7 @@
 #pragma mark - Get
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsAsync {
+- (BFTask<NSSet<NSString *> *>*)getSubscribedChannelsAsync {
     return [[self _getCurrentObjectAsync] continueWithSuccessBlock:^id(BFTask *task) {
         PFInstallation *installation = task.result;
 

@@ -1,17 +1,17 @@
 PODS:
-  - Bolts (1.5.0):
-    - Bolts/AppLinks (= 1.5.0)
-    - Bolts/Tasks (= 1.5.0)
-  - Bolts/AppLinks (1.5.0):
+  - Bolts (1.6.0):
+    - Bolts/AppLinks (= 1.6.0)
+    - Bolts/Tasks (= 1.6.0)
+  - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.5.0)
-  - Facebook-iOS-SDK (3.24.1):
+  - Bolts/Tasks (1.6.0)
+  - Facebook-iOS-SDK (3.24.2):
     - Bolts (~> 1.2)
   - Instructions (0.3.0)
   - JFADoubleSlider (1.0.0)
-  - Parse (1.10.0):
+  - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
-  - ParseFacebookUtils (1.9.1):
+  - ParseFacebookUtils (1.10.0):
     - Bolts/Tasks (~> 1.5)
     - Facebook-iOS-SDK (~> 3.24)
     - Parse (~> 1.9)
@@ -28,12 +28,12 @@ DEPENDENCIES:
   - SwiftSpinner
 
 SPEC CHECKSUMS:
-  Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
-  Facebook-iOS-SDK: 08689c2690dc4e087b9c8e171e48667608b72a2a
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Facebook-iOS-SDK: 2b76db4e29be113e211b464f7cc8c6a4b5a5a7d9
   Instructions: 9434fd16d3c53c85b92d3faa33f36983add62369
   JFADoubleSlider: 840e16fb74112dd1de6855932f67e773e0818941
-  Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
-  ParseFacebookUtils: 14016713d460f605e8b4834cd616f19339d7e9c0
+  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
+  ParseFacebookUtils: 7030f53c989fda36ad50029d90edec1327424317
   STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
 

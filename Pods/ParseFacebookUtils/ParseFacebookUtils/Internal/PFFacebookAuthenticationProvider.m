@@ -114,6 +114,7 @@ NSString *const PFFacebookUserAuthenticationType = @"facebook";
         }
     }
     [self.session openWithBehavior:behavior
+                fromViewController:nil
                  completionHandler:^(FBSession *callingSession, FBSessionState status, NSError *openError) {
                      if (called) {
                          if ((status & FBSessionStateOpenTokenExtended) == FBSessionStateOpenTokenExtended &&
@@ -185,7 +186,7 @@ NSString *const PFFacebookUserAuthenticationType = @"facebook";
     self.session = FBSession.activeSession = sessionProxy;
 }
 
-- (BOOL)restoreAuthenticationWithAuthData:(nullable NSDictionary PF_GENERIC(NSString *,NSString *)*)authData {
+- (BOOL)restoreAuthenticationWithAuthData:(nullable NSDictionary<NSString *, NSString *> *)authData {
     if (!authData) {
         OSAtomicIncrement32(&_currentOperationId);
         self.tokenCache.facebookId = nil;
@@ -213,10 +214,9 @@ NSString *const PFFacebookUserAuthenticationType = @"facebook";
         if (!rawSession.isOpen ||
             !([rawSession.accessTokenData.accessToken isEqualToString:self.tokenCache.accessToken] &&
               [rawSession.accessTokenData.expirationDate isEqualToDate:self.tokenCache.expirationDate])) {
+                // We don't pass the permissions here because we don't actually know the permissions for this access token at this point.
                 rawSession = [self.sessionProvider sessionWithAppID:self.appId
-                                                        permissions:nil // We don't pass the permissions here because
-                                                                        // we don't actually know the permissions for
-                                                                        // this access token at this point.
+                                                        permissions:nil
                                                     urlSchemeSuffix:self.urlSchemeSuffix
                                                  tokenCacheStrategy:self.tokenCache];
                 if ([rawSession respondsToSelector:@selector(clearAffinitizedThread)]) {
@@ -236,6 +236,7 @@ NSString *const PFFacebookUserAuthenticationType = @"facebook";
 
                 if (rawSession.state == FBSessionStateCreatedTokenLoaded) {
                     [rawSession openWithBehavior:FBSessionLoginBehaviorWithNoFallbackToWebView
+                              fromViewController:nil
                                completionHandler:^(FBSession *callingSession, FBSessionState status, NSError *error) {
                                    if (!called) {
                                        if (callingSession.isOpen && self.currentOperationId == scopedOperationId) {

@@ -13,7 +13,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///--------------------------------------
-/// @name Object
+#pragma mark - Default ACL
+///--------------------------------------
+
+@class PFDefaultACLController;
+
+@protocol PFDefaultACLControllerProvider <NSObject>
+
+@property (nonatomic, strong, readonly) PFDefaultACLController *defaultACLController;
+
+@end
+
+///--------------------------------------
+#pragma mark - Object
 ///--------------------------------------
 
 @class PFObjectController;
@@ -49,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 ///--------------------------------------
-/// @name User
+#pragma mark - User
 ///--------------------------------------
 
 @class PFUserAuthenticationController;
@@ -77,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 ///--------------------------------------
-/// @name Installation
+#pragma mark - Installation
 ///--------------------------------------
 
 @class PFCurrentInstallationController;

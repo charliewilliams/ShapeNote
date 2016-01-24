@@ -16,7 +16,7 @@
 PF_OSX_UNAVAILABLE_WARNING
 PF_WATCH_UNAVAILABLE_WARNING
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFFileManager;
 @class PFPaymentTransactionObserver;
 @class PFProductsRequestResult;
@@ -36,7 +36,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchaseController : NSObje
 @property (nonatomic, assign) Class productsRequestClass;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -47,7 +47,7 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchaseController : NSObje
                                   bundle:(NSBundle *)bundle;
 
 ///--------------------------------------
-/// @name Products
+#pragma mark - Products
 ///--------------------------------------
 
 - (BFTask *)findProductsAsyncWithIdentifiers:(NSSet *)productIdentifiers;

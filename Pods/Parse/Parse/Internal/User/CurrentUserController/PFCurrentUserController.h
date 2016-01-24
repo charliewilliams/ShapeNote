@@ -16,7 +16,7 @@
 #import "PFDataProvider.h"
 #import "PFMacros.h"
 
-@class BFTask PF_GENERIC(__covariant BFGenericType);
+@class BFTask<__covariant BFGenericType>;
 @class PFUser;
 
 typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
@@ -31,10 +31,12 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 @property (atomic, assign) BOOL automaticUsersEnabled;
 
 ///--------------------------------------
-/// @name Init
+#pragma mark - Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 - (instancetype)initWithStorageType:(PFCurrentObjectStorageType)storageType
                    commonDataSource:(id<PFKeychainStoreProvider>)commonDataSource
                      coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource NS_DESIGNATED_INITIALIZER;
@@ -43,7 +45,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
                            coreDataSource:(id<PFObjectFilePersistenceControllerProvider>)coreDataSource;
 
 ///--------------------------------------
-/// @name User
+#pragma mark - User
 ///--------------------------------------
 
 - (BFTask *)getCurrentUserAsyncWithOptions:(PFCurrentUserLoadingOptions)options;
@@ -51,7 +53,7 @@ typedef NS_OPTIONS(NSUInteger, PFCurrentUserLoadingOptions) {
 - (BFTask *)logOutCurrentUserAsync;
 
 ///--------------------------------------
-/// @name Session Token
+#pragma mark - Session Token
 ///--------------------------------------
 
 - (BFTask *)getCurrentUserSessionTokenAsync;
