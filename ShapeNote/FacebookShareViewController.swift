@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FacebookShareViewController: UIViewController {
+class FacebookShareViewController: UIViewController, UITextViewDelegate {
     
     var minutes:Minutes!
     @IBOutlet weak var postComposeTextView: UITextView!
@@ -72,6 +72,11 @@ class FacebookShareViewController: UIViewController {
                 })
             }
         }
+    }
+    
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
     }
 
 }
