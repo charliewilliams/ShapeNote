@@ -29,12 +29,21 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     var session: TWTRSession?
     var facebookUser: FBGraphUser?
     var showingGroupsPicker = false
+    var isModal: Bool {
+        return self.presentingViewController?.presentedViewController == self
+            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
+            || self.tabBarController?.presentingViewController is UITabBarController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
         self.facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (notification) -> Void in
+            self?.checkFacebookLoginStatus()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,24 +51,13 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         self.navigationController?.setNavigationBarHidden(!isModal, animated: true)
         
         // If we have a local user with info, set that before hitting the network!
-        
-        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (notification) -> Void in
-            self?.checkFacebookLoginStatus()
-        }
+        checkFacebookLoginStatus()
         
         if let twSession = Twitter.sharedInstance().sessionStore.session() {
             fixTwitterLoginStateForSession(twSession)
         }
-        
-        checkFacebookLoginStatus()
     }
-    
-    var isModal: Bool {
-        return self.presentingViewController?.presentedViewController == self
-            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
-            || self.tabBarController?.presentingViewController is UITabBarController
-    }
-    
+
     // MARK: ----------- Facebook functions
     func requiredFacebookReadPermissions() -> [String] {
         return ["public_profile", "user_friends", "email", "user_likes", "user_managed_groups", "user_groups"]
@@ -190,6 +188,13 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func showLoggedInUserName(user: FBGraphUser) {
         self.userFullNameLabel.text = "Logged in as \(user.name)"
         self.userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
+    }
+    
+    func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
+        
+        if let user = facebookUser {
+            showLoggedInUserName(user)
+        }
     }
     
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
