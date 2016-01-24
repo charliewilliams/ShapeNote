@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FacebookShareViewController" customModule="ShapeNote" customModuleProvider="target">
             <connections>
                 <outlet property="postButton" destination="xcF-6N-YcY" id="Ubq-1C-phX"/>
+                <outlet property="postButtonToBottomEdgeConstraint" destination="NV4-OK-U7e" id="1W2-5U-VuX"/>
                 <outlet property="postComposeTextView" destination="0cS-bb-qBU" id="IB4-Hp-eQt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,20 +20,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compose your Facebook post:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6d-8O-dQ9">
-                    <rect key="frame" x="8" y="66" width="584" height="17"/>
+                    <rect key="frame" x="8" y="88" width="584" height="17"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-kL-Rzt">
-                    <rect key="frame" x="8" y="93" width="584" height="34"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-kL-Rzt">
+                    <rect key="frame" x="8" y="115" width="584" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="vVm-Ic-naa"/>
+                    </constraints>
                     <string key="text">We've copied the full text of your minutes to the clipboard for you. If you'd like, you may paste it below by long-pressing and then choosing 'Paste':</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0cS-bb-qBU">
-                    <rect key="frame" x="8" y="137" width="584" height="355"/>
+                    <rect key="frame" x="8" y="125" width="584" height="367"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
@@ -45,7 +49,7 @@
                         <outlet property="delegate" destination="-1" id="TL3-Wa-7qb"/>
                     </connections>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcF-6N-YcY">
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcF-6N-YcY">
                     <rect key="frame" x="0.0" y="512" width="600" height="88"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -60,7 +64,7 @@
             </subviews>
             <color key="backgroundColor" red="0.88207013574660631" green="0.88207013574660631" blue="0.88207013574660631" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="E6d-8O-dQ9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="1zi-IR-oom"/>
+                <constraint firstItem="E6d-8O-dQ9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="88" id="1zi-IR-oom"/>
                 <constraint firstItem="kHe-kL-Rzt" firstAttribute="bottom" secondItem="0cS-bb-qBU" secondAttribute="top" constant="-10" id="2rX-9w-8Yr"/>
                 <constraint firstItem="0cS-bb-qBU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.66667" id="F65-Es-NyB"/>
                 <constraint firstItem="kHe-kL-Rzt" firstAttribute="leading" secondItem="0cS-bb-qBU" secondAttribute="leading" id="K54-1j-XZx"/>

@@ -13,11 +13,45 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     var minutes:Minutes!
     @IBOutlet weak var postComposeTextView: UITextView!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var postButtonToBottomEdgeConstraint: NSLayoutConstraint!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (note:NSNotification) -> Void in
+            
+            self?.handleKeyboardNotification(note)
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (note:NSNotification) -> Void in
+            
+            self?.handleKeyboardNotification(note)
+        }
+    }
+    
+    func handleKeyboardNotification(note:NSNotification) {
+        guard let rectValue = note.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            let durationValue = note.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
+                return
+        }
+        let showing = note.name == UIKeyboardWillShowNotification
+        let rect = rectValue.CGRectValue()
+        let duration = durationValue.doubleValue
+        let tabBarHeightIfPresent = self.navigationController?.tabBarController?.tabBar.frame.height ?? 0
+//        let curve = note.valueForKey(UIKeyboardAnimationCurveUserInfoKey)
+        
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            self.postButtonToBottomEdgeConstraint.constant = showing ? rect.size.height : tabBarHeightIfPresent
+            self.view.layoutIfNeeded()
+        })
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIPasteboard.generalPasteboard().string = minutes.stringForSocialMedia()
+        if (minutes != nil) {
+            UIPasteboard.generalPasteboard().string = minutes.stringForSocialMedia()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
