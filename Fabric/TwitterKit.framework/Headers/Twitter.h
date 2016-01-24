@@ -4,13 +4,22 @@
 //  Copyright (c) 2015 Twitter. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <TwitterCore/TWTRSession.h>
-#import "TWTRAPIClient.h"
+#import <TwitterKit/TWTRAPIClient.h>
+#import <UIKit/UIKit.h>
 
 @class TWTRSessionStore;
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * A notification which is posted when a user logs out of Twitter.
+ * The notification will contain a user dictionary which contains
+ * the user id which is being logged out. Note, this notification may
+ * be posted as a result of starting the Twitter object.
+ */
+extern NSString * const TWTRUserDidLogOutNotification;
+extern NSString * const TWTRLoggedOutUserIDKey;
 
 /**
  *  The central class of the Twitter Kit.

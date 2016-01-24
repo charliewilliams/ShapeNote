@@ -5,7 +5,8 @@
 //  Copyright (c) 2015 Twitter. All rights reserved.
 //
 
-#import "TWTRTimelineType.h"
+#import <TwitterKit/TWTRTimelineType.h>
+@class TWTRAPIClient;
 @class TWTRTimelineCursor;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -34,6 +35,13 @@ typedef void (^TWTRLoadTimelineCompletion)(NSArray * __twtr_nullable tweets, TWT
  *  The type of the timeline that this data source represents.
  */
 @property (nonatomic, readonly) TWTRTimelineType timelineType;
+
+/**
+ * The API client to use with this data source. 
+ * You will, likely, not need to alter this value unless you are implementing your
+ * own timeline view controller.
+ */
+@property (nonatomic) TWTRAPIClient *APIClient;
 
 @end
 

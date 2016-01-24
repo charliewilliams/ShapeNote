@@ -108,5 +108,10 @@ typedef NS_ENUM(NSInteger, TWTRLogInErrorCode) {
     /**
      * The login request failed.
      */
-    TWTRLogInErrorCodeFailed = 6
+    TWTRLogInErrorCodeFailed = 6,
+    /**
+     * The system account credentials are no longer valid and the 
+     * user will need to update their credentials in the Settings app.
+     */
+    TWTRLogInErrorCodeSystemAccountCredentialsInvalid = 7
 };
