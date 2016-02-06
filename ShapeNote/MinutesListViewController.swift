@@ -81,7 +81,10 @@ class MinutesListViewController: UITableViewController {
         let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController() as! IntroPopupViewController
         let _ = introVC.view
         introVC.doneButton.hidden = false
-        self.presentViewController(introVC, animated: false, completion: nil)
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(introVC, animated: false, completion: nil)
+        }
     }
     
     // MARK: - Table view data source
