@@ -19,9 +19,9 @@ let userCanceled = 2
 
 extension UIViewController {
     var isModal: Bool {
-        return self.presentingViewController?.presentedViewController == self
-            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
-            || self.tabBarController?.presentingViewController is UITabBarController
+        return presentingViewController?.presentedViewController == self
+            || (navigationController != nil && navigationController?.presentingViewController?.presentedViewController == navigationController)
+            || tabBarController?.presentingViewController is UITabBarController
     }
 }
 
@@ -41,8 +41,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
-        self.facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
+        facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
+        facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
         
         NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (notification) -> Void in
             self?.checkFacebookLoginStatus()
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(!isModal, animated: true)
+        navigationController?.setNavigationBarHidden(!isModal, animated: true)
         
         // If we have a local user with info, set that before hitting the network!
         checkFacebookLoginStatus()
