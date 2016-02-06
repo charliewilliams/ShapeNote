@@ -17,6 +17,14 @@ let loggedInPointSize:CGFloat = 14
 let loggedOutPointSize:CGFloat = 17
 let userCanceled = 2
 
+extension UIViewController {
+    var isModal: Bool {
+        return self.presentingViewController?.presentedViewController == self
+            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
+            || self.tabBarController?.presentingViewController is UITabBarController
+    }
+}
+
 class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     @IBOutlet weak var twitterLoginButton: TWTRLogInButton!
@@ -29,12 +37,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     var session: TWTRSession?
     var facebookUser: FBGraphUser?
     var showingGroupsPicker = false
-    var isModal: Bool {
-        return self.presentingViewController?.presentedViewController == self
-            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
-            || self.tabBarController?.presentingViewController is UITabBarController
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +51,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.navigationController?.setNavigationBarHidden(!isModal, animated: true)
         
         // If we have a local user with info, set that before hitting the network!
