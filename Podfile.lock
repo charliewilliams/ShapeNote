@@ -15,7 +15,7 @@ PODS:
     - Bolts/Tasks (~> 1.5)
     - Facebook-iOS-SDK (~> 3.24)
     - Parse (~> 1.9)
-  - STTwitter (0.2.2)
+  - STTwitter (0.2.3)
   - SwiftSpinner (0.8.0)
 
 DEPENDENCIES:
@@ -34,7 +34,7 @@ SPEC CHECKSUMS:
   JFADoubleSlider: 840e16fb74112dd1de6855932f67e773e0818941
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
   ParseFacebookUtils: 7030f53c989fda36ad50029d90edec1327424317
-  STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
+  STTwitter: 77386cb6f1807fbfc0e321b9233bdecc9786195d
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
 
 COCOAPODS: 0.39.0

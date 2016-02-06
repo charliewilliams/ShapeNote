@@ -11,7 +11,6 @@
 		00261192956ABD957C02975F773A8B0A /* FBRequestMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E712169D0B212ED48D1BFE4930438E8 /* FBRequestMetadata.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0119663C9E820CDAB243806ABA0013E5 /* PFInstallationIdentifierStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ABFADAB0698489BD6476502A8F7278E /* PFInstallationIdentifierStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		01A35AA58F2F92E83C5E27E8963BA21A /* BFTask.h in Headers */ = {isa = PBXBuildFile; fileRef = E06D8324B7A12A350DD01F55B90ABFDE /* BFTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		02238D7261E4EC6FC28D06C52F4382E1 /* NSString+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B787F81DEE3D7B82311CB7CDE5A946 /* NSString+STTwitter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0229A144B78FD8A5BE9F266B1B20DEFA /* PFUserDefaultsPersistenceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A9E8B534D550AB44C0C757121AD060 /* PFUserDefaultsPersistenceGroup.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		026DFF2A4F1EDB9D878643B4AB2420CC /* PFInternalUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 448C33617DDA3445637DA04697B1DB82 /* PFInternalUtils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		02A9C03DD8D0CFDCBEC8D96F4FCEC68F /* PFCommandResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B60759CD0FEE34F06AE7F27DE114B /* PFCommandResult.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -36,11 +35,11 @@
 		09107FF5A4048B887C100D7149E60256 /* PFObjectConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A728E67C647B05EADCC9C0C6F2BDF0A /* PFObjectConstants.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		093EA0378243973109511734CBAE7735 /* PFProduct+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B5C2103A5E429507D5E35E934C218E6D /* PFProduct+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		097A868267EED33F61C30E2CEE453084 /* PFAnonymousAuthenticationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = DAB88DA2931D086AB98CE5938DEB29F0 /* PFAnonymousAuthenticationProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		09C09E8D65748B952CC79BEA692744D9 /* NSError+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C746EA61F9A8BD9E30455DF09C2FA7 /* NSError+STTwitter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		09D14007FBF9C534E08153A4E8940A94 /* PFUserDefaultsPersistenceGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BD4A1C12619BBDF918C488D0FF5F7F /* PFUserDefaultsPersistenceGroup.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0A24E3FE30C6975D7839627FB1C39DCF /* FBDataDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 17205D919FEF03C0581924DBFA49109D /* FBDataDiskCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0B23975E00628B04B06273225A1A9723 /* NSError+FBError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA24134C83EAAE41AD0B7A92A340231 /* NSError+FBError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B66817E2DA8D33BAAD031DAC16A7E98 /* FBLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1760C42D8AE966DB896B5B94F790 /* FBLoginView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0BC34C78426414A28D83C0DBB35825A8 /* NSError+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C746EA61F9A8BD9E30455DF09C2FA7 /* NSError+STTwitter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0C6469D6C706633CBCED007AD05FA7EE /* FBFriendPickerCacheDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4992AB6083A1E19DBF785733A03A3E30 /* FBFriendPickerCacheDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0C924EA427E0726F92DBC14C92165C5E /* PFPersistenceGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = FA89012432B014BBE75EAA117D8F2F90 /* PFPersistenceGroup.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0D954C23E12FD703F9EDA6723135EA84 /* STTwitterOSRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 02F1E7CA34886B65686CB6C3BB38FF73 /* STTwitterOSRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -94,8 +93,8 @@
 		1B33A84CACBCEC6047EE5707C21E9367 /* PFCommandResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DC7618129EEBED292DB6BB48FD4FE3 /* PFCommandResult.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1B5B753050944A9329A07C7E91D95280 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B360F7E93EBA7AA54987A25228BB2 /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1C95E3F307F6DD60CBA70A06A096E1BC /* PFURLSessionCommandRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D79C5C2E3BDD8E81CC31E956EA70CFF /* PFURLSessionCommandRunner.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1CA87F1693E0D03DABCA165A99228D6D /* STTwitterAppOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = B355CF1A72AB038171CFFD80639B87D7 /* STTwitterAppOnly.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1D1C20C7BEFF28E5C220319C866FAD6A /* FBLikeButtonBackgroundPNG.h in Headers */ = {isa = PBXBuildFile; fileRef = 105E7314A74562743041945D24183405 /* FBLikeButtonBackgroundPNG.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1D730DE3FB7C06C00636F4E60A7E0E7B /* STTwitterOSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0177E22AB337C2C4F047D72734718337 /* STTwitterOSRequest.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1DF52058B1D00172C5711AD11DE1D01F /* PFFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 578B72C94CD088FC8BB5997421EAA9CD /* PFFile.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1E3ED4437F5CFABE9802BC5C3E7AC9AB /* PFFacebookUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B19592C22E03F78FAA50BF8E29D1EA /* PFFacebookUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E71141C8F582972F57CA782C82A74B3 /* PFMutableQueryState.h in Headers */ = {isa = PBXBuildFile; fileRef = 0163AC5DD562DF26F7CDF0C34B032E67 /* PFMutableQueryState.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -122,6 +121,7 @@
 		24910E740985CF8644B83A37438B7EF5 /* PFURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 73098EC0452AB7B85C566ECBE1AF3211 /* PFURLSession.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		24F85D7D15DE408971D1CA0CC03840D8 /* PFConfig_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB76BA0F4A6F3097DBCBC7AC5850CDD /* PFConfig_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		253E4775BDD68B9622671B7384EDA8EE /* PFRelationState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E591F7D3AF7E181CBFFC9B337066BE8 /* PFRelationState_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		256B391860E6631A80F2830877F8CF7A /* STTwitterOSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0177E22AB337C2C4F047D72734718337 /* STTwitterOSRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		263C4BD09917BBA6B117EF910A9298F7 /* BFCancellationTokenSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C82707EBBA6352E6E27EC5A847A4078F /* BFCancellationTokenSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26A59DC1B6BED5BCE37A41F0063AAB45 /* PFObjectFileCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D43EF45640F7C7F9591730DB31109958 /* PFObjectFileCoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		26A85B658E16FB08EEB28BCD49A76203 /* FBGraphPerson.h in Headers */ = {isa = PBXBuildFile; fileRef = A91FB60D301E465C5FFA0302501E431B /* FBGraphPerson.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,6 +153,7 @@
 		2D46B832D8343CE87DF440304AD6290A /* PFObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C973D2ED3A9A02A35133E1C1841D4B /* PFObjectController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2D982D605A3F1E189B6BC70C4FC5919E /* FBDynamicFrameworkLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB93B46A46572974C33068E95DBD4B8 /* FBDynamicFrameworkLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2DB6D25F55DA8E04A7C18DAF4E9291AB /* PFURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A95F8C05498C10C57677A8613B4D13 /* PFURLSession.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2E1D056D8B8B31F282896D19EFC2C2D9 /* STTwitterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A414379E87989F416A71AF994544D /* STTwitterAPI.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2EA30658FAAF792BBB920C75F1BD2C70 /* FBFriendPickerViewDefaultPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = F5000C8A148A081DEEFA08A17C3E6461 /* FBFriendPickerViewDefaultPNG.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EE2D9FB88029E263982BC6B3594DC19 /* FBDialogsParams.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E9F13AEC3C51A90ACB62D9B5A65972 /* FBDialogsParams.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EE8C8C151B091DFDBF8C70952D24434 /* PFQuery+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AF45E4389168D5D261A0F06E2D6DFF /* PFQuery+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -181,7 +182,6 @@
 		39F83EF206CBC353B7A046E8F361627E /* PFGeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 741E7277FA77635FAA09CAC6431664DA /* PFGeoPoint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3A58F220B46D131F1F7EA3BE83B43D77 /* PFMultiProcessFileLockController.h in Headers */ = {isa = PBXBuildFile; fileRef = 488F8CFCC8F3F409AF1DFF12C58EA688 /* PFMultiProcessFileLockController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3A73DB91D70F3D839FF00004DD07CD5D /* PFRESTObjectBatchCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = CE85AAE6F6B179DBD3BE38B82BF59C07 /* PFRESTObjectBatchCommand.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3A767736A01CA8F53EF20D3210D4CBB1 /* STTwitterOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = EADB5A2D86B12FFE8242452EFCD0CA8B /* STTwitterOAuth.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3A77BD130EFB5E84D186705736DC19EC /* PFUserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D54652D0D72CA5552744079C1326E81B /* PFUserConstants.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3ADA34A130EDCC619E0C0D4027B4B42F /* PFCoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E12B0B88649CA47002D190F97AB65BE5 /* PFCoreManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3B1E96D83312B83A796C59EE336A39FE /* PFRESTCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 587DB166C55048E210E736EF21D226BD /* PFRESTCommand.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -211,7 +211,6 @@
 		417F9D720FE0B5C17DA9F7E441B7403D /* PFBaseState.m in Sources */ = {isa = PBXBuildFile; fileRef = 013A1749AD0DF70CDF374CF59A4B8D7D /* PFBaseState.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		41B9C8EC055B233C22160E381EC36E7F /* PFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = C9729B0D7EF99BB5A087F8C97AEAC767 /* PFApplication.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		42D99E7D550F4796D00AB2D0AA13DE19 /* FBProfilePictureViewBlankProfilePortraitPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = 50966EDFA4181466C78E9E600F439A57 /* FBProfilePictureViewBlankProfilePortraitPNG.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		42FA0AB7C4BB15A82EDDAB1FF94573DB /* STTwitterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A414379E87989F416A71AF994544D /* STTwitterAPI.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4307F5FC24EC2E8316EA6CAEFAFFF7A7 /* STTwitterOAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 82FE1B8FD973BB9A83B3A51725F0B5B9 /* STTwitterOAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43218CB3BFF585907D8B61276A051E68 /* PFObjectFilePersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A25A4123FCB1C55051DF70BF09EDD3C3 /* PFObjectFilePersistenceController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		43E32701BA0A2E8ADC26B72538DA71DD /* FBRequestBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D3396FFF08CC09DD465CD69F933FA /* FBRequestBody.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -242,7 +241,6 @@
 		4B2123A105092BA8B67326B3AB51CE46 /* PFSQLiteStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = E3729D538F619137CDF4DD90A8AFBE92 /* PFSQLiteStatement.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4BE05CB60E064EC494A2852368381472 /* PFFacebookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AD52D7288FC9BDFE610F504A08F80 /* PFFacebookUtils.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4C537F132537FC23BDD982CB0D03DA28 /* FBErrorUtility+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1253D25C07B3A94BFD135E358B1DAF2A /* FBErrorUtility+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4C5FE942E2F2C0456594154647C92BE1 /* STTwitterStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 986E665D2249E9FF7F0039CE0E7BC29E /* STTwitterStreamParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4C6B876F6887718A71C6213EA2D00CA6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8403C8945800B4ABCBCE0D7EF2546077 /* Bolts.framework */; };
 		4CD02CF6F68AF9F267C523436FCE3594 /* PFGeoPointPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE4F0D987227F70183D2E4F5328CC6EA /* PFGeoPointPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4D014211E21A69FBEB002FA487122267 /* PFCurrentConfigController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A41884451291275488AE652388831E9 /* PFCurrentConfigController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -254,7 +252,6 @@
 		50514642086B1AE632CBEE0C9F96A783 /* PFSQLiteDatabaseController.h in Headers */ = {isa = PBXBuildFile; fileRef = BF2E16398DDB76B6CFF6BD128424FC77 /* PFSQLiteDatabaseController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		513EF8642BF98291DAE3599FFDE5CAC8 /* FBFrictionlessDialogSupportDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C521902812F9375D98BAD9F890B730 /* FBFrictionlessDialogSupportDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		517C488CC469C45B91356EA4DA8A81BF /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F694419C8486E40371638352DA7ADBA7 /* FBFrictionlessRequestSettings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		517D84907EF6D622C7D345E124B507E4 /* STTwitterAppOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = B355CF1A72AB038171CFFD80639B87D7 /* STTwitterAppOnly.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		5200556D24CDC937B9B84E0B5EFB7F31 /* FBPeoplePickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D245918FD94F2C462BBB8D3E5FC2B8E /* FBPeoplePickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5278CBB3AF0ABEF52368D7E4CEA82A02 /* PFObjectSubclassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 71208BB4E78425A16B88A9D793B7FAC8 /* PFObjectSubclassInfo.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		52AE6A0329D88779F829FDF59743E535 /* PFPinningObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = F1D1744895B3755354037DCCD98F825A /* PFPinningObjectStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -314,6 +311,7 @@
 		63939972D44CC4356ECA9D3D721B1787 /* FBLikeBoxBorderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E34E5D18C20284E0D001B784C40B560 /* FBLikeBoxBorderView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6440C89AD260C2E46A28A4BBA6FAF9EF /* _FBMAppBridgeScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = A22FA63837CCAB2DA9C2CED92C61656C /* _FBMAppBridgeScheme.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6455479DC8B4C151FF21896A81630FEE /* CoachMarksControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DB12B7926CCD0EA81FE580C537681 /* CoachMarksControllerDataSource.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		64699228E7675ECFCAD1BCE80FB48DC9 /* BAVPlistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A68EB99C53A3FDBF83239AEE1D8534 /* BAVPlistNode.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		648D093C2A7EBE083D883C46DA9A55F8 /* BFCancellationTokenRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B4ACEB455C1EFF3CBA504197ACC0B28 /* BFCancellationTokenRegistration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64E001F4017BCE2F4A794166667BAE7B /* FBSessionLoginStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FB81C327D8973EDB2998B55FC22F061 /* FBSessionLoginStrategy.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		65072793C24E8412F92E2CDF0A6724DC /* ParseClientConfiguration_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 64DBF957D73F38D3637CDF5075F39F7A /* ParseClientConfiguration_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -324,7 +322,6 @@
 		65FE833093E2E7277A8809D6A13B3821 /* PFLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A407C42607EB162FEA7E91CE2A91FCF8 /* PFLogger.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		66390549C70D283B51AC34EB8E5F9FFB /* PFUserAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 965B194609E068BF09CD78DD06B3CCAE /* PFUserAuthenticationController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		66B9BC07A91E59AE9594FECB464137DB /* FBTaskCompletionSource.h in Headers */ = {isa = PBXBuildFile; fileRef = D6332226FE77A62903B53FD4A5FE378E /* FBTaskCompletionSource.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6723893A217145DD2F6B4E96A38CC429 /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C731A799467F024C1A4AF71683469BC7 /* NSDateFormatter+STTwitter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6782F74AC3ED3159741877AB7F81ABED /* PFSQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D25F4D7088B3662F529DAE9D9C19F94C /* PFSQLiteDatabase.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6798456AC24ABF27834166721A691191 /* FBOpenGraphAction.h in Headers */ = {isa = PBXBuildFile; fileRef = ADC9C57E96C10AC524AFEF3C771CA6B5 /* FBOpenGraphAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		682CD6D15A0CFE176FDFCDE559D7DF4D /* BFURL_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 13E54FFC45469633599024A7096E1661 /* BFURL_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -379,7 +376,6 @@
 		7935691E1C28162079C4646F3428CA49 /* PFAnonymousUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3A62A28B06416C7539B3A0B3B068C7 /* PFAnonymousUtils.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		79C688394C5261F8FB45A8A1E00101DB /* FBPaymentObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B21D7345B00D0D9B5D2F0ADBFE208 /* FBPaymentObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		79F33AC2E536FDD10716638C8018B3A6 /* PFRESTQueryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EC35820B01264761BA07B2B672FE6C4C /* PFRESTQueryCommand.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7A1F0F2507BA5F09461AFAA2144BF770 /* STHTTPRequest+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758BFC267D8C9631642DED1AA9725BE /* STHTTPRequest+STTwitter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7A4B7A7465AC993C1C3798AD444EB125 /* PFURLSessionFileDownloadTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1FA7CB75901E523F6BDC1248BD4E64 /* PFURLSessionFileDownloadTaskDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7A4CFBAFD699496FEA0942F36DB0919C /* FBPeoplePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB34948CE90B0047032B025F6CBED6F1 /* FBPeoplePickerViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7A5717F4EAC9F404D3025EF83ADC8089 /* BFTaskCompletionSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B735AD4263C2A50839CF2A9FEBC16D8 /* BFTaskCompletionSource.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -391,6 +387,7 @@
 		7B7982B7C7273B0B738392785D82CFA0 /* PFPushUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = AEDF77CC23093841DA6A26F6D3A9103C /* PFPushUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7BC8A61F99B8571945585E8D591E7D6A /* FBRequestConnectionRetryManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FE246A9A2254311879176A3661E0D084 /* FBRequestConnectionRetryManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7BED4667DADC473369EB6245C9C8CC10 /* PFAnalyticsController.h in Headers */ = {isa = PBXBuildFile; fileRef = D7087FBAC4DAE9CA3D7D42C4D8D48520 /* PFAnalyticsController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7CE29A3460BB530F3AC063F5549431C1 /* JSONSyntaxHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 366E002F44791BEB2A981504321EFDCC /* JSONSyntaxHighlight.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7D269A88DFD6685CD092A7273EF94FE8 /* FBTestSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D91369A5426D36EEADAD280797B65 /* FBTestSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7D3E4AFBC579A0AC9A70A670CBD70772 /* PFApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 920EC4B15F33C235AC265B2D97141C92 /* PFApplication.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7D6869D3B156787208545969675CD482 /* PFRESTObjectCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEF7DD1309EFB58C3B77047C98A1528 /* PFRESTObjectCommand.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -436,11 +433,13 @@
 		8FF1DD129503463FD6D95AB204F241B5 /* PFPushController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062A5F2015F9729A35DE4DD8F35DA67D /* PFPushController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		90616EE033014C1A3A99E95E5B1B634D /* PFAnalyticsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A64525EEAE076A843E5B9595867BD8 /* PFAnalyticsController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		906A45801D1B1AF20683E03F6C0C8E53 /* FBViewImpressionTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = D8961CF0967A1F091C37148BB6917EA2 /* FBViewImpressionTracker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		90EFFA288DD9978EF0EA5F27C95886DD /* STTwitterOS.m in Sources */ = {isa = PBXBuildFile; fileRef = D132C5A3F671AA46871181757A5B8FBA /* STTwitterOS.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9110130253A89E2C6B5FA0C69E9A0979 /* PFURLSessionDataTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2974DB10DC7893873AF2B5BB098D51 /* PFURLSessionDataTaskDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		91A64C0F4CBC498723CA624F9F4F55DB /* NSError+FBError.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F659866471580BA4488DB2CC580729 /* NSError+FBError.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		91A72B85838BCD6ED99249BF9C31394D /* STTwitterRequestProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 455F165B829CDE4932DC2B1D97267884 /* STTwitterRequestProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91AD727CBF790A3C215234FA3229CA4E /* PFLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2C8B2E088983F7BFF866B34B4C7198 /* PFLocationManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		91D9208692476C1D764AC1701958B0D2 /* FBPhotoParams.m in Sources */ = {isa = PBXBuildFile; fileRef = D2606A4E95E01AAB5AB0DCBFF3E82296 /* FBPhotoParams.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		91DDEDDF6BB8F3CCB4732F9AE7753EE6 /* STHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB8D28DB0237857F864A154975BC17F /* STHTTPRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9240E8003DB17092E024451189D627E6 /* PFMutableFileState.h in Headers */ = {isa = PBXBuildFile; fileRef = E9841536B013C10CA1AE7B20B4BF082B /* PFMutableFileState.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		93AEB045CC17EE41802169E31E372EAC /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FA36C7731E56BF95CA42708795C21 /* Instructions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		94210849A261BBA8F63749DA863824BA /* PFFilePersistenceGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E37B12EBCCAFDF23E1BBA7059131A14 /* PFFilePersistenceGroup.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -454,7 +453,6 @@
 		95BCFFB9817EE83C712C1E638AF11E1A /* STTwitterHTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 82BA78A627B187381EBCE6D60EAD6961 /* STTwitterHTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95C94DE3BAC99637ACE8A688F7445F1F /* PFPersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11C702C3BBAA48F4F04405116E1161B /* PFPersistenceController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		969496F1DFBFA54C36DF867924D32F29 /* FBGraphObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 893E4920887D317D18ABF2F913EEE149 /* FBGraphObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		96BB32EC3B90A0ABE59BB641A3D5462A /* STTwitterOS.m in Sources */ = {isa = PBXBuildFile; fileRef = D132C5A3F671AA46871181757A5B8FBA /* STTwitterOS.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		96C90432179152488D0350B53475E57B /* FBDialogsParams.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F193A8E84D944566C34510F10438D /* FBDialogsParams.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		97302BE65AE12A40468B1F5E63EBF4FD /* CoachMarkArrowOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1892F1BCA4EFB37878DCF40DE83B64 /* CoachMarkArrowOrientation.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		97805CAB2282944D4294D82E10A17DF3 /* PFOfflineObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = DE5850E50D9CF49D32A86F15C95C5962 /* PFOfflineObjectController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -517,9 +515,9 @@
 		A8D41D4EE7030F19FDA36E79477F4E1F /* PFReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D1CC35EDBF90AC365E79642C5E62625 /* PFReachability.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A91EBBFDE0CDEFD971087BB6BD019FE3 /* PFKeychainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C12DAA07BB7DCCF97DE3253B21F4 /* PFKeychainStore.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A97B8B2ED49396D9C6B6CF58817E9B84 /* CoachMarksControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2F45624D398024E017F998B12F561F /* CoachMarksControllerDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A9D4B4753A740414C7F6E59888A2655A /* STTwitterHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B505CC9BE6223890799DE5F03552C423 /* STTwitterHTML.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A9DF93FB049BE831B79730F09A6544A8 /* FBPaymentObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = C722C15173AED4552DB2A0F4DF9D6F02 /* FBPaymentObserver.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A9FB6009DE66EF8B83A2CB47C07444A0 /* FBCacheDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 46D5D4F1FD3D563B42AA9576830DD2F3 /* FBCacheDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AA32BCDF949DC05C05B739B90D0F4E55 /* JSONSyntaxHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 366E002F44791BEB2A981504321EFDCC /* JSONSyntaxHighlight.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		AA6C5F7B79112C100AE4A089354B864A /* ParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636DA4FEE5260A80832B177964E8E02B /* ParseManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		AB95AFD3376736EC33D8913186FE2D3E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABC68A455A71B1B88035AB792E5AB8D /* CFNetwork.framework */; };
 		ABBBE145C33FEE28BEB8DFF56E0B4063 /* PFQueryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7663FA2150A47F104DEE58EF0797C265 /* PFQueryController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -549,12 +547,14 @@
 		B2E6BEAD2AEAE7461FA8F3EAA12D7977 /* PFEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 72A6554D749A7E575EEAD895A9673831 /* PFEncoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B2F86A767F8E12CC8A1A1BCC7B86AF94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A7C82BB24BD91380D98D7455ED40B /* QuartzCore.framework */; };
 		B2FC2173E60B72735E82D31BB3099F51 /* PFCachedQueryController.h in Headers */ = {isa = PBXBuildFile; fileRef = D52DA8CB341469571B931C55CE147BBD /* PFCachedQueryController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B35724B61DD1EEC131CB4948DDF5D3BE /* STTwitterOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = EADB5A2D86B12FFE8242452EFCD0CA8B /* STTwitterOAuth.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B389388EE512A0B9B35599F07F00B6C4 /* FBSession+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 667F7FB8600D5492C647D2FB8648B889 /* FBSession+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B40E5DDAC5BEE89DB4C00146143789DC /* PFFieldOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = A9EFFD80BBC309EB5E389335A0CAE459 /* PFFieldOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B4552CDB980203DD1F1C2314746B8240 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D2E603A53981CAB17CEDA71F1A3CA3 /* Images.xcassets */; };
 		B4AB17AB66401BD7CEECC4AA7FC02443 /* FBSessionTokenCachingStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C9DE1A5D13FA3B4EBAA79654659A1E /* FBSessionTokenCachingStrategy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B4E12F5E226D62AD6B33C882D7A43729 /* PFMutablePushState.h in Headers */ = {isa = PBXBuildFile; fileRef = 57E3F3AD2CC919FCD5A25094A69F1C86 /* PFMutablePushState.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B4E952181CBA08A378065052C99D444D /* NSString+STTwitter.h in Headers */ = {isa = PBXBuildFile; fileRef = BA65401B5B14C7FCECF0C21ED71B028F /* NSString+STTwitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5F7CFDB4E19F8A149DF46F734249B62 /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C731A799467F024C1A4AF71683469BC7 /* NSDateFormatter+STTwitter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B6204D220B43F82D1ACA7B7427086A5A /* PFACLState.m in Sources */ = {isa = PBXBuildFile; fileRef = 26948B2A386BCC51A2A733D070D2FC09 /* PFACLState.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B6694E3B2CD006AB3E8DD420ED2DF57F /* PFCloudCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C14C66AAD60B338B6BDB578A0C8352 /* PFCloudCodeController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B69673AC0FC5F211B4017EB36F2C10A7 /* PFMutableFileState.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D3C61990F6566A79BC6B6522DBA2BD /* PFMutableFileState.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -583,7 +583,6 @@
 		BF8C9B8B82A8B8AB26A37B55CDF9ED28 /* PFQueryPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C4D68DE993ADFCA3CD8F5AA446B71B0 /* PFQueryPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C055CA405E442EAF509878F41C09FD5B /* PFFile_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F2094D100D897FFB5D5649F1895B02C4 /* PFFile_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C0B7C0A9379DBD82F50F61BDA923AEF0 /* FBDialogsData.h in Headers */ = {isa = PBXBuildFile; fileRef = 26261C328DC5FD7E93CDB0CCCA1F1504 /* FBDialogsData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0FA581DA6ED2FF044A86E7323627EFC /* BAVPlistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A68EB99C53A3FDBF83239AEE1D8534 /* BAVPlistNode.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C12A04628AE49859C4BCD41D33AC24C5 /* PFCurrentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039C8F4777E3834D3C353921AF250158 /* PFCurrentConfigController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C24950241BC908A53EF351BAA55D1C91 /* BFAppLinkNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = D89178AE90BC41FB7CE9B7BA1F945A50 /* BFAppLinkNavigation.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C2797E61F38131561D79F89D8C0A9090 /* PFRESTPushCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 9398BD29470753224D9577B38EA8257D /* PFRESTPushCommand.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -591,6 +590,7 @@
 		C2E3DBC0694E849BC877DFD4AA192E95 /* FBBoltsMeasurementEventListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 1096A4B630D49E95A93AB92E4E10B1FF /* FBBoltsMeasurementEventListener.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C34398021FB00CEF5BADFC644184FDDB /* PFURLConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4937C8408A3DF06784D181CF5BA2ACCF /* PFURLConstructor.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C3B9B72E9FDEADC150607B2A11561DC5 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1C864F9E1ED0F14247FEB24B879BEAB4 /* en.lproj */; };
+		C49E34D2FD34CFA8F8A7CF8DB288275D /* STHTTPRequest+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758BFC267D8C9631642DED1AA9725BE /* STHTTPRequest+STTwitter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C4EDCCA0C732354ABA3EAAEF69876CD7 /* PFPropertyInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AC20D58ABB77CC77486C1164EF16298 /* PFPropertyInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C4F3CA35B580347F5A629A554EA28992 /* FBUtility+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 068CDEA964CB70FD22D99E50443D4B4E /* FBUtility+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C5004C4E67E4EF28040B9EE5A11A7E66 /* FBKeychainStoreDeprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 77583455AA8B2A088B9C4E50468049CB /* FBKeychainStoreDeprecated.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -624,6 +624,7 @@
 		CDC84C3B4098B94D393D85FA1E3A2DF5 /* FBRequestHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E8D606D45BDEDC761D748AF0BFC8AEE /* FBRequestHandlerFactory.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CE0EA76DB1C550F3A6DA1AEE0AF558E4 /* BFTask+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0F645815841B7805A4B0C374CEB763 /* BFTask+Private.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CE8D98038A9D2C0A05939364FCE653E1 /* PFRESTUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E826F4D5532799E2475B0A7037C6B8 /* PFRESTUserCommand.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CE9BB72E07DE559B0DC1DFDA0E28BC3C /* NSString+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B787F81DEE3D7B82311CB7CDE5A946 /* NSString+STTwitter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CEB332DFC29CA64621717FA0C70DB548 /* FBLikeControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 220FDDB9F2BD89A7A71DE684650B328F /* FBLikeControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF270AB1111E0A67338FE4FA2C77F8F9 /* FBErrorUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = D8FC2C344A75F7191EF64952C5C2538D /* FBErrorUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF2E1B870B22B7A1BE51946F041473BD /* PFFacebookAuthenticationProvider_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B9EA5A66F1C617C8F533F5D67DC4C0B /* PFFacebookAuthenticationProvider_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -681,7 +682,6 @@
 		DBFBD301ADC3AF29CB2FAF21040059EA /* PFPushChannelsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ABC04C9CB1A087BC27E1E5D300759 /* PFPushChannelsController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		DC8941FD6C5623DE26A12BA091C11D24 /* FBViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B0C651A35AF384FB17DA06715A4DB44 /* FBViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC8E8BA2BC3342BB5281F26D4B8FE984 /* FBWebDialogs.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFD3A9AC299E8AB05AE048BD2B93816 /* FBWebDialogs.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DCABF214BB882AB02372EB3A528A9F7E /* STHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB8D28DB0237857F864A154975BC17F /* STHTTPRequest.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		DD031BDEDB6926C687C570C963510DCD /* PFObject+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 107027F63EA4E46E8E665FE58F58FF98 /* PFObject+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD2579849C87408C87E8CC3437B26720 /* PFPushPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDCFD78C7B9C482C3BDEC30BBF78535 /* PFPushPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DD678025BC3FC9C60207437BE49E20D7 /* PFRESTObjectBatchCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 15929E28FCB55C3BCD3F5D5578A1CE01 /* PFRESTObjectBatchCommand.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -763,7 +763,6 @@
 		F56F875271DF78495161DAFA6F24E652 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA27B5F89731B011C5E1C0EEFAF03BDA /* Security.framework */; };
 		F59074ABCB5D041E88E13F78BCE25BE6 /* BFMeasurementEvent_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 839B41506A463D7012CF185B5959895B /* BFMeasurementEvent_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F595FE4DEFBA514445297CB3419B534F /* PFFile+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 66486C865EBE0190604A2C69926B5584 /* PFFile+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5C94F8374578E698AB96556AE0C98E4 /* STTwitterHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B505CC9BE6223890799DE5F03552C423 /* STTwitterHTML.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F6086AEDCDCDC0E03A2831A89B8F59F0 /* PFReceptionist.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB9BEA7D2DE0FFC543D4AD352BD9FD /* PFReceptionist.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F61039E93E7B8A20056B8A80DDF741A7 /* FBGraphObjectTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC7204EF22E4FC2191BD5FCC2BE5C67 /* FBGraphObjectTableCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F633B014816E5EF63D1853761A0E2762 /* PFACLState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F149501B866693F04E24F1244DD96D1E /* PFACLState_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -785,6 +784,7 @@
 		FC389A11DB5611A410178CBB6BA52E90 /* PFSQLiteDatabaseResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 84AADA45BADA622AC8B1F94BBBCEBCD0 /* PFSQLiteDatabaseResult.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FCD24900405BD53F3EC9D9C29E03B250 /* PFAnalytics_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D10CCE94EE33844E2455DEFBEED5C864 /* PFAnalytics_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FD5B61B4DD6052C8005C66458DBE8CAA /* FBAccessTokenData+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E7483AD37ED3986DF224E9EA318F794 /* FBAccessTokenData+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FDF731CC0AF079802190AAAF19C764BA /* STTwitterStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 986E665D2249E9FF7F0039CE0E7BC29E /* STTwitterStreamParser.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		FE4BABA4E7C34C7883768EA0D8B925E5 /* FBFrictionlessRequestSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 413E63A405520A94546AFCFE4D1A56D9 /* FBFrictionlessRequestSettings.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FE5D3BD08B471061B57C3BFC1F87285C /* FBOpenGraphActionParams+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A478C532C13FDDBF00CE8143BD3F06B5 /* FBOpenGraphActionParams+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FEED00881E924AFAA75703675C8DB3E4 /* CoachMarkArrowDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478B91D6D5232A2EF62088ADD04E9F39 /* CoachMarkArrowDefaultView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3607,21 +3607,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0FA581DA6ED2FF044A86E7323627EFC /* BAVPlistNode.m in Sources */,
-				AA32BCDF949DC05C05B739B90D0F4E55 /* JSONSyntaxHighlight.m in Sources */,
-				6723893A217145DD2F6B4E96A38CC429 /* NSDateFormatter+STTwitter.m in Sources */,
-				09C09E8D65748B952CC79BEA692744D9 /* NSError+STTwitter.m in Sources */,
-				02238D7261E4EC6FC28D06C52F4382E1 /* NSString+STTwitter.m in Sources */,
-				7A1F0F2507BA5F09461AFAA2144BF770 /* STHTTPRequest+STTwitter.m in Sources */,
-				DCABF214BB882AB02372EB3A528A9F7E /* STHTTPRequest.m in Sources */,
+				64699228E7675ECFCAD1BCE80FB48DC9 /* BAVPlistNode.m in Sources */,
+				7CE29A3460BB530F3AC063F5549431C1 /* JSONSyntaxHighlight.m in Sources */,
+				B5F7CFDB4E19F8A149DF46F734249B62 /* NSDateFormatter+STTwitter.m in Sources */,
+				0BC34C78426414A28D83C0DBB35825A8 /* NSError+STTwitter.m in Sources */,
+				CE9BB72E07DE559B0DC1DFDA0E28BC3C /* NSString+STTwitter.m in Sources */,
+				C49E34D2FD34CFA8F8A7CF8DB288275D /* STHTTPRequest+STTwitter.m in Sources */,
+				91DDEDDF6BB8F3CCB4732F9AE7753EE6 /* STHTTPRequest.m in Sources */,
 				ACB4B294DC277344F9BF340EB592A8AF /* STTwitter-dummy.m in Sources */,
-				42FA0AB7C4BB15A82EDDAB1FF94573DB /* STTwitterAPI.m in Sources */,
-				517D84907EF6D622C7D345E124B507E4 /* STTwitterAppOnly.m in Sources */,
-				F5C94F8374578E698AB96556AE0C98E4 /* STTwitterHTML.m in Sources */,
-				3A767736A01CA8F53EF20D3210D4CBB1 /* STTwitterOAuth.m in Sources */,
-				96BB32EC3B90A0ABE59BB641A3D5462A /* STTwitterOS.m in Sources */,
-				1D730DE3FB7C06C00636F4E60A7E0E7B /* STTwitterOSRequest.m in Sources */,
-				4C5FE942E2F2C0456594154647C92BE1 /* STTwitterStreamParser.m in Sources */,
+				2E1D056D8B8B31F282896D19EFC2C2D9 /* STTwitterAPI.m in Sources */,
+				1CA87F1693E0D03DABCA165A99228D6D /* STTwitterAppOnly.m in Sources */,
+				A9D4B4753A740414C7F6E59888A2655A /* STTwitterHTML.m in Sources */,
+				B35724B61DD1EEC131CB4948DDF5D3BE /* STTwitterOAuth.m in Sources */,
+				90EFFA288DD9978EF0EA5F27C95886DD /* STTwitterOS.m in Sources */,
+				256B391860E6631A80F2830877F8CF7A /* STTwitterOSRequest.m in Sources */,
+				FDF731CC0AF079802190AAAF19C764BA /* STTwitterStreamParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
