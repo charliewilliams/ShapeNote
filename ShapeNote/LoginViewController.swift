@@ -17,6 +17,8 @@ let loggedInPointSize:CGFloat = 14
 let loggedOutPointSize:CGFloat = 17
 let userCanceled = 2
 
+typealias ParseCompletionBlock = (user:PFUser?, error:NSError?) -> ()
+
 extension UIViewController {
     var isModal: Bool {
         return presentingViewController?.presentedViewController == self
@@ -25,24 +27,20 @@ extension UIViewController {
     }
 }
 
-class LoginViewController: UIViewController, FBLoginViewDelegate {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var twitterLoginButton: TWTRLogInButton!
-    @IBOutlet weak var facebookLoginButton: FBLoginView!
+    @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var userFullNameLabel: UILabel!
     @IBOutlet var userInfoVerticalConstraint: NSLayoutConstraint!
     @IBOutlet var loginBenefitsView: UIView!
+    @IBOutlet weak var facebookLoginSpinner: UIActivityIndicatorView!
     
     var session: TWTRSession?
-    var facebookUser: FBGraphUser?
     var showingGroupsPicker = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        facebookLoginButton.readPermissions = requiredFacebookReadPermissions()
-        facebookLoginButton.publishPermissions = requiredFacebookWritePermissions()
         
         NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (notification) -> Void in
             self?.checkFacebookLoginStatus()
@@ -63,46 +61,62 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     }
 
     // MARK: ----------- Facebook functions
-    func requiredFacebookReadPermissions() -> [String] {
-        return ["public_profile", "user_friends", "email", "user_likes", "user_managed_groups", "user_groups"]
+    
+    @IBAction func facebookLoginButtonPressed(sender: UIButton) {
+        
+        if PFUser.currentUser() == nil {
+            
+            facebookLoginButton.setTitle("", forState: .Normal)
+            facebookLoginSpinner.startAnimating()
+            SwiftSpinner.show("Logging in")
+            FacebookUserHelper.sharedHelper.loginWithCompletion { [weak self] (user:PFUser?, error:NSError?) in
+                SwiftSpinner.hide()
+                self?.facebookLoginSpinner.stopAnimating()
+                if let user = user where error == nil {
+                    self?.showLoggedInUser(user)
+                    if self?.shouldShowGroupsPicker() == true {
+                        self?.showGroupsPicker()
+                    }
+                } else {
+                    self?.handleError(error)
+                }
+            }
+            TabBarManager.sharedManager.clearLoginTab()
+            
+        } else {
+            
+            FacebookUserHelper.sharedHelper.logOut()
+            showLoggedOutUser()
+        }
     }
     
-    func requiredFacebookWritePermissions() -> [String] {
-        return ["publish_actions", "publish_pages", "manage_pages"]
-    }
-    
-    func allRequiredFacebookPermissions() -> [String] {
-        return requiredFacebookReadPermissions() + requiredFacebookWritePermissions()
-    }
+
     
     func checkFacebookLoginStatus() {
         
-        if let fbSession = FBSession.activeSession()
-            where fbSession.isOpen {
-                
-                setConstraintsForFacebookLoginStatus(true)
-
+        if let user = PFUser.currentUser() {
+            
+            showLoggedInUser(user)
+            
         } else {
-            setConstraintsForFacebookLoginStatus(false)
+            
+            showLoggedOutUser()
+            
         }
     }
     
-    func doManualFacebookLogin() {
-        
-        let session = FBSession.activeSession()
-        
-        if session.isOpen == true {
-            
-            refreshPublishPermissions(session)
-            
-        } else {
-            
-            session.openWithBehavior(.UseSystemAccountIfPresent, fromViewController: self, completionHandler: { [weak self] (session:FBSession!, state:FBSessionState, error:NSError!) -> Void in
-                    if let self_ = self {
-                        self_.refreshPublishPermissions(session);
-                    }
-                })
-        }
+    func showLoggedInUser(user: PFUser) {
+        userFullNameLabel.text = "Logged in as \(user[PFKeys.name.rawValue]!)"
+        userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
+        facebookLoginButton.setTitle("Log out", forState: .Normal)
+        setConstraintsForFacebookLoginStatus(true)
+    }
+    
+    func showLoggedOutUser() {
+        userFullNameLabel.text = "Log in to find your local singing"
+        userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedOutPointSize)
+        facebookLoginButton.setTitle("Log in with Facebook", forState: .Normal)
+        setConstraintsForFacebookLoginStatus(false)
     }
     
     func setConstraintsForFacebookLoginStatus(loggedIn: Bool) {
@@ -110,101 +124,14 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         twitterLoginButton.hidden = !loggedIn
         
         if loggedIn == true {
+            Defaults.neverLoggedIn = false
+            TabBarManager.sharedManager.clearLoginTab()
             userInfoVerticalConstraint.constant = loggedInVerticalConstant
             loginBenefitsView.alpha = 0
         } else {
             userInfoVerticalConstraint.constant = loggedOutVerticalConstant
             loginBenefitsView.alpha = 1
         }
-    }
-    
-    func refreshPublishPermissions(session:FBSession!) {
-        
-        let permissions = session.permissions as? [String] ?? [String]()
-        let missingPermissions = allRequiredFacebookPermissions().filter { (element:String) -> Bool in
-            return !permissions.contains(element)
-        }
-        
-        if missingPermissions.count == 0 { return }
-        
-//        session.reauthorizeWithPublishPermissions(requiredFacebookWritePermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
-//            if publishError != nil {
-//                print(publishError)
-//            } else if let user = self?.facebookUser {
-//                
-//                guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
-//                
-//                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () in
-//                    self?.showLoggedInUserName(user)
-//                    if self?.shouldShowGroupsPicker() == true {
-//                        self?.showGroupsPicker()
-//                    }
-//                }
-//            }
-//        }
-        
-        session.requestNewPublishPermissions(allRequiredFacebookPermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
-            
-            if publishError != nil {
-                self?.handleError(publishError)
-            } else if let user = self?.facebookUser {
-                
-                guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
-                
-                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (result:RefreshCompletionAction) in
-                    self?.showLoggedInUserName(user)
-                    if self?.shouldShowGroupsPicker() == true {
-                        self?.showGroupsPicker()
-                    }
-                }
-            }
-        }
-    }
-    
-    func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
-        
-        TabBarManager.sharedManager.clearLoginTab()
-        Defaults.neverLoggedIn = false
-        
-        facebookUser = user
-        showLoggedInUserName(user)
-        
-        guard let session = FBSession.activeSession() where session.isOpen && session.state != .CreatedOpening else {
-            doManualFacebookLogin();
-            return
-        }
-        
-        guard let permissions = session.permissions as? [String] else {
-            refreshPublishPermissions(session)
-            return
-        }
-        
-        SwiftSpinner.show("Logging into Facebook", animated: true)
-        FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] (result:RefreshCompletionAction) in
-            
-            SwiftSpinner.hide()
-            if self?.shouldShowGroupsPicker() == true {
-                self?.showGroupsPicker()
-            }
-        }
-    }
-    
-    func showLoggedInUserName(user: FBGraphUser) {
-        self.userFullNameLabel.text = "Logged in as \(user.name)"
-        self.userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
-    }
-    
-    func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
-        
-        if let user = facebookUser {
-            showLoggedInUserName(user)
-        }
-    }
-    
-    func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
-        userFullNameLabel.text = "Log in to find your local singing"
-        userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedOutPointSize)
-        setConstraintsForFacebookLoginStatus(false)
     }
     
     func shouldShowGroupsPicker() -> Bool {
@@ -230,15 +157,6 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     func showGroupsPicker() {
         let pickerVC = GroupsPickerViewController(nibName:"GroupsPickerViewController", bundle: nil)
         self.presentViewController(pickerVC, animated: true, completion: nil)
-    }
-    
-    func loginView(loginView: FBLoginView!, handleError error: NSError!) {
-        
-        SwiftSpinner.hide()
-        if error.code != userCanceled {
-            handleError(error)
-        }
-        print("Facebook login error: \(error)")
     }
     
     // MARK: ----------- Twitter functions

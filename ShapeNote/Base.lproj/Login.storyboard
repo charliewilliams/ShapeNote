@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Delegate-->
+        <!--Login-->
         <scene sceneID="ek2-7Z-A7C">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" title="Login" id="KpN-VP-dkP" customClass="LoginViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,18 +38,34 @@
                                     <action selector="twitterLoginButtonPressed:" destination="KpN-VP-dkP" eventType="touchUpInside" id="Ot2-Bp-dEw"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EU0-fi-kwv" userLabel="Facebook Login View" customClass="FBLoginView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EU0-fi-kwv" userLabel="Facebook Login View">
                                 <rect key="frame" x="175" y="528" width="250" height="40"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVQ-Q8-Etw">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <state key="normal" title="Log in to Facebook"/>
+                                        <connections>
+                                            <action selector="facebookLoginButtonPressed:" destination="KpN-VP-dkP" eventType="touchUpInside" id="VJ9-r8-quk"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="jC3-FY-bKa">
+                                        <rect key="frame" x="115" y="10" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="jC3-FY-bKa" firstAttribute="centerY" secondItem="EU0-fi-kwv" secondAttribute="centerY" id="3su-rj-HI6"/>
+                                    <constraint firstItem="jC3-FY-bKa" firstAttribute="centerX" secondItem="EU0-fi-kwv" secondAttribute="centerX" id="9IE-0e-z6h"/>
+                                    <constraint firstItem="aVQ-Q8-Etw" firstAttribute="top" secondItem="EU0-fi-kwv" secondAttribute="top" id="Ci9-vp-NAT"/>
                                     <constraint firstAttribute="width" constant="250" id="GHZ-Fv-93A"/>
+                                    <constraint firstItem="aVQ-Q8-Etw" firstAttribute="leading" secondItem="EU0-fi-kwv" secondAttribute="leading" id="Trb-zg-Qlm"/>
+                                    <constraint firstAttribute="trailing" secondItem="aVQ-Q8-Etw" secondAttribute="trailing" id="grz-89-r7p"/>
+                                    <constraint firstAttribute="bottom" secondItem="aVQ-Q8-Etw" secondAttribute="bottom" id="m8S-Gp-rGG"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="KpN-VP-dkP" id="LAi-zz-jaJ"/>
-                                </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to find your local singing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0f-BL-9tb">
-                                <rect key="frame" x="173" y="416" width="254" height="22"/>
+                                <rect key="frame" x="173" y="416" width="254" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -60,25 +76,25 @@
                                 <rect key="frame" x="180" y="185" width="240" height="230"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Log in to easily post minutes to your local singing's Facebook group" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5i-a8-b3F">
-                                        <rect key="frame" x="8" y="8" width="224" height="51"/>
+                                        <rect key="frame" x="8" y="8" width="224" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ List singers once, and everyone else in your group will get the list when they log in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-iV-qd7">
-                                        <rect key="frame" x="8" y="68" width="224" height="51"/>
+                                        <rect key="frame" x="8" y="68" width="224" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ The app will never post anything without your permission (of course!)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="770-dQ-41v">
-                                        <rect key="frame" x="8" y="129" width="224" height="51"/>
+                                        <rect key="frame" x="8" y="129" width="224" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Log in to Twitter to live-tweet your minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztB-ji-2sW">
-                                        <rect key="frame" x="8" y="187" width="224" height="34"/>
+                                        <rect key="frame" x="8" y="187" width="224" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -141,7 +157,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="facebookLoginButton" destination="EU0-fi-kwv" id="9cn-za-7I0"/>
+                        <outlet property="facebookLoginButton" destination="aVQ-Q8-Etw" id="jMM-Tz-lYf"/>
+                        <outlet property="facebookLoginSpinner" destination="jC3-FY-bKa" id="ZOm-sd-GgI"/>
                         <outlet property="loginBenefitsView" destination="0C6-5U-Fmd" id="tHZ-2J-j9T"/>
                         <outlet property="twitterLoginButton" destination="oAM-VT-7h5" id="i5X-5r-kDH"/>
                         <outlet property="userFullNameLabel" destination="n0f-BL-9tb" id="vpS-H2-Rh0"/>
