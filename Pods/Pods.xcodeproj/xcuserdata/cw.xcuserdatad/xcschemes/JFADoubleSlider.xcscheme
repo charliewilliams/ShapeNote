@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2179CE64FE4C38E5115D4703'
+               BlueprintIdentifier = '6D07B25232D42E35124FED80'
                BlueprintName = 'JFADoubleSlider'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'JFADoubleSlider.framework'>
