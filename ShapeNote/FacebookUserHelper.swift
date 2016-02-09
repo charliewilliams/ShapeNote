@@ -40,7 +40,10 @@ class FacebookUserHelper {
                 print("WELCOME BACK")
             }
             
-            PFFacebookUtils.linkUser(pfUser, permissions: self?.requiredFacebookWritePermissions(), block: { (succeeded:Bool, error:NSError?) -> Void in
+            PFFacebookUtils.reauthorizeUser(pfUser, withPublishPermissions: self?.requiredFacebookWritePermissions(), audience: .Everyone, block: { (succeeded:Bool, error:NSError?) -> Void in
+                
+//            })
+//            PFFacebookUtils.linkUser(pfUser, permissions: self?.requiredFacebookWritePermissions(), block: { (succeeded:Bool, error:NSError?) -> Void in
                 
                 if let error = error {
                     

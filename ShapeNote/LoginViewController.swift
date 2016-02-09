@@ -113,6 +113,10 @@ class LoginViewController: UIViewController {
     }
     
     func showLoggedOutUser() {
+        
+        if facebookLoginSpinner.isAnimating() {
+            return
+        }
         userFullNameLabel.text = "Log in to find your local singing"
         userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedOutPointSize)
         facebookLoginButton.setTitle("Log in with Facebook", forState: .Normal)
