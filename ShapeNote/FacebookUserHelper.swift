@@ -35,28 +35,15 @@ class FacebookUserHelper {
                 return
             }
             if (pfUser.isNew) {
-                print("WELCOME")
+                print("WELCOME") // TODO show some UI for this I guess?!?
             } else {
                 print("WELCOME BACK")
             }
-            
-            PFFacebookUtils.reauthorizeUser(pfUser, withPublishPermissions: self?.requiredFacebookWritePermissions(), audience: .Everyone, block: { (succeeded:Bool, error:NSError?) -> Void in
                 
-//            })
-//            PFFacebookUtils.linkUser(pfUser, permissions: self?.requiredFacebookWritePermissions(), block: { (succeeded:Bool, error:NSError?) -> Void in
-                
-                if let error = error {
-                    
-                    self?.handleError(error)
-                    completion(user: nil, error: error)
-                    return
-                }
-                
-                ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        completion(user: pfUser, error: error)
-                        //                    completion(result)
-                    })
+            ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completion(user: pfUser, error: error)
+                    //                    completion(result)
                 })
             })
 
@@ -84,6 +71,29 @@ class FacebookUserHelper {
         return requiredFacebookReadPermissions() + requiredFacebookWritePermissions()
     }
     
+    func requestPublishPermissions(completion:ParseCompletionBlock) {
+        
+        guard let user = PFUser.currentUser() else {
+            
+            loginWithCompletion({ [weak self] (user, error) -> () in
+                self?.requestPublishPermissions(completion)
+            })
+            return
+        }
+        
+        PFFacebookUtils.reauthorizeUser(user, withPublishPermissions: requiredFacebookWritePermissions(), audience: .Everyone, block: { [weak self] (succeeded:Bool, error:NSError?) -> Void in
+            
+            if let error = error {
+                
+                self?.handleError(error)
+                completion(user: nil, error: error)
+                return
+            }
+            
+            completion(user: PFUser.currentUser(), error: nil)
+        })
+    }
+    
     func refreshPublishPermissions(completion:Completion) {
         
         let session = FBSession.activeSession()
@@ -93,22 +103,6 @@ class FacebookUserHelper {
         }
         
         if missingPermissions.count == 0 { return }
-        
-        //        session.reauthorizeWithPublishPermissions(requiredFacebookWritePermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
-        //            if publishError != nil {
-        //                print(publishError)
-        //            } else if let user = self?.facebookUser {
-        //
-        //                guard let permissions = session.permissions as? [String] else { fatalError("Got weird response from server") }
-        //
-        //                FacebookUserHelper.sharedHelper.singerLoggedInToFacebook(user, permissions: permissions) { [weak self] () in
-        //                    self?.showLoggedInUserName(user)
-        //                    if self?.shouldShowGroupsPicker() == true {
-        //                        self?.showGroupsPicker()
-        //                    }
-        //                }
-        //            }
-        //        }
         
         session.requestNewPublishPermissions(allRequiredFacebookPermissions(), defaultAudience: .Everyone) { [weak self] (session:FBSession!, publishError:NSError!) -> Void in
             

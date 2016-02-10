@@ -14,6 +14,27 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var postComposeTextView: UITextView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var postButtonToBottomEdgeConstraint: NSLayoutConstraint!
+    var canPostToFacebook: Bool {
+        
+        let session = FBSession.activeSession()
+        if session.state == .OpenTokenExtended && session.permissions != nil {
+            
+            let permissions = session.permissions as NSArray
+            return permissions.containsObject("publish_actions")
+            
+        } else if !session.isOpen {
+            
+            session.state
+            session.openWithCompletionHandler({ (session:FBSession!, state:FBSessionState, error:NSError!) -> Void in
+                
+                
+                }, fromViewController: self)
+            
+            return false
+        }
+        
+        return false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +50,6 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func handleKeyboardNotification(note:NSNotification) {
-        guard let rectValue = note.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-            let durationValue = note.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
-                return
-        }
-        let showing = note.name == UIKeyboardWillShowNotification
-        let rect = rectValue.CGRectValue()
-        let duration = durationValue.doubleValue
-        let tabBarHeightIfPresent = self.navigationController?.tabBarController?.tabBar.frame.height ?? 0
-//        let curve = note.valueForKey(UIKeyboardAnimationCurveUserInfoKey)
-        
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            self.postButtonToBottomEdgeConstraint.constant = showing ? rect.size.height : tabBarHeightIfPresent
-            self.view.layoutIfNeeded()
-        })
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -57,44 +61,40 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        postComposeTextView.becomeFirstResponder()
-    }
-
-    func canPostToFacebook() -> Bool {
-        
-        let session = FBSession.activeSession()
-        if session.state == .OpenTokenExtended && session.permissions != nil {
+        if canPostToFacebook {
             
-            let permissions = session.permissions as NSArray
-            return permissions.containsObject("publish_actions")
+            postComposeTextView.becomeFirstResponder()
             
-        } else if !session.isOpen {
-        
-            session.state
-            session.openWithCompletionHandler({ (session:FBSession!, state:FBSessionState, error:NSError!) -> Void in
+        } else {
+            
+            FacebookUserHelper.sharedHelper.requestPublishPermissions({ (user, error) -> () in
                 
-                
-            }, fromViewController: self)
-            
-            return false
+                if user != nil && error == nil {
+                    self.postComposeTextView.becomeFirstResponder()
+                } else {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
         }
         
-        return false
     }
     
     @IBAction func postButtonPressed(sender: UIButton) {
         
-        let params = ["message": postComposeTextView.text]
+        guard postComposeTextView.text.characters.count > 0 else { return }
+        guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else {
+            dismissViewControllerAnimated(true, completion: nil)
+            return
+        }
         
-        guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else { return }
         let groupGraphString = "/\(group.facebookID)/feed"
+        let params = ["message": postComposeTextView.text]
         
         FBRequestConnection.startWithGraphPath(groupGraphString, parameters: params, HTTPMethod: "POST") { (connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             
             if error != nil {
                 
                 print("error \(error) posting minutes")
-
                 self.postButton.setTitle("Error – Please Try Again", forState: .Normal)
                 
             } else {
@@ -112,5 +112,21 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
         textView.resignFirstResponder()
         return true
     }
-
+    
+    func handleKeyboardNotification(note:NSNotification) {
+        guard let rectValue = note.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            let durationValue = note.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
+                return
+        }
+        let showing = note.name == UIKeyboardWillShowNotification
+        let rect = rectValue.CGRectValue()
+        let duration = durationValue.doubleValue
+        let tabBarHeightIfPresent = self.navigationController?.tabBarController?.tabBar.frame.height ?? 0
+        //        let curve = note.valueForKey(UIKeyboardAnimationCurveUserInfoKey)
+        
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            self.postButtonToBottomEdgeConstraint.constant = showing ? rect.size.height : tabBarHeightIfPresent
+            self.view.layoutIfNeeded()
+        })
+    }
 }
