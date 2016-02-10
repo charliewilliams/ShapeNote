@@ -43,6 +43,9 @@
 		C0515B931A7BC4000006ED16 /* SH1991.json in Resources */ = {isa = PBXBuildFile; fileRef = C0515B921A7BC4000006ED16 /* SH1991.json */; };
 		C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */; };
 		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
+		C05216E11C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05216DF1C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift */; };
+		C05216E41C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05216E31C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib */; };
+		C05216E61C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05216E51C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift */; };
 		C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */; };
 		C05626951BED429000E05EBE /* GroupsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626931BED429000E05EBE /* GroupsPickerViewController.swift */; };
 		C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05626941BED429000E05EBE /* GroupsPickerViewController.xib */; };
@@ -148,6 +151,9 @@
 		C0515B921A7BC4000006ED16 /* SH1991.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SH1991.json; sourceTree = "<group>"; };
 		C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
+		C05216DF1C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBPermissionErrorTableViewController.swift; sourceTree = "<group>"; };
+		C05216E31C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBPermissionErrorTableViewCell.xib; sourceTree = "<group>"; };
+		C05216E51C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBPermissionsErrorTableViewCell.swift; sourceTree = "<group>"; };
 		C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesTableViewCell.swift; sourceTree = "<group>"; };
 		C05626931BED429000E05EBE /* GroupsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsPickerViewController.swift; sourceTree = "<group>"; };
 		C05626941BED429000E05EBE /* GroupsPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsPickerViewController.xib; sourceTree = "<group>"; };
@@ -285,6 +291,9 @@
 			children = (
 				C0EA4E201BFFBF47000CCF81 /* Login.storyboard */,
 				C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */,
+				C05216DF1C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift */,
+				C05216E31C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib */,
+				C05216E51C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift */,
 				C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */,
 				C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */,
 				C05626931BED429000E05EBE /* GroupsPickerViewController.swift */,
@@ -559,6 +568,7 @@
 				C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */,
 				C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */,
 				C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */,
+				C05216E41C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib in Resources */,
 				C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 				C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */,
@@ -663,6 +673,7 @@
 				C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */,
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
+				C05216E61C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift in Sources */,
 				C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */,
 				C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */,
 				C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */,
@@ -690,6 +701,7 @@
 				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
 				C0A625FA1C67DDF700BCB96F /* PFKeys.swift in Sources */,
+				C05216E11C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
