@@ -4,12 +4,12 @@ platform :ios, '9.0'
 
 use_frameworks!
 
-pod 'Parse', :inhibit_warnings => true
-pod 'ParseFacebookUtils', :inhibit_warnings => true
-pod 'Bolts', :inhibit_warnings => true
-pod 'Instructions', :inhibit_warnings => true
+pod 'Parse' #, :inhibit_warnings => true
+pod 'ParseFacebookUtils' #, :inhibit_warnings => true
+pod 'Bolts' #, :inhibit_warnings => true
+pod 'Instructions' #, :inhibit_warnings => true
 pod 'SwiftSpinner'
-pod 'STTwitter', :inhibit_warnings => true
+pod 'STTwitter' #, :inhibit_warnings => true
 pod 'JFADoubleSlider'
 
 post_install do |installer|

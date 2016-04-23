@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		835BEC4C82FDD710D3D11F84 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D27FE40ECB6149B959D1687 /* Pods.framework */; };
 		C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */; };
+		C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C8DF1CCBB30200292F06 /* DataValidity.swift */; };
 		C0134F831ABF437800B62BA3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F821ABF437800B62BA3 /* Accounts.framework */; };
 		C0134F851ABF437F00B62BA3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F841ABF437F00B62BA3 /* AudioToolbox.framework */; };
 		C0134F871ABF438300B62BA3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F861ABF438300B62BA3 /* CFNetwork.framework */; };
@@ -111,6 +112,7 @@
 		3D27FE40ECB6149B959D1687 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		475940CE5D8D969AEC517111 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
+		C012C8DF1CCBB30200292F06 /* DataValidity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidity.swift; sourceTree = "<group>"; };
 		C0134F821ABF437800B62BA3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C0134F841ABF437F00B62BA3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C0134F861ABF438300B62BA3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -359,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
+				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C0A625F91C67DDF700BCB96F /* PFKeys.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
@@ -700,6 +703,7 @@
 				C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */,
 				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
+				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
 				C0A625FA1C67DDF700BCB96F /* PFKeys.swift in Sources */,
 				C05216E11C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,

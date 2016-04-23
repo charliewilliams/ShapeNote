@@ -31,26 +31,24 @@ let blueColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha
 class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITextFieldDelegate {
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    var searchBar: UISearchBar
-    var searchController: UISearchController
+    var searchBar: UISearchBar!
+    var searchController: UISearchController!
     var minutes:Minutes?
     var filteredSingers:[Singer]?
     var filteredSongs:[Song]?
-    var chosenSingers:[Singer]
+    var chosenSingers = [Singer]()
     var chosenSong:Song?
     var dedication:String?
     var assistant:Singer?
     var otherEvent:String?
     
     required init?(coder aDecoder: NSCoder) {
-        chosenSingers = []
-        searchBar = UISearchBar() // dummy so we don't need an optional property, blarg.
-        searchController = UISearchController() // dummy so we don't need an optional property, blarg.
         super.init(coder: aDecoder)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         buildSearchController()
         extendedLayoutIncludesOpaqueBars = true
         doneButton.enabled = false
@@ -531,103 +529,66 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     //MARK: fancy getters & setters
     
-    var _singers:[Singer]?
-    var singers:[Singer] {
-        get {
-            if _singers == nil {
-                
-                let oneDayAgoSecs = -60*60*24
-                let yesterday = NSDate(timeInterval: NSTimeInterval(oneDayAgoSecs), sinceDate: NSDate())
-                let lastWeekPlusOneDay = NSTimeInterval(oneDayAgoSecs * 8)
-                guard let singers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sort({ (s1:Singer, s2:Singer) -> Bool in
-                    return s1.lastSingDate > s2.lastSingDate // overall, most recent first
-                }) else { return [Singer](); }
-                    
-                let todaySingers = singers.filter({ (s:Singer) -> Bool in
-                    return s.lastSingDate > yesterday.timeIntervalSince1970
-                }).sort({ (s1:Singer, s2:Singer) -> Bool in
-                    return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
-                })
-                    
-                let singersFromLastWeekButNotToday = singers.filter({ (s:Singer) -> Bool in
-                    return todaySingers.indexOf(s) == nil && s.lastSingDate > lastWeekPlusOneDay
-                })
-                
-                let allOtherSingers = singers.filter({ (s:Singer) -> Bool in
-                    return todaySingers.indexOf(s) == nil && singersFromLastWeekButNotToday.indexOf(s) == nil
-                })
-                
-                _singers = singersFromLastWeekButNotToday + todaySingers + allOtherSingers
-            }
-            return _singers!
-        }
-    }
+    lazy var singers:[Singer] = {
+        
+        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sort({ (s1:Singer, s2:Singer) -> Bool in
+            return s1.lastSingDate > s2.lastSingDate // overall, most recent first
+        }) else { return [] }
+        
+        let todaySingers = allSingers.filter({ (s:Singer) -> Bool in
+            return s.lastSingDate > yesterday.timeIntervalSince1970
+        }).sort({ (s1:Singer, s2:Singer) -> Bool in
+            return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
+        })
+        
+        let singersFromLastWeekButNotToday = allSingers.filter({ (s:Singer) -> Bool in
+            return todaySingers.indexOf(s) == nil && s.lastSingDate > lastWeekPlusOneDay
+        })
+        
+        let allOtherSingers = allSingers.filter({ (s:Singer) -> Bool in
+            return todaySingers.indexOf(s) == nil && singersFromLastWeekButNotToday.indexOf(s) == nil
+        })
+        
+        return singersFromLastWeekButNotToday + todaySingers + allOtherSingers
+    }()
     
-    var _songs:[Song]?
-    var songs:[Song] {
-        get {
-            if _songs == nil {
-                
-                let bookTitle = Defaults.currentlySelectedBookTitle
-                let songs = CoreDataHelper.sharedHelper.songs(bookTitle)
-                _songs = songs
-            }
-            return _songs!
-        }
-    }
+    lazy var songs:[Song] = {
+        let bookTitle = Defaults.currentlySelectedBookTitle
+        return CoreDataHelper.sharedHelper.songs(bookTitle)
+    }()
     
     var searchingSongs:Bool {
-        get {
-            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue
-        }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue }
         set {
-            if newValue {
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue
-            }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue }
         }
     }
     
     var searchingSingers:Bool {
-        get {
-            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue
-        }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue }
         set {
-            if newValue {
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
-            }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue }
         }
     }
     
     var addingAssistant:Bool {
-        get {
-            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.AssistedBy.rawValue
-        }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.AssistedBy.rawValue }
         set {
-            if newValue {
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.AssistedBy.rawValue
-            }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.AssistedBy.rawValue }
         }
     }
     
     var addingDedication:Bool {
-        get {
-            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Dedication.rawValue
-        }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Dedication.rawValue }
         set {
-            if newValue {
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.Dedication.rawValue
-            }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.Dedication.rawValue }
         }
     }
     
     var addingOther:Bool {
-        get {
-            return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue
-        }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue }
         set {
-            if newValue {
-                searchBar.selectedScopeButtonIndex = ScopeBarIndex.Other.rawValue
-            }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.Other.rawValue }
         }
     }
 }
