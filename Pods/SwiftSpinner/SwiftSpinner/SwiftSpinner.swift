@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2015 Marin Todorov, Underplot ltd.
+// Copyright (c) 2015-2016 Marin Todorov, Underplot ltd.
 // This code is distributed under the terms and conditions of the MIT license.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -96,14 +96,23 @@ public class SwiftSpinner: UIView {
     public var subtitleLabel: UILabel?
     
     //
+    // Custom superview for the spinner
+    //
+    private static weak var customSuperview: UIView? = nil
+    private static func containerView() -> UIView? {
+        return customSuperview ?? UIApplication.sharedApplication().keyWindow
+    }
+    public class func useContainerView(sv: UIView?) {
+        customSuperview = sv
+    }
+    
+    //
     // Show the spinner activity on screen, if visible only update the title
     //
     public class func show(title: String, animated: Bool = true) -> SwiftSpinner {
         
-        let window = UIApplication.sharedApplication().windows.first!
         let spinner = SwiftSpinner.sharedInstance
         
-        spinner.showWithDelayBlock = nil
         spinner.clearTapHandler()
         
         spinner.updateFrame()
@@ -111,18 +120,25 @@ public class SwiftSpinner: UIView {
         if spinner.superview == nil {
             //show the spinner
             spinner.alpha = 0.0
-            window.addSubview(spinner)
             
+            guard let containerView = containerView() else {
+                fatalError("\n`UIApplication.keyWindow` is `nil`. If you're trying to show a spinner from your view controller's `viewDidLoad` method, do that from `viewWillAppear` instead. Alternatively use `useContainerView` to set a view where the spinner should show")
+            }
+            
+            containerView.addSubview(spinner)
+
             UIView.animateWithDuration(0.33, delay: 0.0, options: .CurveEaseOut, animations: {
                 spinner.alpha = 1.0
                 }, completion: nil)
             
+            #if os(iOS)
             // Orientation change observer
             NSNotificationCenter.defaultCenter().addObserver(
                 spinner,
-                selector: "updateFrame",
+                selector: #selector(SwiftSpinner.updateFrame),
                 name: UIApplicationDidChangeStatusBarOrientationNotification,
                 object: nil)
+            #endif
         }
         
         spinner.title = title
@@ -132,36 +148,46 @@ public class SwiftSpinner: UIView {
     }
     
     //
+    // Show the spinner activity on screen with duration, if visible only update the title
+    //
+    public class func showWithDuration(duration: Double, title: String, animated: Bool = true) -> SwiftSpinner {
+        let spinner = SwiftSpinner.show(title, animated: animated)
+        spinner.delay(seconds: duration) {
+            SwiftSpinner.hide()
+        }
+        return spinner
+    }
+    
+    private static var delayedTokens = [String]()
+    //
     // Show the spinner activity on screen, after delay. If new call to show,
     // showWithDelay or hide is maked before execution this call is discarded
     //
-    public class func showWithDelay(delay: Double, title: String, animated: Bool = true) -> SwiftSpinner {
-        let spinner = SwiftSpinner.sharedInstance
-        
-        spinner.showWithDelayBlock = {
-            SwiftSpinner.show(title, animated: animated)
-        }
-        
-        spinner.delay(seconds: delay) { [weak spinner] in
-            if let spinner = spinner {
-                spinner.showWithDelayBlock?()
+    public class func showWithDelay(delay: Double, title: String, animated: Bool = true) {
+        let token = NSUUID().UUIDString
+        delayedTokens.append(token)
+        SwiftSpinner.sharedInstance.delay(seconds: delay, completion: {
+            if let index = delayedTokens.indexOf(token) {
+                delayedTokens.removeAtIndex(index)
+                SwiftSpinner.show(title, animated: animated)
             }
-        }
-        
-        return spinner
+        })
     }
     
     //
     // Hide the spinner
     //
+    public static var hideCancelsScheduledSpinners = true
     public class func hide(completion: (() -> Void)? = nil) {
         
         let spinner = SwiftSpinner.sharedInstance
         
         NSNotificationCenter.defaultCenter().removeObserver(spinner)
+        if hideCancelsScheduledSpinners {
+            delayedTokens.removeAll()
+        }
         
         dispatch_async(dispatch_get_main_queue(), {
-            spinner.showWithDelayBlock = nil
             spinner.clearTapHandler()
             
             if spinner.superview == nil {
@@ -326,8 +352,6 @@ public class SwiftSpinner: UIView {
     private let outerCircle = CAShapeLayer()
     private let innerCircle = CAShapeLayer()
     
-    private var showWithDelayBlock: (()->())?
-    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("Not coder compliant")
     }
@@ -377,8 +401,9 @@ public class SwiftSpinner: UIView {
     }
     
     public func updateFrame() {
-        let window = UIApplication.sharedApplication().windows.first!
-        SwiftSpinner.sharedInstance.frame = window.frame
+        if let containerView = SwiftSpinner.containerView() {
+            SwiftSpinner.sharedInstance.frame = containerView.bounds
+        }
     }
     
     // MARK: - Util methods

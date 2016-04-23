@@ -243,7 +243,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Frédéric Maquin <fred@ephread.com>
+Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
+                         and other contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

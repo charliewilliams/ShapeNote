@@ -60,7 +60,7 @@ class FacebookUserHelper {
     }
     
     func requiredFacebookReadPermissions() -> [String] {
-        return ["public_profile", "user_friends", "email", "user_likes", "user_managed_groups", "user_groups"]
+        return ["public_profile", "user_friends", "email"]  // "user_likes", "user_managed_groups", "user_groups"
     }
     
     func requiredFacebookWritePermissions() -> [String] {
