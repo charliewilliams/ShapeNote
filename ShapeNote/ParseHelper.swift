@@ -39,7 +39,9 @@ class ParseHelper {
         // TODO Get location
         // then get all groups nearby / sort
         
-        SwiftSpinner.show("Loading…", animated: true)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            SwiftSpinner.show("Loading…", animated: true)
+        }
         
         let query = PFQuery(className: "Group")
         query.limit = 1000;

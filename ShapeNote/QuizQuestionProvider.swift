@@ -154,7 +154,7 @@ class QuizQuestionProvider {
         
         while tries < songs.count * 2 && answers.count < 4 {
             
-            tries++
+            tries += 1
             let proposedSong = songs.random()
             let selectorName = propertyForCategory(answerType)
             let selector = Selector(stringLiteral: selectorName)

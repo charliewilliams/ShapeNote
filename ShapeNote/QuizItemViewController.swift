@@ -81,8 +81,8 @@ class QuizItemViewController: UIViewController {
         
         setIndicatorsVisible(true, correctIndex: index)
         
-        if correct { numberOfCorrectQuestions++ }
-        currentQuestionNumber++
+        if correct { numberOfCorrectQuestions += 1 }
+        currentQuestionNumber += 1
         
         let firstHalf = correct ? "Hooray!" : "Boo…"
         let done = (currentQuestionNumber == numberOfQuestionsPerRound)

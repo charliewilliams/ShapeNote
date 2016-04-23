@@ -10,19 +10,19 @@ import UIKit
 
 class NewLessonTableViewCell: UITableViewCell {
     
-    
     @IBOutlet var leftTextLabel: UILabel!
     @IBOutlet var rightTextLabel: UILabel!
     @IBOutlet var addButton: UIButton!
     @IBOutlet var backgroundImageView: UIImageView!
     
-    var parentTableViewController:NewLessonViewController? {
-        didSet {
-            if parentTableViewController != nil {
-                addButton?.addTarget(parentTableViewController, action: "addSingerTapped:", forControlEvents: .TouchUpInside)
-            }
-        }
-    }
+    var parentTableViewController: NewLessonViewController?
+//        {
+//        didSet {
+//            if parentTableViewController != nil {
+//                addButton?.addTarget(parentTableViewController, action: #selector(NewLessonViewController.addSingerTapped) "addSingerTapped:", forControlEvents: .TouchUpInside)
+//            }
+//        }
+//    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

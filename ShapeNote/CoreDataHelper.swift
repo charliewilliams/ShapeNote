@@ -98,7 +98,7 @@ class CoreDataHelper {
         
         let fetchRequest = NSFetchRequest(entityName: ManagedClass.Song.rawValue)
         fetchRequest.predicate = NSPredicate(format: "book == %@", currentlySelectedBook)
-        let error = NSErrorPointer()
+        let error:NSErrorPointer = nil
         if let count = managedObjectContext?.countForFetchRequest(fetchRequest, error: error) {
             return count
         }
