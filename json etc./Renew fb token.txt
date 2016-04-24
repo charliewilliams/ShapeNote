@@ -1,0 +1,8 @@
+https://developers.facebook.com/tools/explorer/
+
+GET /oauth/access_token?grant_type=fb_exchange_token&client_id=340955376092604&amp;client_secret=3ee10041a3e9aee3d3a4fcf446b3344b
+
+
+&fb_exchange_token=CAAE2GNwThbwBADhXQh9cIxI5oM4iSgm45v8nORpCLhFpu7QYCKFdZB9GU8uB8mDAKrus67zkiOfkYLLg3Irr04Iz3UlFCC2RmH57xZA497ZCo0F4U0hQBDG2Kw3VPjekBSUZA0T7OaHUyyA1ckB9favnh1wZCwfs1xMrtVLLdokZCNYfmEN1CH74wwlstoEC1LjGAXKvSUaiuu9Hnf1IJg
+
+
