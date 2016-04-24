@@ -228,6 +228,7 @@ class ParseHelper {
         
         guard let user = PFUser.currentUser(),
             let singer = user[PFKey.singer.rawValue] as? PFObject else {
+                SwiftSpinner.hide()
                 loadSingersForGroupByName(Defaults.currentGroupName, completion: completion)
                 return
         }
