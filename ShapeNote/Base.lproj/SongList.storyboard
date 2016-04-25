@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rgN-e0-S6K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rgN-e0-S6K">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -66,7 +66,7 @@
         <!--Notes-->
         <scene sceneID="ip4-RJ-ru8">
             <objects>
-                <viewController title="Notes" id="Nfb-Kh-kw7" customClass="NotesViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SongNotesViewController" title="Notes" id="Nfb-Kh-kw7" customClass="NotesViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J84-tJ-k0U"/>
                         <viewControllerLayoutGuide type="bottom" id="rWL-0m-T96"/>
@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="9SR-cY-HiA">
-                                <rect key="frame" x="150" y="130" width="300" height="29"/>
+                                <rect key="frame" x="150" y="131" width="300" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="e9l-cZ-ymy"/>
                                 </constraints>
@@ -134,7 +134,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ior-oO-wDq">
-                                <rect key="frame" x="150" y="188" width="300" height="29"/>
+                                <rect key="frame" x="150" y="189" width="300" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="SmS-Lh-LdZ"/>
                                 </constraints>
@@ -154,7 +154,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="bwL-mC-X04">
-                                <rect key="frame" x="150" y="246" width="300" height="29"/>
+                                <rect key="frame" x="150" y="247" width="300" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="3Xf-H4-5xB"/>
                                 </constraints>
@@ -168,7 +168,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mak-R5-APo">
-                                <rect key="frame" x="150" y="304" width="300" height="29"/>
+                                <rect key="frame" x="150" y="305" width="300" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="ZD9-pW-5gk"/>
                                 </constraints>
@@ -213,7 +213,7 @@
                                 </items>
                             </navigationBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-uj-NxA">
-                                <rect key="frame" x="150" y="362" width="300" height="29"/>
+                                <rect key="frame" x="150" y="363" width="300" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="l64-T0-QUL"/>
                                 </constraints>
@@ -228,19 +228,19 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by Popularity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bud-VX-6UQ">
-                                <rect key="frame" x="226" y="411" width="147" height="21"/>
+                                <rect key="frame" x="226" y="412" width="147" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Popular" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l94-X2-vEC">
-                                <rect key="frame" x="20" y="416" width="75" height="15"/>
+                                <rect key="frame" x="20" y="417" width="75" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoi-5t-JCA" customClass="JFADoubleSlider">
-                                <rect key="frame" x="20" y="431" width="560" height="44"/>
+                                <rect key="frame" x="20" y="432" width="560" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="BO1-Lb-xnc"/>
@@ -269,7 +269,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Least Popular" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3R-RK-QcM">
-                                <rect key="frame" x="502" y="416" width="78" height="15"/>
+                                <rect key="frame" x="502" y="417" width="78" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
