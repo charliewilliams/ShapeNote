@@ -9,14 +9,6 @@
 import UIKit
 import SwiftSpinner
 
-enum PFKey:String {
-    case name = "name"
-    case group = "group"
-    case singer = "Singer"
-    case groups = "groups"
-    case fbGroupID = "fbGroupID"
-}
-
 class GroupsPickerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // TODO sort by distance!

@@ -26,6 +26,6 @@ public let local = Config(id: sandbox.id, key: sandbox.key, url: localHost)
 
 // ****
 // HERE IS THE SWITCH TO CHANGE AMONG SANDBOX, DEV and PROD
-public let activeConfig = local
-//public let activeConfig = sandbox
+//public let activeConfig = local
+public let activeConfig = sandbox
 // ****

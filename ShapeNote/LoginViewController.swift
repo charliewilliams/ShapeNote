@@ -140,7 +140,7 @@ class LoginViewController: UIViewController {
     
     func shouldShowGroupsPicker() -> Bool {
         guard let user = PFUser.currentUser(),
-            let singer = user[PFKey.singer.rawValue] as? PFObject else { return false }
+            let singer = user[PFKey.associatedSingerObject.rawValue] as? PFObject else { return false }
         
         do {
             try singer.fetchIfNeeded()

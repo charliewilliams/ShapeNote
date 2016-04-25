@@ -11,3 +11,20 @@ import Foundation
 let oneDayAgoSecs = -60*60*24
 let yesterday = NSDate(timeInterval: NSTimeInterval(oneDayAgoSecs), sinceDate: NSDate())
 let lastWeekPlusOneDay = NSTimeInterval(oneDayAgoSecs * 8)
+
+enum PFClass: String {
+    case User = "PFUser"
+    case Singer = "Singer"
+    case Group = "Group"
+}
+
+enum PFKey: String {
+    case name = "name"
+    case group = "group"
+    case groups = "groups"
+    case facebookGroupId = "facebookGroupId"
+    case associatedSingerObject = "singer"
+    case firstName = "firstName"
+    case lastName = "lastName"
+    case displayName = "displayName"
+}
