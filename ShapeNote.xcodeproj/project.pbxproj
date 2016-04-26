@@ -65,6 +65,7 @@
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
 		C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
+		C07C46301CCEC99D000CAA3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C462F1CCEC99D000CAA3F /* User.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
 		C092E8621A891A51002594A5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8611A891A51002594A5 /* Defaults.swift */; };
 		C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8631A8A0311002594A5 /* Shenandoah.json */; };
@@ -175,6 +176,7 @@
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Fabric/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
+		C07C462F1CCEC99D000CAA3F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
 		C092E8611A891A51002594A5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		C092E8631A8A0311002594A5 /* Shenandoah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Shenandoah.json; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
+				C07C462E1CCEC97A000CAA3F /* PFObject subclasses */,
 				C0515B911A7BBA810006ED16 /* Managed Objects */,
 				C02E18901BF11BB800FF2057 /* Minute-taking */,
 				C02E18911BF11BD300FF2057 /* Song Lists */,
@@ -448,6 +451,14 @@
 				C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */,
 			);
 			name = Quiz;
+			sourceTree = "<group>";
+		};
+		C07C462E1CCEC97A000CAA3F /* PFObject subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				C07C462F1CCEC99D000CAA3F /* User.swift */,
+			);
+			name = "PFObject subclasses";
 			sourceTree = "<group>";
 		};
 		C0C1D5181A868F6B0082C0EB /* Fabric */ = {
@@ -713,6 +724,7 @@
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
+				C07C46301CCEC99D000CAA3F /* User.swift in Sources */,
 				C064B5F51BECAC840021F2B0 /* FacebookUserHelper.swift in Sources */,
 				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
 				C05626951BED429000E05EBE /* GroupsPickerViewController.swift in Sources */,
