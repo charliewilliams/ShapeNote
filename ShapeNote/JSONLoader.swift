@@ -97,8 +97,8 @@ class JSONLoader: NSObject {
                 abort()
         }
         
-        guard let decodedJson: AnyObject = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! AnyObject,
-            let json = decodedJson as? [NSDictionary]
+        let decodedJson: AnyObject = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
+        guard let json = decodedJson as? [NSDictionary]
             else {
                 print("Couldn't decode JSON in bundle")
                 abort()

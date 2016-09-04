@@ -854,10 +854,6 @@
 					"$(PROJECT_DIR)/ShapeNote",
 					"$(PROJECT_DIR)/Fabric",
 					"\"$(SRCROOT)/Pods\"",
-					"\"$(SRCROOT)/Pods/Parse\"",
-					"\"$(SRCROOT)/Pods/ParseFacebookUtils\"",
-					"$(PROJECT_DIR)/Pods/Parse",
-					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -892,10 +888,6 @@
 					"$(PROJECT_DIR)/ShapeNote",
 					"$(PROJECT_DIR)/Fabric",
 					"\"$(SRCROOT)/Pods\"",
-					"\"$(SRCROOT)/Pods/Parse\"",
-					"\"$(SRCROOT)/Pods/ParseFacebookUtils\"",
-					"$(PROJECT_DIR)/Pods/Parse",
-					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
