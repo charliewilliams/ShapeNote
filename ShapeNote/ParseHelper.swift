@@ -56,25 +56,31 @@ class ParseHelper {
 
             self.pfGroups = objects
             
-            for object in objects {
-                
-                var found = false
-                for group in groups {
-                    
-                    if group.facebookID == object[PFKey.facebookGroupId.rawValue] as? String {
-                        found = true
-                    }
-                }
-                
-                if !found {
-                    
-                    let newGroup = NSEntityDescription.insertNewObjectForEntityForName(String(Group), inManagedObjectContext: CoreDataHelper.managedContext) as! Group
-                    newGroup.name = object[PFKey.name.rawValue] as! String
-                    newGroup.facebookID = object[PFKey.facebookGroupId.rawValue] as! String
-                }
-            }
+            self.mergeServerResult(objects, withLocalGroups: groups)
+            
             CoreDataHelper.sharedHelper.saveContext()
             self.refreshSingersForSelectedGroup(completion)
+        }
+    }
+    
+    func mergeServerResult(objects: [PFObject], withLocalGroups groups: [Group]) {
+        
+        for object in objects {
+            
+            var found = false
+            for group in groups {
+                
+                if group.facebookID == object[PFKey.facebookGroupId.rawValue] as? String {
+                    found = true
+                }
+            }
+            
+            if !found {
+                
+                let newGroup = NSEntityDescription.insertNewObjectForEntityForName(String(Group), inManagedObjectContext: CoreDataHelper.managedContext) as! Group
+                newGroup.name = object[PFKey.name.rawValue] as! String
+                newGroup.facebookID = object[PFKey.facebookGroupId.rawValue] as! String
+            }
         }
     }
     
@@ -96,37 +102,6 @@ class ParseHelper {
         refreshSingersForSelectedGroup(completion)
     }
     
-    func saveNewLocalSinger(singer:Singer, completion:CompletionBlock) {
-        
-        let pfSinger = PFObject(className: PFClass.Singer.rawValue)
-        pfSinger[PFKey.firstName.rawValue] = singer.firstName
-        pfSinger[PFKey.lastName.rawValue] = singer.lastName
-        if let displayName = singer.displayName {
-            pfSinger[PFKey.displayName.rawValue] = displayName
-        }
-        // TODO etc with voicetype
-        
-        guard let user = PFUser.currentUser(),
-            let singer = user[PFKey.associatedSingerObject.rawValue] as? PFObject else {
-                fatalError()
-        }
-        
-        singer.fetchIfNeededInBackgroundWithBlock({ (pfSinger:PFObject?, error:NSError?) -> Void in
-            guard let pfSinger = pfSinger,
-            let localGroup = pfSinger[PFKey.group.rawValue] where error == nil
-                else {
-                    self.handleError(error)
-                    return
-            }
-            
-            localGroup.fetchIfNeededInBackgroundWithBlock({ (pfGroup:PFObject?, error:NSError?) -> Void in
-                guard let pfGroup = pfGroup where error == nil else { self.handleError(error); return }
-                
-                self.saveGroup(pfGroup, onSinger: singer, completion: completion)
-            })
-        })
-    }
-    
     func saveGroup(group:Group, onUser user:PFUser, completion:CompletionBlock) {
         
         SwiftSpinner.show("Loading singers…", animated: true)
@@ -135,7 +110,7 @@ class ParseHelper {
         
         // First, query for a singer with that name
         let query = PFQuery(className: PFClass.Singer.rawValue)
-        query.whereKey("fbID", equalTo: user["id"])
+        query.whereKey(PFKey.facebookId.rawValue, equalTo: user["id"])
         query.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
             
             if let error = error {
@@ -156,21 +131,13 @@ class ParseHelper {
                     singer![PFKey.lastName.rawValue] = lastName
             }
             
-            // Bah! Which of these is right?
-//            if let firstName = user["first_name"],
-//                let lastName = user["last_name"] where singer == nil {
-//                    singer = PFObject(className: PFKey.associatedSingerObject.rawValue)
-//                    singer![PFKey.firstName.rawValue] = firstName
-//                    singer![PFKey.lastName.rawValue] = lastName
-//            }
-            
             if let singer = singer {
                 user[PFKey.associatedSingerObject.rawValue] = singer
             }
             
-            user.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+            user.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                NSOperationQueue.mainQueue().addOperationWithBlock {
                     if let error = error {
                         self.handleError(error)
                         completion()
@@ -178,16 +145,20 @@ class ParseHelper {
                     }
                     
                     self.finishSaveWithSinger(singer, group:group, completion:completion)
-                })
-            })
+                }
+            }
         }
     }
     
-    func finishSaveWithSinger(singer:PFObject?, group:Group, completion:CompletionBlock) {
+    func finishSaveWithSinger(pfSinger:PFObject?, group:Group, completion:CompletionBlock) {
         
-        if let singer = singer,
+        if let pfSinger = pfSinger,
             let pfGroup = ParseHelper.sharedHelper.findPFGroupMatchingGroup(group) {
-                saveGroup(pfGroup, onSinger: singer, completion: completion)
+            
+            pfSinger[PFKey.group.rawValue] = pfGroup
+            pfSinger.saveInBackgroundWithBlock { (success, error) in
+                completion()
+            }
                 
         } else {
             
@@ -197,30 +168,6 @@ class ParseHelper {
             handleError("Error saving group onto singer object")
             completion()
         }
-    }
-    
-    func saveGroup(pfGroup:PFObject, onSinger singer:PFObject, completion:CompletionBlock) {
-        
-        singer[PFKey.group.rawValue] = pfGroup
-        singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) -> Void in
-            
-            guard let _ = singer.objectId where error == nil && saved == true else {
-                self.handleError(error)
-                completion()
-                return
-            }
-            
-            let relation = pfGroup.relationForKey("singers")
-            relation.addObject(singer)
-            
-            singer.saveInBackgroundWithBlock({ (saved:Bool, error:NSError?) in
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    SwiftSpinner.hide()
-                    TabBarManager.sharedManager.clearLoginTab()
-                    completion()
-                })
-            })
-        })
     }
 
     func refreshSingersForSelectedGroup(completion:RefreshCompletionBlock) {
@@ -233,9 +180,9 @@ class ParseHelper {
         }
         
         SwiftSpinner.show("Loading singers…", animated: true)
-        singer.fetchIfNeededInBackgroundWithBlock({ (singer:PFObject?, error:NSError?) -> Void in
+        singer.fetchIfNeededInBackgroundWithBlock { (singer:PFObject?, error:NSError?) -> Void in
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in                
+            NSOperationQueue.mainQueue().addOperationWithBlock {
                 guard let singer = singer else {
                     SwiftSpinner.hide()
                     if let error = error where error.code == PFErrorCode.ErrorObjectNotFound.rawValue {
@@ -247,8 +194,8 @@ class ParseHelper {
                     return
                 }
                 self.finishRefreshWithFetchedSinger(singer, completion: completion)
-            })
-        })
+            }
+        }
     }
     
     func finishRefreshWithFetchedSinger(singer:PFObject, completion:RefreshCompletionBlock) {
@@ -292,7 +239,7 @@ class ParseHelper {
             var found = false
             for singer in singers {
                 
-                if singer.facebook == object["fbID"] as? String {
+                if singer.facebookId == object[PFKey.facebookId.rawValue] as? String {
                     found = true
                 }
             }
@@ -302,8 +249,8 @@ class ParseHelper {
                 let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as! Singer
                 newSinger.firstName = object[PFKey.firstName.rawValue] as? String
                 newSinger.lastName = object[PFKey.lastName.rawValue] as? String
-                newSinger.facebook = object["fbID"] as? String
-                newSinger.displayName = object["displayName"] as? String
+                newSinger.facebookId = object[PFKey.facebookId.rawValue] as? String
+                newSinger.displayName = object[PFKey.displayName.rawValue] as? String
                 newSinger.group = group
             }
         }
@@ -320,11 +267,12 @@ class ParseHelper {
     func loadSingersForGroupByName(name:String?, completion:RefreshCompletionBlock) {
         
         guard let name = name else {
+            SwiftSpinner.hide()
             completion(.NoGroupOnUser)
             return
         }
         
-        let query:PFQuery = PFQuery(className: ManagedClass.Group.rawValue)
+        let query = PFQuery(className: ManagedClass.Group.rawValue)
         query.whereKey("name", equalTo: name)
         query.findObjectsInBackgroundWithBlock { (groups:[PFObject]?, error:NSError?) -> Void in
             

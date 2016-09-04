@@ -50,7 +50,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
         
         twitterHandleTextField.text = singer.twitter
-        tagOnFacebookSwitch.on = singer.facebook != nil
+//        tagOnFacebookSwitch.on = singer.facebookId != nil
         voiceTypeTextField.text = singer.voice
     }
     
@@ -90,12 +90,10 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             }
             singer.twitter = twitter
         }
-
-        singer.facebook = tagOnFacebookSwitch.on ? "Yes" : "No"
         
-        ParseHelper.sharedHelper.saveNewLocalSinger(singer, completion: { [weak self] in
+        singer.saveToCloud { [weak self] (success, error) in
             self?.navigationController?.popViewControllerAnimated(true)
-        })
+        }
         
         CoreDataHelper.sharedHelper.saveContext()
     }
@@ -115,7 +113,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func tagOnFacebookSwitchChanged(sender: UISwitch) {
-        singer?.facebook = sender.on ? "Yes" : "No"
+        
     }
     
     override func canBecomeFirstResponder() -> Bool {

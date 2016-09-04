@@ -37,20 +37,19 @@ class FacebookUserHelper {
             if (pfUser.isNew) {
                 print("WELCOME") // TODO show some UI for this I guess?!?
             } else {
-                print("WELCOME BACK")
+                print("WELCOME BACK \(pfUser.username) aka \(pfUser["firstName"]!)")
             }
                 
-            ParseHelper.sharedHelper.refresh({ (result:RefreshCompletionAction) in
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            ParseHelper.sharedHelper.refresh { (result:RefreshCompletionAction) in
+                NSOperationQueue.mainQueue().addOperationWithBlock {
                     completion(user: pfUser, error: error)
-                    //                    completion(result)
-                })
-            })
+//                    completion(result)
+                }
+            }
 
             // Instead of this I think we need to make some manual FB calls?
 //            let user = pfUser // as! FBGraphObject
 //            self?.copyDataFromFacebookUser(user, toParseUser: pfUser)
-            
         }
     }
     
@@ -127,7 +126,7 @@ class FacebookUserHelper {
         // 1. Get user name / first_name / id etc and put it on the user here
         for singer:Singer in CoreDataHelper.sharedHelper.singers() {
             if (singer.name == user.name) {
-                singer.facebook = user.objectID
+                singer.facebookId = user.objectID
                 singer.firstName = user.first_name
                 CoreDataHelper.sharedHelper.currentSinger = singer
             }

@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
             FacebookUserHelper.sharedHelper.loginWithCompletion { [weak self] (user:PFUser?, error:NSError?) in
                 SwiftSpinner.hide()
                 self?.facebookLoginSpinner.stopAnimating()
-                if let user = user where error == nil {
+                if let user = user where error == nil && user.username != nil {
                     self?.showLoggedInUser(user)
                     if self?.shouldShowGroupsPicker() == true {
                         self?.showGroupsPicker()
@@ -106,7 +106,12 @@ class LoginViewController: UIViewController {
     }
     
     func showLoggedInUser(user: PFUser) {
-        userFullNameLabel.text = "Logged in as \(user[PFKeys.name.rawValue]!)"
+        
+        if let userName = user[PFKeys.name.rawValue] as? String {
+            userFullNameLabel.text = "Logged in as \(userName)"
+        } else {
+            userFullNameLabel.text = "Error loading user…"
+        }
         userFullNameLabel.font = UIFont.boldSystemFontOfSize(loggedInPointSize)
         facebookLoginButton.setTitle("Log out", forState: .Normal)
         setConstraintsForFacebookLoginStatus(true)
@@ -159,7 +164,7 @@ class LoginViewController: UIViewController {
     }
     
     func showGroupsPicker() {
-        let pickerVC = GroupsPickerViewController(nibName:"GroupsPickerViewController", bundle: nil)
+        let pickerVC = GroupsPickerViewController(nibName: String(GroupsPickerViewController), bundle: nil)
         self.presentViewController(pickerVC, animated: true, completion: nil)
     }
     
