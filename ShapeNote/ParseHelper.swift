@@ -47,7 +47,7 @@ class ParseHelper {
         query.limit = 1000;
         query.findObjectsInBackgroundWithBlock { (objects:[PFObject]?, error:NSError?) -> Void in
             
-            guard let objects = objects where error == nil else {
+            guard let objects = objects, error == nil else {
                 SwiftSpinner.hide()
                 completion(.Error)
                 self.handleError(error)
@@ -118,12 +118,12 @@ class ParseHelper {
                 return
             }
             
-            if let results = results where results.count > 0 {
+            if let results = results, results.count > 0 {
                 user[PFKey.associatedSingerObject.rawValue] = results.first
             }
             
             if let firstName = user[PFKey.firstName.rawValue],
-                let lastName = user[PFKey.lastName.rawValue] where singer == nil {
+                let lastName = user[PFKey.lastName.rawValue], singer == nil {
                     
                     // If there isn't one, make a new one
                     singer = PFObject(className: PFKey.associatedSingerObject.rawValue)
@@ -185,7 +185,7 @@ class ParseHelper {
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 guard let singer = singer else {
                     SwiftSpinner.hide()
-                    if let error = error where error.code == PFErrorCode.ErrorObjectNotFound.rawValue {
+                    if let error = error, error.code == PFErrorCode.ErrorObjectNotFound.rawValue {
                         self.loadSingersForGroupByName(Defaults.currentGroupName, completion: completion)
                         return
                     }
@@ -224,7 +224,7 @@ class ParseHelper {
     
     func gotSingersFromParse(objects:[PFObject]?, error:NSError?, completion:RefreshCompletionBlock) {
         
-        guard let objects = objects where error == nil else {
+        guard let objects = objects, error == nil else {
             SwiftSpinner.hide()
             completion(.Error)
             handleError(error)
@@ -277,7 +277,7 @@ class ParseHelper {
         query.findObjectsInBackgroundWithBlock { (groups:[PFObject]?, error:NSError?) -> Void in
             
             guard let groups = groups,
-                let group = groups.first where groups.count > 0 && error == nil else {
+                let group = groups.first, groups.count > 0 && error == nil else {
                 self.handleError(error)
                 completion(.Error)
                 return
@@ -290,8 +290,7 @@ class ParseHelper {
     func handleError(error:NSError?) {
         
         var message = "There was an error talking to the cloud. That's all we know."
-        if let error = error
-            where error.localizedDescription.characters.count > 4 {
+        if let error = error, error.localizedDescription.characters.count > 4 {
                 message = error.localizedDescription
         }
         handleError(message)

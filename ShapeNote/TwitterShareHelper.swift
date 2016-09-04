@@ -46,7 +46,7 @@ class TwitterShareHelper: NSObject {
             
             Twitter.sharedInstance().APIClient.sendTwitterRequest(request) {(response, data, connectionError) -> Void in
                 
-                if let data = data where connectionError == nil {
+                if let data = data, connectionError == nil {
                     var jsonError : NSError?
                     let json : AnyObject?
                     do {

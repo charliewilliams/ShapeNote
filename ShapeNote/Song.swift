@@ -52,15 +52,15 @@ class Song: NSManagedObject {
         
         for (key, value) in Song.keys {
             
-            if var dictValue = dict[value] as? String
-                where dictValue != "null" {
+            if var dictValue = dict[value] as? String,
+                dictValue != "null" {
                     if dictValue.hasPrefix("0") {
                         dictValue = dictValue.substringFromIndex(dictValue.startIndex.successor())
                     }
                     self.setValue(dictValue, forKey: key)
                     
-            } else if let dictNumber = dict[value] as? NSNumber
-                where dictNumber.integerValue != 0 {
+            } else if let dictNumber = dict[value] as? NSNumber,
+                dictNumber.integerValue != 0 {
                     self.setValue(dictNumber.integerValue, forKey: key)
             } else if let dictArray = dict[value] as? [String] {
                 let lyrics = dictArray.joinWithSeparator("\n")

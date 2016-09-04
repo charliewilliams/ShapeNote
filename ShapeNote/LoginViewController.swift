@@ -17,7 +17,7 @@ let loggedInPointSize:CGFloat = 14
 let loggedOutPointSize:CGFloat = 17
 let userCanceled = 2
 
-typealias ParseCompletionBlock = (user:PFUser?, error:NSError?) -> ()
+typealias ParseCompletionBlock = (_ user:PFUser?, _ error:NSError?) -> ()
 
 extension UIViewController {
     var isModal: Bool {
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
             FacebookUserHelper.sharedHelper.loginWithCompletion { [weak self] (user:PFUser?, error:NSError?) in
                 SwiftSpinner.hide()
                 self?.facebookLoginSpinner.stopAnimating()
-                if let user = user where error == nil && user.username != nil {
+                if let user = user, error == nil && user.username != nil {
                     self?.showLoggedInUser(user)
                     if self?.shouldShowGroupsPicker() == true {
                         self?.showGroupsPicker()
@@ -217,8 +217,8 @@ class LoginViewController: UIViewController {
     func handleError(error:NSError?) {
         
         var message = "There was an error talking to Facebook. That's all we know."
-        if let error = error
-            where error.localizedDescription.characters.count > 4 {
+        if let error = error,
+            error.localizedDescription.characters.count > 4 {
                 message = error.localizedDescription
         }
         let alert = UIAlertController(title: "Network Error", message: message, preferredStyle: .Alert)
