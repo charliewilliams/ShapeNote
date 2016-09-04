@@ -6,9 +6,6 @@ use_frameworks!
 # inhibit_all_warnings!
 
 target 'ShapeNote' do
-pod 'Parse'
-pod 'ParseFacebookUtils'
-pod 'Bolts'
 pod 'Instructions'
 pod 'SwiftSpinner'
 pod 'STTwitter'

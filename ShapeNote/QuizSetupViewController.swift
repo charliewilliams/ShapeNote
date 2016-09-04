@@ -17,10 +17,10 @@ class QuizSetupViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        goTakeQuizButton.enabled = false
+        goTakeQuizButton.isEnabled = false
     }
     
-    @IBAction func showAllButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func showAllButtonPressed(_ sender: UIBarButtonItem) {
         quizQuestionProvider.filtering = !quizQuestionProvider.filtering
         
         if quizQuestionProvider.filtering {
@@ -35,21 +35,21 @@ class QuizSetupViewController: UITableViewController {
     func didChangeSelection() {
         
         if quizQuestionProvider.selectedQuestions.count > 0 {
-            goTakeQuizButton.enabled = true
+            goTakeQuizButton.isEnabled = true
         } else {
-            goTakeQuizButton.enabled = false
+            goTakeQuizButton.isEnabled = false
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? QuizQuestionTypeTableViewCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? QuizQuestionTypeTableViewCell else { fatalError() }
         
         cell.parentTableViewController = self
         
-        let questionType = quizQuestionProvider.questionTypes[indexPath.section]
+        let questionType = quizQuestionProvider.questionTypes[(indexPath as NSIndexPath).section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
-        let q = questionsForType[indexPath.row]
+        let q = questionsForType[(indexPath as NSIndexPath).row]
         cell.questionType = q
         let description = q.itemStringForQuestionPair
         cell.label.text = description
@@ -57,27 +57,27 @@ class QuizSetupViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         if let headerView = view as? UITableViewHeaderFooterView {
             
             headerView.contentView.backgroundColor = blueColor
-            headerView.textLabel?.textColor = UIColor.whiteColor()
+            headerView.textLabel?.textColor = UIColor.white
             headerView.textLabel?.text = "Given the \(quizQuestionProvider.questionTypes[section])…"
         }
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UITableViewHeaderFooterView()
     }
         
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let questionType = quizQuestionProvider.questionTypes[section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
         return questionsForType.count
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return quizQuestionProvider.quizOptions.count
     }
 

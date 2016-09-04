@@ -13,7 +13,7 @@ import CoreData
 
 class Lesson: NSManagedObject {
 
-    @NSManaged var date: NSDate
+    @NSManaged var date: Date
     @NSManaged var leader: NSOrderedSet //[Singer]
     @NSManaged var song: Song
     @NSManaged var minutes: Minutes
@@ -32,7 +32,7 @@ class Lesson: NSManagedObject {
         return string
     }
     
-    func allLeadersString(useTwitterHandles useTwitterHandles:Bool) -> String {
+    func allLeadersString(useTwitterHandles:Bool) -> String {
         
         var leadersString = ""
         let first:Singer = leader.firstObject! as! Singer
@@ -40,7 +40,7 @@ class Lesson: NSManagedObject {
         
         if first != last {
             
-            leader.enumerateObjectsUsingBlock({ (element:AnyObject, index:Int, done:UnsafeMutablePointer<ObjCBool>) -> Void in
+            leader.enumerateObjects({ (element:AnyObject, index:Int, done:UnsafeMutablePointer<ObjCBool>) -> Void in
                 
                 if let singer = element as? Singer {
                     
@@ -64,7 +64,7 @@ class Lesson: NSManagedObject {
                         leadersString += ", \(name)"
                     }
                 }
-            })
+            } as! (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
             
         } else {
             
@@ -84,7 +84,7 @@ class Lesson: NSManagedObject {
         
         var number = song.number
         if number.hasPrefix("0") {
-            number = number.substringFromIndex(number.startIndex.successor())
+            number = number.substring(from: number.index(after: number.startIndex))
         }
         userString += "#\(number) : \(song.title)"
         
@@ -113,9 +113,9 @@ class Lesson: NSManagedObject {
         }
         
         while userString.characters.count > 160 {
-            var components = userString.componentsSeparatedByString(" ")
+            var components = userString.components(separatedBy: " ")
             components.removeLast()
-            userString = components.joinWithSeparator(" ")
+            userString = components.joined(separator: " ")
         }
         
         return userString

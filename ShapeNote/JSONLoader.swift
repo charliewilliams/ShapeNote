@@ -57,7 +57,7 @@ class JSONLoader: NSObject {
         for bookDef in bookDefs {
             
             // make the book
-            let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: coreDataContext()) as! Book
+            let book = NSEntityDescription.insertNewObject(forEntityName: "Book", into: coreDataContext()) as! Book
             book.title = bookDef["title"]!
             book.year = bookDef["year"]!
             book.author = bookDef["author"]!
@@ -69,9 +69,9 @@ class JSONLoader: NSObject {
             
             for d:NSDictionary in json {
                 
-                let s = NSEntityDescription.insertNewObjectForEntityForName("Song", inManagedObjectContext: coreDataContext()) as! Song
+                let s = NSEntityDescription.insertNewObject(forEntityName: "Song", into: coreDataContext()) as! Song
                 s.configureWithDict(d)
-                songsSet.addObject(s)
+                songsSet.add(s)
             }
             
             book.songs = songsSet
@@ -88,16 +88,16 @@ class JSONLoader: NSObject {
         }
     }
 
-    func loadFileFromBundle(fileName:String) -> [NSDictionary] {
+    func loadFileFromBundle(_ fileName:String) -> [NSDictionary] {
         
-        guard let songsPath = NSBundle.mainBundle().pathForResource(fileName, ofType: "json"),
-            let data = NSFileManager.defaultManager().contentsAtPath(songsPath)
+        guard let songsPath = Bundle.main.path(forResource: fileName, ofType: "json"),
+            let data = FileManager.default.contents(atPath: songsPath)
             else {
                 print("Couldn't read required file in bundle")
                 abort()
         }
         
-        guard let decodedJson: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers),
+        guard let decodedJson: AnyObject = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! AnyObject,
             let json = decodedJson as? [NSDictionary]
             else {
                 print("Couldn't decode JSON in bundle")

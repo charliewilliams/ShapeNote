@@ -11,10 +11,10 @@ import UIKit
 class IntroPopupViewController: UIViewController {
     
     @IBOutlet var doneButton: UIButton!
-    @IBAction func doneButtonPressed(sender: UIButton) {
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
         
         Defaults.isFirstRun = false
-        self.dismissViewControllerAnimated(true) { () -> Void in
+        self.dismiss(animated: true) { () -> Void in
         }
     }
 }

@@ -30,6 +30,6 @@ class NewLessonTableViewCell: UITableViewCell {
         if let rightTextLabel = rightTextLabel {
             rightTextLabel.text = nil
         }
-        addButton?.hidden = true
+        addButton?.isHidden = true
     }
 }

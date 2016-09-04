@@ -21,7 +21,7 @@ class TwitterShareHelper: NSObject {
         return Static.instance
     }
     
-    func postLesson(lesson:Lesson) {
+    func postLesson(_ lesson:Lesson) {
         
         // WARNING: DEBUG
         #if DEBUG
@@ -36,21 +36,21 @@ class TwitterShareHelper: NSObject {
         // lat, long
         
         var clientError : NSError? = nil
-        let request: NSURLRequest!
-        request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("POST", URL: statusPostEndpoint, parameters: params, error: &clientError)
+        let request: URLRequest!
+        request = Twitter.sharedInstance().apiClient.urlRequest(withMethod: "POST", url: statusPostEndpoint, parameters: params, error: &clientError)
         if let error = clientError {
             print("Error connecting to Twitter: " + error.localizedDescription)
         }
         
         if request != nil {
             
-            Twitter.sharedInstance().APIClient.sendTwitterRequest(request) {(response, data, connectionError) -> Void in
+            Twitter.sharedInstance().apiClient.sendTwitterRequest(request) {(response, data, connectionError) -> Void in
                 
                 if let data = data, connectionError == nil {
                     var jsonError : NSError?
-                    let json : AnyObject?
+                    let json : Any?
                     do {
-                        json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                        json = try JSONSerialization.jsonObject(with: data, options: [])
                     } catch let error as NSError {
                         jsonError = error
                         json = nil

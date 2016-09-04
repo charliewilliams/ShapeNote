@@ -14,20 +14,20 @@ class NotesViewController: UIViewController, UITextViewDelegate {
     
     var song:Song?
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         textView.text = song?.notes
         navigationController?.navigationItem.title = song?.title
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if let song = song {
             song.notes = textView.text
             CoreDataHelper.sharedHelper.saveContext()
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if let song = song {
             song.notes = textView.text
             CoreDataHelper.sharedHelper.saveContext()

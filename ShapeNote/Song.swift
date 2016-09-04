@@ -48,22 +48,22 @@ class Song: NSManagedObject {
             "popularity":"popularity"]
     }
     
-    func configureWithDict(dict:NSDictionary) {
+    func configureWithDict(_ dict:NSDictionary) {
         
         for (key, value) in Song.keys {
             
             if var dictValue = dict[value] as? String,
                 dictValue != "null" {
                     if dictValue.hasPrefix("0") {
-                        dictValue = dictValue.substringFromIndex(dictValue.startIndex.successor())
+                        dictValue = dictValue.substring(from: dictValue.index(after: dictValue.startIndex))
                     }
                     self.setValue(dictValue, forKey: key)
                     
             } else if let dictNumber = dict[value] as? NSNumber,
-                dictNumber.integerValue != 0 {
-                    self.setValue(dictNumber.integerValue, forKey: key)
+                dictNumber.intValue != 0 {
+                    self.setValue(dictNumber.intValue, forKey: key)
             } else if let dictArray = dict[value] as? [String] {
-                let lyrics = dictArray.joinWithSeparator("\n")
+                let lyrics = dictArray.joined(separator: "\n")
                 self.setValue(lyrics, forKey: key)
             }
         }
@@ -71,8 +71,8 @@ class Song: NSManagedObject {
     
     func isTriple() -> Bool {
         if let timeSignature = timeSignature {
-            let index = timeSignature.startIndex.advancedBy(1)
-            let numerator = timeSignature.substringToIndex(index)
+            let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
+            let numerator = timeSignature.substring(to: index)
             return numerator == "3" || numerator == "9"
         }
         return false
@@ -80,8 +80,8 @@ class Song: NSManagedObject {
     
     func isDuple() -> Bool {
         if let timeSignature = timeSignature {
-            let index = timeSignature.startIndex.advancedBy(1)
-            let numerator = timeSignature.substringToIndex(index)
+            let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
+            let numerator = timeSignature.substring(to: index)
             return numerator != "3" && numerator != "9" && Int(numerator) != 0
         }
         return false
@@ -100,16 +100,16 @@ class Song: NSManagedObject {
     func firstLine() -> String? {
         
         guard let lyrics = lyrics else { return nil }
-        let lines = lyrics.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+        let lines = lyrics.components(separatedBy: CharacterSet.newlines)
         guard let line = lines.first else { return nil }
         if line.characters.last == "," {
-            return line.substringToIndex(line.endIndex.predecessor())
+            return line.substring(to: line.characters.index(before: line.endIndex))
         }
         
         return line
     }
     
-    func popularityAsPercentOfTotalSongs(totalSongs:Int) -> Float {
+    func popularityAsPercentOfTotalSongs(_ totalSongs:Int) -> Float {
         assert(totalSongs > 0)
         return Float(popularity) / Float(totalSongs)
     }
@@ -118,14 +118,14 @@ class Song: NSManagedObject {
     
     var strippedNumber: String {
         
-        let characterSet:NSCharacterSet = NSCharacterSet(charactersInString: "tb")
-        return self.number.stringByTrimmingCharactersInSet(characterSet)
+        let characterSet:CharacterSet = CharacterSet(charactersIn: "tb")
+        return self.number.trimmingCharacters(in: characterSet)
     }
     
-    func compare(other:Song) -> Bool {
+    func compare(_ other:Song) -> Bool {
         // t and b are in the wrong order, alphabetically
         if (strippedNumber == other.strippedNumber) {
-            return number.compare(other.number) == NSComparisonResult.OrderedDescending
+            return number.compare(other.number) == ComparisonResult.orderedDescending
         } else {
             return Int(strippedNumber)! < Int(other.strippedNumber)!
         }

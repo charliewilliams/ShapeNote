@@ -8,6 +8,26 @@
 
 import UIKit
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class SongListTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
@@ -31,7 +51,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerNib(UINib(nibName: "SongListTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        tableView.register(UINib(nibName: "SongListTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         
         searchTableView = SearchResultsTableViewController()
         searchTableView.tableView.delegate = self
@@ -46,7 +66,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         definesPresentationContext = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         _songs = nil
         tableView.reloadData()
@@ -62,25 +82,25 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         for filter in activeFilters {    
             filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
                 switch filter {
-                case .Unfavorited:
+                case .unfavorited:
                     return !song.favorited
-                case .Favorited:
+                case .favorited:
                     return song.favorited
-                case .Fugue:
+                case .fugue:
                     return song.type == "Fugue"
-                case .Plain:
+                case .plain:
                     return song.type == "Plain"
-                case .Major:
+                case .major:
                     return song.key == "Major"
-                case .Minor:
+                case .minor:
                     return song.key == "Minor"
-                case .Duple:
+                case .duple:
                     return song.isDuple()
-                case .Triple:
+                case .triple:
                     return song.isTriple()
-                case .Notes:
+                case .notes:
                     return song.notes?.characters.count > 0
-                case .NoNotes:
+                case .noNotes:
                     return song.notes == nil || song.notes?.characters.count == 0
                 }
             })
@@ -101,18 +121,18 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Pull to search
     // MARK: UISearchBarDelegate
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     
     // MARK: UISearchResultsUpdating
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
 
         let searchResults = songs
         
-        let fullSearchText = searchController.searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        let searchItems = fullSearchText.componentsSeparatedByString(" ") as [String]
+        let fullSearchText = searchController.searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
+        let searchItems = fullSearchText.components(separatedBy: " ") as [String]
         
         // Build all the "AND" expressions for each value in the searchString.
         let andMatchPredicates: [NSPredicate] = searchItems.map { searchString in
@@ -132,22 +152,22 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
                 
                 let expression = NSExpression(forKeyPath: field)
                 let searchStringExpression = NSExpression(forConstantValue: searchString)
-                let searchComparisonPredicate = NSComparisonPredicate(leftExpression: expression, rightExpression: searchStringExpression, modifier: .DirectPredicateModifier, type: .ContainsPredicateOperatorType, options: .CaseInsensitivePredicateOption)
+                let searchComparisonPredicate = NSComparisonPredicate(leftExpression: expression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
                 searchItemsPredicate.append(searchComparisonPredicate)
             }
             
-            let numberFormatter = NSNumberFormatter()
-            numberFormatter.numberStyle = .NoStyle
-            numberFormatter.formatterBehavior = .BehaviorDefault
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .none
+            numberFormatter.formatterBehavior = .default
             
-            let targetNumber = numberFormatter.numberFromString(searchString)
+            let targetNumber = numberFormatter.number(from: searchString)
             if targetNumber != nil {
 
                 let targetNumberExpression = NSExpression(forConstantValue: targetNumber!)
                 
                 // search by year
                 let yearSearchExpression = NSExpression(forKeyPath: "year")
-                let yearPredicate = NSComparisonPredicate(leftExpression: yearSearchExpression, rightExpression: targetNumberExpression, modifier: .DirectPredicateModifier, type: .EqualToPredicateOperatorType, options: .CaseInsensitivePredicateOption)
+                let yearPredicate = NSComparisonPredicate(leftExpression: yearSearchExpression, rightExpression: targetNumberExpression, modifier: .direct, type: .equalTo, options: .caseInsensitive)
                 searchItemsPredicate.append(yearPredicate)
             }
             
@@ -160,7 +180,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         // Match up the fields of the Product object.
         let finalCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: andMatchPredicates)
         
-        let filteredResults = searchResults.filter { finalCompoundPredicate.evaluateWithObject($0) }
+        let filteredResults = searchResults.filter { finalCompoundPredicate.evaluate(with: $0) }
         
         // Hand over the filtered results to our search results table.
         let resultsController = searchController.searchResultsController as! SearchResultsTableViewController
@@ -175,11 +195,11 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         return activeFilters.count > 0 || popularityFilter != nil
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if (filtering) {
             return filteredSongs.count
@@ -187,14 +207,14 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         return songs.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SongListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SongListTableViewCell
         let song:Song
         if (filtering) {
-            song = filteredSongs[indexPath.row]
+            song = filteredSongs[(indexPath as NSIndexPath).row]
         } else {
-            song = songs[indexPath.row]
+            song = songs[(indexPath as NSIndexPath).row]
         }
         cell.configureWithSong(song)
         cell.songListTableView = self.tableView
@@ -202,21 +222,21 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
 
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let identifier = segue.identifier else { return }
         if let selectedIndexPath = tableView.indexPathForSelectedRow,
-            let cell = tableView.cellForRowAtIndexPath(selectedIndexPath) as? SongListTableViewCell,
-            let destinationVC = segue.destinationViewController as? NotesViewController where identifier == "showNotes" {
+            let cell = tableView.cellForRow(at: selectedIndexPath) as? SongListTableViewCell,
+            let destinationVC = segue.destination as? NotesViewController, identifier == "showNotes" {
                 destinationVC.song = cell.song
         }
-        if let destinationVC = segue.destinationViewController as? FiltersViewController where identifier == "editFilters" {
+        if let destinationVC = segue.destination as? FiltersViewController, identifier == "editFilters" {
             destinationVC.songListViewController = self
         }
     }

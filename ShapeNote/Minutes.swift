@@ -13,16 +13,16 @@ import CoreData
 
 class Minutes: NSManagedObject {
 
-    @NSManaged var date: NSDate
+    @NSManaged var date: Date
     @NSManaged var songs: NSOrderedSet
     @NSManaged var singers: NSMutableSet
     @NSManaged var group: Group
     @NSManaged var book: Book
     @NSManaged var complete: Bool
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
-        date = NSDate()
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext!) {
+        super.init(entity: entity, insertInto: context)
+        date = Date()
     }
 
     func stringForSocialMedia() -> String {
@@ -33,20 +33,20 @@ class Minutes: NSManagedObject {
 //            string = "Minutes for \(group.name) on "
 //        }
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = .NoStyle
-        dateFormatter.dateStyle = .MediumStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .medium
         
-        string += dateFormatter.stringFromDate(date)
+        string += dateFormatter.string(from: date)
         string += ":\n\n"
         
-        songs.enumerateObjectsUsingBlock { (object:AnyObject!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+        songs.enumerateObjects({ (object:Any!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) in
             
             if let lesson = object as? Lesson {
                 
                 string += lesson.stringForMinutes()
             }
-        }
+        })
         
         return string
     }

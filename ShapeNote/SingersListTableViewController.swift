@@ -15,7 +15,7 @@ class SingersListTableViewController: UITableViewController {
             // handle no singers here!
             return [Singer]()
         }
-        let sortedSingers = s.sort { (a:Singer, b:Singer) -> Bool in
+        let sortedSingers = s.sorted { (a:Singer, b:Singer) -> Bool in
             
             if a.lastSingDate != b.lastSingDate {
                 return a.lastSingDate > b.lastSingDate
@@ -27,7 +27,7 @@ class SingersListTableViewController: UITableViewController {
     
     @IBOutlet var noSingersYetView: UIView!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         title = Defaults.currentGroupName
@@ -36,7 +36,7 @@ class SingersListTableViewController: UITableViewController {
         updateNoSingersView()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         TabBarManager.sharedManager.clearSingersTab()
     }
@@ -44,44 +44,38 @@ class SingersListTableViewController: UITableViewController {
     func updateNoSingersView() {
         
         if singers.count > 0 {
-            noSingersYetView.hidden = true
-            tableView.scrollEnabled = true
+            noSingersYetView.isHidden = true
+            tableView.isScrollEnabled = true
         } else {
-            noSingersYetView.hidden = false
-            tableView.scrollEnabled = false
-            var height = UIScreen.mainScreen().bounds.size.height
-            height -= UIApplication.sharedApplication().statusBarFrame.height
+            noSingersYetView.isHidden = false
+            tableView.isScrollEnabled = false
+            var height = UIScreen.main.bounds.size.height
+            height -= UIApplication.shared.statusBarFrame.height
             if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
                 let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
                     height -= navBarHeight + tabBarHeight
             }
             
-            noSingersYetView.hidden = false
+            noSingersYetView.isHidden = false
             noSingersYetView.bounds.size.height = height
         }
-    }
-    
-    @IBAction func changeGroupButtonPressed(sender: UIBarButtonItem) {
-        
-        let pickerVC = GroupsPickerViewController(nibName:"GroupsPickerViewController", bundle: nil)
-        self.presentViewController(pickerVC, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return singers.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
         
-        let singer = singers[indexPath.row]
+        let singer = singers[(indexPath as NSIndexPath).row]
         if let firstName = singer.firstName {
             if let lastName = singer.lastName {
                 cell.textLabel?.text = "\(firstName) \(lastName)"
@@ -95,28 +89,28 @@ class SingersListTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
 
-            let s = singers[indexPath.row]
-            CoreDataHelper.managedContext.deleteObject(s)
+            let s = singers[(indexPath as NSIndexPath).row]
+            CoreDataHelper.managedContext.delete(s)
             CoreDataHelper.sharedHelper.saveContext()
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        let dvc:UIViewController = segue.destinationViewController 
+        let dvc:UIViewController = segue.destination 
         
         if let svc = dvc as? SingerViewController {
 
             if let indexPath = tableView.indexPathForSelectedRow {
-                let s = singers[indexPath.row]
+                let s = singers[(indexPath as NSIndexPath).row]
                 svc.singer = s
             }
         }

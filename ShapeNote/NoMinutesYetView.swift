@@ -15,8 +15,8 @@ class NoMinutesYetView: UIView {
         
         let label = UILabel()
         label.text = "Minutes for your local singing will appear here.\n\nSign into Facebook to join your local singing,\nthen tap the cell above to get start taking minutes"
-        label.textColor = UIColor.whiteColor()
-        backgroundColor = blueColor.colorWithAlphaComponent(0.5)
+        label.textColor = UIColor.white
+        backgroundColor = blueColor.withAlphaComponent(0.5)
     }
 
 }

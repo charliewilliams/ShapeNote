@@ -84,22 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Bolts/Bolts.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Facebook-iOS-SDK/FacebookSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Instructions/Instructions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JFADoubleSlider/JFADoubleSlider.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Parse/Parse.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ParseFacebookUtils/ParseFacebookUtils.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STTwitter/STTwitter.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftSpinner/SwiftSpinner.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Bolts/Bolts.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Facebook-iOS-SDK/FacebookSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Instructions/Instructions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JFADoubleSlider/JFADoubleSlider.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Parse/Parse.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ParseFacebookUtils/ParseFacebookUtils.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STTwitter/STTwitter.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftSpinner/SwiftSpinner.framework"
 fi

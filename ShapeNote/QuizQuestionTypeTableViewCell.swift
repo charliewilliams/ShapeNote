@@ -21,24 +21,24 @@ class QuizQuestionTypeTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        selectionButton.setTitle(" ", forState: .Normal)
+        selectionButton.setTitle(" ", for: UIControlState())
     }
     
-    @IBAction func selectionButtonPressed(sender: UIButton) {
-        self.selected = !_selected
+    @IBAction func selectionButtonPressed(_ sender: UIButton) {
+        self.isSelected = !_selected
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: false)
         
         guard let questionType = questionType else { fatalError() }
         
         if selected {
-            selectionButton.setTitle(checkmark, forState: .Normal)
+            selectionButton.setTitle(checkmark, for: UIControlState())
             QuizQuestionProvider.sharedProvider.selectedQuestions.insert(questionType)
             parentTableViewController?.didChangeSelection()
         } else if !selected && _selected {
-            selectionButton.setTitle(" ", forState: .Normal)
+            selectionButton.setTitle(" ", for: UIControlState())
             QuizQuestionProvider.sharedProvider.selectedQuestions.remove(questionType)
             parentTableViewController?.didChangeSelection()
         }

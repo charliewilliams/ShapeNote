@@ -10,16 +10,16 @@ import UIKit
 import JFADoubleSlider
 
 enum FilterType {
-    case Unfavorited
-    case Favorited
-    case Fugue
-    case Plain
-    case Major
-    case Minor
-    case Duple
-    case Triple
-    case Notes
-    case NoNotes
+    case unfavorited
+    case favorited
+    case fugue
+    case plain
+    case major
+    case minor
+    case duple
+    case triple
+    case notes
+    case noNotes
 }
 
 typealias PopularityFilterPair = (minValue:Float, maxValue:Float)
@@ -36,29 +36,29 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     @IBOutlet var notesSegmentedControl: UISegmentedControl!
     @IBOutlet var popularitySlider: JFADoubleSlider!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         for filter in songListViewController.activeFilters {
             switch filter {
-            case .Unfavorited:
+            case .unfavorited:
                 favoritedSegmentedControl.selectedSegmentIndex = 2
-            case .Favorited:
+            case .favorited:
                 favoritedSegmentedControl.selectedSegmentIndex = 0
-            case .Fugue:
+            case .fugue:
                 plainFugueSegmentedControl.selectedSegmentIndex = 2
-            case .Plain:
+            case .plain:
                 plainFugueSegmentedControl.selectedSegmentIndex = 0
-            case .Major:
+            case .major:
                 majorMinorSegmentedControl.selectedSegmentIndex = 0
-            case .Minor:
+            case .minor:
                 majorMinorSegmentedControl.selectedSegmentIndex = 2
-            case .Duple:
+            case .duple:
                 dupleTripleSegmentedControl.selectedSegmentIndex = 0
-            case .Triple:
+            case .triple:
                 dupleTripleSegmentedControl.selectedSegmentIndex = 2
-            case .Notes:
+            case .notes:
                 notesSegmentedControl.selectedSegmentIndex = 0
-            case .NoNotes:
+            case .noNotes:
                 notesSegmentedControl.selectedSegmentIndex = 2
             }
         }
@@ -69,103 +69,103 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
         updateCount()
     }
     
-    func add(toAdd:FilterType, remove toRemove:FilterType) {
+    func add(_ toAdd:FilterType, remove toRemove:FilterType) {
         var filters = songListViewController.activeFilters
-        if let index = filters.indexOf(toRemove) { filters.removeAtIndex(index) }
+        if let index = filters.index(of: toRemove) { filters.remove(at: index) }
         filters.append(toAdd)
         songListViewController?.activeFilters = filters
     }
     
-    func remove(toRemove:[FilterType]) {
+    func remove(_ toRemove:[FilterType]) {
         var filters = songListViewController.activeFilters
         for filter in toRemove {
-            if let index = filters.indexOf(filter) { filters.removeAtIndex(index) }
+            if let index = filters.index(of: filter) { filters.remove(at: index) }
         }
         songListViewController?.activeFilters = filters
     }
 
-    @IBAction func favoriteStatusChanged(sender: UISegmentedControl) {
+    @IBAction func favoriteStatusChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            add(.Favorited, remove: .Unfavorited)
+            add(.favorited, remove: .unfavorited)
         case 1:
-            remove([.Favorited, .Unfavorited])
+            remove([.favorited, .unfavorited])
         case 2:
-            add(.Unfavorited, remove: .Favorited)
+            add(.unfavorited, remove: .favorited)
         default:
             fatalError("Storyboard incorrect")
         }
         updateCount()
     }
     
-    @IBAction func majorMinorStatusChanged(sender: UISegmentedControl) {
+    @IBAction func majorMinorStatusChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            add(.Major, remove: .Minor)
+            add(.major, remove: .minor)
         case 1:
-            remove([.Major, .Minor])
+            remove([.major, .minor])
         case 2:
-            add(.Minor, remove: .Major)
+            add(.minor, remove: .major)
         default:
             fatalError("Storyboard incorrect")
         }
         updateCount()
     }
 
-    @IBAction func plainFugueStatusChanged(sender: UISegmentedControl) {
+    @IBAction func plainFugueStatusChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            add(.Plain, remove: .Fugue)
+            add(.plain, remove: .fugue)
         case 1:
-            remove([.Plain, .Fugue])
+            remove([.plain, .fugue])
         case 2:
-            add(.Fugue, remove: .Plain)
+            add(.fugue, remove: .plain)
         default:
             fatalError("Storyboard incorrect")
         }
         updateCount()
     }
 
-    @IBAction func dupleTripleStatusChanged(sender: UISegmentedControl) {
+    @IBAction func dupleTripleStatusChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            add(.Duple, remove: .Triple)
+            add(.duple, remove: .triple)
         case 1:
-            remove([.Duple, .Triple])
+            remove([.duple, .triple])
         case 2:
-            add(.Triple, remove: .Duple)
+            add(.triple, remove: .duple)
         default:
             fatalError("Storyboard incorrect")
         }
         updateCount()
     }
     
-    @IBAction func notesStatusChanged(sender: UISegmentedControl) {
+    @IBAction func notesStatusChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            add(.Notes, remove: .NoNotes)
+            add(.notes, remove: .noNotes)
         case 1:
-            remove([.Notes, .NoNotes])
+            remove([.notes, .noNotes])
         case 2:
-            add(.NoNotes, remove: .Notes)
+            add(.noNotes, remove: .notes)
         default:
             fatalError("Storyboard incorrect")
         }
         updateCount()
     }
     
-    func minValueChanged(newValue:Float) {
+    func minValueChanged(_ newValue:Float) {
         print(newValue)
         songListViewController.popularityFilter = (minValue:newValue, maxValue:songListViewController.popularityFilter?.maxValue ?? 1.0)
         updateCount()
     }
     
-    func maxValueChanged(newValue:Float) {
+    func maxValueChanged(_ newValue:Float) {
         print(newValue)
         songListViewController.popularityFilter = (minValue:songListViewController.popularityFilter?.minValue ?? 0.0, maxValue:newValue)
         updateCount()
@@ -174,23 +174,23 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     func updateCount() {
         guard let tableView = self.songListViewController?.tableView else { return }
         tableView.reloadData()
-        let count = tableView.numberOfRowsInSection(0)
+        let count = tableView.numberOfRows(inSection: 0)
         self.filteredSongsCountLabel.text = "\(count) songs"
     }
     
-    @IBAction func clearAllButtonPressed(sender: UIBarButtonItem) {
-        remove([.Unfavorited, .Favorited, .Fugue, .Plain, .Major, .Minor, .Duple, .Triple, .Notes, .NoNotes])
+    @IBAction func clearAllButtonPressed(_ sender: UIBarButtonItem) {
+        remove([.unfavorited, .favorited, .fugue, .plain, .major, .minor, .duple, .triple, .notes, .noNotes])
         for slider in [favoritedSegmentedControl, majorMinorSegmentedControl, plainFugueSegmentedControl, dupleTripleSegmentedControl, notesSegmentedControl] {
-            slider.selectedSegmentIndex = 1
+            slider?.selectedSegmentIndex = 1
         }
         popularitySlider.curMinVal = 0.0
         popularitySlider.curMaxVal = 1.0
     }
     
-    @IBAction func doneBarButtonPressed(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneBarButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
-    @IBAction func donePressed(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func donePressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 }

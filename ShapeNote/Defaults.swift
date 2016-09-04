@@ -18,50 +18,50 @@ class Defaults: NSObject {
     
     class var isFirstRun:Bool {
         get {
-            return !NSUserDefaults.standardUserDefaults().boolForKey(firstRunKey)
+            return !UserDefaults.standard.bool(forKey: firstRunKey)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: firstRunKey)
+            UserDefaults.standard.set(true, forKey: firstRunKey)
         }
     }
     
     class var neverLoggedIn:Bool {
         get {
-            return !NSUserDefaults.standardUserDefaults().boolForKey(loggedInOnce)
+            return !UserDefaults.standard.bool(forKey: loggedInOnce)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: loggedInOnce)
+            UserDefaults.standard.set(true, forKey: loggedInOnce)
         }
     }
     
     class var badgedSingersTabOnce:Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(hasBadgedSingersTabOnce)
+            return UserDefaults.standard.bool(forKey: hasBadgedSingersTabOnce)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: hasBadgedSingersTabOnce)
+            UserDefaults.standard.set(true, forKey: hasBadgedSingersTabOnce)
         }
     }
     
     class var currentlySelectedBookTitle:String {
         get {
-            if let stored = NSUserDefaults.standardUserDefaults().objectForKey(bookKey) as? String {
+            if let stored = UserDefaults.standard.object(forKey: bookKey) as? String {
                 return stored
             } else {
                 return "The Sacred Harp (1991)"
             }
         }
         set(booktitle) {
-            NSUserDefaults.standardUserDefaults().setObject(booktitle, forKey: bookKey)
+            UserDefaults.standard.set(booktitle, forKey: bookKey)
         }
     }
     
     class var currentGroupName:String? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey(groupKey) as? String
+            return UserDefaults.standard.object(forKey: groupKey) as? String
         }
         set(groupName) {
-            NSUserDefaults.standardUserDefaults().setObject(groupName, forKey: groupKey)
+            UserDefaults.standard.set(groupName, forKey: groupKey)
         }
     }
 }

@@ -17,7 +17,7 @@ class QuizCompletedViewController: UIViewController {
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var okButton: UIButton!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         headlineLabel.text = phraseForScore().string
@@ -49,14 +49,14 @@ class QuizCompletedViewController: UIViewController {
         }
     }
 
-    @IBAction func okButtonPressed(sender: UIButton) {
+    @IBAction func okButtonPressed(_ sender: UIButton) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func donePressed(sender: UIBarButtonItem) {
+    @IBAction func donePressed(_ sender: UIBarButtonItem) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

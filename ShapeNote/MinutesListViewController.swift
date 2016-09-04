@@ -26,7 +26,7 @@ class MinutesListViewController: UITableViewController {
                 navigationItem.title = group.name + ": Minutes"
                 if let m = CoreDataHelper.sharedHelper.minutes(group) {
                     
-                    _allMinutes = m.sort { (a:Minutes, b:Minutes) -> Bool in
+                    _allMinutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
                         return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
                     }
                 }
@@ -35,7 +35,7 @@ class MinutesListViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         TabBarManager.sharedManager.tabBarController = tabBarController
         
@@ -51,7 +51,7 @@ class MinutesListViewController: UITableViewController {
         updateNoMinutesView()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         updateNoMinutesView()
@@ -60,13 +60,13 @@ class MinutesListViewController: UITableViewController {
     func updateNoMinutesView() {
         
         if allMinutes.count > 0 {
-            noMinutesYetView.hidden = true
-            tableView.scrollEnabled = true
+            noMinutesYetView.isHidden = true
+            tableView.isScrollEnabled = true
         } else {
-            tableView.scrollEnabled = false
-            noMinutesYetView.hidden = false
-            var height = UIScreen.mainScreen().bounds.size.height
-            height -= UIApplication.sharedApplication().statusBarFrame.height
+            tableView.isScrollEnabled = false
+            noMinutesYetView.isHidden = false
+            var height = UIScreen.main.bounds.size.height
+            height -= UIApplication.shared.statusBarFrame.height
             height -= tableViewHeaderHeight
             if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
                 let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
@@ -80,81 +80,76 @@ class MinutesListViewController: UITableViewController {
     func handleFirstRun() {
         let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController() as! IntroPopupViewController
         let _ = introVC.view
-        introVC.doneButton.hidden = false
+        introVC.doneButton.isHidden = false
         
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.presentViewController(introVC, animated: false, completion: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.present(introVC, animated: false, completion: nil)
         }
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMinutes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MinutesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MinutesTableViewCell
         
-        let minute = allMinutes[indexPath.row]
+        let minute = allMinutes[(indexPath as NSIndexPath).row]
         cell.configureWithMinutes(minute)
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableCellWithIdentifier("HeaderCell")
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
     }
     
     // MARK: - Navigation
     
-    func minuteTakingViewControllerForIndexPath(indexPath:NSIndexPath) -> MinuteTakingViewController {
+    func minuteTakingViewControllerForIndexPath(_ indexPath:IndexPath) -> MinuteTakingViewController {
         
-        let m = allMinutes[indexPath.row]
-        let minutesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") as! MinuteTakingViewController
+        let m = allMinutes[(indexPath as NSIndexPath).row]
+        let minutesViewController = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         
         return minutesViewController
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let minutesViewController = minuteTakingViewControllerForIndexPath(indexPath)
         self.navigationController?.pushViewController(minutesViewController, animated: true)
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableViewHeaderHeight
     }
     
     // MARK: Navigation
-    @IBAction func newMinutesButtonPressed(sender: UIButton) {
+    @IBAction func newMinutesButtonPressed(_ sender: UIButton) {
         
         if let _ = CoreDataHelper.sharedHelper.currentlySelectedGroup,
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MinuteTakingViewController") {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") {
             
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        } else {
-            
-            let vc = GroupsPickerViewController()
-            self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)   
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let mtvc = segue.destinationViewController as? MinuteTakingViewController where mtvc.minutes == nil {
-            mtvc.minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext) as? Minutes
+        if let mtvc = segue.destination as? MinuteTakingViewController, mtvc.minutes == nil {
+            mtvc.minutes = NSEntityDescription.insertNewObject(forEntityName: "Minutes", into: CoreDataHelper.managedContext) as? Minutes
             mtvc.minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
             CoreDataHelper.sharedHelper.saveContext()
         }

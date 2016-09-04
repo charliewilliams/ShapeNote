@@ -9,32 +9,38 @@
 import Foundation
 
 extension Set {
+    
     func random() -> Element? {
         guard count > 0 else { return nil }
-        return self[self.startIndex.advancedBy(Int(arc4random()) % count)]
+        return self[self.index(self.startIndex, offsetBy: Int(arc4random()) % count)]
     }
 }
 
 extension Array {
+    
     func random() -> Element? {
         guard count > 0 else { return nil }
         return self[Int(arc4random()) % count]
     }
 }
 
-extension CollectionType {
-    func shuffle() -> [Generator.Element] {
+extension Collection {
+    
+    func shuffle() -> [Iterator.Element] {
         var list = Array(self)
         list.shuffleInPlace()
         return list
     }
 }
 
-extension MutableCollectionType where Index == Int {
+extension MutableCollection where Index == Int {
+    
     mutating func shuffleInPlace() {
+        
         guard count > 1 else { return }
-        for i in 0..<count {
-            let j = Int(arc4random()) % (count - 1)
+        
+        for i in startIndex ..< endIndex - 1 {
+            let j = Int(arc4random_uniform(UInt32(endIndex - i))) + i
             guard i != j else { continue }
             swap(&self[i], &self[j])
         }
@@ -85,8 +91,8 @@ class QuizQuestionProvider {
                 
                 for answer in questionTypes {
                     if let q = Quizzable(rawValue: question),
-                        let a = Quizzable(rawValue: answer)
-                        where question != answer {
+                        let a = Quizzable(rawValue: answer),
+                        question != answer {
                             theseOptions.append(QuizOption(questionType: q, answerType: a))
                     }
                 }
@@ -112,7 +118,7 @@ class QuizQuestionProvider {
         ]
     }
     
-    func propertyForCategory(category:Quizzable) -> String {
+    func propertyForCategory(_ category:Quizzable) -> String {
         switch category {
         case .Title:
             return "title"
@@ -141,12 +147,12 @@ class QuizQuestionProvider {
         let correctSong = songs.random()
         var selectorName = propertyForCategory(questionType)
         var selector = Selector(stringLiteral: selectorName)
-        var unmanagedReturn = correctSong?.performSelector(selector)
+        var unmanagedReturn = correctSong?.perform(selector)
         guard let question = unmanagedReturn?.takeUnretainedValue() as? String else { fatalError() }
         
         selectorName = propertyForCategory(answerType)
         selector = Selector(stringLiteral: selectorName)
-        unmanagedReturn = correctSong?.performSelector(selector)
+        unmanagedReturn = correctSong?.perform(selector)
         guard let answer = unmanagedReturn?.takeUnretainedValue() as? String else { fatalError() }
         
         var tries = 0
@@ -158,15 +164,15 @@ class QuizQuestionProvider {
             let proposedSong = songs.random()
             let selectorName = propertyForCategory(answerType)
             let selector = Selector(stringLiteral: selectorName)
-            if let unmanagedReturn = proposedSong?.performSelector(selector),
-                let proposedAnswer = unmanagedReturn.takeUnretainedValue() as? String
-                where answers.indexOf(proposedAnswer) == nil {
+            if let unmanagedReturn = proposedSong?.perform(selector),
+                let proposedAnswer = unmanagedReturn.takeUnretainedValue() as? String,
+                answers.index(of: proposedAnswer) == nil {
                     answers.append(proposedAnswer)
             }
         }
         
         answers.shuffleInPlace()
-        guard let answerIndex = answers.indexOf(answer) else { fatalError("That would be super weird") }
+        guard let answerIndex = answers.index(of: answer) else { fatalError("That would be super weird") }
         
         return QuizOption(questionType: questionType, answerType: answerType, question: question, answers:answers, answerIndex:answerIndex)
     }

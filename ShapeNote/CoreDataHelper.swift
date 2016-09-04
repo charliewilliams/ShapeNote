@@ -8,6 +8,26 @@
 
 import Foundation
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 enum ManagedClass:String {
     case Singer = "Singer"
@@ -47,8 +67,9 @@ class CoreDataHelper {
     }
     
     func singers(inGroup group:Group) -> [Singer]? {
-        if let results = resultsForEntityName(ManagedClass.Singer.rawValue, matchingObject: group, inQueryString: "group == %@") as? [Singer] where results.count > 0 {
-            return results.sort({ (a:Singer, b:Singer) -> Bool in
+        if let results = resultsForEntityName(ManagedClass.Singer.rawValue, matchingObject: group, inQueryString: "group == %@") as? [Singer],
+            results.count > 0 {
+            return results.sorted(by: { (a:Singer, b:Singer) -> Bool in
                 return a.lastName > b.lastName
             })
         }
@@ -70,8 +91,8 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Book.rawValue) as! [Book]
     }
     
-    func book(title:String) -> Book? {
-        return singleResultForEntityName(ManagedClass.Book.rawValue, matchingObject: title, inQueryString: "title == %@") as! Book?
+    func book(_ title:String) -> Book? {
+        return singleResultForEntityName(ManagedClass.Book.rawValue, matchingObject: title as NSObject?, inQueryString: "title == %@") as! Book?
     }
     
     func songs() -> [Song] {
@@ -80,12 +101,12 @@ class CoreDataHelper {
     
     func songs(inBook book:Book) -> [Song] {
         let results = resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: book, inQueryString: "book == %@") as! [Song]
-        return results.sort({ (a:Song, b:Song) -> Bool in
+        return results.sorted(by: { (a:Song, b:Song) -> Bool in
             return a.compare(b)
         })
     }
     
-    func songs(inBookTitle:String) -> [Song] {
+    func songs(_ inBookTitle:String) -> [Song] {
         let bookObject = book(inBookTitle)!
         return songs(inBook: bookObject)
     }
@@ -96,11 +117,10 @@ class CoreDataHelper {
     
     var numberOfSongsInCurrentBook:Int {
         
-        let fetchRequest = NSFetchRequest(entityName: ManagedClass.Song.rawValue)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Song.rawValue)
         fetchRequest.predicate = NSPredicate(format: "book == %@", currentlySelectedBook)
-        let error:NSErrorPointer = nil
-        if let count = managedObjectContext?.countForFetchRequest(fetchRequest, error: error) {
-            return count
+        if let count = try? managedObjectContext?.count(for: fetchRequest) {
+            return count ?? 0
         }
         return 0
     }
@@ -109,11 +129,11 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }
     
-    func groupWithName(name:String?) -> Group? {
+    func groupWithName(_ name:String?) -> Group? {
         
         guard let name = name else { return nil }
         
-        let fetchRequest = NSFetchRequest(entityName: ManagedClass.Group.rawValue)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Group.rawValue)
         
         let resultPredicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
         fetchRequest.predicate = resultPredicate
@@ -121,7 +141,7 @@ class CoreDataHelper {
         var group: Group? = nil
         
         do {
-            let fetchedResults = try managedObjectContext!.executeFetchRequest(fetchRequest)
+            let fetchedResults = try managedObjectContext!.fetch(fetchRequest)
             group = fetchedResults.first as? Group
         } catch {
             return nil
@@ -130,17 +150,17 @@ class CoreDataHelper {
         return group
     }
     
-    func minutes(group:Group) -> [Minutes]? {
+    func minutes(_ group:Group) -> [Minutes]? {
         return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
     }
     
-    func singleResultForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSManagedObject? {
+    func singleResultForEntityName(_ entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSManagedObject? {
         return resultsForEntityName(entityName, matchingObject: object, inQueryString: queryString)?.first
     }
     
-    func resultsForEntityName(entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> [NSManagedObject]? {
+    func resultsForEntityName(_ entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> [NSManagedObject]? {
         
-        let fetchRequest = NSFetchRequest(entityName:entityName)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:entityName)
         fetchRequest.returnsObjectsAsFaults = false
         
         if queryString != nil {
@@ -152,42 +172,42 @@ class CoreDataHelper {
         }
         
         do {
-            return try managedObjectContext!.executeFetchRequest(fetchRequest) as? [NSManagedObject]
+            return try managedObjectContext!.fetch(fetchRequest) as? [NSManagedObject]
         } catch {
             return nil
         }
     }
     
-    func resultsForEntityName(entityName:String) -> [NSManagedObject]? {
+    func resultsForEntityName(_ entityName:String) -> [NSManagedObject]? {
         return resultsForEntityName(entityName, matchingObject: nil, inQueryString: nil)
     }
     
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.charliewilliams.ShapeNote" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1] 
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        return NSManagedObjectModel(contentsOfURL: self.modelURL)!
+        return NSManagedObjectModel(contentsOf: self.modelURL)!
     }()
     
-    lazy var modelURL:NSURL = {
-        return NSBundle.mainBundle().URLForResource("ShapeNote", withExtension: "momd")!
+    lazy var modelURL:URL = {
+        return Bundle.main.url(forResource: "ShapeNote", withExtension: "momd")!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("ShapeNote.sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("ShapeNote.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         
         let options = [NSMigratePersistentStoresAutomaticallyOption:true, NSInferMappingModelAutomaticallyOption:true]
         
         do {
-            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
+            try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
         } catch let error as NSError {
             coordinator = nil
             // Report any error we got.
@@ -220,7 +240,7 @@ class CoreDataHelper {
         guard let coordinator = self.persistentStoreCoordinator else {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
@@ -228,7 +248,7 @@ class CoreDataHelper {
     // MARK: - Core Data Saving support
     
     func saveContext () {
-        if let moc = self.managedObjectContext where moc.hasChanges {
+        if let moc = self.managedObjectContext, moc.hasChanges {
             
             print("Managed Object Count: \(moc.registeredObjects.count)")
             
@@ -250,20 +270,20 @@ class CoreDataHelper {
     }
     
     func deleteLocalDatabaseFile() {
-        try! NSFileManager.defaultManager().removeItemAtURL(self.modelURL)
+        try! FileManager.default.removeItem(at: self.modelURL)
     }
     
-    func handleError(error:NSError?) {
+    func handleError(_ error:NSError?) {
         
         var message = "Please email Charlie a description of what just happened so he can fix it.\n\nThis problem might also be fixed by deleting and reinstalling the app. (Sorry.)"
-        if let error = error
-            where error.localizedDescription.characters.count > 4 {
+        if let error = error,
+            error.localizedDescription.characters.count > 4 {
                 message = error.localizedDescription
         }
-        let alert = UIAlertController(title: "Core Data Error", message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            alert.dismissViewControllerAnimated(true, completion: nil)
+        let alert = UIAlertController(title: "Core Data Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
         }))
-        UIApplication.sharedApplication().keyWindow!.rootViewController!.presentViewController(alert, animated: true, completion: nil)
+        UIApplication.shared.keyWindow!.rootViewController!.present(alert, animated: true, completion: nil)
     }
 }

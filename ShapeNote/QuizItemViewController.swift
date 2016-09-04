@@ -14,8 +14,8 @@ let correctColor = UIColor(red: 0.004, green: 0.788, blue: 0, alpha: 1)
 let wrongColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
 
 enum NextButtonConstraint: CGFloat {
-    case Hidden = -50
-    case Shown = 50
+    case hidden = -50
+    case shown = 50
 }
 
 class QuizItemViewController: UIViewController {
@@ -30,9 +30,9 @@ class QuizItemViewController: UIViewController {
                 self.questionLabel.attributedText = question.exampleStringForQuestionPair
                 let buttons = answerButtons
                 
-                for (index, answer) in answers.enumerate() {
+                for (index, answer) in answers.enumerated() {
                     let button = buttons[index]
-                    button.setTitle(answer, forState: .Normal)
+                    button.setTitle(answer, for: UIControlState())
                 }
             }
         }
@@ -65,7 +65,7 @@ class QuizItemViewController: UIViewController {
         nextQuestion()
     }
     
-    @IBAction func answerButtonPressed(sender: UIButton) {
+    @IBAction func answerButtonPressed(_ sender: UIButton) {
         
         guard let index = question?.answerIndex else { fatalError() }
         
@@ -76,7 +76,7 @@ class QuizItemViewController: UIViewController {
         }
     }
     
-    func answered(correct:Bool, correctIndex index:Int) {
+    func answered(_ correct:Bool, correctIndex index:Int) {
         guard let _ = question else { fatalError() }
         
         setIndicatorsVisible(true, correctIndex: index)
@@ -87,12 +87,12 @@ class QuizItemViewController: UIViewController {
         let firstHalf = correct ? "Hooray!" : "Boo…"
         let done = (currentQuestionNumber == numberOfQuestionsPerRound)
         let secondHalf = done ? "Finish Round" : "Next Question"
-        nextQuestionButton.setTitle("\(firstHalf) \(secondHalf)", forState: .Normal)
+        nextQuestionButton.setTitle("\(firstHalf) \(secondHalf)", for: UIControlState())
     }
     
     @IBAction func nextQuestion() {
         
-        nextButtonToBottomConstraint.constant = NextButtonConstraint.Hidden.rawValue
+        nextButtonToBottomConstraint.constant = NextButtonConstraint.hidden.rawValue
         setIndicatorsVisible(false, correctIndex: 0)
         
         guard currentQuestionNumber < numberOfQuestionsPerRound else {
@@ -113,23 +113,23 @@ class QuizItemViewController: UIViewController {
         let endViewController = QuizCompletedViewController()
         endViewController.numberCorrect = numberOfCorrectQuestions
         endViewController.numberOfQuestions = numberOfQuestionsPerRound
-        self.presentViewController(endViewController, animated: true) { () -> Void in
-            self.navigationController?.popViewControllerAnimated(false)
+        self.present(endViewController, animated: true) { () -> Void in
+            self.navigationController?.popViewController(animated: false)
         }
     }
     
-    @IBAction func finishPressed(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func finishPressed(_ sender: AnyObject) {
+        navigationController?.popViewController(animated: true)
     }
     
-    func setIndicatorsVisible(visible:Bool, correctIndex:Int) {
+    func setIndicatorsVisible(_ visible:Bool, correctIndex:Int) {
         
         if visible {
             
-            for (index, label) in indicatorLabels.enumerate() {
+            for (index, label) in indicatorLabels.enumerated() {
                 
                 let center = label.center
-                label.center = CGPointMake(center.x, center.y - 50)
+                label.center = CGPoint(x: center.x, y: center.y - 50)
                 
                 if index == correctIndex {
                     label.text = tickmark
@@ -139,13 +139,13 @@ class QuizItemViewController: UIViewController {
                     label.textColor = wrongColor
                 }
                 
-                UIView.animateWithDuration(0.6, delay: NSTimeInterval(Double(index) / 5), usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: .AllowAnimatedContent, animations: { () -> Void in
+                UIView.animate(withDuration: 0.6, delay: TimeInterval(Double(index) / 5), usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: .allowAnimatedContent, animations: { () -> Void in
                     label.alpha = 1
                     label.center = center
                     }, completion: nil)
                 
-                UIView.animateWithDuration(0.3, delay: NSTimeInterval(0.8), options: .AllowAnimatedContent, animations: { () -> Void in
-                    self.nextButtonToBottomConstraint.constant = NextButtonConstraint.Shown.rawValue
+                UIView.animate(withDuration: 0.3, delay: TimeInterval(0.8), options: .allowAnimatedContent, animations: { () -> Void in
+                    self.nextButtonToBottomConstraint.constant = NextButtonConstraint.shown.rawValue
                     self.view.layoutIfNeeded()
                     }, completion: nil)
                 }

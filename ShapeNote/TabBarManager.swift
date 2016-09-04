@@ -9,11 +9,11 @@
 import Foundation
 
 enum TabBarIndex:Int {
-    case Minutes = 0
-    case Songs = 1
-    case Singers = 2
-    case Quiz = 3
-    case Login = 4
+    case minutes = 0
+    case songs = 1
+    case singers = 2
+    case quiz = 3
+    case login = 4
 }
 
 class TabBarManager {
@@ -34,29 +34,29 @@ class TabBarManager {
         return Static.instance
     }
     
-    private func badgeTabAtIndex(index:TabBarIndex, badged:Bool) {
+    fileprivate func badgeTabAtIndex(_ index:TabBarIndex, badged:Bool) {
         
         guard let tabBarController = tabBarController else { return }
         
         let tabArray = tabBarController.tabBar.items as NSArray!
-        let tabItem = tabArray.objectAtIndex(index.rawValue) as! UITabBarItem
+        let tabItem = tabArray?.object(at: index.rawValue) as! UITabBarItem
         tabItem.badgeValue = badged ? " " : nil
     }
     
     func badgeSingersTab() {
         Defaults.badgedSingersTabOnce = true
-        badgeTabAtIndex(.Singers, badged: true)
+        badgeTabAtIndex(.singers, badged: true)
     }
     
     func clearSingersTab() {
-        badgeTabAtIndex(.Singers, badged: false)
+        badgeTabAtIndex(.singers, badged: false)
     }
     
     func badgeLoginTab() {
-        badgeTabAtIndex(.Login, badged: true)
+        badgeTabAtIndex(.login, badged: true)
     }
     
     func clearLoginTab() {
-        badgeTabAtIndex(.Login, badged: false)
+        badgeTabAtIndex(.login, badged: false)
     }
 }

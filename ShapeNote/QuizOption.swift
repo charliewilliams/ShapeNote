@@ -104,9 +104,9 @@ struct QuizOption: Hashable {
         case .Composer:
             // Composer names are written Last, First
             // but that's annoying to read in the quiz
-            var nameElements = X.componentsSeparatedByString(",")
-            nameElements = nameElements.reverse()
-            s = QuestionVerb.Composer.rawValue + " \(nameElements.joinWithSeparator(" ")) "
+            var nameElements = X.components(separatedBy: ",")
+            nameElements = nameElements.reversed()
+            s = QuestionVerb.Composer.rawValue + " \(nameElements.joined(separator: " ")) "
         case .Lyricist:
             s = QuestionVerb.Lyricist.rawValue + " \(X) "
         case .FirstLine:
@@ -138,10 +138,10 @@ struct QuizOption: Hashable {
         
         s += ":"
         
-        let italics = [NSFontAttributeName:UIFont.italicSystemFontOfSize(24)]
-        let nonItalics = [NSFontAttributeName:UIFont.systemFontOfSize(24)]
+        let italics = [NSFontAttributeName:UIFont.italicSystemFont(ofSize: 24)]
+        let nonItalics = [NSFontAttributeName:UIFont.systemFont(ofSize: 24)]
         let nsstring = NSString(string: s)
-        let range = nsstring.rangeOfString(X)
+        let range = nsstring.range(of: X)
         
         let attrQuestion = NSMutableAttributedString(string: s, attributes: nonItalics)
         attrQuestion.addAttributes(italics, range: range)

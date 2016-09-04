@@ -23,12 +23,12 @@ class SongListTableViewCell: UITableViewCell {
     @IBOutlet weak var meterAndTypeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
 
-    func configureWithSong(song:Song) {
+    func configureWithSong(_ song:Song) {
         
         self.song = song
         
         if song.number.hasPrefix("0") {
-            numberLabel.text = song.number.substringFromIndex(song.number.startIndex.advancedBy(1))
+            numberLabel.text = song.number.substring(from: song.number.index(song.number.startIndex, offsetBy: 1))
         } else {
             numberLabel.text = song.number
         }
@@ -64,11 +64,11 @@ class SongListTableViewCell: UITableViewCell {
             }
         }
         
-        if let lyrics = song.lyrics where lyricsLabel != nil {
-            lyricsLabel.text = lyrics.stringByReplacingOccurrencesOfString("\n", withString: " ")
+        if let lyrics = song.lyrics, lyricsLabel != nil {
+            lyricsLabel.text = lyrics.replacingOccurrences(of: "\n", with: " ")
         }
         
-        favoriteButton.setTitle(favoriteStateString, forState: .Normal)
+        favoriteButton.setTitle(favoriteStateString, for: UIControlState())
         favoriteButton.alpha = favoriteStateAlpha
         
         meterAndTypeLabel.text = infoString
@@ -82,7 +82,7 @@ class SongListTableViewCell: UITableViewCell {
         return song?.favorited == true ? 1.0 : 0.3
     }
     
-    @IBAction func favoriteButtonPressed(sender: UIButton) {
+    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         guard let song = song else { fatalError("No song attached to cell") }
         song.favorited = !song.favorited
         self.songListTableView?.reloadData()

@@ -19,6 +19,6 @@ class NewLessonAssistantTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        addButton.hidden = true
+        addButton.isHidden = true
     }
 }

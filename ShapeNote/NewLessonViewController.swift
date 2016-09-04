@@ -8,13 +8,33 @@
 
 import UIKit
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 enum ScopeBarIndex:Int {
-    case SearchLeaders = 0
-    case SearchSongs = 1
-    case AssistedBy = 2
-    case Dedication = 3
-    case Other = 4
+    case searchLeaders = 0
+    case searchSongs = 1
+    case assistedBy = 2
+    case dedication = 3
+    case other = 4
 }
 
 let minCellCount = 5
@@ -51,7 +71,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         buildSearchController()
         extendedLayoutIncludesOpaqueBars = true
-        doneButton.enabled = false
+        doneButton.isEnabled = false
     }
     
     func buildSearchController() {
@@ -68,41 +88,42 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchBar.showsScopeBar = true
         searchBar.delegate = self
         searchBar.scopeButtonTitles = ["Leader", "Song", "Assisted by", "Dedication"]
-        searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue
+        searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue
         tableView.tableHeaderView = searchBar
         
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 128))
-        let width = UIScreen.mainScreen().bounds.size.width
-        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: width))
+        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 128))
+        let width = UIScreen.main.bounds.size.width
+        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width))
 //        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0))
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        searchController.active = true
-        dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
+        searchController.isActive = true
+        
+        // TODO 
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] () -> Void in
             
             guard let searchBar = self?.searchBar else { return }
             searchBar.becomeFirstResponder()
-            
         }
     }
     
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchAndScope()
     }
     
-    func filterContentForSingerSearchText(searchText: String) {
+    func filterContentForSingerSearchText(_ searchText: String) {
         
         guard searchText.characters.count > 0 else { filteredSingers = singers; return }
         
         filteredSingers = singers.filter({(singer: Singer) -> Bool in
-            return singer.name.rangeOfString(searchText, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil
+            return singer.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         })
     }
     
-    func filterContentForSongSearchText(searchText: String) {
+    func filterContentForSongSearchText(_ searchText: String) {
         
         guard searchText.characters.count > 0 else { filteredSongs = songs; return }
         
@@ -111,26 +132,26 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         })
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
 
         let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
         guard let searchText = searchBar.text else { return }
 
         switch index {
             
-        case .SearchSongs:
+        case .searchSongs:
             filterContentForSongSearchText(searchText)
             
-        case .SearchLeaders:
+        case .searchLeaders:
             filterContentForSingerSearchText(searchText)
             
-        case .Dedication:
+        case .dedication:
             filterContentForSingerSearchText(searchText)
             
-        case .AssistedBy:
+        case .assistedBy:
             fallthrough
             
-        case .Other:
+        case .other:
             return
         }
         
@@ -140,49 +161,49 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     func updateSearchAndScope() {
         
         let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
-        searchBar.keyboardType = UIKeyboardType.ASCIICapable
+        searchBar.keyboardType = UIKeyboardType.asciiCapable
         
         switch index {
             
-        case .SearchSongs:
+        case .searchSongs:
             
             filteredSongs = songs
             searchBar.placeholder = "enter song number"
-            searchBar.keyboardType = UIKeyboardType.NumberPad
+            searchBar.keyboardType = UIKeyboardType.numberPad
             
-        case .SearchLeaders:
+        case .searchLeaders:
             searchBar.placeholder = "enter name"
             self.filteredSingers = self.singers
             
-        case .Dedication:
+        case .dedication:
             break
             
-        case .AssistedBy:
+        case .assistedBy:
             searchBar.placeholder = "enter assistant's name"
             
-        case .Other:
+        case .other:
             searchBar.placeholder = "what's happening now?"
         }
         
         searchBar.reloadInputViews()
         
         let complete = (chosenSong != nil && chosenSingers.count != 0)
-        doneButton.enabled = complete
+        doneButton.isEnabled = complete
         
         if complete {
             
-            searchController.active = false
+            searchController.isActive = false
             searchBar.showsScopeBar = true
             
         } else {
             
             searchBar.text = ""
-            searchController.active = true
+            searchController.isActive = true
             searchBar.showsScopeBar = true
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if addingDedication {
             
@@ -192,40 +213,40 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             
             otherEvent = textField.text
             if otherEvent?.characters.count > 0 {
-                doneButton.enabled = true
+                doneButton.isEnabled = true
             } else if chosenSong == nil || chosenSingers.count == 0 {
-                doneButton.enabled = false
+                doneButton.isEnabled = false
             }
             
         } else if let newSingerName = textField.text {
             
-            let newSinger = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as! Singer
+            let newSinger = NSEntityDescription.insertNewObject(forEntityName: "Singer", into: CoreDataHelper.managedContext) as! Singer
             
-            var components = newSingerName.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            var components = newSingerName.components(separatedBy: CharacterSet.whitespacesAndNewlines)
             newSinger.firstName = components.first
             if components.count > 1 {
-                components.removeAtIndex(0)
-                newSinger.lastName = components.joinWithSeparator(" ")
+                components.remove(at: 0)
+                newSinger.lastName = components.joined(separator: " ")
             }
             CoreDataHelper.sharedHelper.saveContext()
             chosenSingers.append(newSinger)
             searchingSingers = false
-            searchController.active = false;
+            searchController.isActive = false;
             updateSearchAndScope()
         }
         
         textField.resignFirstResponder()
         if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: false)
         }
         return true
     }
     
     //MARK: TableView
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchController.active {
+        if searchController.isActive {
             
             if searchingSongs {
                 return filteredSongs?.count ?? 0
@@ -243,34 +264,34 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = identifierForCellAtIndexPath(indexPath)
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
         
-        if let singerCell = cell as? NewLessonTableViewCell where singerCell.parentTableViewController == nil {
+        if let singerCell = cell as? NewLessonTableViewCell, singerCell.parentTableViewController == nil {
             singerCell.parentTableViewController = self
         }
-        cell.textLabel?.textColor = UIColor.blackColor()
+        cell.textLabel?.textColor = UIColor.black
 
-        if searchController.active {
+        if searchController.isActive {
 
             if searchingSongs {
                 
-                let song = filteredSongs![indexPath.row]
+                let song = filteredSongs![(indexPath as NSIndexPath).row]
                 let rawNumber = song.number
-                let number = rawNumber.hasPrefix("0") ? rawNumber.substringFromIndex(rawNumber.startIndex.advancedBy(1)) : rawNumber
+                let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: rawNumber.characters.index(rawNumber.startIndex, offsetBy: 1)) : rawNumber
                 cell.textLabel?.text = number + " " + song.title
                 
-            } else if indexPath.row < filteredSingers?.count {
+            } else if (indexPath as NSIndexPath).row < filteredSingers?.count {
                 
-                let singer = filteredSingers![indexPath.row]
+                let singer = filteredSingers![(indexPath as NSIndexPath).row]
                 cell.textLabel?.text = singer.name
                 
             } else {
                 
-                let newSingerCell = tableView.dequeueReusableCellWithIdentifier("Dedication") as! NewLessonTextEntryTableViewCell
+                let newSingerCell = tableView.dequeueReusableCell(withIdentifier: "Dedication") as! NewLessonTextEntryTableViewCell
                 newSingerCell.leftTextLabel?.text = "+New Singer"
                 newSingerCell.textField.placeholder = "enter name"
                 return newSingerCell
@@ -283,111 +304,111 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if searchController.active { return 44 }
+        if searchController.isActive { return 44 }
         
         let cellTypeIndex = adjustedIndexForIndexPath(indexPath)
         
         switch cellTypeIndex {
-        case .SearchLeaders: fallthrough
-        case .SearchSongs:
+        case .searchLeaders: fallthrough
+        case .searchSongs:
             return 70
-        case .AssistedBy: fallthrough
-        case .Dedication: fallthrough
-        case .Other:
+        case .assistedBy: fallthrough
+        case .dedication: fallthrough
+        case .other:
             return 44
         }
     }
     
-    func identifierForCellAtIndexPath(indexPath:NSIndexPath) -> String {
+    func identifierForCellAtIndexPath(_ indexPath:IndexPath) -> String {
         
-        if searchController.active { return "SearchCell" }
+        if searchController.isActive { return "SearchCell" }
         
         let index = adjustedIndexForIndexPath(indexPath)
         switch index {
-        case .SearchLeaders: fallthrough
-        case .SearchSongs:
+        case .searchLeaders: fallthrough
+        case .searchSongs:
             return CellIdentifiers.Leader.rawValue
-        case .AssistedBy:
+        case .assistedBy:
             return CellIdentifiers.AssistedBy.rawValue
-        case .Dedication: fallthrough
-        case .Other:
+        case .dedication: fallthrough
+        case .other:
             return CellIdentifiers.Dedication.rawValue
         }
     }
     
-    func adjustedIndexForIndexPath(indexPath:NSIndexPath) -> ScopeBarIndex {
+    func adjustedIndexForIndexPath(_ indexPath:IndexPath) -> ScopeBarIndex {
         
         let numberOfSingers = chosenSingers.count
-        if indexPath.row < numberOfSingers || (numberOfSingers <= 1 && indexPath.row == 0) {
-            ScopeBarIndex.SearchLeaders
+        if (indexPath as NSIndexPath).row < numberOfSingers || (numberOfSingers <= 1 && (indexPath as NSIndexPath).row == 0) {
+            ScopeBarIndex.searchLeaders
         }
         let adjustment = numberOfSingers > 0 ? numberOfSingers - 1 : 0
-        return ScopeBarIndex(rawValue: indexPath.row - adjustment)!
+        return ScopeBarIndex(rawValue: (indexPath as NSIndexPath).row - adjustment)!
     }
     
-    func configureCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) {
+    func configureCell(_ cell: UITableViewCell, forIndexPath indexPath: IndexPath) {
         
         let type = adjustedIndexForIndexPath(indexPath)
         cell.textLabel?.textColor = blueColor
         
         switch type {
             
-        case .SearchLeaders:
+        case .searchLeaders:
             let singerCell = cell as! NewLessonTableViewCell
             singerCell.leftTextLabel.text = "Leader"
-            if chosenSingers.count > 0 && indexPath.row == chosenSingers.count {
-                singerCell.addButton?.hidden = false
+            if chosenSingers.count > 0 && (indexPath as NSIndexPath).row == chosenSingers.count {
+                singerCell.addButton?.isHidden = false
             } else {
-                singerCell.addButton?.hidden = true
+                singerCell.addButton?.isHidden = true
             }
-            if indexPath.row < chosenSingers.count {
-                singerCell.rightTextLabel?.text = chosenSingers[indexPath.row].name
+            if (indexPath as NSIndexPath).row < chosenSingers.count {
+                singerCell.rightTextLabel?.text = chosenSingers[(indexPath as NSIndexPath).row].name
             }
             else {
                 singerCell.rightTextLabel?.text = nil
             }
             
-        case .SearchSongs:
+        case .searchSongs:
             let songCell = cell as! NewLessonTableViewCell
             songCell.leftTextLabel.text = "Song"
             songCell.rightTextLabel?.text = chosenSong?.title
-            songCell.addButton.hidden = true
+            songCell.addButton.isHidden = true
             
-        case .AssistedBy:
+        case .assistedBy:
             let assistantCell = cell as! NewLessonAssistantTableViewCell
             assistantCell.leftTextLabel.text = "Assisted by"
             assistantCell.rightTextLabel?.text = assistant?.name
             
-        case .Dedication:
+        case .dedication:
             let dedicationCell = cell as! NewLessonTextEntryTableViewCell
             dedicationCell.leftTextLabel.text = "Dedication"
             if dedication != nil {
-                dedicationCell.textField.hidden = false
+                dedicationCell.textField.isHidden = false
                 dedicationCell.textField.text = dedication
             } else {
                 dedicationCell.textField.text = nil
-                dedicationCell.textField.hidden = true
+                dedicationCell.textField.isHidden = true
             }
             
-        case .Other:
+        case .other:
             let cell = cell as! NewLessonTextEntryTableViewCell
             cell.leftTextLabel?.text = "Other Event"
             if otherEvent != nil {
-                cell.textField.hidden = false
+                cell.textField.isHidden = false
                 cell.textField.text = otherEvent
             } else {
-                cell.textField.hidden = true
+                cell.textField.isHidden = true
             }
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if searchController.active {
+        if searchController.isActive {
             
-            let index = indexPath.row
+            let index = (indexPath as NSIndexPath).row
             
             if searchingSongs {
                 
@@ -400,7 +421,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             } else if searchingSingers && index < filteredSingers?.count {
                 
                 let singer = filteredSingers![index]
-                singer.lastSingDate = NSDate().timeIntervalSince1970
+                singer.lastSingDate = Date().timeIntervalSince1970
                 chosenSingers.append(singer)
                 
                 if chosenSong == nil {
@@ -409,76 +430,76 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 
             } else if searchingSingers {
                 
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewLessonTextEntryTableViewCell
-                cell.textField.hidden = false
+                let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
+                cell.textField.isHidden = false
                 cell.textField.placeholder = "enter name"
                 
-                dispatch_after(UInt64(0.1 * Double(NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { () -> Void in
                     cell.textField.becomeFirstResponder()
-                })
+                }
             }
             updateSearchAndScope()
             
         } else {
             
-            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { fatalError() }
+            guard let item = ScopeBarIndex(rawValue: (indexPath as NSIndexPath).row) else { fatalError() }
             
             switch item {
-            case .SearchSongs:
+            case .searchSongs:
                 searchingSongs = true
-                searchController.active = true
+                searchController.isActive = true
                 
-            case .SearchLeaders:
+            case .searchLeaders:
                 
-                if indexPath.row < chosenSingers.count {
-                    chosenSingers.removeAtIndex(indexPath.row)
+                if (indexPath as NSIndexPath).row < chosenSingers.count {
+                    chosenSingers.remove(at: (indexPath as NSIndexPath).row)
                 }
                 searchingSingers = true
-                searchController.active = true
+                searchController.isActive = true
                 
-            case .AssistedBy:
+            case .assistedBy:
                 
                 addingAssistant = true
-                searchController.active = true
-                dispatch_after(1, dispatch_get_main_queue()) { [weak self] () -> Void in
+                searchController.isActive = true
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] () -> Void in
                     self?.searchBar.becomeFirstResponder()
                 }
                 
-            case .Dedication:
+            case .dedication:
                 
                 addingDedication = true
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewLessonTextEntryTableViewCell
-                cell.textField.hidden = false
+                let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
+                cell.textField.isHidden = false
                 cell.textField.becomeFirstResponder()
                 
-            case .Other:
+            case .other:
                 
                 addingOther = true
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as! NewLessonTextEntryTableViewCell
-                cell.textField.hidden = false
+                let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
+                cell.textField.isHidden = false
                 cell.textField.becomeFirstResponder()
             }
         }
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? NewLessonTextEntryTableViewCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? NewLessonTextEntryTableViewCell {
             cell.textField.resignFirstResponder()
         }
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return indexPath.row < chosenSingers.count
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return (indexPath as NSIndexPath).row < chosenSingers.count
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
-        case .Delete:
-            if indexPath.row < chosenSingers.count {
-                chosenSingers.removeAtIndex(indexPath.row)
-            } else if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
+        case .delete:
+            if (indexPath as NSIndexPath).row < chosenSingers.count {
+                chosenSingers.remove(at: (indexPath as NSIndexPath).row)
+            } else if tableView.cellForRow(at: indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
                 chosenSong = nil
             } else {
                 dedication = nil
@@ -490,22 +511,22 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
     }
     
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
     
     //MARK: Button actions
     
-    @IBAction func donePressed(sender: AnyObject) {
+    @IBAction func donePressed(_ sender: AnyObject) {
         
         guard let minutes = minutes else { fatalError() }
         
         if minutes.managedObjectContext == nil {
-            CoreDataHelper.managedContext.refreshObject(minutes, mergeChanges: true)
+            CoreDataHelper.managedContext.refresh(minutes, mergeChanges: true)
         }
         
-        let lesson = NSEntityDescription.insertNewObjectForEntityForName("Lesson", inManagedObjectContext: minutes.managedObjectContext!) as! Lesson
-        lesson.date = NSDate()
+        let lesson = NSEntityDescription.insertNewObject(forEntityName: "Lesson", into: minutes.managedObjectContext!) as! Lesson
+        lesson.date = Date()
         lesson.minutes = minutes
         
         if let song = chosenSong {
@@ -518,35 +539,35 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         lesson.dedication = dedication
         lesson.otherEvent = otherEvent
         
-        minutes.singers.addObjectsFromArray(chosenSingers)
+        minutes.singers.addObjects(from: chosenSingers)
         
         TwitterShareHelper.sharedHelper.postLesson(lesson)
         
         CoreDataHelper.sharedHelper.saveContext()
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: fancy getters & setters
     
     lazy var singers:[Singer] = {
         
-        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sort({ (s1:Singer, s2:Singer) -> Bool in
+        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: { (s1:Singer, s2:Singer) -> Bool in
             return s1.lastSingDate > s2.lastSingDate // overall, most recent first
         }) else { return [] }
         
         let todaySingers = allSingers.filter({ (s:Singer) -> Bool in
             return s.lastSingDate > yesterday.timeIntervalSince1970
-        }).sort({ (s1:Singer, s2:Singer) -> Bool in
+        }).sorted(by: { (s1:Singer, s2:Singer) -> Bool in
             return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
         })
         
         let singersFromLastWeekButNotToday = allSingers.filter({ (s:Singer) -> Bool in
-            return todaySingers.indexOf(s) == nil && s.lastSingDate > lastWeekPlusOneDay
+            return todaySingers.index(of: s) == nil && s.lastSingDate > lastWeekPlusOneDay
         })
         
         let allOtherSingers = allSingers.filter({ (s:Singer) -> Bool in
-            return todaySingers.indexOf(s) == nil && singersFromLastWeekButNotToday.indexOf(s) == nil
+            return todaySingers.index(of: s) == nil && singersFromLastWeekButNotToday.index(of: s) == nil
         })
         
         return singersFromLastWeekButNotToday + todaySingers + allOtherSingers
@@ -558,37 +579,37 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     }()
     
     var searchingSongs:Bool {
-        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchSongs.rawValue }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.searchSongs.rawValue }
         set {
-            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchSongs.rawValue }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchSongs.rawValue }
         }
     }
     
     var searchingSingers:Bool {
-        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.SearchLeaders.rawValue }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.searchLeaders.rawValue }
         set {
-            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.SearchLeaders.rawValue }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue }
         }
     }
     
     var addingAssistant:Bool {
-        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.AssistedBy.rawValue }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.assistedBy.rawValue }
         set {
-            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.AssistedBy.rawValue }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.assistedBy.rawValue }
         }
     }
     
     var addingDedication:Bool {
-        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Dedication.rawValue }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.dedication.rawValue }
         set {
-            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.Dedication.rawValue }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.dedication.rawValue }
         }
     }
     
     var addingOther:Bool {
-        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.Other.rawValue }
+        get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.other.rawValue }
         set {
-            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.Other.rawValue }
+            if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.other.rawValue }
         }
     }
 }

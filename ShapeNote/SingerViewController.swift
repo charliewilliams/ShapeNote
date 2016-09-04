@@ -25,7 +25,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         super.init(coder: aDecoder)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "SingerViewController", bundle: nibBundleOrNil);
     }
     
@@ -44,8 +44,8 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         homeSingingTextField.text = singer.group?.name
         
         if let firstName = singer.firstName,
-            let lastName = singer.lastName where singer.displayName == nil {
-                let lastInitial = lastName.substringToIndex(lastName.startIndex.advancedBy(1))
+            let lastName = singer.lastName, singer.displayName == nil {
+                let lastInitial = lastName.substring(to: lastName.characters.index(lastName.startIndex, offsetBy: 1))
                 displayNameTextField.placeholder = "Display name (optional — i.e. \(firstName) \(lastInitial))"
         }
         
@@ -54,14 +54,14 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         voiceTypeTextField.text = singer.voice
     }
     
-    @IBAction func donePressed(sender: AnyObject) {
+    @IBAction func donePressed(_ sender: AnyObject) {
         
-        guard let name = nameTextField.text where name.characters.count > 0 else {
+        guard let name = nameTextField.text, name.characters.count > 0 else {
             return
         }
         
         if singer == nil {
-            singer = NSEntityDescription.insertNewObjectForEntityForName("Singer", inManagedObjectContext: CoreDataHelper.managedContext) as? Singer
+            singer = NSEntityDescription.insertNewObject(forEntityName: "Singer", into: CoreDataHelper.managedContext) as? Singer
         }
         
         guard let singer = singer else { fatalError() }
@@ -91,14 +91,10 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             singer.twitter = twitter
         }
         
-        singer.saveToCloud { [weak self] (success, error) in
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
-        
         CoreDataHelper.sharedHelper.saveContext()
     }
     
-    func validatedVoiceType(voiceType:String) -> Voice {
+    func validatedVoiceType(_ voiceType:String) -> Voice {
         if (voiceType.hasPrefix("A")) {
             return Voice.Alto
         } else if (voiceType.hasPrefix("Te")) {
@@ -112,23 +108,23 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func tagOnFacebookSwitchChanged(sender: UISwitch) {
+    @IBAction func tagOnFacebookSwitchChanged(_ sender: UISwitch) {
         
     }
     
-    override func canBecomeFirstResponder() -> Bool {
+    override var canBecomeFirstResponder: Bool {
         return true
     }
-    
+
     var textFields: [UITextField] {
         return [nameTextField, displayNameTextField, homeSingingTextField, voiceTypeTextField, twitterHandleTextField]
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField != twitterHandleTextField {
             
-            let index = textFields.indexOf(textField)!
+            let index = textFields.index(of: textField)!
             let newField = textFields[index+1]
             newField.becomeFirstResponder()
             

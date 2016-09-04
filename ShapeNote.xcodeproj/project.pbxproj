@@ -43,12 +43,7 @@
 		C0515B931A7BC4000006ED16 /* SH1991.json in Resources */ = {isa = PBXBuildFile; fileRef = C0515B921A7BC4000006ED16 /* SH1991.json */; };
 		C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */; };
 		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
-		C05216E11C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05216DF1C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift */; };
-		C05216E41C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05216E31C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib */; };
-		C05216E61C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05216E51C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift */; };
 		C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */; };
-		C05626951BED429000E05EBE /* GroupsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626931BED429000E05EBE /* GroupsPickerViewController.swift */; };
-		C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05626941BED429000E05EBE /* GroupsPickerViewController.xib */; };
 		C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626971BEF711500E05EBE /* QuizSetupViewController.swift */; };
 		C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */; };
 		C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */; };
@@ -57,13 +52,11 @@
 		C064B5F11BEBEC950021F2B0 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */; };
 		C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */; };
-		C064B5F51BECAC840021F2B0 /* FacebookUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */; };
 		C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A721A86C25000E10773 /* Crashlytics.framework */; };
 		C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A731A86C25000E10773 /* Fabric.framework */; };
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
 		C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
-		C07C46301CCEC99D000CAA3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C462F1CCEC99D000CAA3F /* User.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
 		C092E8621A891A51002594A5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8611A891A51002594A5 /* Defaults.swift */; };
 		C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8631A8A0311002594A5 /* Shenandoah.json */; };
@@ -73,8 +66,6 @@
 		C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */; };
 		C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A650A1A7EDA8600099E76 /* Minutes.swift */; };
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
-		C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */; };
-		C0A625FA1C67DDF700BCB96F /* PFKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A625F91C67DDF700BCB96F /* PFKeys.swift */; };
 		C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0BE7DB41BE6359A006383CC /* FontAwesome.otf */; };
 		C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB61BE6A169006383CC /* NotesViewController.swift */; };
 		C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */; };
@@ -89,9 +80,7 @@
 		C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */; };
 		C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */; };
 		C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */; };
-		C0EA4E221BFFBF47000CCF81 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E201BFFBF47000CCF81 /* Login.storyboard */; };
 		C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */; };
-		C0EA4E261BFFC061000CCF81 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */; };
 		C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E291C01B258000CCF81 /* Intro.storyboard */; };
 		C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */; };
 		C0EA4E2E1C01BC3B000CCF81 /* TabBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */; };
@@ -155,12 +144,7 @@
 		C0515B921A7BC4000006ED16 /* SH1991.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SH1991.json; sourceTree = "<group>"; };
 		C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
-		C05216DF1C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBPermissionErrorTableViewController.swift; sourceTree = "<group>"; };
-		C05216E31C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBPermissionErrorTableViewCell.xib; sourceTree = "<group>"; };
-		C05216E51C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBPermissionsErrorTableViewCell.swift; sourceTree = "<group>"; };
 		C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesTableViewCell.swift; sourceTree = "<group>"; };
-		C05626931BED429000E05EBE /* GroupsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsPickerViewController.swift; sourceTree = "<group>"; };
-		C05626941BED429000E05EBE /* GroupsPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsPickerViewController.xib; sourceTree = "<group>"; };
 		C05626971BEF711500E05EBE /* QuizSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSetupViewController.swift; sourceTree = "<group>"; };
 		C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionTypeTableViewCell.swift; sourceTree = "<group>"; };
 		C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionProvider.swift; sourceTree = "<group>"; };
@@ -169,13 +153,11 @@
 		C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Fabric/TwitterCore.framework; sourceTree = SOURCE_ROOT; };
 		C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DigitsKit.framework; path = Fabric/DigitsKit.framework; sourceTree = SOURCE_ROOT; };
 		C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = Fabric/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = SOURCE_ROOT; };
-		C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUserHelper.swift; sourceTree = "<group>"; };
 		C06D7A721A86C25000E10773 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A731A86C25000E10773 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Fabric/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
-		C07C462F1CCEC99D000CAA3F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
 		C092E8611A891A51002594A5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		C092E8631A8A0311002594A5 /* Shenandoah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Shenandoah.json; sourceTree = "<group>"; };
@@ -185,9 +167,7 @@
 		C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteTakingViewController.swift; sourceTree = "<group>"; };
 		C09A650A1A7EDA8600099E76 /* Minutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minutes.swift; sourceTree = "<group>"; };
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
-		C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C09ABE1B1C1F6E2800310195 /* ShapeNote 0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.4.xcdatamodel"; sourceTree = "<group>"; };
-		C0A625F91C67DDF700BCB96F /* PFKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFKeys.swift; sourceTree = "<group>"; };
 		C0BE7DB41BE6359A006383CC /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		C0BE7DB61BE6A169006383CC /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
@@ -205,9 +185,7 @@
 		C0EA4E181BFFBEBC000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Minutes.storyboard; sourceTree = "<group>"; };
 		C0EA4E1B1BFFBEE9000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongList.storyboard; sourceTree = "<group>"; };
 		C0EA4E1E1BFFBF09000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Singers.storyboard; sourceTree = "<group>"; };
-		C0EA4E211BFFBF47000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
-		C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		C0EA4E291C01B258000CCF81 /* Intro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
 		C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPopupViewController.swift; sourceTree = "<group>"; };
 		C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarManager.swift; sourceTree = "<group>"; };
@@ -293,15 +271,6 @@
 		C02E188F1BF11BAA00FF2057 /* Users & Groups */ = {
 			isa = PBXGroup;
 			children = (
-				C0EA4E201BFFBF47000CCF81 /* Login.storyboard */,
-				C09A96C11A7ED5B7009D1C29 /* LoginViewController.swift */,
-				C05216DF1C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift */,
-				C05216E31C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib */,
-				C05216E51C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift */,
-				C064B5F41BECAC840021F2B0 /* FacebookUserHelper.swift */,
-				C0EA4E251BFFC061000CCF81 /* ParseHelper.swift */,
-				C05626931BED429000E05EBE /* GroupsPickerViewController.swift */,
-				C05626941BED429000E05EBE /* GroupsPickerViewController.xib */,
 			);
 			name = "Users & Groups";
 			sourceTree = "<group>";
@@ -364,14 +333,12 @@
 			children = (
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
-				C0A625F91C67DDF700BCB96F /* PFKeys.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
 				C012C8E11CCBB63F00292F06 /* Notifications.swift */,
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
-				C07C462E1CCEC97A000CAA3F /* PFObject subclasses */,
 				C0515B911A7BBA810006ED16 /* Managed Objects */,
 				C02E18901BF11BB800FF2057 /* Minute-taking */,
 				C02E18911BF11BD300FF2057 /* Song Lists */,
@@ -449,14 +416,6 @@
 				C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */,
 			);
 			name = Quiz;
-			sourceTree = "<group>";
-		};
-		C07C462E1CCEC97A000CAA3F /* PFObject subclasses */ = {
-			isa = PBXGroup;
-			children = (
-				C07C462F1CCEC99D000CAA3F /* User.swift */,
-			);
-			name = "PFObject subclasses";
 			sourceTree = "<group>";
 		};
 		C0C1D5181A868F6B0082C0EB /* Fabric */ = {
@@ -585,13 +544,10 @@
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
-				C0EA4E221BFFBF47000CCF81 /* Login.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
 				C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */,
 				C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */,
 				C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */,
-				C05216E41C6BDAFD00A84136 /* FBPermissionErrorTableViewCell.xib in Resources */,
-				C05626961BED429000E05EBE /* GroupsPickerViewController.xib in Resources */,
 				C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */,
 				C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */,
 				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
@@ -691,13 +647,10 @@
 				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
-				C0EA4E261BFFC061000CCF81 /* ParseHelper.swift in Sources */,
 				C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */,
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
-				C05216E61C6BDDCF00A84136 /* FBPermissionsErrorTableViewCell.swift in Sources */,
 				C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */,
-				C09A96C21A7ED5B7009D1C29 /* LoginViewController.swift in Sources */,
 				C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */,
 				C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,
@@ -724,15 +677,10 @@
 				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
-				C0A625FA1C67DDF700BCB96F /* PFKeys.swift in Sources */,
-				C05216E11C6BDA9800A84136 /* FBPermissionErrorTableViewController.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
-				C07C46301CCEC99D000CAA3F /* User.swift in Sources */,
-				C064B5F51BECAC840021F2B0 /* FacebookUserHelper.swift in Sources */,
 				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
-				C05626951BED429000E05EBE /* GroupsPickerViewController.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */,
@@ -791,14 +739,6 @@
 			name = Singers.storyboard;
 			sourceTree = "<group>";
 		};
-		C0EA4E201BFFBF47000CCF81 /* Login.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0EA4E211BFFBF47000CCF81 /* Base */,
-			);
-			name = Login.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -850,6 +790,7 @@
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -892,6 +833,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

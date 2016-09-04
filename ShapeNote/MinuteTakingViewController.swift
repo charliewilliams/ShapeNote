@@ -21,7 +21,7 @@ class MinuteTakingViewController: UITableViewController {
         get {
             
             if minutes == nil {
-                minutes = NSEntityDescription.insertNewObjectForEntityForName("Minutes", inManagedObjectContext: CoreDataHelper.managedContext) as? Minutes
+                minutes = NSEntityDescription.insertNewObject(forEntityName: "Minutes", into: CoreDataHelper.managedContext) as? Minutes
                 minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
                 CoreDataHelper.sharedHelper.saveContext()
             }
@@ -31,11 +31,13 @@ class MinuteTakingViewController: UITableViewController {
                 var templessons = [Lesson]()
                 if let loadedArray:NSOrderedSet = minutes?.songs {
                     
-                    loadedArray.enumerateObjectsUsingBlock { (lesson:AnyObject!, i, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+                    loadedArray.forEach { (lesson:Any) in
                         
-                        templessons.append(lesson as! Lesson)
+                        if let lesson = lesson as? Lesson {
+                            templessons.append(lesson)
+                        }
                     }
-                    _lessons = templessons.sort({ (first:Lesson, second:Lesson) -> Bool in
+                    _lessons = templessons.sorted(by: { (first:Lesson, second:Lesson) -> Bool in
                         return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
                     })
                 }
@@ -51,70 +53,70 @@ class MinuteTakingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doneButton.enabled = false
+        doneButton.isEnabled = false
 
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = .NoStyle
-        dateFormatter.dateStyle = .MediumStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .medium
         
         if let date = minutes?.date {
-            navigationItem.title = "Minutes: " + dateFormatter.stringFromDate(date)
+            navigationItem.title = "Minutes: " + dateFormatter.string(from: date as Date)
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         setNeedsReload() //?
         minutesTableView.reloadData()
     }
     
-    @IBAction func donePressed(sender: UIBarButtonItem) {
+    @IBAction func donePressed(_ sender: UIBarButtonItem) {
     
         minutes?.complete = true
         CoreDataHelper.sharedHelper.saveContext()
         let shareVC = FacebookShareViewController()
 
-        let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Post", style: .Default) { (action:UIAlertAction) -> Void in
+        let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Post", style: .default) { (action:UIAlertAction) -> Void in
             
             shareVC.minutes = self.minutes!
-            self.presentViewController(shareVC, animated: true, completion: {
-                self.navigationController?.popViewControllerAnimated(false)
+            self.present(shareVC, animated: true, completion: {
+                self.navigationController?.popViewController(animated: false)
             })
         }
-        let cancel = UIAlertAction(title: "Don't post", style: .Cancel) { (cancel:UIAlertAction!) -> Void in
-            self.navigationController?.popViewControllerAnimated(true)
+        let cancel = UIAlertAction(title: "Don't post", style: .cancel) { (cancel:UIAlertAction!) -> Void in
+            self.navigationController?.popViewController(animated: true)
         }
         
         alert.addAction(cancel) // first
         alert.addAction(action)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let lessons = lessons {
-            doneButton.enabled = true
+            doneButton.isEnabled = true
             return lessons.count
         }
         return 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
             
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .NoStyle
-            dateFormatter.timeStyle = .ShortStyle
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
             
-        if let lessons = lessons where lessons.count > indexPath.row {
-            let lesson = lessons[indexPath.row]
+        if let lessons = lessons, lessons.count > (indexPath as NSIndexPath).row {
+            let lesson = lessons[(indexPath as NSIndexPath).row]
             var string = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
             if let dedication = lesson.dedication {
                 string += " (\(dedication))"
@@ -123,27 +125,27 @@ class MinuteTakingViewController: UITableViewController {
                 string = otherEvent
             }
             cell.textLabel!.text = string
-            cell.detailTextLabel!.text = dateFormatter.stringFromDate(lesson.date)
+            cell.detailTextLabel!.text = dateFormatter.string(from: lesson.date as Date)
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
     // MARK: Header for new lesson
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if minutes?.complete == true {
             return nil
         }
-        return tableView.dequeueReusableCellWithIdentifier("HeaderCell")
+        return tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if minutes?.complete == true {
             return 0
@@ -154,16 +156,16 @@ class MinuteTakingViewController: UITableViewController {
     
     // MARK: Navigation
     
-    override func didMoveToParentViewController(parent: UIViewController?) {
+    override func didMove(toParentViewController parent: UIViewController?) {
         
-        if let minutes = minutes where parent == nil && minutes.songs.count == 0 {
-            CoreDataHelper.managedContext.deleteObject(minutes)
+        if let minutes = minutes, parent == nil && minutes.songs.count == 0 {
+            CoreDataHelper.managedContext.delete(minutes)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let destinationVC = segue.destinationViewController as? NewLessonViewController {
+        if let destinationVC = segue.destination as? NewLessonViewController {
             destinationVC.minutes = minutes
         }
     }
