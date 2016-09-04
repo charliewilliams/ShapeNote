@@ -1,0 +1,10 @@
+EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Bolts" "$PODS_CONFIGURATION_BUILD_DIR/Facebook-iOS-SDK" "$PODS_CONFIGURATION_BUILD_DIR/Instructions" "$PODS_CONFIGURATION_BUILD_DIR/JFADoubleSlider" "$PODS_CONFIGURATION_BUILD_DIR/Parse" "$PODS_CONFIGURATION_BUILD_DIR/ParseFacebookUtils" "$PODS_CONFIGURATION_BUILD_DIR/STTwitter" "$PODS_CONFIGURATION_BUILD_DIR/SwiftSpinner"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Bolts/Bolts.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Facebook-iOS-SDK/FacebookSDK.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Instructions/Instructions.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/JFADoubleSlider/JFADoubleSlider.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Parse/Parse.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/ParseFacebookUtils/ParseFacebookUtils.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/STTwitter/STTwitter.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftSpinner/SwiftSpinner.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "Bolts" -framework "FacebookSDK" -framework "Instructions" -framework "JFADoubleSlider" -framework "Parse" -framework "ParseFacebookUtils" -framework "STTwitter" -framework "SwiftSpinner"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}/Pods

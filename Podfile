@@ -3,14 +3,18 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 
 use_frameworks!
+# inhibit_all_warnings!
 
-pod 'Parse' #, :inhibit_warnings => true
-pod 'ParseFacebookUtils' #, :inhibit_warnings => true
-pod 'Bolts' #, :inhibit_warnings => true
-pod 'Instructions' #, :inhibit_warnings => true
+target 'ShapeNote' do
+pod 'Parse'
+pod 'ParseFacebookUtils'
+pod 'Bolts'
+pod 'Instructions'
 pod 'SwiftSpinner'
-pod 'STTwitter' #, :inhibit_warnings => true
+pod 'STTwitter'
 pod 'JFADoubleSlider'
+
+end
 
 post_install do |installer|
     installer.pods_project.build_configuration_list.build_configurations.each do |configuration|

@@ -44,7 +44,7 @@ static NSDateFormatter *dateFormatter = nil;
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         if([strongSelf.oauth isKindOfClass:[STTwitterOS class]]) {
-
+            
             STTwitterOS *twitterOS = (STTwitterOS *)[strongSelf oauth];
             
             [twitterOS verifyCredentialsLocallyWithSuccessBlock:^(NSString *username, NSString *userID) {
@@ -69,7 +69,7 @@ static NSDateFormatter *dateFormatter = nil;
     self.oauth = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:_observer name:ACAccountStoreDidChangeNotification object:nil];
-
+    
     self.delegate = nil;
     self.observer = nil;
 }
@@ -192,6 +192,10 @@ static NSDateFormatter *dateFormatter = nil;
 + (instancetype)twitterAPIAppOnlyWithConsumerKey:(NSString *)consumerKey
                                   consumerSecret:(NSString *)consumerSecret {
     return [self twitterAPIAppOnlyWithConsumerName:nil consumerKey:consumerKey consumerSecret:consumerSecret];
+}
+
+- (void)setSharedContainerIdentifier:(NSString *)s {
+    [[NSUserDefaults standardUserDefaults] setValue:s forKey:@"STTwitterSharedContainerIdentifier"];
 }
 
 - (void)setTimeoutInSeconds:(NSTimeInterval)timeoutInSeconds {
@@ -631,6 +635,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
                               NSString *imageURLString = [response objectForKey:@"profile_image_url"];
                               
                               STHTTPRequest *r = [STHTTPRequest requestWithURLString:imageURLString];
+                              r.sharedContainerIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:@"STTwitterSharedContainerIdentifier"];
                               __weak STHTTPRequest *wr = r;
                               
                               r.timeoutSeconds = strongSelf.oauth.timeoutInSeconds;
@@ -1156,6 +1161,26 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
                             }];
 }
 
+// POST	statuses/unretweet/:id
+- (NSObject<STTwitterRequestProtocol> *)postStatusUnretweetWithID:(NSString *)statusID
+                                                         trimUser:(NSNumber *)trimUser
+                                                     successBlock:(void(^)(NSDictionary *status))successBlock
+                                                       errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSParameterAssert(statusID);
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    if(trimUser) md[@"trim_user"] = [trimUser boolValue] ? @"1" : @"0";
+    
+    NSString *resource = [NSString stringWithFormat:@"statuses/unretweet/%@.json", statusID];
+    
+    return [self postAPIResource:resource parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+        successBlock(response);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
 - (NSObject<STTwitterRequestProtocol> *)getStatusesRetweetersIDsForStatusID:(NSString *)statusID
                                                                      cursor:(NSString *)cursor
                                                                successBlock:(void(^)(NSArray *ids, NSString *previousCursor, NSString *nextCursor))successBlock
@@ -1433,18 +1458,18 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
     if(stallWarnings) md[@"stall_warnings"] = [stallWarnings boolValue] ? @"1" : @"0";
     
     self.streamParser = [[STTwitterStreamParser alloc] init];
-    __weak STTwitterStreamParser *streamParser = self.streamParser;
+    __weak STTwitterStreamParser *weakParser = self.streamParser;
     
     return [self getResource:@"statuses/sample.json"
                baseURLString:kBaseURLStringStream_1_1
                   parameters:md
        downloadProgressBlock:^(id response) {
            
-           if (streamParser) {
-               [streamParser parseWithStreamData:response parsedJSONBlock:^(NSDictionary *json, STTwitterStreamJSONType type) {
-                   progressBlock(json, type);
-               }];
-           }
+           __strong STTwitterStreamParser *strongParser = weakParser;
+           
+           [strongParser parseWithStreamData:response parsedJSONBlock:^(NSDictionary *json, STTwitterStreamJSONType type) {
+               progressBlock(json, type);
+           }];
            
        } successBlock:^(NSDictionary *rateLimits, id json) {
            // reaching successBlock for a stream request is an error
@@ -2258,7 +2283,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
     NSMutableDictionary *md = [NSMutableDictionary dictionary];
     if(includeEntities) md[@"include_entities"] = [includeEntities boolValue] ? @"1" : @"0";
     if(skipStatus) md[@"skip_status"] = [skipStatus boolValue] ? @"1" : @"0";
-    if(includeEmail) md[@"include_email"] = [includeEmail boolValue] ? @"1" : @"0";
+    if(includeEmail) md[@"include_email"] = [includeEmail boolValue] ? @"true" : @"false";
     
     return [self getAPIResource:@"account/verify_credentials.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
         successBlock(response);
@@ -3099,7 +3124,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
     if(ownerScreenName) md[@"owner_screen_name"] = ownerScreenName;
     if(ownerID) md[@"owner_id"] = ownerID;
     
-    return [self postAPIResource:@"lists/members/destroy" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+    return [self postAPIResource:@"lists/members/destroy.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
         successBlock(response);
     } errorBlock:^(NSError *error) {
         errorBlock(error);
@@ -3124,7 +3149,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
     if(ownerScreenName) md[@"owner_screen_name"] = ownerScreenName;
     if(ownerScreenName) md[@"owner_id"] = ownerID;
     
-    return [self postAPIResource:@"lists/members/destroy" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+    return [self postAPIResource:@"lists/members/destroy.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
         successBlock();
     } errorBlock:^(NSError *error) {
         errorBlock(error);
@@ -4108,7 +4133,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
     
     NSMutableDictionary *md = [NSMutableDictionary dictionary];
     md[@"id"] = WOEID;
-    if(excludeHashtags) md[@"exclude"] = [excludeHashtags boolValue] ? @"1" : @"0";
+    if(excludeHashtags) md[@"exclude"] = [excludeHashtags boolValue] ? @"hashtags" : @"0";
     
     return [self getAPIResource:@"trends/place.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
         
@@ -4426,7 +4451,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
         
         dispatch_group_enter(group);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        
+            
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if(strongSelf == nil) {
                 lastErrorReceived = [NSError errorWithDomain:@"STTwitter" code:9999 userInfo:nil]; // TODO: improve
@@ -4444,21 +4469,21 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
             //NSLog(@"-- POST %@", [md valueForKey:@"segment_index"]);
             
             [strongSelf postResource:@"media/upload.json"
-                 baseURLString:kBaseURLStringUpload_1_1
-                    parameters:md
-           uploadProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-               accumulatedBytesWritten += bytesWritten;
-               uploadProgressBlock(bytesWritten, accumulatedBytesWritten, dataLength);
-           } downloadProgressBlock:nil
-                  successBlock:^(NSDictionary *rateLimits, id response) {
-                      //NSLog(@"-- POST OK %@", [md valueForKey:@"segment_index"]);
-                      lastResponseReceived = response;
-                      dispatch_group_leave(group);
-                  } errorBlock:^(NSError *error) {
-                      //NSLog(@"-- POST KO %@", [md valueForKey:@"segment_index"]);
-                      errorBlock(error);
-                      dispatch_group_leave(group);
-                  }];
+                       baseURLString:kBaseURLStringUpload_1_1
+                          parameters:md
+                 uploadProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+                     accumulatedBytesWritten += bytesWritten;
+                     uploadProgressBlock(bytesWritten, accumulatedBytesWritten, dataLength);
+                 } downloadProgressBlock:nil
+                        successBlock:^(NSDictionary *rateLimits, id response) {
+                            //NSLog(@"-- POST OK %@", [md valueForKey:@"segment_index"]);
+                            lastResponseReceived = response;
+                            dispatch_group_leave(group);
+                        } errorBlock:^(NSError *error) {
+                            //NSLog(@"-- POST KO %@", [md valueForKey:@"segment_index"]);
+                            errorBlock(error);
+                            dispatch_group_leave(group);
+                        }];
         });
         
         segmentIndex += 1;

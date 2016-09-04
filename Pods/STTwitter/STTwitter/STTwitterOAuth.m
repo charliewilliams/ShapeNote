@@ -436,6 +436,11 @@
               successBlock(strongSelf.oauthAccessToken, strongSelf.oauthAccessTokenSecret, dict[@"user_id"], dict[@"screen_name"]);
               
           } errorBlock:^(STHTTPRequest *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
+              
+              if (request.responseStatus == 401) {
+                  self.oauthRequestToken = nil;
+              }
+              
               errorBlock(error);
           }];
 }
@@ -560,12 +565,9 @@
                                    } stTwitterErrorBlock:^(NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
                                        errorBlock(wr, requestHeaders, responseHeaders, error);
                                    }];
-    wr = r;
-    
-    r.HTTPMethod = HTTPMethod;
     
     NSString *postKey = [params valueForKey:kSTPOSTDataKey];
-    NSData *postData = [params valueForKey:postKey];;
+    NSData *postData = [params valueForKey:postKey];
     
     if([HTTPMethod isEqualToString:@"GET"]) {
         r.GETDictionary = params;

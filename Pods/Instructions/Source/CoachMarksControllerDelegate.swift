@@ -1,6 +1,6 @@
 // CoachMarksControllerDelegate.swift
 //
-// Copyright (c) 2015 Frédéric Maquin <fred@ephread.com>
+// Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,47 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+import UIKit
 
 /// Give a chance to react when coach marks are displayed
 public protocol CoachMarksControllerDelegate: class {
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillLoadForIndex index: Int) -> Bool
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              coachMarkWillLoadForIndex index: Int) -> Bool
 
-    func coachMarksController(coachMarksController: CoachMarksController, inout coachMarkWillShow coachMark: CoachMark, forIndex index: Int)
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              inout coachMarkWillShow coachMark: CoachMark,
+                              forIndex index: Int)
 
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear coachMark: CoachMark, forIndex index: Int)
-    
-    func didFinishShowingFromCoachMarksController(coachMarksController: CoachMarksController)
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              coachMarkWillDisappear coachMark: CoachMark,
+                              forIndex index: Int)
+
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              didFinishShowingAndWasSkipped skipped: Bool)
 }
 
 public extension CoachMarksControllerDelegate {
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillLoadForIndex index: Int) -> Bool {
-        return true;
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              coachMarkWillLoadForIndex index: Int) -> Bool {
+        return true
     }
 
-    func coachMarksController(coachMarksController: CoachMarksController, inout coachMarkWillShow coachMark: CoachMark, forIndex index: Int) { }
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              inout coachMarkWillShow coachMark: CoachMark,
+                              forIndex index: Int) { }
 
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear coachMark: CoachMark, forIndex index: Int) {}
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              coachMarkWillDisappear coachMark: CoachMark,
+                              forIndex index: Int) { }
 
-    func didFinishShowingFromCoachMarksController(coachMarksController: CoachMarksController) {}
+    func coachMarksController(coachMarksController: CoachMarksController,
+                              didFinishShowingAndWasSkipped skipped: Bool) { }
+
+    // swiftlint:disable line_length
+    final func didFinishShowingFromCoachMarksController(coachMarksController: CoachMarksController) {
+        print("didFinishShowingFromCoachMarksController(_:) has been deprecated " +
+              "and won't work anymore, if you implemented this method in your " +
+              "delegate, please use coachMarksController(_:didFinishShowingAndWasSkipped:) " +
+              "instead. Otherwise, ignore this message, which will be removed with 0.5.0")
+    }
 }

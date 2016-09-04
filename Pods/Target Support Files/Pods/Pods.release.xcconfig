@@ -1,8 +1,0 @@
-EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FacebookSDK.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Instructions.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/JFADoubleSlider.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Parse.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ParseFacebookUtils.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/STTwitter.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SwiftSpinner.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Bolts" -framework "FacebookSDK" -framework "Instructions" -framework "JFADoubleSlider" -framework "Parse" -framework "ParseFacebookUtils" -framework "STTwitter" -framework "SwiftSpinner"
-OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
-PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
-PODS_ROOT = ${SRCROOT}/Pods

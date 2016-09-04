@@ -1,1 +1,0 @@
-../../../JFADoubleSlider/JFADoubleSlider/JFADoubleSlider.h

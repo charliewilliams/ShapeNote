@@ -152,12 +152,14 @@ authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize // use NO if
 
 - (void)setTimeoutInSeconds:(NSTimeInterval)timeoutInSeconds; // optional
 
-@property (nonatomic, retain) NSString *userName; // set after successful connection for STTwitterOAuth
-@property (nonatomic, retain) NSString *userID; // set after successful connection for STTwitterOAuth
+@property (nonatomic, strong) NSString *userName; // set after successful connection for STTwitterOAuth
+@property (nonatomic, strong) NSString *userID; // set after successful connection for STTwitterOAuth
 
 @property (nonatomic, readonly) NSString *oauthAccessToken;
 @property (nonatomic, readonly) NSString *oauthAccessTokenSecret;
 @property (nonatomic, readonly) NSString *bearerToken;
+
+@property (nonatomic, strong) NSString *sharedContainerIdentifier; // common to all STTwitterAPI instances
 
 - (NSDictionary *)OAuthEchoHeadersToVerifyCredentials;
 
@@ -428,6 +430,24 @@ authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize // use NO if
 - (NSObject<STTwitterRequestProtocol> *)postStatusRetweetWithID:(NSString *)statusID
                                                    successBlock:(void(^)(NSDictionary *status))successBlock
                                                      errorBlock:(void(^)(NSError *error))errorBlock;
+
+/*
+ POST	statuses/unretweet/:id
+ 
+ Untweets a retweeted status. Returns the original Tweet with retweet details embedded.
+ 
+ - This method is subject to update limits. A HTTP 429 will be returned if this limit has been hit.
+ - The untweeted retweet status ID must be authored by the user backing the authentication token.
+ - An application must have write privileges to POST. A HTTP 401 will be returned for read-only applications.
+ - When passing a source status ID instead of the retweet status ID a HTTP 200 response will be returned with the same Tweet object but no action.
+ 
+ Returns Tweets (1: the new tweet)
+ */
+
+- (NSObject<STTwitterRequestProtocol> *)postStatusUnretweetWithID:(NSString *)statusID
+                                                         trimUser:(NSNumber *)trimUser
+                                                     successBlock:(void(^)(NSDictionary *status))successBlock
+                                                       errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  POST	statuses/update_with_media
