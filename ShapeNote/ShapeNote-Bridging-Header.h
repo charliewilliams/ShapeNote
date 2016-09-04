@@ -3,10 +3,10 @@
 //
 
 @import STTwitter;
-#import <FacebookSDK/FacebookSDK.h>
-#import <Parse/Parse.h>
+//#import <FacebookSDK/FacebookSDK.h>
+//#import <Parse/Parse.h>
 //#import <ParseUI/ParseUI.h>
-#import <Bolts/Bolts.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+//#import <Bolts/Bolts.h>
+//#import <ParseFacebookUtils/PFFacebookUtils.h>
 @import Social;
-#import <JFADoubleSlider/JFADoubleSlider.h>
+//#import <JFADoubleSlider/JFADoubleSlider.h>

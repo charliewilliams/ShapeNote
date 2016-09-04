@@ -9,7 +9,7 @@
 import Foundation
 
 enum PFKeys: String {
-    case name = "name"
+    case name
 }
 
 public let localHost = "http://localhost:1337/parse"
