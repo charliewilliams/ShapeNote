@@ -31,7 +31,7 @@ public protocol CoachMarksControllerDataSource: class {
     ///                                   the information.
     ///
     /// - Returns: the number of coach marks to display.
-    func numberOfCoachMarksForCoachMarksController(coachMarksController: CoachMarksController)
+    func numberOfCoachMarksForCoachMarksController(_ coachMarksController: CoachMarksController)
          -> Int
 
     /// Asks for the metadata of the coach mark that will be displayed in the
@@ -45,7 +45,7 @@ public protocol CoachMarksControllerDataSource: class {
     /// - Parameter coachMarkViewsForIndex: the index referring to the nth place.
     ///
     /// - Returns: the coach mark metadata.
-    func coachMarksController(coachMarksController: CoachMarksController,
+    func coachMarksController(_ coachMarksController: CoachMarksController,
                               coachMarksForIndex index: Int) -> CoachMark
 
     /// Asks for the views defining the coach mark that will be displayed in
@@ -60,7 +60,7 @@ public protocol CoachMarksControllerDataSource: class {
     /// - Parameter coachMark: the coach mark meta data.
     ///
     /// - Returns: a tuple packaging the body component and the arrow component.
-    func coachMarksController(coachMarksController: CoachMarksController,
+    func coachMarksController(_ coachMarksController: CoachMarksController,
                               coachMarkViewsForIndex index: Int,
                               coachMark: CoachMark)
          -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?)
@@ -74,14 +74,14 @@ public protocol CoachMarksControllerDataSource: class {
     /// - Parameter inParentView: the parent view (used to set contraints properly).
     ///
     /// - Returns: an array of NSLayoutConstraint.
-    func coachMarksController(coachMarksController: CoachMarksController,
+    func coachMarksController(_ coachMarksController: CoachMarksController,
                               constraintsForSkipView skipView: UIView,
                               inParentView parentView: UIView)
          -> [NSLayoutConstraint]?
 }
 
 public extension CoachMarksControllerDataSource {
-    func coachMarksController(coachMarksController: CoachMarksController,
+    func coachMarksController(_ coachMarksController: CoachMarksController,
                               constraintsForSkipView skipView: UIView,
                               inParentView parentView: UIView)
          -> [NSLayoutConstraint]? {

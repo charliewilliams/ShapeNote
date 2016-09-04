@@ -26,46 +26,46 @@ import UIKit
 //MARK: - Main Class
 /// A concrete implementation of the coach mark body view and the
 /// default one provided by the library.
-public class CoachMarkBodyDefaultView: UIControl, CoachMarkBodyView {
+open class CoachMarkBodyDefaultView: UIControl, CoachMarkBodyView {
     //MARK: Public properties
-    public var nextControl: UIControl? {
+    open var nextControl: UIControl? {
         get {
             return self
         }
     }
 
-    public weak var highlightArrowDelegate: CoachMarkBodyHighlightArrowDelegate?
+    open weak var highlightArrowDelegate: CoachMarkBodyHighlightArrowDelegate?
 
-    override public var highlighted: Bool {
+    override open var isHighlighted: Bool {
         didSet {
-            if self.highlighted {
+            if self.isHighlighted {
                 self.backgroundImageView.image = highlightedBackgroundImage
             } else {
                 self.backgroundImageView.image = backgroundImage
             }
 
-            self.highlightArrowDelegate?.highlightArrow(self.highlighted)
+            self.highlightArrowDelegate?.highlightArrow(self.isHighlighted)
         }
     }
 
-    public var nextLabel = UILabel()
-    public var hintLabel = UITextView()
-    public var separator = UIView()
+    open var nextLabel = UILabel()
+    open var hintLabel = UITextView()
+    open var separator = UIView()
 
     //MARK: - Private properties
-    private let backgroundImage = UIImage(
+    fileprivate let backgroundImage = UIImage(
         named: "background",
-        inBundle: NSBundle(forClass: CoachMarkBodyDefaultView.self),
-        compatibleWithTraitCollection: nil
+        in: Bundle(for: CoachMarkBodyDefaultView.self),
+        compatibleWith: nil
     )
 
-    private let highlightedBackgroundImage = UIImage(
+    fileprivate let highlightedBackgroundImage = UIImage(
         named: "background-highlighted",
-        inBundle: NSBundle(forClass: CoachMarkBodyDefaultView.self),
-        compatibleWithTraitCollection: nil
+        in: Bundle(for: CoachMarkBodyDefaultView.self),
+        compatibleWith: nil
     )
 
-    private let backgroundImageView: UIImageView
+    fileprivate let backgroundImageView: UIImageView
 
     //MARK: - Initialization
     override public init(frame: CGRect) {
@@ -107,7 +107,7 @@ public class CoachMarkBodyDefaultView: UIControl, CoachMarkBodyView {
 //MARK: - Inner Hierarchy Setup
 extension CoachMarkBodyDefaultView {
     //Configure the CoachMark view with a hint message and a next message
-    private func setupInnerViewHierarchy() {
+    fileprivate func setupInnerViewHierarchy() {
         translatesAutoresizingMaskIntoConstraints = false
 
         configureBackgroundView()
@@ -115,8 +115,8 @@ extension CoachMarkBodyDefaultView {
         configureNextLabel()
         configureSeparator()
 
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-(10)-[hintLabel]-(10)-[separator(==1)][nextLabel(==55)]|",
+        self.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-(10)-[hintLabel]-(10)-[separator(==1)][nextLabel(==55)]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: [
@@ -127,75 +127,75 @@ extension CoachMarkBodyDefaultView {
         ))
     }
 
-    private func configureBackgroundView() {
+    fileprivate func configureBackgroundView() {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImageView.userInteractionEnabled = false
+        backgroundImageView.isUserInteractionEnabled = false
 
         addSubview(self.backgroundImageView)
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[backgroundImageView]|",
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[backgroundImageView]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["backgroundImageView": backgroundImageView]
         ))
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[backgroundImageView]|",
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|[backgroundImageView]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["backgroundImageView": backgroundImageView]
         ))
     }
 
-    private func configureHintLabel() {
+    fileprivate func configureHintLabel() {
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
-        hintLabel.userInteractionEnabled = false
-        hintLabel.backgroundColor = UIColor.clearColor()
-        hintLabel.textColor = UIColor.darkGrayColor()
-        hintLabel.font = UIFont.systemFontOfSize(15.0)
-        hintLabel.scrollEnabled = false
-        hintLabel.textAlignment = .Justified
+        hintLabel.isUserInteractionEnabled = false
+        hintLabel.backgroundColor = UIColor.clear
+        hintLabel.textColor = UIColor.darkGray
+        hintLabel.font = UIFont.systemFont(ofSize: 15.0)
+        hintLabel.isScrollEnabled = false
+        hintLabel.textAlignment = .justified
         hintLabel.layoutManager.hyphenationFactor = 1.0
-        hintLabel.editable = false
+        hintLabel.isEditable = false
 
         addSubview(hintLabel)
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-(5)-[hintLabel]-(5)-|",
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-(5)-[hintLabel]-(5)-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["hintLabel": hintLabel]
         ))
     }
 
-    private func configureNextLabel() {
-        nextLabel.textColor = UIColor.darkGrayColor()
-        nextLabel.font = UIFont.systemFontOfSize(17.0)
-        nextLabel.textAlignment = .Center
+    fileprivate func configureNextLabel() {
+        nextLabel.textColor = UIColor.darkGray
+        nextLabel.font = UIFont.systemFont(ofSize: 17.0)
+        nextLabel.textAlignment = .center
 
         nextLabel.translatesAutoresizingMaskIntoConstraints = false
-        nextLabel.userInteractionEnabled = false
+        nextLabel.isUserInteractionEnabled = false
 
         self.addSubview(nextLabel)
 
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[nextLabel]|",
+        self.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[nextLabel]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["nextLabel": nextLabel]
         ))
     }
 
-    private func configureSeparator() {
-        separator.backgroundColor = UIColor.grayColor()
+    fileprivate func configureSeparator() {
+        separator.backgroundColor = UIColor.gray
         separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.userInteractionEnabled = false
+        separator.isUserInteractionEnabled = false
 
         self.addSubview(separator)
 
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-(15)-[separator]-(15)-|",
+        self.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-(15)-[separator]-(15)-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["separator": separator]
@@ -205,37 +205,37 @@ extension CoachMarkBodyDefaultView {
 
 //MARK: - Simple Inner Hierarchy Setup
 extension CoachMarkBodyDefaultView {
-    private func setupSimpleInnerViewHierarchy() {
+    fileprivate func setupSimpleInnerViewHierarchy() {
         translatesAutoresizingMaskIntoConstraints = false
 
         configureBackgroundView()
         configureSimpleHintLabel()
     }
 
-    private func configureSimpleHintLabel() {
-        hintLabel.backgroundColor = UIColor.clearColor()
-        hintLabel.textColor = UIColor.darkGrayColor()
-        hintLabel.font = UIFont.systemFontOfSize(15.0)
-        hintLabel.scrollEnabled = false
-        hintLabel.textAlignment = .Justified
+    fileprivate func configureSimpleHintLabel() {
+        hintLabel.backgroundColor = UIColor.clear
+        hintLabel.textColor = UIColor.darkGray
+        hintLabel.font = UIFont.systemFont(ofSize: 15.0)
+        hintLabel.isScrollEnabled = false
+        hintLabel.textAlignment = .justified
         hintLabel.layoutManager.hyphenationFactor = 1.0
-        hintLabel.editable = false
+        hintLabel.isEditable = false
 
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        hintLabel.userInteractionEnabled = false
+        hintLabel.isUserInteractionEnabled = false
 
         addSubview(hintLabel)
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-(5)-[hintLabel]-(5)-|",
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-(5)-[hintLabel]-(5)-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["hintLabel": hintLabel]
             ))
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-(10)-[hintLabel]-(10)-|",
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-(10)-[hintLabel]-(10)-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: ["hintLabel": hintLabel]

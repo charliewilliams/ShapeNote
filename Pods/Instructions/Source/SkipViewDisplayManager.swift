@@ -31,10 +31,10 @@ internal class SkipViewDisplayManager {
 
     //MARK: - Private properties
     /// The view holding the "Skip" control
-    private let skipView: UIView
+    fileprivate let skipView: UIView
 
     /// The view holding the coach marks
-    private let instructionsTopView: UIView
+    fileprivate let instructionsTopView: UIView
 
     //MARK: - Initialization
     /// Allocate and initialize the manager.
@@ -50,11 +50,11 @@ internal class SkipViewDisplayManager {
     /// Will hide the current Skip View with a fading effect.
     ///
     /// - Parameter duration: the duration of the fade.
-    func hideSkipView(duration: NSTimeInterval = 0) {
+    func hideSkipView(_ duration: TimeInterval = 0) {
         if duration == 0 {
             self.skipView.alpha = 0.0
         } else {
-            UIView.animateWithDuration(duration) { () -> Void in
+            UIView.animate(withDuration: duration) { () -> Void in
                 self.skipView.alpha = 0.0
             }
         }
@@ -69,7 +69,7 @@ internal class SkipViewDisplayManager {
     /// Update the constraints defining the "Skip view" position.
     ///
     /// - Parameter layoutConstraints: the constraints to add.
-    func updateSkipViewConstraintsWithConstraints(layoutConstraints: [NSLayoutConstraint]?) {
+    func updateSkipViewConstraintsWithConstraints(_ layoutConstraints: [NSLayoutConstraint]?) {
         self.skipView.translatesAutoresizingMaskIntoConstraints = false
 
         self.instructionsTopView.removeConstraints(self.skipViewConstraints)
@@ -83,10 +83,10 @@ internal class SkipViewDisplayManager {
 
             self.skipViewConstraints.append(NSLayoutConstraint(
                 item: self.skipView,
-                attribute: .Trailing,
-                relatedBy: .Equal,
+                attribute: .trailing,
+                relatedBy: .equal,
                 toItem: self.instructionsTopView,
-                attribute: .Trailing,
+                attribute: .trailing,
                 multiplier: 1,
                 constant: -10
             ))
@@ -94,8 +94,8 @@ internal class SkipViewDisplayManager {
             var topConstant: CGFloat = 0.0
 
             #if !INSTRUCTIONS_APP_EXTENSIONS
-            if !UIApplication.sharedApplication().statusBarHidden {
-                topConstant = UIApplication.sharedApplication().statusBarFrame.size.height
+            if !UIApplication.shared.isStatusBarHidden {
+                topConstant = UIApplication.shared.statusBarFrame.size.height
             }
             #endif
 
@@ -103,10 +103,10 @@ internal class SkipViewDisplayManager {
 
             self.skipViewConstraints.append(NSLayoutConstraint(
                 item: self.skipView,
-                attribute: .Top,
-                relatedBy: .Equal,
+                attribute: .top,
+                relatedBy: .equal,
                 toItem: self.instructionsTopView,
-                attribute: .Top,
+                attribute: .top,
                 multiplier: 1,
                 constant: topConstant
             ))

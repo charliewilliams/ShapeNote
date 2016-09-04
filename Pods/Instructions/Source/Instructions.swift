@@ -23,8 +23,8 @@
 import UIKit
 
 struct Constants {
-    static let overlayFadeAnimationDuration: NSTimeInterval = 0.3
-    static let coachMarkFadeAnimationDuration: NSTimeInterval = 0.3
+    static let overlayFadeAnimationDuration: TimeInterval = 0.3
+    static let coachMarkFadeAnimationDuration: TimeInterval = 0.3
     static let overlayColor = UIColor(red: 226.0/255.0,
                                       green: 226.0/255.0,
                                       blue: 226.0/255.0,

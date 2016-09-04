@@ -24,12 +24,12 @@ import UIKit
 
 /// A concrete implementation of the coach mark arrow view and the
 /// default one provided by the library.
-public class CoachMarkArrowDefaultView: UIImageView, CoachMarkArrowView {
+open class CoachMarkArrowDefaultView: UIImageView, CoachMarkArrowView {
     //MARK: - Initialization
     public init(orientation: CoachMarkArrowOrientation) {
         let image, highlightedImage: UIImage?
 
-        if orientation == .Top {
+        if orientation == .top {
             image = UIImage(namedInInstructions: "arrow-top")
             highlightedImage = UIImage(namedInInstructions: "arrow-top-highlighted")
         } else {
@@ -41,12 +41,12 @@ public class CoachMarkArrowDefaultView: UIImageView, CoachMarkArrowView {
 
         self.translatesAutoresizingMaskIntoConstraints = false
 
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute,
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute,
             multiplier: 1, constant: self.image!.size.width))
 
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute,
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute,
             multiplier: 1, constant: self.image!.size.height))
     }
 

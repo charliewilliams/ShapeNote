@@ -31,16 +31,16 @@ internal class CoachMarkDisplayManager {
 
     //MARK: - Private properties
     /// The coach mark metadata
-    private var coachMark: CoachMark!
+    fileprivate var coachMark: CoachMark!
 
     /// The coach mark view (the one displayed)
-    private var coachMarkView: CoachMarkView!
+    fileprivate var coachMarkView: CoachMarkView!
 
     /// The overlayView (covering everything and showing cutouts)
-    private let overlayView: OverlayView
+    fileprivate let overlayView: OverlayView
 
     /// The view holding the coach marks
-    private let instructionsTopView: UIView
+    fileprivate let instructionsTopView: UIView
 
     //MARK: - Initialization
     /// Allocate and initialize the manager.
@@ -57,7 +57,7 @@ internal class CoachMarkDisplayManager {
         self.instructionsTopView = instructionsTopView
     }
 
-    func createCoachMarkViewFromCoachMark(coachMark: CoachMark,
+    func createCoachMarkViewFromCoachMark(_ coachMark: CoachMark,
                                           withIndex index: Int) -> CoachMarkView {
         // Asks the data source for the appropriate tuple of views.
         let coachMarkComponentViews =
@@ -79,12 +79,12 @@ internal class CoachMarkDisplayManager {
     /// - Parameter coachMarkView: the coach mark to hide
     /// - Parameter animationDuration: the duration of the fade
     /// - Parameter completion: a block to execute after the coach mark was hidden
-    func hideCoachMarkView(coachMarkView: UIView?,
-                           animationDuration: NSTimeInterval,
+    func hideCoachMarkView(_ coachMarkView: UIView?,
+                           animationDuration: TimeInterval,
                            completion: (() -> Void)? = nil) {
         overlayView.hideCutoutPathViewWithAnimationDuration(animationDuration)
 
-        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
             coachMarkView?.alpha = 0.0
         }, completion: {(finished: Bool) -> Void in
             coachMarkView?.removeFromSuperview()
@@ -100,7 +100,7 @@ internal class CoachMarkDisplayManager {
     ///                          visibility, `false` otherwise.
     /// - Parameter completion: a handler to call after the coach mark
     ///                         was successfully displayed.
-    func displayCoachMarkView(coachMarkView: CoachMarkView,
+    func displayCoachMarkView(_ coachMarkView: CoachMarkView,
                               coachMark: CoachMark,
                               noAnimation: Bool = false,
                               completion: (() -> Void)? = nil) {
@@ -124,7 +124,7 @@ internal class CoachMarkDisplayManager {
             coachMarkView.alpha = 1.0
             completion?()
         } else {
-            UIView.animateWithDuration(coachMark.animationDuration, animations: { () -> Void in
+            UIView.animate(withDuration: coachMark.animationDuration, animations: { () -> Void in
                 coachMarkView.alpha = 1.0
             }, completion: {(finished: Bool) -> Void in
                 completion?()
@@ -141,7 +141,7 @@ internal class CoachMarkDisplayManager {
     /// - Parameter coachMarkView: the coach mark view (the one displayed)
     /// - Parameter overlayView: the overlayView (covering everything and showing cutouts)
     /// - Parameter instructionsTopView: the view holding the coach marks
-    private func storeCoachMark(coachMark: CoachMark,
+    fileprivate func storeCoachMark(_ coachMark: CoachMark,
                                 coachMarkView: CoachMarkView,
                                 overlayView: OverlayView,
                                 instructionsTopView: UIView) {
@@ -150,21 +150,21 @@ internal class CoachMarkDisplayManager {
     }
 
     /// Clear the stored data.
-    private func clearStoredData() {
+    fileprivate func clearStoredData() {
         coachMark = nil
         coachMarkView = nil
     }
 
     /// Add the current coach mark to the view, making sure it is
     /// properly positioned.
-    private func prepareCoachMarkForDisplay() {
+    fileprivate func prepareCoachMarkForDisplay() {
 
         // Add the view and compute its associated constraints.
         instructionsTopView.addSubview(coachMarkView)
 
         instructionsTopView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:[currentCoachMarkView(<=\(coachMark.maxWidth))]",
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:[currentCoachMarkView(<=\(coachMark.maxWidth))]",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: nil,
                 views: ["currentCoachMarkView": coachMarkView]
@@ -177,13 +177,13 @@ internal class CoachMarkDisplayManager {
 
             // Depending where the cutoutPath sits, the coach mark will either
             // stand above or below it.
-            if coachMark.arrowOrientation! == .Bottom {
+            if coachMark.arrowOrientation! == .bottom {
                 let constant = -(instructionsTopView.frame.size.height -
                                  cutoutPath.bounds.origin.y + offset)
 
                 let coachMarkViewConstraint = NSLayoutConstraint(
-                    item: coachMarkView, attribute: .Bottom, relatedBy: .Equal,
-                    toItem: instructionsTopView, attribute: .Bottom,
+                    item: coachMarkView, attribute: .bottom, relatedBy: .equal,
+                    toItem: instructionsTopView, attribute: .bottom,
                     multiplier: 1, constant: constant
                 )
 
@@ -193,8 +193,8 @@ internal class CoachMarkDisplayManager {
                                 cutoutPath.bounds.size.height) + offset
 
                 let coachMarkViewConstraint = NSLayoutConstraint(
-                    item: coachMarkView, attribute: .Top, relatedBy: .Equal,
-                    toItem: instructionsTopView, attribute: .Top,
+                    item: coachMarkView, attribute: .top, relatedBy: .equal,
+                    toItem: instructionsTopView, attribute: .top,
                     multiplier: 1, constant: constant
                 )
 
@@ -211,16 +211,16 @@ internal class CoachMarkDisplayManager {
 
     /// Position the coach mark view.
     /// TODO: Improve the layout system. Make it smarter.
-    private func positionCoachMarkView() {
+    fileprivate func positionCoachMarkView() {
         let layoutDirection: UIUserInterfaceLayoutDirection
 
         if #available(iOS 9, *) {
             layoutDirection =
-                UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(
-                    instructionsTopView.semanticContentAttribute
+                UIView.userInterfaceLayoutDirection(
+                    for: instructionsTopView.semanticContentAttribute
                 )
         } else {
-            layoutDirection = .LeftToRight
+            layoutDirection = .leftToRight
         }
 
         let segmentIndex = self.computeSegmentIndexForLayoutDirection(layoutDirection)
@@ -231,8 +231,8 @@ internal class CoachMarkDisplayManager {
         switch segmentIndex {
         case 1:
             instructionsTopView.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat(
-                    "H:|-(==\(horizontalMargin))-" +
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|-(==\(horizontalMargin))-" +
                     "[currentCoachMarkView(<=\(maxWidth))]" +
                     "-(>=\(horizontalMargin))-|",
                     options: NSLayoutFormatOptions(rawValue: 0),
@@ -242,17 +242,17 @@ internal class CoachMarkDisplayManager {
 
             let offset = arrowOffsetForLayoutDirection(layoutDirection, segmentIndex: segmentIndex)
 
-            coachMarkView.changeArrowPositionTo(.Leading, offset: offset)
+            coachMarkView.changeArrowPositionTo(.leading, offset: offset)
         case 2:
             instructionsTopView.addConstraint(NSLayoutConstraint(
-                item: coachMarkView, attribute: .CenterX, relatedBy: .Equal,
-                toItem: instructionsTopView, attribute: .CenterX,
+                item: coachMarkView, attribute: .centerX, relatedBy: .equal,
+                toItem: instructionsTopView, attribute: .centerX,
                 multiplier: 1, constant: 0
             ))
 
             instructionsTopView.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat(
-                    "H:|-(>=\(horizontalMargin))-" +
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|-(>=\(horizontalMargin))-" +
                     "[currentCoachMarkView(<=\(maxWidth)@1000)]" +
                     "-(>=\(horizontalMargin))-|",
                     options: NSLayoutFormatOptions(rawValue: 0),
@@ -263,12 +263,12 @@ internal class CoachMarkDisplayManager {
 
             let offset = arrowOffsetForLayoutDirection(layoutDirection, segmentIndex: segmentIndex)
 
-            coachMarkView.changeArrowPositionTo(.Center, offset: offset)
+            coachMarkView.changeArrowPositionTo(.center, offset: offset)
 
         case 3:
             instructionsTopView.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat(
-                    "H:|-(>=\(horizontalMargin))-" +
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|-(>=\(horizontalMargin))-" +
                     "[currentCoachMarkView(<=\(maxWidth))]" +
                     "-(==\(horizontalMargin))-|",
                     options: NSLayoutFormatOptions(rawValue: 0),
@@ -279,7 +279,7 @@ internal class CoachMarkDisplayManager {
 
             let offset = arrowOffsetForLayoutDirection(layoutDirection, segmentIndex: segmentIndex)
 
-            coachMarkView.changeArrowPositionTo(.Trailing, offset: offset)
+            coachMarkView.changeArrowPositionTo(.trailing, offset: offset)
         default:
             break
         }
@@ -290,7 +290,7 @@ internal class CoachMarkDisplayManager {
     ///
     /// - Parameter layoutDirection: the layout direction (RTL or LTR)
     /// - Parameter segmentIndex: the segment index (either 1, 2 or 3)
-    private func arrowOffsetForLayoutDirection(layoutDirection: UIUserInterfaceLayoutDirection,
+    fileprivate func arrowOffsetForLayoutDirection(_ layoutDirection: UIUserInterfaceLayoutDirection,
                                                segmentIndex: Int) -> CGFloat {
 
         let pointOfInterest = coachMark.pointOfInterest!
@@ -299,7 +299,7 @@ internal class CoachMarkDisplayManager {
 
         switch segmentIndex {
         case 1:
-            if layoutDirection == .LeftToRight {
+            if layoutDirection == .leftToRight {
                 arrowOffset = pointOfInterest.x - coachMark.horizontalMargin
             } else {
                 arrowOffset = instructionsTopView.bounds.size.width -
@@ -307,13 +307,13 @@ internal class CoachMarkDisplayManager {
                               coachMark.horizontalMargin
             }
         case 2:
-            if layoutDirection == .LeftToRight {
+            if layoutDirection == .leftToRight {
                 arrowOffset = instructionsTopView.center.x - pointOfInterest.x
             } else {
                 arrowOffset = pointOfInterest.x - instructionsTopView.center.x
             }
         case 3:
-            if layoutDirection == .LeftToRight {
+            if layoutDirection == .leftToRight {
                 arrowOffset = instructionsTopView.bounds.size.width -
                               pointOfInterest.x -
                               coachMark.horizontalMargin
@@ -338,11 +338,11 @@ internal class CoachMarkDisplayManager {
     /// - Parameter layoutDirection: the layout direction (RTL or LTR)
     ///
     /// - Returns: the segment index (either 1, 2 or 3)
-    private func computeSegmentIndexForLayoutDirection(layoutDirection: UIUserInterfaceLayoutDirection) -> Int {
+    fileprivate func computeSegmentIndexForLayoutDirection(_ layoutDirection: UIUserInterfaceLayoutDirection) -> Int {
         let pointOfInterest = coachMark.pointOfInterest!
         var segmentIndex = 3 * pointOfInterest.x / instructionsTopView.bounds.size.width
 
-        if layoutDirection == .RightToLeft {
+        if layoutDirection == .rightToLeft {
             segmentIndex = 3 - segmentIndex
         }
 

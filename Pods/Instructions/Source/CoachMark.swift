@@ -78,7 +78,7 @@ public struct CoachMark {
     ///
     /// - Parameter frame: the frame in which compute the orientation
     ///                    (likely to match the overlay's frame)
-    internal mutating func computeMetadataForFrame(frame: CGRect) {
+    internal mutating func computeMetadataForFrame(_ frame: CGRect) {
         self.computeOrientationInFrame(frame)
         self.computePointOfInterestInFrame()
     }
@@ -88,7 +88,7 @@ public struct CoachMark {
     ///
     /// - Parameter frame: the frame in which compute the orientation
     ///                    (likely to match the overlay's frame)
-    internal mutating func computeOrientationInFrame(frame: CGRect) {
+    internal mutating func computeOrientationInFrame(_ frame: CGRect) {
         // No cutout path means no arrow. That way, no orientation
         // computation is needed.
         guard let cutoutPath = self.cutoutPath else {
@@ -101,9 +101,9 @@ public struct CoachMark {
         }
 
         if cutoutPath.bounds.origin.y > frame.size.height / 2 {
-            self.arrowOrientation = .Bottom
+            self.arrowOrientation = .bottom
         } else {
-            self.arrowOrientation = .Top
+            self.arrowOrientation = .top
         }
     }
 

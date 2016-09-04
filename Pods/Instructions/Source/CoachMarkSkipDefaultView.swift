@@ -24,9 +24,9 @@ import UIKit
 
 /// A concrete implementation of the coach mark skip view and the
 /// default one provided by the library.
-public class CoachMarkSkipDefaultView: UIButton, CoachMarkSkipView {
+open class CoachMarkSkipDefaultView: UIButton, CoachMarkSkipView {
     //MARK: - Public properties
-    public var skipControl: UIControl? {
+    open var skipControl: UIControl? {
         get {
             return self
         }
@@ -40,15 +40,15 @@ public class CoachMarkSkipDefaultView: UIButton, CoachMarkSkipView {
     public convenience init() {
         self.init(frame: CGRect.zero)
 
-        setTitleColor(UIColor.blackColor(), forState: .Normal)
-        titleLabel?.font = UIFont.systemFontOfSize(17.0)
-        titleLabel?.textAlignment = .Center
+        setTitleColor(UIColor.black, for: UIControlState())
+        titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+        titleLabel?.textAlignment = .center
 
         setBackgroundImage(UIImage(namedInInstructions: "background"),
-                           forState: .Normal)
+                           for: UIControlState())
 
         setBackgroundImage(UIImage(namedInInstructions: "background-highlighted"),
-                           forState: .Highlighted)
+                           for: .highlighted)
 
         layer.cornerRadius = 4
         contentEdgeInsets = UIEdgeInsets(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0)
