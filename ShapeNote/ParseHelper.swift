@@ -19,14 +19,11 @@ enum RefreshCompletionAction {
     case Error
 }
 
-typealias CompletionBlock = (() -> ())
-typealias RefreshCompletionBlock = (RefreshCompletionAction -> ())
-
 class ParseHelper {
     
-    class var sharedHelper : ParseHelper {
+    class var sharedHelper: ParseHelper {
         struct Static {
-            static let instance:ParseHelper = ParseHelper()
+            static let instance = ParseHelper()
         }
         return Static.instance
     }
@@ -35,6 +32,9 @@ class ParseHelper {
     var groups:[Group]?
     
     func refresh(completion:RefreshCompletionBlock) {
+        
+        let groups = CoreDataHelper.sharedHelper.groups()
+        self.groups = groups
         
         // TODO Get location
         // then get all groups nearby / sort
@@ -53,9 +53,7 @@ class ParseHelper {
                 self.handleError(error)
                 return
             }
-            
-            let groups = CoreDataHelper.sharedHelper.groups()
-            self.groups = groups
+
             self.pfGroups = objects
             
             for object in objects {
