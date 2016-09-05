@@ -106,16 +106,17 @@ class QuizQuestionProvider {
     }
     
     var filteredOptions:[String:[QuizOption]] {
+        
         return ["Title":[QuizOption(questionType: .Title, answerType: .Number),
-            QuizOption(questionType: .Title, answerType: .FirstLine),
-            QuizOption(questionType: .Title, answerType: .Composer),
+                         QuizOption(questionType: .Title, answerType: .FirstLine),
+                         QuizOption(questionType: .Title, answerType: .Composer),
             ],
-            "Number":[QuizOption(questionType: .Number, answerType: .Title),
-            QuizOption(questionType: .Number, answerType: .ModeAndForm),
+                "Number":[QuizOption(questionType: .Number, answerType: .Title),
+                          QuizOption(questionType: .Number, answerType: .ModeAndForm),
             ],
-            "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year),
-                QuizOption(questionType: .FirstLine, answerType: .Title)
-                ],
+                "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year),
+                              QuizOption(questionType: .FirstLine, answerType: .Title)
+            ],
         ]
     }
     
