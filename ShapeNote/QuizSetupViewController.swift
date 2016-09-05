@@ -14,12 +14,7 @@ class QuizSetupViewController: UITableViewController {
     @IBOutlet var goTakeQuizButton: UIBarButtonItem!
 
     let quizQuestionProvider = QuizQuestionProvider.sharedProvider
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        goTakeQuizButton.isEnabled = false
-    }
-    
+
     @IBAction func showAllButtonPressed(_ sender: UIBarButtonItem) {
         quizQuestionProvider.filtering = !quizQuestionProvider.filtering
         
@@ -29,16 +24,20 @@ class QuizSetupViewController: UITableViewController {
             showAllButton.title = "Popular"
         }
         
-        tableView.reloadData()
+        let transition = CATransition()
+        transition.type = kCATransitionPush
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.fillMode = kCAFillModeForwards
+        transition.duration = 0.5
+        transition.subtype = quizQuestionProvider.filtering ? kCATransitionFromTop : kCATransitionFromBottom
+        self.tableView.layer.add(transition, forKey: "UITableViewReloadDataAnimationKey")
+        
+        self.tableView.reloadData()
     }
     
     func didChangeSelection() {
         
-        if quizQuestionProvider.selectedQuestions.count > 0 {
-            goTakeQuizButton.isEnabled = true
-        } else {
-            goTakeQuizButton.isEnabled = false
-        }
+        goTakeQuizButton.isEnabled = (quizQuestionProvider.selectedQuestions.count > 0)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,12 +46,10 @@ class QuizSetupViewController: UITableViewController {
         
         cell.parentTableViewController = self
         
-        let questionType = quizQuestionProvider.questionTypes[(indexPath as NSIndexPath).section]
+        let questionType = quizQuestionProvider.questionTypes[indexPath.section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
-        let q = questionsForType[(indexPath as NSIndexPath).row]
-        cell.questionType = q
-        let description = q.itemStringForQuestionPair
-        cell.label.text = description
+        
+        cell.questionType = questionsForType[indexPath.row]
         
         return cell
     }
@@ -69,6 +66,10 @@ class QuizSetupViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UITableViewHeaderFooterView()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 33
     }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

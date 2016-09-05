@@ -16,8 +16,12 @@ class QuizQuestionTypeTableViewCell: UITableViewCell {
     @IBOutlet var label: UILabel!
     
     var _selected = false
-    var questionType:QuizOption?
-    var parentTableViewController:QuizSetupViewController?
+    var questionType:QuizOption! {
+        didSet {
+            label.text = questionType.itemStringForQuestionPair
+        }
+    }
+    var parentTableViewController:QuizSetupViewController!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -36,11 +40,11 @@ class QuizQuestionTypeTableViewCell: UITableViewCell {
         if selected {
             selectionButton.setTitle(checkmark, for: UIControlState())
             QuizQuestionProvider.sharedProvider.selectedQuestions.insert(questionType)
-            parentTableViewController?.didChangeSelection()
+            parentTableViewController.didChangeSelection()
         } else if !selected && _selected {
             selectionButton.setTitle(" ", for: UIControlState())
             QuizQuestionProvider.sharedProvider.selectedQuestions.remove(questionType)
-            parentTableViewController?.didChangeSelection()
+            parentTableViewController.didChangeSelection()
         }
         
         _selected = selected

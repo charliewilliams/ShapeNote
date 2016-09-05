@@ -9,12 +9,12 @@
 import Foundation
 
 enum Quizzable:String {
-    case Title = "Title"
-    case Composer = "Composer"
-    case Lyricist = "Lyricist"
+    case Title
+    case Composer
+    case Lyricist
     case FirstLine = "First Line"
-    case Year = "Year"
-    case Number = "Number"
+    case Year
+    case Number
     case ModeAndForm = "Mode & Form"
 }
 
