@@ -13,18 +13,11 @@ enum TabBarIndex:Int {
     case songs = 1
     case singers = 2
     case quiz = 3
-    case login = 4
 }
 
 class TabBarManager {
     
-    var tabBarController:UITabBarController? {
-        didSet {
-            if Defaults.neverLoggedIn {
-                badgeLoginTab()
-            }
-        }
-    }
+    var tabBarController:UITabBarController?
     
     class var sharedManager : TabBarManager {
         struct Static {
@@ -50,13 +43,5 @@ class TabBarManager {
     
     func clearSingersTab() {
         badgeTabAtIndex(.singers, badged: false)
-    }
-    
-    func badgeLoginTab() {
-        badgeTabAtIndex(.login, badged: true)
-    }
-    
-    func clearLoginTab() {
-        badgeTabAtIndex(.login, badged: false)
     }
 }
