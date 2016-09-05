@@ -12,7 +12,8 @@ extension Set {
     
     func random() -> Element? {
         guard count > 0 else { return nil }
-        return self[self.index(self.startIndex, offsetBy: Int(arc4random()) % count)]
+        guard count > 1 else { return first }
+        return self[index(startIndex, offsetBy: Int(arc4random()) % count)]
     }
 }
 
@@ -20,7 +21,7 @@ extension Array {
     
     func random() -> Element? {
         guard count > 0 else { return nil }
-        return self[Int(arc4random()) % count]
+        return self[Int(arc4random_uniform(UInt32(count)))]
     }
 }
 
