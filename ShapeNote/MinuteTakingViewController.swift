@@ -82,11 +82,11 @@ class MinuteTakingViewController: UITableViewController {
             
             shareVC.minutes = self.minutes!
             self.present(shareVC, animated: true, completion: {
-                self.navigationController?.popViewController(animated: false)
+                let _ = self.navigationController?.popViewController(animated: false)
             })
         }
         let cancel = UIAlertAction(title: "Don't post", style: .cancel) { (cancel:UIAlertAction!) -> Void in
-            self.navigationController?.popViewController(animated: true)
+            let _ = self.navigationController?.popViewController(animated: true)
         }
         
         alert.addAction(cancel) // first

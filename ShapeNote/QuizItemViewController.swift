@@ -114,12 +114,12 @@ class QuizItemViewController: UIViewController {
         endViewController.numberCorrect = numberOfCorrectQuestions
         endViewController.numberOfQuestions = numberOfQuestionsPerRound
         self.present(endViewController, animated: true) { () -> Void in
-            self.navigationController?.popViewController(animated: false)
+            let _ = self.navigationController?.popViewController(animated: false)
         }
     }
     
     @IBAction func finishPressed(_ sender: AnyObject) {
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     func setIndicatorsVisible(_ visible:Bool, correctIndex:Int) {

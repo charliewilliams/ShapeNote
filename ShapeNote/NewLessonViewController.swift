@@ -342,7 +342,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         let numberOfSingers = chosenSingers.count
         if (indexPath as NSIndexPath).row < numberOfSingers || (numberOfSingers <= 1 && (indexPath as NSIndexPath).row == 0) {
-            ScopeBarIndex.searchLeaders
+            return ScopeBarIndex.searchLeaders
         }
         let adjustment = numberOfSingers > 0 ? numberOfSingers - 1 : 0
         return ScopeBarIndex(rawValue: (indexPath as NSIndexPath).row - adjustment)!
@@ -545,7 +545,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         CoreDataHelper.sharedHelper.saveContext()
         
-        self.navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: fancy getters & setters

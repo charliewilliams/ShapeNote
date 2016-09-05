@@ -72,6 +72,6 @@ class BookPickerTableViewController: UITableViewController {
             Defaults.currentlySelectedBookTitle = title
         }
         
-        self.navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
 }
