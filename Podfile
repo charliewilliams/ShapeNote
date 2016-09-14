@@ -6,10 +6,11 @@ use_frameworks!
 # inhibit_all_warnings!
 
 target 'ShapeNote' do
-pod 'Instructions'
-pod 'SwiftSpinner'
-pod 'STTwitter'
-pod 'JFADoubleSlider'
+    # pod 'Instructions', :git => 'git@github.com:ephread/Instructions.git', :branch => 'swift3'
+    # pod 'SwiftSpinner'
+    pod 'STTwitter'
+    pod 'JFADoubleSlider'
+    # pod 'MMDB-Swift', :git => 'git@github.com:charliewilliams/MMDB-Swift.git', :commit => '97f99ca3a12b44b802dffc355786d79020d87c7b'
 
 end
 
