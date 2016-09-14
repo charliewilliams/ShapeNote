@@ -11,6 +11,15 @@ import UIKit
 class IntroPopupViewController: UIViewController {
     
     @IBOutlet var doneButton: UIButton!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         
         Defaults.isFirstRun = false

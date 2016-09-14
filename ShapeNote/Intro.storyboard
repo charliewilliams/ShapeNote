@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SJP-jW-9Lu">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SJP-jW-9Lu">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Intro Popup View Controller-->
@@ -14,28 +15,24 @@
                         <viewControllerLayoutGuide type="bottom" id="Jp2-mJ-w9Z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Beq-f7-VEY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageOpen" translatesAutoresizingMaskIntoConstraints="NO" id="GoS-6a-9FO">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageOpen" translatesAutoresizingMaskIntoConstraints="NO" id="GoS-6a-9FO"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-He-MTv" userLabel="Black overlay view">
+                                <color key="backgroundColor" white="0.0" alpha="0.34463291952054792" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice one! You've acquired the" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtB-h6-V18">
-                                <rect key="frame" x="167" y="60" width="266.5" height="25"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="22"/>
+                                <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="shadowColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shapenote Minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="W3D-6c-syX">
-                                <rect key="frame" x="156" y="95" width="287.5" height="39.5"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
-                                <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="27"/>
+                                <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="shadowColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                         <integer key="value" value="5"/>
@@ -43,12 +40,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Companion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-lo-emC">
-                                <rect key="frame" x="154" y="116" width="290.5" height="67"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="55"/>
-                                <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="64"/>
+                                <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="shadowColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                         <integer key="value" value="5"/>
@@ -56,46 +51,34 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2G-A5-JWa">
-                                <rect key="frame" x="180" y="203" width="240" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Keep track of your favorite songs here, instead of folding down page corners" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzh-Tv-6oE">
-                                        <rect key="frame" x="8" y="8" width="224" height="50.5"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Filter favorites by type, like &quot;Major Plaintune in 3&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Wg-N9-lqa">
-                                        <rect key="frame" x="8" y="68" width="224" height="33.5"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Easily post minutes to facebook (the app never posts unless you tell it to)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBi-P6-gOV">
-                                        <rect key="frame" x="8" y="112" width="224" height="50.5"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Live-tweet your singings automatically as you take minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MU4-x1-dfx">
-                                        <rect key="frame" x="8" y="170" width="224" height="33.5"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Also, there's a Shapenote quiz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2nU-fr-bA2">
-                                        <rect key="frame" x="8" y="212" width="224" height="17"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="iBi-P6-gOV" firstAttribute="top" secondItem="8Wg-N9-lqa" secondAttribute="bottom" constant="10" id="1ZO-68-o5G"/>
                                     <constraint firstItem="2nU-fr-bA2" firstAttribute="width" secondItem="MU4-x1-dfx" secondAttribute="width" id="KvZ-Aj-PrO"/>
@@ -122,27 +105,25 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZY-V4-Gcn">
-                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MU9-Pr-CUS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="24"/>
                                 <state key="normal" title="Let's get started">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="doneButtonPressed:" destination="SJP-jW-9Lu" eventType="touchUpInside" id="ktb-7L-Ko4"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.96374198717948711" green="0.96374198717948711" blue="0.96374198717948711" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.96374198717948711" green="0.96374198717948711" blue="0.96374198717948711" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MtB-h6-V18" firstAttribute="top" secondItem="nIa-vd-3Ez" secondAttribute="bottom" constant="40" id="4ub-Ix-cKg"/>
                             <constraint firstItem="MtB-h6-V18" firstAttribute="centerX" secondItem="Beq-f7-VEY" secondAttribute="centerX" id="8EG-Zt-660"/>
                             <constraint firstItem="e2G-A5-JWa" firstAttribute="centerX" secondItem="Beq-f7-VEY" secondAttribute="centerX" id="Hpn-Rx-gqY"/>
+                            <constraint firstItem="5sd-He-MTv" firstAttribute="width" secondItem="Beq-f7-VEY" secondAttribute="width" id="Htb-QU-raw"/>
                             <constraint firstItem="e2G-A5-JWa" firstAttribute="centerY" secondItem="Beq-f7-VEY" secondAttribute="centerY" constant="60" id="IZW-vE-C38"/>
                             <constraint firstItem="yZY-V4-Gcn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e2G-A5-JWa" secondAttribute="bottom" constant="5" id="JoW-dO-Tqu"/>
                             <constraint firstItem="GoS-6a-9FO" firstAttribute="top" secondItem="Beq-f7-VEY" secondAttribute="top" id="LBl-G0-w4j"/>
@@ -152,14 +133,17 @@
                             <constraint firstItem="W3D-6c-syX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Beq-f7-VEY" secondAttribute="leadingMargin" constant="20" id="SUT-Ab-p8W"/>
                             <constraint firstAttribute="trailing" secondItem="yZY-V4-Gcn" secondAttribute="trailing" id="Tl9-Y4-2jZ"/>
                             <constraint firstItem="W3D-6c-syX" firstAttribute="top" secondItem="MtB-h6-V18" secondAttribute="bottom" constant="10" id="eDE-SX-C0o"/>
+                            <constraint firstItem="5sd-He-MTv" firstAttribute="centerX" secondItem="Beq-f7-VEY" secondAttribute="centerX" id="egD-Mn-0U7"/>
                             <constraint firstAttribute="trailing" secondItem="GoS-6a-9FO" secondAttribute="trailing" id="eyp-LP-fJ5"/>
-                            <constraint firstItem="cpa-lo-emC" firstAttribute="top" secondItem="W3D-6c-syX" secondAttribute="bottom" constant="-18" id="fwt-ql-0zT"/>
+                            <constraint firstItem="cpa-lo-emC" firstAttribute="top" secondItem="W3D-6c-syX" secondAttribute="bottom" constant="-8" id="fwt-ql-0zT"/>
                             <constraint firstItem="GoS-6a-9FO" firstAttribute="leading" secondItem="Beq-f7-VEY" secondAttribute="leading" id="h4N-ee-p5C"/>
                             <constraint firstItem="yZY-V4-Gcn" firstAttribute="centerX" secondItem="Beq-f7-VEY" secondAttribute="centerX" id="kqZ-hJ-TpD"/>
+                            <constraint firstItem="5sd-He-MTv" firstAttribute="centerY" secondItem="Beq-f7-VEY" secondAttribute="centerY" id="lBQ-Fw-Y9W"/>
                             <constraint firstItem="cpa-lo-emC" firstAttribute="centerX" secondItem="W3D-6c-syX" secondAttribute="centerX" id="oTB-M6-vJ0"/>
                             <constraint firstItem="e2G-A5-JWa" firstAttribute="top" secondItem="cpa-lo-emC" secondAttribute="bottom" constant="20" id="om3-Qy-kiy"/>
                             <constraint firstItem="Jp2-mJ-w9Z" firstAttribute="top" secondItem="GoS-6a-9FO" secondAttribute="bottom" id="uzg-vi-dLW"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="W3D-6c-syX" secondAttribute="trailing" constant="20" id="wHm-qh-XjR"/>
+                            <constraint firstItem="5sd-He-MTv" firstAttribute="height" secondItem="Beq-f7-VEY" secondAttribute="height" id="wVC-p5-iYK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -167,6 +151,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="doneButton" destination="yZY-V4-Gcn" id="CAJ-wZ-ETb"/>
                     </connections>

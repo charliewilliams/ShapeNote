@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import SwiftSpinner
 
 enum Voice: String {
     case NotSpecified = ""

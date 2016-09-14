@@ -52,6 +52,12 @@
 		C064B5F11BEBEC950021F2B0 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */; };
 		C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */; };
+		C0697C551D85E1EB00269434 /* AllowLocationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C541D85E1EB00269434 /* AllowLocationPermissionsViewController.swift */; };
+		C0697C5A1D85E1F300269434 /* LocalSingingPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C561D85E1F300269434 /* LocalSingingPickerViewController.swift */; };
+		C0697C5B1D85E1F300269434 /* LocationPermissionsDeniedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C571D85E1F300269434 /* LocationPermissionsDeniedViewController.swift */; };
+		C0697C5C1D85E1F300269434 /* ReverseGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C581D85E1F300269434 /* ReverseGeocoder.swift */; };
+		C0697C5D1D85E1F300269434 /* Singing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C591D85E1F300269434 /* Singing.swift */; };
+		C0697C5F1D85E24900269434 /* GeoLite2-City.mmdb in Resources */ = {isa = PBXBuildFile; fileRef = C0697C5E1D85E24900269434 /* GeoLite2-City.mmdb */; };
 		C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A721A86C25000E10773 /* Crashlytics.framework */; };
 		C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A731A86C25000E10773 /* Fabric.framework */; };
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
@@ -153,6 +159,12 @@
 		C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Fabric/TwitterCore.framework; sourceTree = SOURCE_ROOT; };
 		C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DigitsKit.framework; path = Fabric/DigitsKit.framework; sourceTree = SOURCE_ROOT; };
 		C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = Fabric/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = SOURCE_ROOT; };
+		C0697C541D85E1EB00269434 /* AllowLocationPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllowLocationPermissionsViewController.swift; sourceTree = "<group>"; };
+		C0697C561D85E1F300269434 /* LocalSingingPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalSingingPickerViewController.swift; sourceTree = "<group>"; };
+		C0697C571D85E1F300269434 /* LocationPermissionsDeniedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPermissionsDeniedViewController.swift; sourceTree = "<group>"; };
+		C0697C581D85E1F300269434 /* ReverseGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeocoder.swift; sourceTree = "<group>"; };
+		C0697C591D85E1F300269434 /* Singing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singing.swift; sourceTree = "<group>"; };
+		C0697C5E1D85E24900269434 /* GeoLite2-City.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-City.mmdb"; sourceTree = "<group>"; };
 		C06D7A721A86C25000E10773 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A731A86C25000E10773 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
@@ -338,6 +350,7 @@
 				C012C8E11CCBB63F00292F06 /* Notifications.swift */,
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
+				C0697C531D85E1BB00269434 /* Find Your Singing */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
 				C0515B911A7BBA810006ED16 /* Managed Objects */,
 				C02E18901BF11BB800FF2057 /* Minute-taking */,
@@ -369,6 +382,7 @@
 				C092E8631A8A0311002594A5 /* Shenandoah.json */,
 				C092E8641A8A0311002594A5 /* Cooper2012.json */,
 				C0515B5F1A7BA59D0006ED16 /* Info.plist */,
+				C0697C5E1D85E24900269434 /* GeoLite2-City.mmdb */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -416,6 +430,18 @@
 				C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */,
 			);
 			name = Quiz;
+			sourceTree = "<group>";
+		};
+		C0697C531D85E1BB00269434 /* Find Your Singing */ = {
+			isa = PBXGroup;
+			children = (
+				C0697C541D85E1EB00269434 /* AllowLocationPermissionsViewController.swift */,
+				C0697C561D85E1F300269434 /* LocalSingingPickerViewController.swift */,
+				C0697C571D85E1F300269434 /* LocationPermissionsDeniedViewController.swift */,
+				C0697C581D85E1F300269434 /* ReverseGeocoder.swift */,
+				C0697C591D85E1F300269434 /* Singing.swift */,
+			);
+			name = "Find Your Singing";
 			sourceTree = "<group>";
 		};
 		C0C1D5181A868F6B0082C0EB /* Fabric */ = {
@@ -545,6 +571,7 @@
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
+				C0697C5F1D85E24900269434 /* GeoLite2-City.mmdb in Resources */,
 				C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */,
 				C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */,
 				C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */,
@@ -655,9 +682,11 @@
 				C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,
 				C021FD9F1C21EFAD009A972A /* FacebookShareViewController.swift in Sources */,
+				C0697C5A1D85E1F300269434 /* LocalSingingPickerViewController.swift in Sources */,
 				C0EA4E2E1C01BC3B000CCF81 /* TabBarManager.swift in Sources */,
 				C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */,
 				C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */,
+				C0697C551D85E1EB00269434 /* AllowLocationPermissionsViewController.swift in Sources */,
 				C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */,
 				C02E18A61BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift in Sources */,
 				C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */,
@@ -666,6 +695,7 @@
 				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
 				C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */,
 				C012C8E21CCBB63F00292F06 /* Notifications.swift in Sources */,
+				C0697C5C1D85E1F300269434 /* ReverseGeocoder.swift in Sources */,
 				C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */,
 				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
@@ -679,8 +709,10 @@
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
+				C0697C5B1D85E1F300269434 /* LocationPermissionsDeniedViewController.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
 				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
+				C0697C5D1D85E1F300269434 /* Singing.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */,
