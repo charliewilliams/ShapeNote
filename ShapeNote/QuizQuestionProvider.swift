@@ -141,6 +141,9 @@ class QuizQuestionProvider {
     
     func nextQuestion() -> QuizOption {
         
+        // TODO redo this to FIRST filter the songs for matching ones
+        // THEN take random ones up to answer_count
+        
         guard let form = selectedQuestions.random() else { fatalError() }
         let questionType = form.questionType
         let answerType = form.answerType
