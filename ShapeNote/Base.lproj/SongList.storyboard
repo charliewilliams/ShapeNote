@@ -31,6 +31,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="filterButton" destination="nIO-Hn-Rhl" id="Hav-xT-tak"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQO-zt-667" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,7 +65,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfR-ZC-rQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="0.0"/>
+            <point key="canvasLocation" x="1985" y="368"/>
         </scene>
         <!--Notes-->
         <scene sceneID="ip4-RJ-ru8">
@@ -105,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbq-Py-HtG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2542" y="0.0"/>
+            <point key="canvasLocation" x="2639" y="367"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="fLH-Oa-Aht">
@@ -325,7 +328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lve-d0-Zae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3183" y="0.0"/>
+            <point key="canvasLocation" x="1985" y="-322"/>
         </scene>
         <!--Songs-->
         <scene sceneID="noS-xh-2V0">

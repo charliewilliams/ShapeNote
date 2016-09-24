@@ -48,6 +48,8 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     var searchController: UISearchController!
     var searchTableView: SearchResultsTableViewController!
     
+    @IBOutlet weak var filterButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,9 +97,9 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
                 case .minor:
                     return song.key == "Minor"
                 case .duple:
-                    return song.isDuple()
+                    return song.isDuple
                 case .triple:
-                    return song.isTriple()
+                    return song.isTriple
                 case .notes:
                     return song.notes?.characters.count > 0
                 case .noNotes:

@@ -138,8 +138,11 @@ struct QuizOption: Hashable {
         
         s += ":"
         
-        let italics = [NSFontAttributeName:UIFont.italicSystemFont(ofSize: 24)]
-        let nonItalics = [NSFontAttributeName:UIFont.systemFont(ofSize: 24)]
+        let fontName = "HoeflerText-Regular"
+        let fontNameItalic = "HoeflerText-Italic"
+        let italics = [NSFontAttributeName:UIFont(name: fontNameItalic, size: 24)]
+        let nonItalics = [NSFontAttributeName:UIFont(name: fontName, size: 24)]
+        
         let nsstring = NSString(string: s)
         let range = nsstring.range(of: X)
         

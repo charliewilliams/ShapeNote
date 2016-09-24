@@ -8,12 +8,16 @@
 
 import Foundation
 
+var numberOfQuestionsPerRound = 4
+
 extension Set {
     
     func random() -> Element? {
         guard count > 0 else { return nil }
         guard count > 1 else { return first }
-        return self[index(startIndex, offsetBy: Int(arc4random()) % count)]
+        let i = index(startIndex, offsetBy: Int(arc4random_uniform(UInt32(count))))
+        assert(i <= endIndex)
+        return self[i]
     }
 }
 
@@ -120,66 +124,46 @@ class QuizQuestionProvider {
         ]
     }
     
-    func propertyForCategory(_ category:Quizzable) -> String {
-        switch category {
-        case .Title:
-            return "title"
-        case .Composer:
-            return "composer"
-        case .Lyricist:
-            return "lyricist"
-        case .FirstLine:
-            return "firstLine"
-        case .Year:
-            return "year"
-        case .Number:
-            return "number"
-        case .ModeAndForm:
-            return "modeAndFormString"
-        }
-    }
-    
     func nextQuestion() -> QuizOption {
         
         // TODO redo this to FIRST filter the songs for matching ones
         // THEN take random ones up to answer_count
         
-        guard let form = selectedQuestions.random() else { fatalError() }
-        let questionType = form.questionType
-        let answerType = form.answerType
+        let thisQuestion = selectedQuestions.random()!
+        let questionType = thisQuestion.questionType
+        let answerType = thisQuestion.answerType
         
-        let songs = CoreDataHelper.sharedHelper.songs()
-        let correctSong = songs.random()
-        var selectorName = propertyForCategory(questionType)
-        var selector = Selector(stringLiteral: selectorName)
-        var unmanagedReturn = correctSong?.perform(selector)
-        guard let question = unmanagedReturn?.takeUnretainedValue() as? String else { fatalError() }
+        let songs = CoreDataHelper.sharedHelper.songs().shuffle()
         
-        selectorName = propertyForCategory(answerType)
-        selector = Selector(stringLiteral: selectorName)
-        unmanagedReturn = correctSong?.perform(selector)
-        guard let answer = unmanagedReturn?.takeUnretainedValue() as? String else { fatalError() }
-        
-        var tries = 0
-        var answers = [answer]
-        
-        while tries < songs.count * 2 && answers.count < 4 {
-            
-            tries += 1
-            let proposedSong = songs.random()
-            let selectorName = propertyForCategory(answerType)
-            let selector = Selector(stringLiteral: selectorName)
-            if let unmanagedReturn = proposedSong?.perform(selector),
-                let proposedAnswer = unmanagedReturn.takeUnretainedValue() as? String,
-                answers.index(of: proposedAnswer) == nil {
-                    answers.append(proposedAnswer)
-            }
+        // Get all the songs that have data of this type
+        let possibleSongsForThisQuestion = songs.filter { (song:Song) -> Bool in
+            return song.stringForQuizQuestion(question: questionType) != nil
         }
         
-        answers.shuffleInPlace()
-        guard let answerIndex = answers.index(of: answer) else { fatalError("That would be super weird") }
+        // Pick one, write down what data it holds for the answer type
+        let correctSong = possibleSongsForThisQuestion.first!
+        let correctQuestion = correctSong.stringForQuizQuestion(question: questionType)!
+        let correctAnswer = correctSong.stringForQuizQuestion(question: answerType)!
         
-        return QuizOption(questionType: questionType, answerType: answerType, question: question, answers:answers, answerIndex:answerIndex)
+        // Make an array of all songs that don't have the same data in their answer type
+        let incorrectSongs = possibleSongsForThisQuestion.filter { (song:Song) -> Bool in
+            
+            guard let data = song.stringForQuizQuestion(question: answerType) else {
+                return false
+            }
+            return data != correctAnswer
+        }
+        
+        let incorrectAnswers = incorrectSongs.prefix(numberOfQuestionsPerRound - 1).flatMap { (song:Song) -> String? in
+            return song.stringForQuizQuestion(question: answerType)!
+        }
+        
+        var answers = [correctAnswer] + incorrectAnswers
+        answers.shuffleInPlace()
+        
+        let answerIndex = answers.index(of: correctAnswer)!
+        
+        return QuizOption(questionType: questionType, answerType: answerType, question: correctQuestion, answers:answers, answerIndex:answerIndex)
     }
 }
 

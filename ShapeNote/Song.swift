@@ -69,7 +69,7 @@ class Song: NSManagedObject {
         }
     }
     
-    func isTriple() -> Bool {
+    var isTriple: Bool {
         if let timeSignature = timeSignature {
             let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
             let numerator = timeSignature.substring(to: index)
@@ -78,7 +78,7 @@ class Song: NSManagedObject {
         return false
     }
     
-    func isDuple() -> Bool {
+    var isDuple: Bool {
         if let timeSignature = timeSignature {
             let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
             let numerator = timeSignature.substring(to: index)
@@ -87,7 +87,7 @@ class Song: NSManagedObject {
         return false
     }
     
-    func modeAndFormString() -> String {
+    var modeAndFormString: String {
         
         var s = ""
         if let timeSignature = timeSignature { s += timeSignature }
@@ -97,7 +97,7 @@ class Song: NSManagedObject {
         return s
     }
     
-    func firstLine() -> String? {
+    var firstLine: String? {
         
         guard let lyrics = lyrics else { return nil }
         let lines = lyrics.components(separatedBy: CharacterSet.newlines)
@@ -120,6 +120,19 @@ class Song: NSManagedObject {
         
         let characterSet:CharacterSet = CharacterSet(charactersIn: "tb")
         return self.number.trimmingCharacters(in: characterSet)
+    }
+    
+    func stringForQuizQuestion(question: Quizzable) -> String? {
+    
+        switch question {
+        case .Title: return title
+        case .Composer: return composer
+        case .Lyricist: return lyricist
+        case .FirstLine: return firstLine
+        case .Year: return (year > 0) ? "\(year)" : nil
+        case .Number: return number
+        case .ModeAndForm: return modeAndFormString
+        }
     }
     
     func compare(_ other:Song) -> Bool {

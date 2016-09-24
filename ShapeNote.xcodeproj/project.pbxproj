@@ -24,6 +24,8 @@
 		C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */; };
 		C021FD9F1C21EFAD009A972A /* FacebookShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */; };
 		C021FDA01C21EFAD009A972A /* FacebookShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */; };
+		C0285B801D97169C00306705 /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0285B7E1D97169C00306705 /* Favourites.storyboard */; };
+		C0285B821D9716E700306705 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0285B811D9716E700306705 /* FavouritesTableViewController.swift */; };
 		C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */; };
 		C02E18A41BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */; };
 		C02E18A61BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */; };
@@ -127,6 +129,8 @@
 		C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareViewController.swift; sourceTree = "<group>"; };
 		C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookShareViewController.xib; sourceTree = "<group>"; };
 		C0255C561A9D3BD100DD185F /* ShapeNote 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.1.xcdatamodel"; sourceTree = "<group>"; };
+		C0285B7F1D97169C00306705 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Favourites.storyboard; sourceTree = "<group>"; };
+		C0285B811D9716E700306705 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
 		C02E18A11BF695AA00FF2057 /* NewLessonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonAssistantTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTextEntryTableViewCell.swift; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 			children = (
 				C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
+				C0285B7E1D97169C00306705 /* Favourites.storyboard */,
+				C0285B811D9716E700306705 /* FavouritesTableViewController.swift */,
 				C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */,
 				C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */,
 				C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */,
@@ -565,6 +571,7 @@
 				C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */,
 				C092E8601A8914B6002594A5 /* CH.json in Resources */,
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
+				C0285B801D97169C00306705 /* Favourites.storyboard in Resources */,
 				C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
@@ -706,6 +713,7 @@
 				C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */,
 				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
+				C0285B821D9716E700306705 /* FavouritesTableViewController.swift in Sources */,
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
@@ -739,6 +747,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C0285B7E1D97169C00306705 /* Favourites.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0285B7F1D97169C00306705 /* Base */,
+			);
+			name = Favourites.storyboard;
+			sourceTree = "<group>";
+		};
 		C0515B671A7BA59D0006ED16 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
