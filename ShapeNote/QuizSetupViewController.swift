@@ -14,6 +14,12 @@ class QuizSetupViewController: UITableViewController {
     @IBOutlet var goTakeQuizButton: UIBarButtonItem!
 
     let quizQuestionProvider = QuizQuestionProvider.sharedProvider
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = backgroundImageColor
+    }
 
     @IBAction func showAllButtonPressed(_ sender: UIBarButtonItem) {
         quizQuestionProvider.filtering = !quizQuestionProvider.filtering
@@ -45,6 +51,7 @@ class QuizSetupViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? QuizQuestionTypeTableViewCell else { fatalError() }
         
         cell.parentTableViewController = self
+        cell.backgroundColor = .clear
         
         let questionType = quizQuestionProvider.questionTypes[indexPath.section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }

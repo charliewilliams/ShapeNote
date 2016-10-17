@@ -61,6 +61,8 @@ class QuizItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = backgroundImageColor
         setIndicatorsVisible(false, correctIndex:0)
         nextQuestion()
     }
