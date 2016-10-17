@@ -243,7 +243,7 @@
                 <navigationController id="O1G-Wh-9uq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Quiz" image="top_charts" id="h6M-wy-ehY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k44-x6-mlT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k44-x6-mlT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

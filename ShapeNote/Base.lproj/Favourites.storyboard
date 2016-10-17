@@ -66,7 +66,7 @@
                 <navigationController id="o6U-eh-sHD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Fmu-Ap-QMv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OSy-Bh-38z">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OSy-Bh-38z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
