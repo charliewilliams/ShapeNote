@@ -133,7 +133,7 @@ class QuizQuestionProvider {
         let questionType = thisQuestion.questionType
         let answerType = thisQuestion.answerType
         
-        let songs = CoreDataHelper.sharedHelper.songs().shuffle()
+        let songs = CoreDataHelper.sharedHelper.songs(inBook: .sacredHarp).shuffle()
         
         // Get all the songs that have data of this type
         let possibleSongsForThisQuestion = songs.filter { (song:Song) -> Bool in
