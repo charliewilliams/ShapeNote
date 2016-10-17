@@ -87,14 +87,20 @@ class Song: NSManagedObject {
                 self.setValue(lyrics, forKey: key)
             }
         }
+        
+        precompute()
     }
     
     override func awakeFromFetch() {
         super.awakeFromFetch()
         
-        // precompute
+        precompute()
+    }
+    
+    func precompute() {
+        
         strippedString = number.trimmingCharacters(in: characterSetToStrip)
-        strippedNumber = Float(strippedString)!
+        strippedNumber = Float(strippedString) ?? 0
         numberForSorting = strippedNumber + Float(number.contains("b") ? 0.5 : 0)
         isTriple = _isTriple()
         isDuple = _isDuple()

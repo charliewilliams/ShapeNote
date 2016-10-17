@@ -41,11 +41,6 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
         
         view.backgroundColor = backgroundImageColor
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        
-        /*
-         [self.navigationController.navigationBar setBackgroundImage:nil
-         forBarMetrics:UIBarMetricsDefault];
-         */
     }
     
     override func viewWillAppear(_ animated: Bool) {
