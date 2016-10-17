@@ -20,8 +20,9 @@ extension UITableViewController {
             tableView.isScrollEnabled = false
             var height = UIScreen.main.bounds.size.height
             height -= UIApplication.shared.statusBarFrame.height
-            if let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
-                height -= tabBarHeight
+            if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
+                let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
+                height -= navBarHeight + tabBarHeight
             }
             
             noContentView.backgroundColor = backgroundImageColor
