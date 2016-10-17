@@ -64,6 +64,7 @@
 		C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A731A86C25000E10773 /* Fabric.framework */; };
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
 		C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
+		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
 		C092E8621A891A51002594A5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8611A891A51002594A5 /* Defaults.swift */; };
@@ -81,6 +82,7 @@
 		C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */; };
 		C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */; };
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
+		C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */; };
 		C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C964501C176E8000CB1444 /* HelloCWViewController.swift */; };
 		C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C964511C176E8000CB1444 /* HelloCWViewController.xib */; };
 		C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */; };
@@ -173,6 +175,7 @@
 		C06D7A731A86C25000E10773 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Fabric/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
+		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
 		C092E8611A891A51002594A5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -191,6 +194,7 @@
 		C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCompletedViewController.swift; sourceTree = "<group>"; };
 		C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizCompletedViewController.xib; sourceTree = "<group>"; };
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
+		C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitledTappable.swift; sourceTree = "<group>"; };
 		C0C964501C176E8000CB1444 /* HelloCWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloCWViewController.swift; sourceTree = "<group>"; };
 		C0C964511C176E8000CB1444 /* HelloCWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelloCWViewController.xib; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -368,7 +372,9 @@
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0EA4E291C01B258000CCF81 /* Intro.storyboard */,
 				C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */,
+				C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */,
 				C0C964501C176E8000CB1444 /* HelloCWViewController.swift */,
+				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
 				C0C964511C176E8000CB1444 /* HelloCWViewController.xib */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
@@ -717,10 +723,12 @@
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
+				C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */,
 				C0697C5B1D85E1F300269434 /* LocationPermissionsDeniedViewController.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
 				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
 				C0697C5D1D85E1F300269434 /* Singing.swift in Sources */,
+				C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */,
