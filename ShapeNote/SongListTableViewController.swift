@@ -8,45 +8,40 @@
 
 import UIKit
 import CoreData
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
-
-class SongListTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+class SongListTableViewController: UITableViewController, SubtitledTappable, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     var _songs:[Song]?
     var songs:[Song] {
         get {
-            if _songs != nil { return _songs! }
+            if _songs != nil { return sort(songs: _songs!) }
             
-            _songs = CoreDataHelper.sharedHelper.songs()
+            _songs = sort(songs: CoreDataHelper.sharedHelper.songs())
             
-            navigationItem.title = _songs!.first?.book.title
+            navigationItem.title = _songs?.first?.book.title ?? ""
             return _songs!
         }
     }
     var activeFilters = [FilterType]()
+    var sortType: SortType = .number
+    var sortOrder: SortOrder = .ascending
     var popularityFilter:PopularityFilterPair?
     
     var searchController: UISearchController!
     var searchTableView: SearchResultsTableViewController!
+    
+    var headerLabel: UILabel?
+    var headerTapGestureRecognizer: UITapGestureRecognizer!
+    override var title: String? {
+        didSet {
+            setTitle(title: title, subtitle: subtitle)
+        }
+    }
+    var subtitle: String? {
+        didSet {
+            setTitle(title: title, subtitle: subtitle)
+        }
+    }
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
@@ -66,10 +61,17 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         searchController.searchBar.delegate = self
         
         definesPresentationContext = true
+        
+        title = navigationItem.title
+        buildHeaderLabel()
+        updateTitle()
+        
+        headerTapGestureRecognizer.addTarget(self, action: #selector(headerTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         _songs = nil
         tableView.reloadData()
         tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height)
@@ -82,7 +84,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         var filteredSongs = songs
         
         for filter in activeFilters {    
-            filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
+            filteredSongs = filteredSongs.filter { (song:Song) -> Bool in
                 switch filter {
                 case .unfavorited:
                     return !song.favorited
@@ -101,11 +103,14 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
                 case .triple:
                     return song.isTriple
                 case .notes:
-                    return song.notes?.characters.count > 0
+                    if let count = song.notes?.characters.count {
+                        return count > 0
+                    }
+                    return false
                 case .noNotes:
                     return song.notes == nil || song.notes?.characters.count == 0
                 }
-            })
+            }
         }
         
         if let popularityFilter = popularityFilter {
@@ -117,7 +122,52 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         }
         // TODO show something in the background if you've filtered out everything
         
-        return filteredSongs
+        return sort(songs: filteredSongs)
+    }
+    
+    func sort(songs: [Song]) -> [Song] {
+        
+        let ascending = sortOrder == .ascending
+        
+        let sorted = songs.sorted { (l:Song, r:Song) -> Bool in
+            
+            switch sortType {
+            case .number:
+                return l.numberForSorting < r.numberForSorting
+            case .date:
+                return l.year < r.year
+            case .popularity:
+                return l.popularity < r.popularity
+            }
+        }
+        
+        return ascending ? sorted : sorted.reversed()
+    }
+    
+    func headerTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        
+        if sortOrder == .ascending {
+            sortOrder = .descending
+        } else {
+            sortOrder = .ascending
+            
+            switch sortType {
+            case .number:
+                sortType = .popularity
+            case .popularity:
+                sortType = .date
+            case .date:
+                sortType = .number
+            }
+        }
+        
+        _songs = nil
+        updateTitle()
+        tableView.reloadData()
+    }
+    
+    func updateTitle() {
+        subtitle = "Sorted by \(sortDescription(forType: sortType, order: sortOrder))"
     }
     
     // MARK: - Pull to search
@@ -138,45 +188,7 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         
         // Build all the "AND" expressions for each value in the searchString.
         let andMatchPredicates: [NSPredicate] = searchItems.map { searchString in
-            // Each searchString creates an OR predicate for: name, yearIntroduced, introPrice.
-            //
-            // Example if searchItems contains "iphone 599 2007":
-            //      name CONTAINS[c] "iphone"
-            //      name CONTAINS[c] "599", yearIntroduced ==[c] 599, introPrice ==[c] 599
-            //      name CONTAINS[c] "2007", yearIntroduced ==[c] 2007, introPrice ==[c] 2007
-            //
-            var searchItemsPredicate = [NSPredicate]()
-            
-            // Below we use NSExpression represent expressions in our predicates.
-            // NSPredicate is made up of smaller, atomic parts: two NSExpressions (a left-hand value and a right-hand value).
-            
-            for field in ["title", "lyrics", "number", "composer", "lyricist"] {
-                
-                let expression = NSExpression(forKeyPath: field)
-                let searchStringExpression = NSExpression(forConstantValue: searchString)
-                let searchComparisonPredicate = NSComparisonPredicate(leftExpression: expression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
-                searchItemsPredicate.append(searchComparisonPredicate)
-            }
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .none
-            numberFormatter.formatterBehavior = .default
-            
-            let targetNumber = numberFormatter.number(from: searchString)
-            if targetNumber != nil {
-
-                let targetNumberExpression = NSExpression(forConstantValue: targetNumber!)
-                
-                // search by year
-                let yearSearchExpression = NSExpression(forKeyPath: "year")
-                let yearPredicate = NSComparisonPredicate(leftExpression: yearSearchExpression, rightExpression: targetNumberExpression, modifier: .direct, type: .equalTo, options: .caseInsensitive)
-                searchItemsPredicate.append(yearPredicate)
-            }
-            
-            // Add this OR predicate to our master AND predicate.
-            let orMatchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates:searchItemsPredicate)
-            
-            return orMatchPredicate
+            searchPredicate(forString: searchString)
         }
         
         // Match up the fields of the Product object.
@@ -188,6 +200,48 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
         let resultsController = searchController.searchResultsController as! SearchResultsTableViewController
         resultsController.results = filteredResults
         resultsController.tableView.reloadData()
+    }
+    
+    func searchPredicate(forString searchString: String) -> NSPredicate {
+        
+        // Each searchString creates an OR predicate for: name, yearIntroduced, introPrice.
+        //
+        // Example if searchItems contains "iphone 599 2007":
+        //      name CONTAINS[c] "iphone"
+        //      name CONTAINS[c] "599", yearIntroduced ==[c] 599, introPrice ==[c] 599
+        //      name CONTAINS[c] "2007", yearIntroduced ==[c] 2007, introPrice ==[c] 2007
+        //
+        var searchItemsPredicate = [NSPredicate]()
+        
+        // Below we use NSExpression represent expressions in our predicates.
+        // NSPredicate is made up of smaller, atomic parts: two NSExpressions (a left-hand value and a right-hand value).
+        
+        for field in ["title", "lyrics", "number", "composer", "lyricist"] {
+            
+            let expression = NSExpression(forKeyPath: field)
+            let searchStringExpression = NSExpression(forConstantValue: searchString)
+            let searchComparisonPredicate = NSComparisonPredicate(leftExpression: expression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
+            searchItemsPredicate.append(searchComparisonPredicate)
+        }
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .none
+        numberFormatter.formatterBehavior = .default
+        
+        if let targetNumber = numberFormatter.number(from: searchString) {
+            
+            let targetNumberExpression = NSExpression(forConstantValue: targetNumber)
+            
+            // search by year
+            let yearSearchExpression = NSExpression(forKeyPath: "year")
+            let yearPredicate = NSComparisonPredicate(leftExpression: yearSearchExpression, rightExpression: targetNumberExpression, modifier: .direct, type: .equalTo, options: .caseInsensitive)
+            searchItemsPredicate.append(yearPredicate)
+        }
+        
+        // Add this OR predicate to our master AND predicate.
+        let orMatchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates:searchItemsPredicate)
+        
+        return orMatchPredicate
     }
 
     
@@ -212,12 +266,8 @@ class SongListTableViewController: UITableViewController, UISearchBarDelegate, U
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SongListTableViewCell
-        let song:Song
-        if (filtering) {
-            song = filteredSongs[(indexPath as NSIndexPath).row]
-        } else {
-            song = songs[(indexPath as NSIndexPath).row]
-        }
+        let song = filtering ? filteredSongs[indexPath.row] : songs[indexPath.row]
+        
         cell.configureWithSong(song)
         cell.songListTableView = self.tableView
 

@@ -9,8 +9,26 @@
 import Foundation
 import CoreData
 
-@objc(Song)
+enum SortType: String {
+    case number
+    case popularity
+    case date
+}
 
+enum SortOrder: String {
+    case ascending
+    case descending
+}
+
+func sortDescription(forType sortType: SortType, order: SortOrder) -> String {
+    if order == .ascending {
+        return "\(sortType)"
+    } else {
+        return "\(sortType) - \(order)"
+    }
+}
+
+@objc(Song)
 class Song: NSManagedObject {
 
     @NSManaged var title: String
@@ -116,10 +134,18 @@ class Song: NSManagedObject {
 
     //MARK: Sorting
     
-    var strippedNumber: String {
+    var strippedNumber: Float {
         
         let characterSet:CharacterSet = CharacterSet(charactersIn: "tb")
-        return self.number.trimmingCharacters(in: characterSet)
+        let strippedString = self.number.trimmingCharacters(in: characterSet)
+        return Float(strippedString)!
+    }
+    
+    var numberForSorting: Float {
+        
+        // add 0.5 to bottom tunes so they get sorted second
+        let addition = Float(number.contains("b") ? 0.5 : 0)
+        return strippedNumber + addition
     }
     
     func stringForQuizQuestion(question: Quizzable) -> String? {
@@ -140,7 +166,7 @@ class Song: NSManagedObject {
         if (strippedNumber == other.strippedNumber) {
             return number.compare(other.number) == ComparisonResult.orderedDescending
         } else {
-            return Int(strippedNumber)! < Int(other.strippedNumber)!
+            return strippedNumber < other.strippedNumber
         }
     }
 }

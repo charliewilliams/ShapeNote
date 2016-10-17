@@ -100,10 +100,10 @@ class CoreDataHelper {
     }
     
     func songs(inBook book:Book) -> [Song] {
-        let results = resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: book, inQueryString: "book == %@") as! [Song]
-        return results.sorted(by: { (a:Song, b:Song) -> Bool in
-            return a.compare(b)
-        })
+        return resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: book, inQueryString: "book == %@") as! [Song]
+//        return results.sorted(by: { (a:Song, b:Song) -> Bool in
+//            return a.compare(b)
+//        })
     }
     
     func songs(_ inBookTitle:String) -> [Song] {
