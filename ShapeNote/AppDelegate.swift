@@ -11,6 +11,9 @@ import Fabric
 import Crashlytics
 import TwitterKit
 
+let backgroundImage = UIImage(named: "Launch")!
+let backgroundImageColor = UIColor(patternImage:backgroundImage)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
-        window?.backgroundColor = UIColor(patternImage: UIImage(named: "Launch")!)
+        window?.backgroundColor = backgroundImageColor
         
         Fabric.with([Crashlytics(), Twitter()])
         

@@ -36,6 +36,18 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     @IBOutlet var notesSegmentedControl: UISegmentedControl!
     @IBOutlet var popularitySlider: JFADoubleSlider!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = backgroundImageColor
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        
+        /*
+         [self.navigationController.navigationBar setBackgroundImage:nil
+         forBarMetrics:UIBarMetricsDefault];
+         */
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         for filter in songListViewController.activeFilters {
