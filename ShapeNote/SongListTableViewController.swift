@@ -34,12 +34,12 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     var headerTapGestureRecognizer: UITapGestureRecognizer!
     override var title: String? {
         didSet {
-            setTitle(title: title, subtitle: subtitle)
+            setTitle(title: navigationItem.title, subtitle: subtitle)
         }
     }
     var subtitle: String? {
         didSet {
-            setTitle(title: title, subtitle: subtitle)
+            setTitle(title: navigationItem.title, subtitle: subtitle)
         }
     }
     
@@ -62,7 +62,6 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         
         definesPresentationContext = true
         
-        title = navigationItem.title
         buildHeaderLabel()
         updateTitle()
         
@@ -116,7 +115,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         if let popularityFilter = popularityFilter {
             filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
                 
-                let percentage = song.popularityAsPercentOfTotalSongs(songs.count)
+                let percentage = Float(song.popularity) / Float(songs.count)
                 return percentage <= popularityFilter.maxValue && percentage >= popularityFilter.minValue
             })
         }

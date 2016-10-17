@@ -28,6 +28,8 @@ func sortDescription(forType sortType: SortType, order: SortOrder) -> String {
     }
 }
 
+private let characterSetToStrip = CharacterSet(charactersIn: "tb")
+
 @objc(Song)
 class Song: NSManagedObject {
 
@@ -87,7 +89,21 @@ class Song: NSManagedObject {
         }
     }
     
-    var isTriple: Bool {
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        
+        // precompute
+        strippedString = number.trimmingCharacters(in: characterSetToStrip)
+        strippedNumber = Float(strippedString)!
+        numberForSorting = strippedNumber + Float(number.contains("b") ? 0.5 : 0)
+        isTriple = _isTriple()
+        isDuple = _isDuple()
+        modeAndFormString = _modeAndFormString()
+        firstLine = _firstLine()
+    }
+    
+    private(set) var isTriple: Bool!
+    private func _isTriple() -> Bool {
         if let timeSignature = timeSignature {
             let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
             let numerator = timeSignature.substring(to: index)
@@ -96,7 +112,8 @@ class Song: NSManagedObject {
         return false
     }
     
-    var isDuple: Bool {
+    private(set) var isDuple: Bool!
+    private func _isDuple() -> Bool {
         if let timeSignature = timeSignature {
             let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
             let numerator = timeSignature.substring(to: index)
@@ -105,7 +122,8 @@ class Song: NSManagedObject {
         return false
     }
     
-    var modeAndFormString: String {
+    private(set) var modeAndFormString: String!
+    private func _modeAndFormString() -> String {
         
         var s = ""
         if let timeSignature = timeSignature { s += timeSignature }
@@ -115,7 +133,8 @@ class Song: NSManagedObject {
         return s
     }
     
-    var firstLine: String? {
+    private(set) var firstLine: String?
+    private func _firstLine() -> String? {
         
         guard let lyrics = lyrics else { return nil }
         let lines = lyrics.components(separatedBy: CharacterSet.newlines)
@@ -126,27 +145,12 @@ class Song: NSManagedObject {
         
         return line
     }
-    
-    func popularityAsPercentOfTotalSongs(_ totalSongs:Int) -> Float {
-        assert(totalSongs > 0)
-        return Float(popularity) / Float(totalSongs)
-    }
 
     //MARK: Sorting
     
-    var strippedNumber: Float {
-        
-        let characterSet:CharacterSet = CharacterSet(charactersIn: "tb")
-        let strippedString = self.number.trimmingCharacters(in: characterSet)
-        return Float(strippedString)!
-    }
-    
-    var numberForSorting: Float {
-        
-        // add 0.5 to bottom tunes so they get sorted second
-        let addition = Float(number.contains("b") ? 0.5 : 0)
-        return strippedNumber + addition
-    }
+    private var strippedString: String!
+    private var strippedNumber: Float!
+    var numberForSorting: Float!
     
     func stringForQuizQuestion(question: Quizzable) -> String? {
     
