@@ -155,14 +155,32 @@ class Song: NSManagedObject {
     func stringForQuizQuestion(question: Quizzable) -> String? {
     
         switch question {
-        case .Title: return title
-        case .Composer: return composer
-        case .Lyricist: return lyricist
-        case .FirstLine: return firstLine
-        case .Year: return (year > 0) ? "\(year)" : nil
-        case .Number: return number
-        case .ModeAndForm: return modeAndFormString
+        case .Title:
+            return title
+        case .Composer:
+            return formatName(composer)
+        case .Lyricist:
+            return formatName(lyricist)
+        case .FirstLine:
+            return firstLine
+        case .Year:
+            return (year > 0) ? "\(year)" : nil
+        case .Number:
+            return number
+        case .ModeAndForm:
+            return modeAndFormString
         }
+    }
+    
+    func formatName(_ name: String?) -> String {
+        
+        if name?.characters.count == 0 {
+            return "Unknown"
+        }
+        
+        // Switch Denson, Paine --> Paine Denson
+        let components = name!.components(separatedBy: ",")
+        return components.reversed().joined(separator: " ").trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "  ", with: " ")
     }
     
     func compare(_ other:Song) -> Bool {
