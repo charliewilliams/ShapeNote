@@ -7,26 +7,6 @@
 //
 
 import UIKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 class BookPickerTableViewController: UITableViewController {
     
@@ -47,17 +27,14 @@ class BookPickerTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if books?.count > 0 {
-            return books!.count
-        }
-        return 0
+        return books?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
 
         if let b = books {
-            let book = b[(indexPath as NSIndexPath).row]
+            let book = b[indexPath.row]
             cell.textLabel?.text = book.title
             cell.detailTextLabel?.text = book.hashTag
         }

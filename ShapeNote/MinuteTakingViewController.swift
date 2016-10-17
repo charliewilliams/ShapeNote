@@ -115,8 +115,8 @@ class MinuteTakingViewController: UITableViewController {
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
             
-        if let lessons = lessons, lessons.count > (indexPath as NSIndexPath).row {
-            let lesson = lessons[(indexPath as NSIndexPath).row]
+        if let lessons = lessons, lessons.count > indexPath.row {
+            let lesson = lessons[indexPath.row]
             var string = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
             if let dedication = lesson.dedication {
                 string += " (\(dedication))"
@@ -124,8 +124,8 @@ class MinuteTakingViewController: UITableViewController {
             if let otherEvent = lesson.otherEvent {
                 string = otherEvent
             }
-            cell.textLabel!.text = string
-            cell.detailTextLabel!.text = dateFormatter.string(from: lesson.date as Date)
+            cell.textLabel?.text = string
+            cell.detailTextLabel?.text = dateFormatter.string(from: lesson.date as Date)
         }
         
         return cell

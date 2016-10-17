@@ -279,14 +279,14 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
 
             if searchingSongs {
                 
-                let song = filteredSongs![(indexPath as NSIndexPath).row]
+                let song = filteredSongs![indexPath.row]
                 let rawNumber = song.number
                 let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: rawNumber.characters.index(rawNumber.startIndex, offsetBy: 1)) : rawNumber
                 cell.textLabel?.text = number + " " + song.title
                 
-            } else if (indexPath as NSIndexPath).row < filteredSingers?.count {
+            } else if indexPath.row < filteredSingers?.count {
                 
-                let singer = filteredSingers![(indexPath as NSIndexPath).row]
+                let singer = filteredSingers![indexPath.row]
                 cell.textLabel?.text = singer.name
                 
             } else {
@@ -341,11 +341,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     func adjustedIndexForIndexPath(_ indexPath:IndexPath) -> ScopeBarIndex {
         
         let numberOfSingers = chosenSingers.count
-        if (indexPath as NSIndexPath).row < numberOfSingers || (numberOfSingers <= 1 && (indexPath as NSIndexPath).row == 0) {
+        if indexPath.row < numberOfSingers || (numberOfSingers <= 1 && indexPath.row == 0) {
             return ScopeBarIndex.searchLeaders
         }
         let adjustment = numberOfSingers > 0 ? numberOfSingers - 1 : 0
-        return ScopeBarIndex(rawValue: (indexPath as NSIndexPath).row - adjustment)!
+        return ScopeBarIndex(rawValue: indexPath.row - adjustment)!
     }
     
     func configureCell(_ cell: UITableViewCell, forIndexPath indexPath: IndexPath) {
@@ -358,13 +358,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         case .searchLeaders:
             let singerCell = cell as! NewLessonTableViewCell
             singerCell.leftTextLabel.text = "Leader"
-            if chosenSingers.count > 0 && (indexPath as NSIndexPath).row == chosenSingers.count {
+            if chosenSingers.count > 0 && indexPath.row == chosenSingers.count {
                 singerCell.addButton?.isHidden = false
             } else {
                 singerCell.addButton?.isHidden = true
             }
-            if (indexPath as NSIndexPath).row < chosenSingers.count {
-                singerCell.rightTextLabel?.text = chosenSingers[(indexPath as NSIndexPath).row].name
+            if indexPath.row < chosenSingers.count {
+                singerCell.rightTextLabel?.text = chosenSingers[indexPath.row].name
             }
             else {
                 singerCell.rightTextLabel?.text = nil
@@ -408,7 +408,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         if searchController.isActive {
             
-            let index = (indexPath as NSIndexPath).row
+            let index = indexPath.row
             
             if searchingSongs {
                 
@@ -442,7 +442,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             
         } else {
             
-            guard let item = ScopeBarIndex(rawValue: (indexPath as NSIndexPath).row) else { fatalError() }
+            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { fatalError() }
             
             switch item {
             case .searchSongs:
@@ -451,8 +451,8 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 
             case .searchLeaders:
                 
-                if (indexPath as NSIndexPath).row < chosenSingers.count {
-                    chosenSingers.remove(at: (indexPath as NSIndexPath).row)
+                if indexPath.row < chosenSingers.count {
+                    chosenSingers.remove(at: indexPath.row)
                 }
                 searchingSingers = true
                 searchController.isActive = true
@@ -490,15 +490,15 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return (indexPath as NSIndexPath).row < chosenSingers.count
+        return indexPath.row < chosenSingers.count
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
         case .delete:
-            if (indexPath as NSIndexPath).row < chosenSingers.count {
-                chosenSingers.remove(at: (indexPath as NSIndexPath).row)
+            if indexPath.row < chosenSingers.count {
+                chosenSingers.remove(at: indexPath.row)
             } else if tableView.cellForRow(at: indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
                 chosenSong = nil
             } else {

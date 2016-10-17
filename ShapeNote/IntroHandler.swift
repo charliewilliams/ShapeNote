@@ -7,3 +7,25 @@
 //
 
 import Foundation
+
+protocol IntroHandler {
+    func handleFirstRun()
+}
+
+extension IntroHandler where Self: UIViewController {
+    
+    func handleFirstRun() {
+        
+        guard Defaults.isFirstRun == true else {
+            return
+        }
+        
+        let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController() as! IntroPopupViewController
+        _ = introVC.view
+        introVC.doneButton.isHidden = false
+        
+        DispatchQueue.main.async { () -> Void in
+            self.present(introVC, animated: false, completion: nil)
+        }
+    }
+}

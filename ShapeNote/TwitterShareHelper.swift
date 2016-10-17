@@ -61,7 +61,7 @@ class TwitterShareHelper: NSObject {
                     if jsonError != nil {
                         print("Error: \(jsonError)")
                     } else {
-                        print(json)
+                        print("\(json)")
                     }
                 }
                 else {

@@ -17,9 +17,9 @@ enum TabBarIndex:Int {
 
 class TabBarManager {
     
-    var tabBarController:UITabBarController?
+    var tabBarController: UITabBarController!
     
-    class var sharedManager : TabBarManager {
+    class var sharedManager: TabBarManager {
         struct Static {
             static let instance:TabBarManager = TabBarManager()
         }
@@ -28,8 +28,6 @@ class TabBarManager {
     }
     
     fileprivate func badgeTabAtIndex(_ index:TabBarIndex, badged:Bool) {
-        
-        guard let tabBarController = tabBarController else { return }
         
         let tabArray = tabBarController.tabBar.items as NSArray!
         let tabItem = tabArray?.object(at: index.rawValue) as! UITabBarItem

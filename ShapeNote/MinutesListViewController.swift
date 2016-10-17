@@ -37,14 +37,8 @@ class MinutesListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        TabBarManager.sharedManager.tabBarController = tabBarController
-        
         super.viewWillAppear(animated)
         
-        if Defaults.isFirstRun {
-            handleFirstRun()
-            return
-        }
         _allMinutes = nil
         self.tableView.reloadData()
         
@@ -77,16 +71,6 @@ class MinutesListViewController: UITableViewController {
         }
     }
     
-    func handleFirstRun() {
-        let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController() as! IntroPopupViewController
-        let _ = introVC.view
-        introVC.doneButton.isHidden = false
-        
-        DispatchQueue.main.async { () -> Void in
-            self.present(introVC, animated: false, completion: nil)
-        }
-    }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,7 +85,7 @@ class MinutesListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MinutesTableViewCell
         
-        let minute = allMinutes[(indexPath as NSIndexPath).row]
+        let minute = allMinutes[indexPath.row]
         cell.configureWithMinutes(minute)
         
         return cell
@@ -115,7 +99,7 @@ class MinutesListViewController: UITableViewController {
     
     func minuteTakingViewControllerForIndexPath(_ indexPath:IndexPath) -> MinuteTakingViewController {
         
-        let m = allMinutes[(indexPath as NSIndexPath).row]
+        let m = allMinutes[indexPath.row]
         let minutesViewController = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         

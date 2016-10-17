@@ -75,7 +75,7 @@ class SingersListTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
         
-        let singer = singers[(indexPath as NSIndexPath).row]
+        let singer = singers[indexPath.row]
         if let firstName = singer.firstName {
             if let lastName = singer.lastName {
                 cell.textLabel?.text = "\(firstName) \(lastName)"
@@ -93,7 +93,7 @@ class SingersListTableViewController: UITableViewController {
         
         if editingStyle == .delete {
 
-            let s = singers[(indexPath as NSIndexPath).row]
+            let s = singers[indexPath.row]
             CoreDataHelper.managedContext.delete(s)
             CoreDataHelper.sharedHelper.saveContext()
             
@@ -110,7 +110,7 @@ class SingersListTableViewController: UITableViewController {
         if let svc = dvc as? SingerViewController {
 
             if let indexPath = tableView.indexPathForSelectedRow {
-                let s = singers[(indexPath as NSIndexPath).row]
+                let s = singers[indexPath.row]
                 svc.singer = s
             }
         }

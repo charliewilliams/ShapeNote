@@ -30,7 +30,7 @@ class SearchResultsTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SongListTableViewCell
-        let song = results![(indexPath as NSIndexPath).row]
+        let song = results![indexPath.row]
         cell.configureWithSong(song)
         
         return cell
