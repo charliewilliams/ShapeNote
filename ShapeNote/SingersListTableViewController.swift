@@ -25,7 +25,7 @@ class SingersListTableViewController: UITableViewController {
         return sortedSingers
     }
     
-    @IBOutlet var noSingersYetView: UIView!
+    @IBOutlet var noContentView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,32 +33,7 @@ class SingersListTableViewController: UITableViewController {
         title = Defaults.currentGroupName
         self.tableView.reloadData()
         
-        updateNoSingersView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        TabBarManager.sharedManager.clearSingersTab()
-    }
-    
-    func updateNoSingersView() {
-        
-        if singers.count > 0 {
-            noSingersYetView.isHidden = true
-            tableView.isScrollEnabled = true
-        } else {
-            noSingersYetView.isHidden = false
-            tableView.isScrollEnabled = false
-            var height = UIScreen.main.bounds.size.height
-            height -= UIApplication.shared.statusBarFrame.height
-            if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
-                let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
-                    height -= navBarHeight + tabBarHeight
-            }
-            
-            noSingersYetView.isHidden = false
-            noSingersYetView.bounds.size.height = height
-        }
+        updateNoContentView(dataCount: singers.count, noContentView: noContentView)
     }
 
     // MARK: - Table view data source

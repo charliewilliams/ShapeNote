@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9XQ-5N-jhl">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11535.1" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9XQ-5N-jhl">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11523"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Local Singers-->
@@ -12,34 +16,34 @@
             <objects>
                 <tableViewController title="Local Singers" id="i1v-MA-Y8G" customClass="SingersListTableViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XmB-78-9Lz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="8VW-rw-KG6">
-                            <rect key="frame" x="0.0" y="130" width="600" height="400"/>
+                            <rect key="frame" x="0.0" y="130" width="375" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with Facebook to see the singers already added to your local group." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1w-p5-BoE">
-                                    <rect key="frame" x="193" y="63" width="215" height="214"/>
+                                    <rect key="frame" x="80" y="63" width="215" height="214"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="214" id="Qb6-fn-uSq"/>
                                         <constraint firstAttribute="width" constant="215" id="tdW-Rn-1gT"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(If you don't have a Facebook account, you can add singers manually using the button above.)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnw-30-wGB">
-                                    <rect key="frame" x="193" y="287" width="215" height="82"/>
+                                    <rect key="frame" x="80" y="287" width="215" height="81.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-QX-X1a">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.17106681030000001" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.17106681030000001" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Ncd-QX-X1a" secondAttribute="trailing" id="751-uR-lPx"/>
                                 <constraint firstItem="y1w-p5-BoE" firstAttribute="centerX" secondItem="8VW-rw-KG6" secondAttribute="centerX" id="81i-5C-g3v"/>
@@ -60,10 +64,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="taB-9m-Wg0">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="taB-9m-Wg0" id="Sjp-m8-cJt">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -90,7 +94,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="noSingersYetView" destination="8VW-rw-KG6" id="ngS-LQ-bhF"/>
+                        <outlet property="noContentView" destination="8VW-rw-KG6" id="ngS-LQ-bhF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZh-Zl-JBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -106,11 +110,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0oA-M6-Laf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="838-3Q-IOG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdA-sZ-rss">
-                                <rect key="frame" x="0.0" y="20" width="600" height="254"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="172"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Liam Kirby" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCt-KS-FRg">
                                         <rect key="frame" x="8" y="8" width="104" height="29"/>
@@ -118,13 +122,13 @@
                                             <constraint firstAttribute="height" constant="29" id="5tW-1V-ADI"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="of Bristol" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnZ-5k-WfR">
-                                        <rect key="frame" x="120" y="15" width="64" height="21"/>
+                                        <rect key="frame" x="120" y="14" width="65" height="22"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tenor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bc0-Cx-vgu">
@@ -133,7 +137,7 @@
                                             <constraint firstAttribute="height" constant="22" id="t2g-Ck-RpC"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Singing since Feb 2013" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gK-tJ-eGe">
@@ -142,31 +146,31 @@
                                             <constraint firstAttribute="height" constant="17" id="S2G-oO-yFO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last recorded Feb 7, 2015 in Bristol" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWL-nP-N0B">
                                         <rect key="frame" x="155" y="75" width="210" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="102 singings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jW3-gG-sHc">
                                         <rect key="frame" x="8" y="100" width="75" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="257 lessons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQF-Sk-dpD">
                                         <rect key="frame" x="8" y="125" width="72" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125 unique songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5v-yj-UZq">
                                         <rect key="frame" x="8" y="150" width="107" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 locations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjq-Am-8Pw">
@@ -175,11 +179,11 @@
                                             <constraint firstAttribute="height" constant="17" id="poJ-fe-8lF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.7843137255" green="0.90588235289999997" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.7843137255" green="0.90588235289999997" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Bc0-Cx-vgu" firstAttribute="top" secondItem="HCt-KS-FRg" secondAttribute="bottom" constant="8" id="0en-RV-ca3"/>
                                     <constraint firstItem="HCt-KS-FRg" firstAttribute="leading" secondItem="W5v-yj-UZq" secondAttribute="leading" id="3Bs-af-gFX"/>
@@ -212,19 +216,19 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-Fv-i3o">
-                                <rect key="frame" x="0.0" y="274" width="600" height="196"/>
+                                <rect key="frame" x="0.0" y="192" width="375" height="132"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Draft-modes" translatesAutoresizingMaskIntoConstraints="NO" id="CbP-Nm-nfk">
-                                        <rect key="frame" x="0.0" y="0.0" width="278" height="196"/>
+                                        <rect key="frame" x="0.0" y="1" width="188" height="132"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CbP-Nm-nfk" secondAttribute="height" multiplier="64:45" id="3mT-Ev-6ON"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Draft-forms" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-SA-veL">
-                                        <rect key="frame" x="278" y="0.0" width="278" height="196"/>
+                                        <rect key="frame" x="188" y="1" width="187" height="132"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.82112646300000003" green="1" blue="0.97486378789999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.82112646300000003" green="1" blue="0.97486378789999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="CbP-Nm-nfk" secondAttribute="bottom" id="0e0-kV-Ya9"/>
                                     <constraint firstAttribute="bottom" secondItem="Xh7-SA-veL" secondAttribute="bottom" id="5db-ge-gRt"/>
@@ -239,11 +243,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G63-PU-VOF">
-                                <rect key="frame" x="0.0" y="470" width="600" height="130"/>
-                                <color key="backgroundColor" red="0.68762891900000001" green="0.96264146409999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="324" width="375" height="343"/>
+                                <color key="backgroundColor" red="0.68762891900000001" green="0.96264146409999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c1H-Fv-i3o" firstAttribute="leading" secondItem="838-3Q-IOG" secondAttribute="leading" id="0u4-AX-Z5L"/>
                             <constraint firstItem="0oA-M6-Laf" firstAttribute="top" secondItem="G63-PU-VOF" secondAttribute="bottom" id="77z-gW-NKf"/>
@@ -273,11 +277,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pnF-rr-I3g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="d1i-eR-XLs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="95e-h7-Sjn">
-                                <rect key="frame" x="20" y="115" width="270" height="30"/>
+                                <rect key="frame" x="16" y="115" width="162" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -285,7 +289,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bli-uj-Ds2" userLabel="Last Name Text Field">
-                                <rect key="frame" x="310" y="115" width="270" height="30"/>
+                                <rect key="frame" x="198" y="115" width="161" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -293,7 +297,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display name (optional — i.e. Sam H)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ups-YM-BRJ">
-                                <rect key="frame" x="20" y="153" width="560" height="30"/>
+                                <rect key="frame" x="16" y="153" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -301,7 +305,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home singing (leave blank if local)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPe-3r-lQh">
-                                <rect key="frame" x="20" y="191" width="560" height="30"/>
+                                <rect key="frame" x="16" y="191" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -309,7 +313,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Voice type (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OQE-uO-GrN">
-                                <rect key="frame" x="20" y="229" width="560" height="30"/>
+                                <rect key="frame" x="16" y="229" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -317,7 +321,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="@twitter handle (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onz-aj-beP">
-                                <rect key="frame" x="20" y="267" width="560" height="30"/>
+                                <rect key="frame" x="16" y="267" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -325,19 +329,19 @@
                                 </connections>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVQ-Tz-Afg">
-                                <rect key="frame" x="20" y="305" width="51" height="31"/>
+                                <rect key="frame" x="16" y="305" width="51" height="31"/>
                                 <connections>
                                     <action selector="tagOnFacebookSwitchChanged:" destination="qmh-zR-vgU" eventType="valueChanged" id="lmi-YV-j31"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag on Facebook (beta)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-NO-YGo">
-                                <rect key="frame" x="77" y="313" width="503" height="16"/>
+                                <rect key="frame" x="73" y="313" width="286" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="95e-h7-Sjn" firstAttribute="trailing" secondItem="d1i-eR-XLs" secondAttribute="trailingMargin" id="1pn-us-S9T"/>
                             <constraint firstItem="Wkq-NO-YGo" firstAttribute="leading" secondItem="kVQ-Tz-Afg" secondAttribute="trailing" constant="8" id="4PL-0S-8Rf"/>
@@ -398,7 +402,7 @@
                     <tabBarItem key="tabBarItem" title="Singers" image="users_three_2" id="88c-KA-MUC"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xA6-hT-vCQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xA6-hT-vCQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -8,8 +8,12 @@
 
 class FavouritesTableViewController : SongListTableViewController, IntroHandler {
     
+    @IBOutlet var noContentView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .clear
         
         TabBarManager.sharedManager.tabBarController = tabBarController!
         
@@ -22,5 +26,6 @@ class FavouritesTableViewController : SongListTableViewController, IntroHandler 
         super.viewDidAppear(animated)
         
         handleFirstRun()
+        updateNoContentView(dataCount: filteredSongs.count, noContentView: noContentView)
     }
 }

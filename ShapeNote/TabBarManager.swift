@@ -9,10 +9,10 @@
 import Foundation
 
 enum TabBarIndex:Int {
-    case minutes = 0
+    case favorites = 0
     case songs = 1
-    case singers = 2
-    case quiz = 3
+    case quiz = 2
+    case minutes = 3
 }
 
 class TabBarManager {
@@ -32,14 +32,5 @@ class TabBarManager {
         let tabArray = tabBarController.tabBar.items as NSArray!
         let tabItem = tabArray?.object(at: index.rawValue) as! UITabBarItem
         tabItem.badgeValue = badged ? " " : nil
-    }
-    
-    func badgeSingersTab() {
-        Defaults.badgedSingersTabOnce = true
-        badgeTabAtIndex(.singers, badged: true)
-    }
-    
-    func clearSingersTab() {
-        badgeTabAtIndex(.singers, badged: false)
     }
 }
