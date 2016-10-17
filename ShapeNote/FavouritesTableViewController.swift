@@ -11,11 +11,11 @@ class FavouritesTableViewController : SongListTableViewController, IntroHandler 
     @IBOutlet var noContentView: UIView!
     
     override var navigationItem: UINavigationItem {
+        
         let item = super.navigationItem
-        if let title = item.title,
-            title.contains("Favourites") == false {
-            item.title = "Favourites: \(title)"
-        }
+        let shortTitle = CoreDataHelper.sharedHelper.currentlySelectedBook.shortTitle
+        item.title = "Favourites: \(shortTitle)"
+        
         return item
     }
     
@@ -28,7 +28,10 @@ class FavouritesTableViewController : SongListTableViewController, IntroHandler 
         
         // Always be filterin'
         activeFilters = [.favorited]
-        navigationController?.navigationItem.rightBarButtonItem = nil
+        
+        // Keep the custom title centered
+        let rightItem = UIBarButtonItem(customView: UIView(frame: CGRect(origin: .zero, size: CGSize(width: 44, height: 44))))
+        navigationItem.rightBarButtonItem = rightItem
     }
     
     override func viewDidAppear(_ animated: Bool) {

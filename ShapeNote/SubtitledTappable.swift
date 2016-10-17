@@ -38,7 +38,7 @@ extension SubtitledTappable where Self: UIViewController {
     
         let title = title ?? ""
         let subtitle = subtitle ?? ""
-        let titleAttributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0)]
+        let titleAttributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0)]
         let subtitleAttributes = [NSForegroundColorAttributeName: UIColor.gray, NSFontAttributeName: UIFont.systemFont(ofSize: 12.0)]
         
         let attributedTitle = NSMutableAttributedString(string: title + "\n", attributes: titleAttributes)
@@ -48,5 +48,7 @@ extension SubtitledTappable where Self: UIViewController {
         
 //        headerLabel.frame.width = attributedTitle.size().width
         headerLabel?.attributedText = attributedTitle
+        
+        headerLabel?.setNeedsLayout()
     }
 }

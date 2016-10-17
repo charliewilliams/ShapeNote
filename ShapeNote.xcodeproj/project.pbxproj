@@ -32,6 +32,7 @@
 		C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */; };
 		C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043116E1DB4DDC70015C180 /* TabBarController.swift */; };
 		C04311711DB4E4920015C180 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* UIViewController.swift */; };
+		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
@@ -141,6 +142,7 @@
 		C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMinutesYetView.swift; sourceTree = "<group>"; };
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C04311701DB4E4920015C180 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
 		C0515B5B1A7BA59D0006ED16 /* ShapeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B5F1A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B601A7BA59D0006ED16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */,
+				C04311721DB4EE080015C180 /* BookPicker.storyboard */,
 				C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */,
 				C0285B7E1D97169C00306705 /* Favourites.storyboard */,
 				C0285B811D9716E700306705 /* FavouritesTableViewController.swift */,
@@ -585,6 +588,7 @@
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C0285B801D97169C00306705 /* Favourites.storyboard in Resources */,
 				C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */,
+				C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,

@@ -23,11 +23,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="h7t-20-rAS">
-                        <barButtonItem key="leftBarButtonItem" image="notebook" id="B6c-BR-lRp">
-                            <connections>
-                                <segue destination="z4T-Ku-UY1" kind="show" id="YAH-iE-PDf"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="notebook" id="B6c-BR-lRp"/>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="nIO-Hn-Rhl">
                             <connections>
                                 <segue destination="cqN-eN-Wto" kind="presentation" identifier="editFilters" id="9JM-yd-3AW"/>
@@ -41,34 +37,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQO-zt-667" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1206" y="0.0"/>
-        </scene>
-        <!--Book Picker Table View Controller-->
-        <scene sceneID="4uT-rl-Jaj">
-            <objects>
-                <tableViewController storyboardIdentifier="BookPickerTableViewController" id="z4T-Ku-UY1" customClass="BookPickerTableViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="C0K-Yw-nEx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Ozz-iV-fkd">
-                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ozz-iV-fkd" id="Xpg-T6-IGM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="z4T-Ku-UY1" id="xBo-fH-Olu"/>
-                            <outlet property="delegate" destination="z4T-Ku-UY1" id="JoE-FA-dFl"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LfR-ZC-rQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1985" y="368"/>
         </scene>
         <!--Notes-->
         <scene sceneID="ip4-RJ-ru8">

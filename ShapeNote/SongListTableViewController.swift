@@ -18,7 +18,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
             
             _songs = sort(songs: CoreDataHelper.sharedHelper.songs())
             
-            navigationItem.title = _songs?.first?.book.shortTitle ?? ""
+            navigationItem.title = _songs?.first?.book.title ?? ""
             return _songs!
         }
     }
@@ -66,6 +66,8 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         updateTitle()
         
         headerTapGestureRecognizer.addTarget(self, action: #selector(headerTapped))
+        
+        buildBookPickerButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -292,5 +294,17 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         if let destinationVC = segue.destination as? FiltersViewController, identifier == "editFilters" {
             destinationVC.songListViewController = self
         }
+    }
+    
+    func buildBookPickerButton() {
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "notebook"), style: .plain, target: self, action: #selector(bookPickerButtonPressed(_:)))
+    }
+    
+    func bookPickerButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let bookPickerVC = UIStoryboard(name: "BookPicker", bundle: nil).instantiateInitialViewController()!
+        
+        self.navigationController?.pushViewController(bookPickerVC, animated: true)
     }
 }
