@@ -574,8 +574,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     }()
     
     lazy var songs:[Song] = {
-        let bookTitle = Defaults.currentlySelectedBookTitle
-        return CoreDataHelper.sharedHelper.songs(bookTitle)
+        return CoreDataHelper.sharedHelper.songs()
     }()
     
     var searchingSongs:Bool {

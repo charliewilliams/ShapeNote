@@ -14,6 +14,7 @@ import CoreData
 class Book: NSManagedObject {
 
     @NSManaged var title: String
+    @NSManaged var shortTitle: String
     @NSManaged var year: String
     @NSManaged var author: String
     @NSManaged var songs: NSOrderedSet

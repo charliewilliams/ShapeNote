@@ -18,7 +18,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
             
             _songs = sort(songs: CoreDataHelper.sharedHelper.songs())
             
-            navigationItem.title = _songs?.first?.book.title ?? ""
+            navigationItem.title = _songs?.first?.book.shortTitle ?? ""
             return _songs!
         }
     }
@@ -74,6 +74,8 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         _songs = nil
         tableView.reloadData()
         tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height)
+        
+        updateTitle()
     }
     
     // MARK: - Filtering

@@ -66,6 +66,8 @@ class SongListTableViewCell: UITableViewCell {
         
         if let lyrics = song.lyrics, lyricsLabel != nil {
             lyricsLabel.text = lyrics.replacingOccurrences(of: "\n", with: " ")
+        } else {
+            lyricsLabel.text = nil
         }
         
         favoriteButton.setTitle(favoriteStateString, for: UIControlState())

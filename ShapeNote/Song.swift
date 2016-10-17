@@ -180,12 +180,12 @@ class Song: NSManagedObject {
     
     func formatName(_ name: String?) -> String {
         
-        if name?.characters.count == 0 {
+        guard let name = name, name.characters.count == 0 else {
             return "Unknown"
         }
         
         // Switch Denson, Paine --> Paine Denson
-        let components = name!.components(separatedBy: ",")
+        let components = name.components(separatedBy: ",")
         return components.reversed().joined(separator: " ").trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "  ", with: " ")
     }
     

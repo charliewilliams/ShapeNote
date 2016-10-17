@@ -49,7 +49,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="thC-Kj-oQo"/>
-                    <navigationItem key="navigationItem" id="wYg-mS-NAr"/>
+                    <navigationItem key="navigationItem" id="wYg-mS-NAr">
+                        <barButtonItem key="leftBarButtonItem" image="notebook" id="dy0-OV-oN4"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="noContentView" destination="Y6b-Xx-QhJ" id="lfP-vu-7t8"/>
                     </connections>
@@ -77,4 +79,7 @@
             <point key="canvasLocation" x="1118" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="notebook" width="22" height="22"/>
+    </resources>
 </document>

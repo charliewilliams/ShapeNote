@@ -44,11 +44,12 @@ class BookPickerTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath)
-        if let title = cell?.textLabel?.text {
+        
+        if let cell = tableView.cellForRow(at: indexPath),
+            let title = cell.textLabel?.text {
             Defaults.currentlySelectedBookTitle = title
         }
         
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

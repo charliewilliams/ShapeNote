@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11538.1" systemVersion="16A323" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" defaultValueString="#shapenote" syncable="YES"/>
         <attribute name="hashTag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="minutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Minutes" inverseName="book" inverseEntity="Minutes" syncable="YES"/>
@@ -15,7 +16,7 @@
         <relationship name="singers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Singer" inverseName="group" inverseEntity="Singer" syncable="YES"/>
     </entity>
     <entity name="Lesson" representedClassName="Lesson" elementID="Leading" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dedication" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="otherEvent" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="leader" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Singer" inverseName="songs" inverseEntity="Singer" syncable="YES"/>
@@ -23,8 +24,8 @@
         <relationship name="song" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="ledBy" inverseEntity="Song" syncable="YES"/>
     </entity>
     <entity name="Minutes" representedClassName="Minutes" syncable="YES">
-        <attribute name="complete" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="complete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="minutes" inverseEntity="Book" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="minutes" inverseEntity="Group" syncable="YES"/>
         <relationship name="singers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Singer" inverseName="minutes" inverseEntity="Singer" syncable="YES"/>
@@ -34,9 +35,9 @@
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="firstSingDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="firstSingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastSingDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastSingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voice" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,25 +47,25 @@
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="composer" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="favorited" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="favorited" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lyricist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lyrics" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="parts" optional="YES" attributeType="Integer 16" defaultValueString="4" syncable="YES"/>
-        <attribute name="popularity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="parts" optional="YES" attributeType="Integer 16" defaultValueString="4" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="popularity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeSignature" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="songs" inverseEntity="Book" syncable="YES"/>
         <relationship name="ledBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lesson" inverseName="song" inverseEntity="Lesson" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Book" positionX="0" positionY="0" width="128" height="150"/>
         <element name="Group" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Lesson" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Minutes" positionX="0" positionY="0" width="128" height="135"/>

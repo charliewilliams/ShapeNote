@@ -28,29 +28,33 @@ class JSONLoader: NSObject {
         }
         
         let shBookDef = ["title":sacredHarpTitle,
-            "fileName":"SH1991",
-            "year":"1991",
-            "author":"The Sacred Harp Publishing Company",
-            "hashTag":"#SacredHarp",
-            "default":"true"]
+                         "shortTitle": "Sacred Harp",
+                         "fileName":"SH1991",
+                         "year":"1991",
+                         "author":"The Sacred Harp Publishing Company",
+                         "hashTag":"#SacredHarp",
+                         "default":"true"]
         
         let chBookDef = ["title":"The Christian Harmony (2010)",
-            "fileName":"CH",
-            "year":"2010",
-            "author":"Christian Harmony",
-            "hashTag":"#7Shapes"]
+                         "shortTitle": "Christian Harmony",
+                         "fileName":"CH",
+                         "year":"2010",
+                         "author":"Christian Harmony",
+                         "hashTag":"#7Shapes"]
         
         let shenBookDef = ["title":"The Shenandoah Harmony (2012)",
-            "fileName":"Shenandoah",
-            "year":"2012",
-            "author":"The Shenandoah Harmony Publishing Company",
-            "hashTag":"#Shenandoah"]
+                           "shortTitle": "Shenandoah",
+                           "fileName":"Shenandoah",
+                           "year":"2012",
+                           "author":"The Shenandoah Harmony Publishing Company",
+                           "hashTag":"#Shenandoah"]
         
         let coopBookDef = ["title":"The Sacred Harp (Cooper, 2012)",
-            "fileName":"Cooper2012",
-            "year":"2012",
-            "author":"The Sacred Harp Book Company",
-            "hashTag":"#CooperEdition"]
+                           "shortTitle": "Cooper Book",
+                           "fileName":"Cooper2012",
+                           "year":"2012",
+                           "author":"The Sacred Harp Book Company",
+                           "hashTag":"#CooperBook"]
         
         let bookDefs = [shBookDef, chBookDef, shenBookDef, coopBookDef]
         
@@ -59,6 +63,7 @@ class JSONLoader: NSObject {
             // make the book
             let book = NSEntityDescription.insertNewObject(forEntityName: "Book", into: coreDataContext()) as! Book
             book.title = bookDef["title"]!
+            book.shortTitle = bookDef["shortTitle"]!
             book.year = bookDef["year"]!
             book.author = bookDef["author"]!
             book.hashTag = bookDef["hashTag"]!
