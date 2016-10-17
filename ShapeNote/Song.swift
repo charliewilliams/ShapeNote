@@ -101,7 +101,10 @@ class Song: NSManagedObject {
         
         strippedString = number.trimmingCharacters(in: characterSetToStrip)
         strippedNumber = Float(strippedString) ?? 0
+        
+        // t and b are in the wrong order, alphabetically
         numberForSorting = strippedNumber + Float(number.contains("b") ? 0.5 : 0)
+        
         isTriple = _isTriple()
         isDuple = _isDuple()
         modeAndFormString = _modeAndFormString()
@@ -178,10 +181,10 @@ class Song: NSManagedObject {
         }
     }
     
-    func formatName(_ name: String?) -> String {
+    func formatName(_ name: String?) -> String? {
         
         guard let name = name, name.characters.count == 0 else {
-            return "Unknown"
+            return nil
         }
         
         // Switch Denson, Paine --> Paine Denson
@@ -190,11 +193,6 @@ class Song: NSManagedObject {
     }
     
     func compare(_ other:Song) -> Bool {
-        // t and b are in the wrong order, alphabetically
-        if (strippedNumber == other.strippedNumber) {
-            return number.compare(other.number) == ComparisonResult.orderedDescending
-        } else {
-            return strippedNumber < other.strippedNumber
-        }
+        return numberForSorting < other.numberForSorting
     }
 }

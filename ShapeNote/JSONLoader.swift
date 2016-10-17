@@ -9,8 +9,6 @@
 import Foundation
 import CoreData
 
-let sacredHarpTitle = "The Sacred Harp (1991)"
-
 class JSONLoader: NSObject {
     
     class var sharedLoader : JSONLoader {
@@ -23,11 +21,11 @@ class JSONLoader: NSObject {
     func handleFirstRun() {
         
         // If we have data, don't reload from JSON
-        if let _ = CoreDataHelper.sharedHelper.book(sacredHarpTitle) {
+        if let _ = CoreDataHelper.sharedHelper.book(BookIdentifier.sacredHarp.rawValue) {
             return
         }
         
-        let shBookDef = ["title":sacredHarpTitle,
+        let shBookDef = ["title":BookIdentifier.sacredHarp.rawValue,
                          "shortTitle": "Sacred Harp",
                          "fileName":"SH1991",
                          "year":"1991",
@@ -35,21 +33,21 @@ class JSONLoader: NSObject {
                          "hashTag":"#SacredHarp",
                          "default":"true"]
         
-        let chBookDef = ["title":"The Christian Harmony (2010)",
+        let chBookDef = ["title":BookIdentifier.christianHarmony.rawValue,
                          "shortTitle": "Christian Harmony",
                          "fileName":"CH",
                          "year":"2010",
                          "author":"Christian Harmony",
                          "hashTag":"#7Shapes"]
         
-        let shenBookDef = ["title":"The Shenandoah Harmony (2012)",
+        let shenBookDef = ["title":BookIdentifier.shenandoah.rawValue,
                            "shortTitle": "Shenandoah",
                            "fileName":"Shenandoah",
                            "year":"2012",
                            "author":"The Shenandoah Harmony Publishing Company",
                            "hashTag":"#Shenandoah"]
         
-        let coopBookDef = ["title":"The Sacred Harp (Cooper, 2012)",
+        let coopBookDef = ["title":BookIdentifier.cooper.rawValue,
                            "shortTitle": "Cooper Book",
                            "fileName":"Cooper2012",
                            "year":"2012",

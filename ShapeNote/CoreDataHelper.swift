@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -74,12 +75,6 @@ class CoreDataHelper {
             })
         }
         
-        // If there are no singers here we have a problem
-//        ParseHelper.sharedHelper.refreshSingersForSelectedGroup { (result:RefreshCompletionAction) -> () in
-//            ParseHelper.sharedHelper.didChangeGroup({ (result:RefreshCompletionAction) -> () in
-//                
-//            })
-//        }
         return nil
     }
     
@@ -101,9 +96,11 @@ class CoreDataHelper {
     
     func songs(inBook book:Book) -> [Song] {
         return resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: book, inQueryString: "book == %@") as! [Song]
-//        return results.sorted(by: { (a:Song, b:Song) -> Bool in
-//            return a.compare(b)
-//        })
+    }
+    
+    func songs(inBook bookId:BookIdentifier) -> [Song] {
+        let bookObject = book(bookId.rawValue)!
+        return songs(inBook: bookObject)
     }
     
     func songs(_ inBookTitle:String) -> [Song] {

@@ -48,7 +48,7 @@ class Defaults: NSObject {
             if let stored = UserDefaults.standard.object(forKey: bookKey) as? String {
                 return stored
             } else {
-                return "The Sacred Harp (1991)"
+                return BookIdentifier.sacredHarp.rawValue
             }
         }
         set(booktitle) {
