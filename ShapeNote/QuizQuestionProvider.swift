@@ -137,7 +137,8 @@ class QuizQuestionProvider {
         
         // Get all the songs that have data of this type
         let possibleSongsForThisQuestion = songs.filter { (song:Song) -> Bool in
-            return song.stringForQuizQuestion(question: questionType) != nil
+            return song.stringForQuizQuestion(question: questionType) != nil &&
+                song.stringForQuizQuestion(question: answerType) != nil
         }
         
         // Pick one, write down what data it holds for the answer type

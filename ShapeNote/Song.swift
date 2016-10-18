@@ -183,13 +183,21 @@ class Song: NSManagedObject {
     
     func formatName(_ name: String?) -> String? {
         
-        guard let name = name, name.characters.count == 0 else {
+        guard let name = name, name.characters.count > 0 else {
             return nil
         }
         
         // Switch Denson, Paine --> Paine Denson
-        let components = name.components(separatedBy: ",")
-        return components.reversed().joined(separator: " ").trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "  ", with: " ")
+        // James, S. B. & Samuel, R. K. --> S. B. James & R. K. Samuel
+        let authors = name.components(separatedBy: "&")
+        
+        var authorComponents = [String]()
+        for author in authors { // James, S. B.
+            let components = author.components(separatedBy: ",")
+            authorComponents.append(components.reversed().joined(separator: " ")) // S. B. James
+        }
+        
+        return authorComponents.joined(separator: " & ").trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "  ", with: " ")
     }
     
     func compare(_ other:Song) -> Bool {
