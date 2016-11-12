@@ -126,9 +126,9 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }
     
-    func groupWithName(_ name:String?) -> Group {
+    func groupWithName(_ name:String?) -> Group! {
         
-        guard let name = name else { fatalError() }
+        guard let name = name else { return nil }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Group.rawValue)
         
