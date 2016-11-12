@@ -33,11 +33,13 @@ class TwitterShareHelper: NSObject {
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
         let params = ["status": lesson.twitterString()]
         
-        // lat, long
+        guard let userId = Twitter.sharedInstance().sessionStore.session()?.userID else {
+            return
+        }
         
+        let client = TWTRAPIClient(userID: userId)
         var clientError : NSError? = nil
-        let request: URLRequest!
-        request = Twitter.sharedInstance().apiClient.urlRequest(withMethod: "POST", url: statusPostEndpoint, parameters: params, error: &clientError)
+        let request: URLRequest! = client.urlRequest(withMethod: "POST", url: statusPostEndpoint, parameters: params, error: &clientError)
         if let error = clientError {
             print("Error connecting to Twitter: " + error.localizedDescription)
         }
@@ -47,7 +49,7 @@ class TwitterShareHelper: NSObject {
             return
         }
         
-        Twitter.sharedInstance().apiClient.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             
             if let data = data, connectionError == nil {
                 var jsonError : NSError?
@@ -71,6 +73,5 @@ class TwitterShareHelper: NSObject {
                 print("Error: \(connectionError)")
             }
         }
-    }
     }
 }
