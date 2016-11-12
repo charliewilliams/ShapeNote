@@ -66,6 +66,7 @@
 		C06D7A771A86C25000E10773 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
 		C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
 		C07220681DD7374B00CE9CAC /* GroupSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07220661DD7374B00CE9CAC /* GroupSelectionTableViewController.swift */; };
+		C072206C1DD763F200CE9CAC /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C072206A1DD763F200CE9CAC /* About.storyboard */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
@@ -86,7 +87,6 @@
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
 		C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */; };
 		C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C964501C176E8000CB1444 /* HelloCWViewController.swift */; };
-		C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C964511C176E8000CB1444 /* HelloCWViewController.xib */; };
 		C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */; };
 		C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */; };
 		C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */; };
@@ -179,6 +179,7 @@
 		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
 		C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Fabric/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C07220661DD7374B00CE9CAC /* GroupSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSelectionTableViewController.swift; sourceTree = "<group>"; };
+		C072206B1DD763F200CE9CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
@@ -200,7 +201,6 @@
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
 		C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitledTappable.swift; sourceTree = "<group>"; };
 		C0C964501C176E8000CB1444 /* HelloCWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloCWViewController.swift; sourceTree = "<group>"; };
-		C0C964511C176E8000CB1444 /* HelloCWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelloCWViewController.xib; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongListTableViewCell.xib; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 				C012C8E11CCBB63F00292F06 /* Notifications.swift */,
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
-				C0697C531D85E1BB00269434 /* Find Your Singing */,
+				C0697C531D85E1BB00269434 /* Find Your Singing (Not in current app) */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
 				C043116E1DB4DDC70015C180 /* TabBarController.swift */,
 				C0515B911A7BBA810006ED16 /* Managed Objects */,
@@ -372,7 +372,7 @@
 				C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */,
 				C0C964501C176E8000CB1444 /* HelloCWViewController.swift */,
 				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
-				C0C964511C176E8000CB1444 /* HelloCWViewController.xib */,
+				C072206A1DD763F200CE9CAC /* About.storyboard */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -441,7 +441,7 @@
 			name = Quiz;
 			sourceTree = "<group>";
 		};
-		C0697C531D85E1BB00269434 /* Find Your Singing */ = {
+		C0697C531D85E1BB00269434 /* Find Your Singing (Not in current app) */ = {
 			isa = PBXGroup;
 			children = (
 				C0697C541D85E1EB00269434 /* AllowLocationPermissionsViewController.swift */,
@@ -450,7 +450,7 @@
 				C0697C581D85E1F300269434 /* ReverseGeocoder.swift */,
 				C0697C591D85E1F300269434 /* Singing.swift */,
 			);
-			name = "Find Your Singing";
+			name = "Find Your Singing (Not in current app)";
 			sourceTree = "<group>";
 		};
 		C0C1D5181A868F6B0082C0EB /* Fabric */ = {
@@ -482,14 +482,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0515B7D1A7BA59D0006ED16 /* Build configuration list for PBXNativeTarget "ShapeNote" */;
 			buildPhases = (
-				3AF9A248140B464812D6A96A /* 📦 Check Pods Manifest.lock */,
+				3AF9A248140B464812D6A96A /* [CP] Check Pods Manifest.lock */,
 				C0515B571A7BA59D0006ED16 /* Sources */,
 				C0515B581A7BA59D0006ED16 /* Frameworks */,
 				C0515B591A7BA59D0006ED16 /* Resources */,
 				C0C1D47D1A81348D0082C0EB /* ShellScript */,
 				C064ECD41AB950650020AFE3 /* ShellScript */,
-				30433AE3E832D05BD6EB2C6C /* 📦 Embed Pods Frameworks */,
-				19CD8BF8D93B7832670D7BA1 /* 📦 Copy Pods Resources */,
+				30433AE3E832D05BD6EB2C6C /* [CP] Embed Pods Frameworks */,
+				19CD8BF8D93B7832670D7BA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -578,6 +578,7 @@
 				C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
+				C072206C1DD763F200CE9CAC /* About.storyboard in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
@@ -589,7 +590,6 @@
 				C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */,
 				C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */,
 				C06D7A7B1A86C3F900E10773 /* TwitterKitResources.bundle in Resources */,
-				C0C964531C176E8000CB1444 /* HelloCWViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,14 +603,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19CD8BF8D93B7832670D7BA1 /* 📦 Copy Pods Resources */ = {
+		19CD8BF8D93B7832670D7BA1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,14 +618,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		30433AE3E832D05BD6EB2C6C /* 📦 Embed Pods Frameworks */ = {
+		30433AE3E832D05BD6EB2C6C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,14 +633,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3AF9A248140B464812D6A96A /* 📦 Check Pods Manifest.lock */ = {
+		3AF9A248140B464812D6A96A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,6 +769,14 @@
 				C0515B681A7BA59D0006ED16 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C072206A1DD763F200CE9CAC /* About.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C072206B1DD763F200CE9CAC /* Base */,
+			);
+			name = About.storyboard;
 			sourceTree = "<group>";
 		};
 		C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */ = {
