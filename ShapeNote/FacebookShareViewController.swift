@@ -10,7 +10,7 @@ import UIKit
 
 class FacebookShareViewController: UIViewController, UITextViewDelegate {
     
-    var minutes:Minutes!
+    var minutes: Minutes!
     @IBOutlet weak var postComposeTextView: UITextView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var postButtonToBottomEdgeConstraint: NSLayoutConstraint!
@@ -32,7 +32,7 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (minutes != nil) {
+        if minutes != nil {
             UIPasteboard.general.string = minutes.stringForSocialMedia()
         }
     }
@@ -44,11 +44,13 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        
         textView.resignFirstResponder()
         return true
     }
     
     func handleKeyboardNotification(_ note:Foundation.Notification) {
+        
         guard let rectValue = (note as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
             let durationValue = (note as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
                 return
@@ -64,4 +66,15 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
             self.view.layoutIfNeeded()
         })
     }
+    
+    @IBAction func postButtonPressed(_ sender: UIBarButtonItem) {
+        
+        
+    }
+    
+    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

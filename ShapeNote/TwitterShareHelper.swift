@@ -12,11 +12,11 @@ import TwitterKit
 
 class TwitterShareHelper: NSObject {
     
-    var lesson:Lesson?
+    var lesson: Lesson?
     
-    class var sharedHelper : TwitterShareHelper {
+    class var sharedHelper: TwitterShareHelper {
         struct Static {
-            static let instance : TwitterShareHelper = TwitterShareHelper()
+            static let instance: TwitterShareHelper = TwitterShareHelper()
         }
         return Static.instance
     }
@@ -42,35 +42,35 @@ class TwitterShareHelper: NSObject {
             print("Error connecting to Twitter: " + error.localizedDescription)
         }
         
-        if request != nil {
+        guard request != nil else {
+            print("Error: \(clientError)")
+            return
+        }
+        
+        Twitter.sharedInstance().apiClient.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             
-            Twitter.sharedInstance().apiClient.sendTwitterRequest(request) {(response, data, connectionError) -> Void in
-                
-                if let data = data, connectionError == nil {
-                    var jsonError : NSError?
-                    let json : Any?
-                    do {
-                        json = try JSONSerialization.jsonObject(with: data, options: [])
-                    } catch let error as NSError {
-                        jsonError = error
-                        json = nil
-                    } catch {
-                        fatalError()
-                    }
-                    
-                    if jsonError != nil {
-                        print("Error: \(jsonError)")
-                    } else {
-                        print("\(json)")
-                    }
+            if let data = data, connectionError == nil {
+                var jsonError : NSError?
+                let json : Any?
+                do {
+                    json = try JSONSerialization.jsonObject(with: data, options: [])
+                } catch let error as NSError {
+                    jsonError = error
+                    json = nil
+                } catch {
+                    fatalError()
                 }
-                else {
-                    print("Error: \(connectionError)")
+                
+                if jsonError != nil {
+                    print("Error: \(jsonError)")
+                } else {
+                    print("\(json)")
                 }
             }
+            else {
+                print("Error: \(connectionError)")
+            }
         }
-        else {
-            print("Error: \(clientError)")
-        }
+    }
     }
 }
