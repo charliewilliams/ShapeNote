@@ -8,7 +8,8 @@
 
 import Foundation
 
-typealias CompletionBlock = (() -> ())
+typealias Completion = (() -> ())
+typealias NetworkCompletion = ((_ success: Bool, _ error: Error?) -> ())
 
 let oneDayAgoSecs = -60*60*24
 let yesterday = Date(timeInterval: TimeInterval(oneDayAgoSecs), since: Date())
