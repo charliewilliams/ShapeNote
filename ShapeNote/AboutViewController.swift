@@ -28,7 +28,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         guard MFMailComposeViewController.canSendMail() else {
             
-            let urlString = "mailto:\(email)?subject=\(subject)&body=\(body)"
+            let urlString = "inbox-gmail://co?to=\(email)&subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: CharacterSet.whitespacesAndNewlines.inverted)!
             let url = URL(string: urlString)!
             
             if #available(iOS 10.0, *) {
