@@ -80,6 +80,12 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         updateTitle()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        handleFirstRun()
+    }
+    
     // MARK: - Filtering
     
     var filteredSongs:[Song] {

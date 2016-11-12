@@ -13,6 +13,7 @@ enum TabBarIndex:Int {
     case songs = 1
     case quiz = 2
     case minutes = 3
+    case about = 4
 }
 
 class TabBarManager {
@@ -29,8 +30,9 @@ class TabBarManager {
     
     fileprivate func badgeTabAtIndex(_ index:TabBarIndex, badged:Bool) {
         
-        let tabArray = tabBarController.tabBar.items as NSArray!
-        let tabItem = tabArray?.object(at: index.rawValue) as! UITabBarItem
-        tabItem.badgeValue = badged ? " " : nil
+        if let tabArray = tabBarController.tabBar.items {
+            let tabItem = tabArray[index.rawValue]
+            tabItem.badgeValue = badged ? " " : nil
+        }
     }
 }
