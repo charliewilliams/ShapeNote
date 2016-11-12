@@ -67,19 +67,14 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     func buildSearchBar() {
         
         searchBar = searchController.searchBar
-        searchBar.showsScopeBar = false
+        searchBar.showsScopeBar = false // annoying but setting this to true screws up the layout
         searchBar.delegate = self
         searchBar.scopeButtonTitles = ["Leader", "Song", "Assisted by", "Dedication"]
         searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue
         tableView.tableHeaderView = searchBar
         
-        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 128))
-//
-//        let width = UIScreen.main.bounds.size.width
-//        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width))
-//        
-//        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
+//        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 128))
+//        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,14 +149,14 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             
             filteredSongs = songs
             searchBar.placeholder = "enter song number"
-            searchBar.keyboardType = UIKeyboardType.numberPad
+            searchBar.keyboardType = .numberPad
             
         case .searchLeaders:
             searchBar.placeholder = "enter name"
             filteredSingers = singers
             
         case .dedication:
-            break
+            searchBar.placeholder = "enter dedication, i.e. \"for Sue Jones\""
             
         case .assistedBy:
             searchBar.placeholder = "enter assistant's name"
@@ -178,13 +173,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         if complete {
             
             searchController.isActive = false
-//            searchBar.showsScopeBar = true
             
         } else {
             
             searchBar.text = ""
             searchController.isActive = true
-//            searchBar.showsScopeBar = true
         }
     }
     
@@ -213,10 +206,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 components.remove(at: 0)
                 newSinger.lastName = components.joined(separator: " ")
             }
+            singers.append(newSinger)
             CoreDataHelper.sharedHelper.saveContext()
             chosenSingers.append(newSinger)
             searchingSingers = false
-            searchController.isActive = false;
+            searchController.isActive = false
             updateSearchAndScope()
         }
         
@@ -484,7 +478,8 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         case .delete:
             if indexPath.row < chosenSingers.count {
                 chosenSingers.remove(at: indexPath.row)
-            } else if tableView.cellForRow(at: indexPath)?.textLabel?.text?.hasPrefix("Song") != nil {
+            } else if let cell = tableView.cellForRow(at: indexPath),
+                let text = cell.textLabel?.text, text.hasPrefix("Song") {
                 chosenSong = nil
             } else {
                 dedication = nil
@@ -504,7 +499,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     @IBAction func donePressed(_ sender: AnyObject) {
         
-        guard let minutes = minutes else { fatalError() }
+        let minutes = self.minutes!
         
         if minutes.managedObjectContext == nil {
             CoreDataHelper.managedContext.refresh(minutes, mergeChanges: true)
