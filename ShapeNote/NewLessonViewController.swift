@@ -8,28 +8,8 @@
 
 import UIKit
 import CoreData
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
-
-enum ScopeBarIndex:Int {
+enum ScopeBarIndex: Int {
     case searchLeaders = 0
     case searchSongs = 1
     case assistedBy = 2
@@ -39,13 +19,13 @@ enum ScopeBarIndex:Int {
 
 let minCellCount = 5
 
-enum CellIdentifiers:String {
+enum CellIdentifier: String {
     case Leader = "Leader"
     case AssistedBy = "AssistedBy"
     case Dedication = "Dedication"
 }
 
-typealias CellType = (reuseIdentifier:CellIdentifiers, index:ScopeBarIndex)
+typealias CellType = (reuseIdentifier:CellIdentifier, index:ScopeBarIndex)
 let blueColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
 
 class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITextFieldDelegate {
@@ -75,6 +55,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     }
     
     func buildSearchController() {
+        
         searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
         searchController.searchResultsUpdater = self
@@ -84,27 +65,31 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     }
     
     func buildSearchBar() {
+        
         searchBar = searchController.searchBar
-        searchBar.showsScopeBar = true
+        searchBar.showsScopeBar = false
         searchBar.delegate = self
         searchBar.scopeButtonTitles = ["Leader", "Song", "Assisted by", "Dedication"]
         searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue
         tableView.tableHeaderView = searchBar
         
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 128))
-        let width = UIScreen.main.bounds.size.width
-        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width))
-//        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0))
+//
+//        let width = UIScreen.main.bounds.size.width
+//        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width))
+//        
+//        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        searchController.isActive = true
         
-        // TODO 
+        searchController.isActive = true
+
+        // TODO why is this? 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] () -> Void in
-            
+        
             guard let searchBar = self?.searchBar else { return }
             searchBar.becomeFirstResponder()
         }
@@ -161,7 +146,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     func updateSearchAndScope() {
         
         let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
-        searchBar.keyboardType = UIKeyboardType.asciiCapable
+        searchBar.keyboardType = .asciiCapable
         
         switch index {
             
@@ -173,7 +158,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             
         case .searchLeaders:
             searchBar.placeholder = "enter name"
-            self.filteredSingers = self.singers
+            filteredSingers = singers
             
         case .dedication:
             break
@@ -193,13 +178,13 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         if complete {
             
             searchController.isActive = false
-            searchBar.showsScopeBar = true
+//            searchBar.showsScopeBar = true
             
         } else {
             
             searchBar.text = ""
             searchController.isActive = true
-            searchBar.showsScopeBar = true
+//            searchBar.showsScopeBar = true
         }
     }
     
@@ -212,7 +197,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         } else if addingOther {
             
             otherEvent = textField.text
-            if otherEvent?.characters.count > 0 {
+            if let otherEvent = otherEvent, otherEvent.characters.count > 0 {
                 doneButton.isEnabled = true
             } else if chosenSong == nil || chosenSingers.count == 0 {
                 doneButton.isEnabled = false
@@ -284,9 +269,9 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                 let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: rawNumber.characters.index(rawNumber.startIndex, offsetBy: 1)) : rawNumber
                 cell.textLabel?.text = number + " " + song.title
                 
-            } else if indexPath.row < filteredSingers?.count {
+            } else if let filteredSingers = filteredSingers, indexPath.row < filteredSingers.count {
                 
-                let singer = filteredSingers![indexPath.row]
+                let singer = filteredSingers[indexPath.row]
                 cell.textLabel?.text = singer.name
                 
             } else {
@@ -329,12 +314,12 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         switch index {
         case .searchLeaders: fallthrough
         case .searchSongs:
-            return CellIdentifiers.Leader.rawValue
+            return CellIdentifier.Leader.rawValue
         case .assistedBy:
-            return CellIdentifiers.AssistedBy.rawValue
+            return CellIdentifier.AssistedBy.rawValue
         case .dedication: fallthrough
         case .other:
-            return CellIdentifiers.Dedication.rawValue
+            return CellIdentifier.Dedication.rawValue
         }
     }
     
@@ -418,9 +403,9 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
                     searchingSingers = true
                 }
                 
-            } else if searchingSingers && index < filteredSingers?.count {
+            } else if let filteredSingers = filteredSingers, searchingSingers == true && index < filteredSingers.count {
                 
-                let singer = filteredSingers![index]
+                let singer = filteredSingers[index]
                 singer.lastSingDate = Date().timeIntervalSince1970
                 chosenSingers.append(singer)
                 
@@ -545,7 +530,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         CoreDataHelper.sharedHelper.saveContext()
         
-        let _ = self.navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     //MARK: fancy getters & setters
