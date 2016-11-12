@@ -199,16 +199,19 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         } else if let newSingerName = textField.text {
             
             let newSinger = NSEntityDescription.insertNewObject(forEntityName: "Singer", into: CoreDataHelper.managedContext) as! Singer
+            newSinger.firstSingDate = NSTimeIntervalSince1970
+            newSinger.lastSingDate = NSTimeIntervalSince1970
+            newSinger.group = CoreDataHelper.sharedHelper.currentlySelectedGroup
             
-            var components = newSingerName.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+            var components = newSingerName.components(separatedBy: .whitespacesAndNewlines)
             newSinger.firstName = components.first
             if components.count > 1 {
                 components.remove(at: 0)
                 newSinger.lastName = components.joined(separator: " ")
             }
             singers.append(newSinger)
-            CoreDataHelper.sharedHelper.saveContext()
             chosenSingers.append(newSinger)
+            CoreDataHelper.sharedHelper.saveContext()
             searchingSingers = false
             searchController.isActive = false
             updateSearchAndScope()
@@ -387,77 +390,87 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         if searchController.isActive {
             
-            let index = indexPath.row
-            
-            if searchingSongs {
-                
-                chosenSong = filteredSongs![index]
-                
-                if chosenSingers.count == 0 {
-                    searchingSingers = true
-                }
-                
-            } else if let filteredSingers = filteredSingers, searchingSingers == true && index < filteredSingers.count {
-                
-                let singer = filteredSingers[index]
-                singer.lastSingDate = Date().timeIntervalSince1970
-                chosenSingers.append(singer)
-                
-                if chosenSong == nil {
-                    searchingSongs = true
-                }
-                
-            } else if searchingSingers {
-                
-                let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
-                cell.textField.isHidden = false
-                cell.textField.placeholder = "enter name"
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { () -> Void in
-                    cell.textField.becomeFirstResponder()
-                }
-            }
-            updateSearchAndScope()
+            tableViewDidSelect(rowForSearchAtIndexPath: indexPath)
             
         } else {
             
-            guard let item = ScopeBarIndex(rawValue: indexPath.row) else { fatalError() }
+            tableViewDidSelect(nonSearchRowAtIndexPath: indexPath)
+        }
+    }
+    
+    private func tableViewDidSelect(rowForSearchAtIndexPath indexPath: IndexPath) {
+        
+        let index = indexPath.row
+        
+        if searchingSongs {
             
-            switch item {
-            case .searchSongs:
-                searchingSongs = true
-                searchController.isActive = true
-                
-            case .searchLeaders:
-                
-                if indexPath.row < chosenSingers.count {
-                    chosenSingers.remove(at: indexPath.row)
-                }
+            chosenSong = filteredSongs![index]
+            
+            if chosenSingers.count == 0 {
                 searchingSingers = true
-                searchController.isActive = true
-                
-            case .assistedBy:
-                
-                addingAssistant = true
-                searchController.isActive = true
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] () -> Void in
-                    self?.searchBar.becomeFirstResponder()
-                }
-                
-            case .dedication:
-                
-                addingDedication = true
-                let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
-                cell.textField.isHidden = false
-                cell.textField.becomeFirstResponder()
-                
-            case .other:
-                
-                addingOther = true
-                let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
-                cell.textField.isHidden = false
+            }
+            
+        } else if let filteredSingers = filteredSingers, searchingSingers == true && index < filteredSingers.count {
+            
+            let singer = filteredSingers[index]
+            singer.lastSingDate = Date().timeIntervalSince1970
+            chosenSingers.append(singer)
+            
+            if chosenSong == nil {
+                searchingSongs = true
+            }
+            
+        } else if searchingSingers {
+            
+            let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
+            cell.textField.isHidden = false
+            cell.textField.placeholder = "enter name"
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { () -> Void in
                 cell.textField.becomeFirstResponder()
             }
+        }
+        updateSearchAndScope()
+    }
+    
+    private func tableViewDidSelect(nonSearchRowAtIndexPath indexPath: IndexPath) {
+        
+        guard let item = ScopeBarIndex(rawValue: indexPath.row) else { fatalError() }
+        
+        switch item {
+        case .searchSongs:
+            searchingSongs = true
+            searchController.isActive = true
+            
+        case .searchLeaders:
+            
+            if indexPath.row < chosenSingers.count {
+                chosenSingers.remove(at: indexPath.row)
+            }
+            searchingSingers = true
+            searchController.isActive = true
+            
+        case .assistedBy:
+            
+            addingAssistant = true
+            searchController.isActive = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] () -> Void in
+                self?.searchBar.becomeFirstResponder()
+            }
+            
+        case .dedication:
+            
+            addingDedication = true
+            let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
+            cell.textField.isHidden = false
+            cell.textField.becomeFirstResponder()
+            
+        case .other:
+            
+            addingOther = true
+            let cell = tableView.cellForRow(at: indexPath) as! NewLessonTextEntryTableViewCell
+            cell.textField.isHidden = false
+            cell.textField.becomeFirstResponder()
         }
     }
     
@@ -534,7 +547,9 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: { (s1:Singer, s2:Singer) -> Bool in
             return s1.lastSingDate > s2.lastSingDate // overall, most recent first
-        }) else { return [] }
+        }) else {
+            return []
+        }
         
         let todaySingers = allSingers.filter({ (s:Singer) -> Bool in
             return s.lastSingDate > yesterday.timeIntervalSince1970

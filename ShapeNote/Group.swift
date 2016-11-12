@@ -16,4 +16,15 @@ class Group: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var singers: [Singer]
     @NSManaged var facebookID: String
+    
+    class func create(name: String, facebookID: String? = nil) -> Group {
+        
+        let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: CoreDataHelper.managedContext) as! Group
+        group.name = name
+        if let facebookID = facebookID {
+            group.facebookID = facebookID
+        }
+        
+        return group
+    }
 }

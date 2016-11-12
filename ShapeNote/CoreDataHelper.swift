@@ -126,25 +126,25 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }
     
-    func groupWithName(_ name:String?) -> Group? {
+    func groupWithName(_ name:String?) -> Group {
         
-        guard let name = name else { return nil }
+        guard let name = name else { fatalError() }
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Group.rawValue)
         
         let resultPredicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
         fetchRequest.predicate = resultPredicate
         
-        var group: Group? = nil
-        
         do {
             let fetchedResults = try managedObjectContext!.fetch(fetchRequest)
-            group = fetchedResults.first as? Group
+            if let group = fetchedResults.first as? Group {
+                return group
+            }
         } catch {
-            return nil
+            return Group.create(name: name)
         }
         
-        return group
+        return Group.create(name: name)
     }
     
     func minutes(_ group:Group) -> [Minutes]? {

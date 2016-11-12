@@ -72,9 +72,8 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
             singer.displayName = displayName
         }
         
-        if let homeSingingName = homeSingingTextField.text,
-            let group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName) {
-            singer.group = group
+        if let homeSingingName = homeSingingTextField.text {
+            singer.group = CoreDataHelper.sharedHelper.groupWithName(homeSingingName)
         }
         else {
             singer.group = CoreDataHelper.sharedHelper.currentlySelectedGroup

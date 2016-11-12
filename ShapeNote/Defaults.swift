@@ -20,7 +20,7 @@ class Defaults: NSObject {
         get {
             return !UserDefaults.standard.bool(forKey: firstRunKey)
         }
-        set {
+        set(newValue) {
             UserDefaults.standard.set(true, forKey: firstRunKey)
         }
     }
@@ -29,7 +29,7 @@ class Defaults: NSObject {
         get {
             return !UserDefaults.standard.bool(forKey: loggedInOnce)
         }
-        set {
+        set(newValue) {
             UserDefaults.standard.set(true, forKey: loggedInOnce)
         }
     }
@@ -38,7 +38,7 @@ class Defaults: NSObject {
         get {
             return UserDefaults.standard.bool(forKey: hasBadgedSingersTabOnce)
         }
-        set {
+        set(newValue) {
             UserDefaults.standard.set(true, forKey: hasBadgedSingersTabOnce)
         }
     }

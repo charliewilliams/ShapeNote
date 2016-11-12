@@ -13,16 +13,18 @@ let tableViewHeaderHeight:CGFloat = 50
 
 class MinutesListViewController: UITableViewController {
 
-    @IBOutlet weak var minutesListTableView: UITableView!
-    @IBOutlet var noMinutesYetView: UIView!
+    @IBOutlet weak private var minutesListTableView: UITableView!
+    @IBOutlet fileprivate var noMinutesYetView: UIView!
     
-    var _allMinutes:[Minutes]?
-    var allMinutes:[Minutes] {
+    private var _allMinutes:[Minutes]?
+    fileprivate var allMinutes:[Minutes] {
         get {
             if _allMinutes == nil {
                 
-                guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else { return [] }
-                    
+                guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else {
+                    return []
+                }
+                
                 navigationItem.title = group.name + ": Minutes"
                 if let m = CoreDataHelper.sharedHelper.minutes(group) {
                     
@@ -48,26 +50,11 @@ class MinutesListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        updateNoMinutesView()
-    }
-    
-    func updateNoMinutesView() {
         
-        if allMinutes.count > 0 {
-            noMinutesYetView.isHidden = true
-            tableView.isScrollEnabled = true
+        if CoreDataHelper.sharedHelper.currentlySelectedGroup == nil || Defaults.currentGroupName == nil {
+            showGroupSelectionUI()
         } else {
-            tableView.isScrollEnabled = false
-            noMinutesYetView.isHidden = false
-            var height = UIScreen.main.bounds.size.height
-            height -= UIApplication.shared.statusBarFrame.height
-            height -= tableViewHeaderHeight
-            if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
-                let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
-                    height -= navBarHeight + tabBarHeight
-            }
-            
-            noMinutesYetView.bounds.size.height = height
+            updateNoMinutesView()
         }
     }
     
@@ -95,19 +82,8 @@ class MinutesListViewController: UITableViewController {
         return tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
     }
     
-    // MARK: - Navigation
-    
-    func minuteTakingViewControllerForIndexPath(_ indexPath:IndexPath) -> MinuteTakingViewController {
-        
-        let m = allMinutes[indexPath.row]
-        let minutesViewController = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") as! MinuteTakingViewController
-        minutesViewController.minutes = m
-        
-        return minutesViewController
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         let minutesViewController = minuteTakingViewControllerForIndexPath(indexPath)
         self.navigationController?.pushViewController(minutesViewController, animated: true)
     }
@@ -126,7 +102,7 @@ class MinutesListViewController: UITableViewController {
         if let _ = CoreDataHelper.sharedHelper.currentlySelectedGroup,
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") {
             
-            self.navigationController?.pushViewController(vc, animated: true)   
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -137,5 +113,43 @@ class MinutesListViewController: UITableViewController {
             mtvc.minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
             CoreDataHelper.sharedHelper.saveContext()
         }
+    }
+}
+
+private extension MinutesListViewController {
+    
+    func updateNoMinutesView() {
+        
+        if allMinutes.count > 0 {
+            noMinutesYetView.isHidden = true
+            tableView.isScrollEnabled = true
+        } else {
+            tableView.isScrollEnabled = false
+            noMinutesYetView.isHidden = false
+            var height = UIScreen.main.bounds.size.height
+            height -= UIApplication.shared.statusBarFrame.height
+            height -= tableViewHeaderHeight
+            if let navBarHeight = navigationController?.navigationBar.bounds.size.height,
+                let tabBarHeight = tabBarController?.tabBar.bounds.size.height {
+                height -= navBarHeight + tabBarHeight
+            }
+            
+            noMinutesYetView.bounds.size.height = height
+        }
+    }
+    
+    func showGroupSelectionUI() {
+        
+        let vc = storyboard!.instantiateViewController(withIdentifier: "GroupSelectionTableViewController") as! GroupSelectionTableViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func minuteTakingViewControllerForIndexPath(_ indexPath:IndexPath) -> MinuteTakingViewController {
+        
+        let m = allMinutes[indexPath.row]
+        let minutesViewController = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") as! MinuteTakingViewController
+        minutesViewController.minutes = m
+        
+        return minutesViewController
     }
 }
