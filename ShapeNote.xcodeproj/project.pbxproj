@@ -55,8 +55,6 @@
 		C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A11BEFB63F00E05EBE /* QuizOption.swift */; };
 		C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */; };
 		C064B5F11BEBEC950021F2B0 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
-		C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */; };
-		C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */; };
 		C0697C551D85E1EB00269434 /* AllowLocationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C541D85E1EB00269434 /* AllowLocationPermissionsViewController.swift */; };
 		C0697C5A1D85E1F300269434 /* LocalSingingPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C561D85E1F300269434 /* LocalSingingPickerViewController.swift */; };
 		C0697C5B1D85E1F300269434 /* LocationPermissionsDeniedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0697C571D85E1F300269434 /* LocationPermissionsDeniedViewController.swift */; };
@@ -170,8 +168,6 @@
 		C05626A11BEFB63F00E05EBE /* QuizOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOption.swift; sourceTree = "<group>"; };
 		C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizItemViewController.swift; sourceTree = "<group>"; };
 		C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Fabric/TwitterCore.framework; sourceTree = SOURCE_ROOT; };
-		C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DigitsKit.framework; path = Fabric/DigitsKit.framework; sourceTree = SOURCE_ROOT; };
-		C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = Fabric/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C0697C541D85E1EB00269434 /* AllowLocationPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllowLocationPermissionsViewController.swift; sourceTree = "<group>"; };
 		C0697C561D85E1F300269434 /* LocalSingingPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalSingingPickerViewController.swift; sourceTree = "<group>"; };
 		C0697C571D85E1F300269434 /* LocationPermissionsDeniedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPermissionsDeniedViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +226,6 @@
 				C0134F931ABF43A500B62BA3 /* Social.framework in Frameworks */,
 				C0134F911ABF439E00B62BA3 /* Security.framework in Frameworks */,
 				C0134F8F1ABF439900B62BA3 /* QuartzCore.framework in Frameworks */,
-				C064B5F21BEBEC950021F2B0 /* DigitsKit.framework in Frameworks */,
 				C0134F8D1ABF439400B62BA3 /* MobileCoreServices.framework in Frameworks */,
 				C0134F8B1ABF438F00B62BA3 /* CoreLocation.framework in Frameworks */,
 				C0134F891ABF438900B62BA3 /* CoreGraphics.framework in Frameworks */,
@@ -259,8 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */,
-				C064B5EF1BEBEC950021F2B0 /* DigitsKit.framework */,
-				C064B5F01BEBEC950021F2B0 /* DigitsKitResources.bundle */,
 				3D27FE40ECB6149B959D1687 /* Pods.framework */,
 				547CE94E4BEBDDA3311CB992 /* Pods_ShapeNote.framework */,
 			);
@@ -578,7 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C021FDA01C21EFAD009A972A /* FacebookShareViewController.xib in Resources */,
-				C064B5F31BEBEC950021F2B0 /* DigitsKitResources.bundle in Resources */,
 				C092E8601A8914B6002594A5 /* CH.json in Resources */,
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C0285B801D97169C00306705 /* Favourites.storyboard in Resources */,
