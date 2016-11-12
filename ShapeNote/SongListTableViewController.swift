@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SongListTableViewController: UITableViewController, SubtitledTappable, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+class SongListTableViewController: UITableViewController, SubtitledTappable, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, IntroHandler {
     
     var _songs:[Song]?
     var songs:[Song] {
