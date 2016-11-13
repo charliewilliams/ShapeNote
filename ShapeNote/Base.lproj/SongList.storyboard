@@ -323,7 +323,7 @@
                     <tabBarItem key="tabBarItem" title="Songs" image="playlists" id="M5d-e3-idT"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="c6n-hA-cyN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c6n-hA-cyN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

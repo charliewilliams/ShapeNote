@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.backgroundColor = backgroundImageColor
         
-        Fabric.with([Crashlytics(), Twitter()])
+        #if DEBUG
+            Fabric.with([Crashlytics(), Twitter()])
+        #endif
         
         JSONLoader.sharedLoader.handleFirstRun()
 

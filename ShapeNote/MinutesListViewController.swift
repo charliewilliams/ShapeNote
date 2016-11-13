@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 let tableViewHeaderHeight:CGFloat = 50
+let tableViewRowHeight:CGFloat = 44
 
 class MinutesListViewController: UITableViewController {
 
@@ -57,8 +58,10 @@ class MinutesListViewController: UITableViewController {
             updateNoMinutesView()
         }
     }
-    
-    // MARK: - Table view data source
+}
+
+// MARK: - Table view data source
+extension MinutesListViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -89,14 +92,17 @@ class MinutesListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return tableViewRowHeight
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableViewHeaderHeight
     }
-    
-    // MARK: Navigation
+}
+
+// MARK: Navigation
+extension MinutesListViewController {
+
     @IBAction func newMinutesButtonPressed(_ sender: UIButton) {
         
         if let _ = CoreDataHelper.sharedHelper.currentlySelectedGroup,

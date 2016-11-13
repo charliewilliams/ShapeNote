@@ -16,8 +16,8 @@ class MinuteTakingViewController: UITableViewController {
     @IBOutlet var doneButton: UIBarButtonItem!
     
     var minutes:Minutes? // the minutes object, which is a collection of lessons
-    var _lessons:[Lesson]?
-    var lessons:[Lesson]? { // all of the lessons from the minutes object
+    private var _lessons:[Lesson]?
+    fileprivate var lessons:[Lesson]? { // all of the lessons from the minutes object
         get {
             
             if minutes == nil {
@@ -45,10 +45,6 @@ class MinuteTakingViewController: UITableViewController {
             return _lessons
         }
     }
-    
-    func setNeedsReload() {
-        _lessons = nil
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +67,10 @@ class MinuteTakingViewController: UITableViewController {
         super.viewDidAppear(animated)
         setNeedsReload() //?
         minutesTableView.reloadData()
+    }
+    
+    func setNeedsReload() {
+        _lessons = nil
     }
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
@@ -96,6 +96,9 @@ class MinuteTakingViewController: UITableViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+}
+
+extension MinuteTakingViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -154,9 +157,10 @@ class MinuteTakingViewController: UITableViewController {
         }
         return tableViewHeaderHeight
     }
+}
     
-    
-    // MARK: Navigation
+// MARK: Navigation
+extension MinuteTakingViewController {
     
     override func didMove(toParentViewController parent: UIViewController?) {
         

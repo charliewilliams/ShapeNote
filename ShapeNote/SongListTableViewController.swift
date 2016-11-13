@@ -234,6 +234,8 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         let searchResults = songs
         
         let fullSearchText = searchController.searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
+        Answers.logSearch(withQuery: fullSearchText, customAttributes: ["group":Defaults.currentGroupName ?? "none"])
+        
         let searchItems = fullSearchText.components(separatedBy: " ") as [String]
         
         // Build all the "AND" expressions for each value in the searchString.

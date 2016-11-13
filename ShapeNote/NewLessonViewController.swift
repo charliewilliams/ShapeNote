@@ -42,6 +42,31 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     var dedication:String?
     var assistant:Singer?
     var otherEvent:String?
+    var songs:[Song] = CoreDataHelper.sharedHelper.songs()
+    lazy var singers:[Singer] = {
+        
+        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: { (s1:Singer, s2:Singer) -> Bool in
+            return s1.lastSingDate > s2.lastSingDate // overall, most recent first
+        }) else {
+            return []
+        }
+        
+        let todaySingers = allSingers.filter({ (s:Singer) -> Bool in
+            return s.lastSingDate > yesterday.timeIntervalSince1970
+        }).sorted(by: { (s1:Singer, s2:Singer) -> Bool in
+            return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
+        })
+        
+        let singersFromLastWeekButNotToday = allSingers.filter { (s:Singer) -> Bool in
+            return todaySingers.index(of: s) == nil && s.lastSingDate > lastWeekPlusOneDay
+        }
+        
+        let allOtherSingers = allSingers.filter { (s:Singer) -> Bool in
+            return todaySingers.index(of: s) == nil && singersFromLastWeekButNotToday.index(of: s) == nil
+        }
+        
+        return singersFromLastWeekButNotToday + todaySingers + allOtherSingers
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -75,9 +100,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchBar.scopeButtonTitles = ["Leader", "Song", "Assisted by", "Dedication"]
         searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue
         tableView.tableHeaderView = searchBar
-        
-//        searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 128))
-//        view.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,6 +114,9 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
             searchBar.becomeFirstResponder()
         }
     }
+}
+
+extension NewLessonViewController {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchAndScope()
@@ -226,9 +251,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         }
         return true
     }
-    
-    //MARK: TableView
-    
+}
+
+//MARK: TableView
+extension NewLessonViewController {
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchController.isActive {
@@ -510,8 +537,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-    
-    //MARK: Button actions
+}
+
+//MARK: Button actions
+extension NewLessonViewController {
     
     @IBAction func donePressed(_ sender: AnyObject) {
         
@@ -543,37 +572,10 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         
         let _ = navigationController?.popViewController(animated: true)
     }
-    
-    //MARK: fancy getters & setters
-    
-    lazy var singers:[Singer] = {
-        
-        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: { (s1:Singer, s2:Singer) -> Bool in
-            return s1.lastSingDate > s2.lastSingDate // overall, most recent first
-        }) else {
-            return []
-        }
-        
-        let todaySingers = allSingers.filter({ (s:Singer) -> Bool in
-            return s.lastSingDate > yesterday.timeIntervalSince1970
-        }).sorted(by: { (s1:Singer, s2:Singer) -> Bool in
-            return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
-        })
-        
-        let singersFromLastWeekButNotToday = allSingers.filter({ (s:Singer) -> Bool in
-            return todaySingers.index(of: s) == nil && s.lastSingDate > lastWeekPlusOneDay
-        })
-        
-        let allOtherSingers = allSingers.filter({ (s:Singer) -> Bool in
-            return todaySingers.index(of: s) == nil && singersFromLastWeekButNotToday.index(of: s) == nil
-        })
-        
-        return singersFromLastWeekButNotToday + todaySingers + allOtherSingers
-    }()
-    
-    lazy var songs:[Song] = {
-        return CoreDataHelper.sharedHelper.songs()
-    }()
+}
+
+//MARK: fancy getters & setters
+extension NewLessonViewController {
     
     var searchingSongs:Bool {
         get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.searchSongs.rawValue }
