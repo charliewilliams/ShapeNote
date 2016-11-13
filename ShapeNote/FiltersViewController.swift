@@ -9,7 +9,7 @@
 import UIKit
 import JFADoubleSlider
 
-enum FilterType {
+enum FilterType: String {
     case unfavorited
     case favorited
     case fugue
@@ -18,8 +18,8 @@ enum FilterType {
     case minor
     case duple
     case triple
-    case notes
-    case noNotes
+    case notes = "with notes"
+    case noNotes = "without notes"
 }
 
 typealias PopularityFilterPair = (minValue:Float, maxValue:Float)
@@ -167,13 +167,13 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     }
     
     func minValueChanged(_ newValue:Float) {
-        print(newValue)
+        
         songListViewController.popularityFilter = (minValue:newValue, maxValue:songListViewController.popularityFilter?.maxValue ?? 1.0)
         updateCount()
     }
     
     func maxValueChanged(_ newValue:Float) {
-        print(newValue)
+        
         songListViewController.popularityFilter = (minValue:songListViewController.popularityFilter?.minValue ?? 0.0, maxValue:newValue)
         updateCount()
     }

@@ -25,7 +25,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     var activeFilters = [FilterType]()
     var sortType: SortType = .number
     var sortOrder: SortOrder = .ascending
-    var popularityFilter:PopularityFilterPair?
+    var popularityFilter: PopularityFilterPair?
     
     var searchController: UISearchController!
     var searchTableView: SearchResultsTableViewController!
@@ -67,6 +67,8 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         
         headerTapGestureRecognizer.addTarget(self, action: #selector(headerTapped))
         
+        tableView.setContentOffset(.zero, animated: false)
+        
         buildBookPickerButton()
     }
     
@@ -74,8 +76,9 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         super.viewWillAppear(animated)
         
         _songs = nil
+        _filteredSongs = nil
         tableView.reloadData()
-        tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height)
+        tableView.contentOffset = .zero
         
         updateTitle()
     }
@@ -88,50 +91,56 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     
     // MARK: - Filtering
     
+    private var _filteredSongs: [Song]!
     var filteredSongs:[Song] {
         
-        var filteredSongs = songs
-        
-        for filter in activeFilters {    
-            filteredSongs = filteredSongs.filter { (song:Song) -> Bool in
-                switch filter {
-                case .unfavorited:
-                    return !song.favorited
-                case .favorited:
-                    return song.favorited
-                case .fugue:
-                    return song.type == "Fugue"
-                case .plain:
-                    return song.type == "Plain"
-                case .major:
-                    return song.key == "Major"
-                case .minor:
-                    return song.key == "Minor"
-                case .duple:
-                    return song.isDuple
-                case .triple:
-                    return song.isTriple
-                case .notes:
-                    if let count = song.notes?.characters.count {
-                        return count > 0
+        if _filteredSongs == nil {
+            
+            var _songs = songs
+            
+            for filter in activeFilters {
+                _songs = _songs.filter { (song:Song) -> Bool in
+                    switch filter {
+                    case .unfavorited:
+                        return !song.favorited
+                    case .favorited:
+                        return song.favorited
+                    case .fugue:
+                        return song.type == "Fugue"
+                    case .plain:
+                        return song.type == "Plain"
+                    case .major:
+                        return song.key == "Major"
+                    case .minor:
+                        return song.key == "Minor"
+                    case .duple:
+                        return song.isDuple
+                    case .triple:
+                        return song.isTriple
+                    case .notes:
+                        if let count = song.notes?.characters.count {
+                            return count > 0
+                        }
+                        return false
+                    case .noNotes:
+                        return song.notes == nil || song.notes?.characters.count == 0
                     }
-                    return false
-                case .noNotes:
-                    return song.notes == nil || song.notes?.characters.count == 0
                 }
             }
+            
+            if let popularityFilter = popularityFilter {
+                _songs = _songs.filter { (song:Song) -> Bool in
+                    
+                    let percentage = Float(song.popularity) / Float(songs.count)
+                    return percentage <= popularityFilter.maxValue && percentage >= popularityFilter.minValue
+                }
+            }
+            // TODO show something in the background if you've filtered out everything
+            
+            _filteredSongs = sort(songs: _songs)
         }
         
-        if let popularityFilter = popularityFilter {
-            filteredSongs = filteredSongs.filter({ (song:Song) -> Bool in
-                
-                let percentage = Float(song.popularity) / Float(songs.count)
-                return percentage <= popularityFilter.maxValue && percentage >= popularityFilter.minValue
-            })
-        }
-        // TODO show something in the background if you've filtered out everything
-        
-        return sort(songs: filteredSongs)
+        return _filteredSongs
     }
     
     func sort(songs: [Song]) -> [Song] {
@@ -171,12 +180,30 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         }
         
         _songs = nil
+        _filteredSongs = nil
+        
         updateTitle()
         tableView.reloadData()
     }
     
     func updateTitle() {
-        subtitle = "Sorted by \(sortDescription(forType: sortType, order: sortOrder))"
+        
+        var filterString: String = ""
+        
+        if let first = activeFilters.first {
+
+            var otherFilters = activeFilters
+            _ = otherFilters.removeFirst()
+            
+            filterString += first.rawValue.capitalized + " "
+            
+            for filter in otherFilters {
+                filterString += filter.rawValue + " "
+            }
+        }
+        
+        let filterDescription = filterString + " - "
+        subtitle = "\(filtering ? filterDescription : "")Sorted by \(sortDescription(forType: sortType, order: sortOrder))"
     }
     
     // MARK: - Pull to search
@@ -283,8 +310,9 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         return cell
     }
     
+    let tableViewRowHeight: CGFloat = 44
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return tableViewRowHeight
     }
 
     // MARK: - Navigation
