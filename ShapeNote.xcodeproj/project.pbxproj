@@ -10,18 +10,6 @@
 		C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */; };
 		C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C8DF1CCBB30200292F06 /* DataValidity.swift */; };
 		C012C8E21CCBB63F00292F06 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C8E11CCBB63F00292F06 /* Notifications.swift */; };
-		C0134F831ABF437800B62BA3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F821ABF437800B62BA3 /* Accounts.framework */; };
-		C0134F851ABF437F00B62BA3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F841ABF437F00B62BA3 /* AudioToolbox.framework */; };
-		C0134F871ABF438300B62BA3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F861ABF438300B62BA3 /* CFNetwork.framework */; };
-		C0134F891ABF438900B62BA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F881ABF438900B62BA3 /* CoreGraphics.framework */; };
-		C0134F8B1ABF438F00B62BA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F8A1ABF438F00B62BA3 /* CoreLocation.framework */; };
-		C0134F8D1ABF439400B62BA3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F8C1ABF439400B62BA3 /* MobileCoreServices.framework */; };
-		C0134F8F1ABF439900B62BA3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F8E1ABF439900B62BA3 /* QuartzCore.framework */; };
-		C0134F911ABF439E00B62BA3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F901ABF439E00B62BA3 /* Security.framework */; };
-		C0134F931ABF43A500B62BA3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F921ABF43A500B62BA3 /* Social.framework */; };
-		C0134F971ABF43B200B62BA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */; };
-		C0134F991ABF43BA00B62BA3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F981ABF43BA00B62BA3 /* libz.dylib */; };
-		C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */; };
 		C021FD9F1C21EFAD009A972A /* FacebookShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */; };
 		C021FDA01C21EFAD009A972A /* FacebookShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */; };
 		C0285B801D97169C00306705 /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0285B7E1D97169C00306705 /* Favourites.storyboard */; };
@@ -35,6 +23,7 @@
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
 		C04D219B1DD7B67C00B98D86 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C04D219C1DD7B68100B98D86 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
+		C04D219D1DD86A8400B98D86 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
@@ -111,18 +100,6 @@
 		C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
 		C012C8DF1CCBB30200292F06 /* DataValidity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidity.swift; sourceTree = "<group>"; };
 		C012C8E11CCBB63F00292F06 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		C0134F821ABF437800B62BA3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		C0134F841ABF437F00B62BA3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		C0134F861ABF438300B62BA3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		C0134F881ABF438900B62BA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C0134F8A1ABF438F00B62BA3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C0134F8C1ABF439400B62BA3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		C0134F8E1ABF439900B62BA3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C0134F901ABF439E00B62BA3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C0134F921ABF43A500B62BA3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		C0134F981ABF43BA00B62BA3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C021FD9C1C21EAEA009A972A /* ShapeNote 0.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.5.xcdatamodel"; sourceTree = "<group>"; };
 		C021FD9D1C21EFAD009A972A /* FacebookShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookShareViewController.swift; sourceTree = "<group>"; };
 		C021FD9E1C21EFAD009A972A /* FacebookShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookShareViewController.xib; sourceTree = "<group>"; };
@@ -215,18 +192,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0134F9B1ABF43C000B62BA3 /* libsqlite3.dylib in Frameworks */,
-				C0134F991ABF43BA00B62BA3 /* libz.dylib in Frameworks */,
-				C0134F971ABF43B200B62BA3 /* SystemConfiguration.framework in Frameworks */,
-				C0134F931ABF43A500B62BA3 /* Social.framework in Frameworks */,
-				C0134F911ABF439E00B62BA3 /* Security.framework in Frameworks */,
-				C0134F8F1ABF439900B62BA3 /* QuartzCore.framework in Frameworks */,
-				C0134F8D1ABF439400B62BA3 /* MobileCoreServices.framework in Frameworks */,
-				C0134F8B1ABF438F00B62BA3 /* CoreLocation.framework in Frameworks */,
-				C0134F891ABF438900B62BA3 /* CoreGraphics.framework in Frameworks */,
-				C0134F871ABF438300B62BA3 /* CFNetwork.framework in Frameworks */,
-				C0134F851ABF437F00B62BA3 /* AudioToolbox.framework in Frameworks */,
-				C0134F831ABF437800B62BA3 /* Accounts.framework in Frameworks */,
 				C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */,
 				C04D219C1DD7B68100B98D86 /* TwitterKit.framework in Frameworks */,
 				C04D219B1DD7B67C00B98D86 /* TwitterCore.framework in Frameworks */,
@@ -262,26 +227,6 @@
 				76F72A61DC124AED2D74251E /* Pods-ShapeNote.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		C0134F9C1ABF43C600B62BA3 /* Parse Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C0134F9A1ABF43C000B62BA3 /* libsqlite3.dylib */,
-				C0134F981ABF43BA00B62BA3 /* libz.dylib */,
-				C0134F961ABF43B200B62BA3 /* SystemConfiguration.framework */,
-				C0134F921ABF43A500B62BA3 /* Social.framework */,
-				C0134F901ABF439E00B62BA3 /* Security.framework */,
-				C0134F8E1ABF439900B62BA3 /* QuartzCore.framework */,
-				C0134F8C1ABF439400B62BA3 /* MobileCoreServices.framework */,
-				C0134F8A1ABF438F00B62BA3 /* CoreLocation.framework */,
-				C0134F881ABF438900B62BA3 /* CoreGraphics.framework */,
-				C0134F861ABF438300B62BA3 /* CFNetwork.framework */,
-				C0134F841ABF437F00B62BA3 /* AudioToolbox.framework */,
-				C0134F821ABF437800B62BA3 /* Accounts.framework */,
-			);
-			name = "Parse Frameworks";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		C02E18901BF11BB800FF2057 /* Minute-taking */ = {
@@ -372,7 +317,6 @@
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
-				C0134F9C1ABF43C600B62BA3 /* Parse Frameworks */,
 				C0C1D5181A868F6B0082C0EB /* Fabric */,
 			);
 			path = ShapeNote;
@@ -575,6 +519,7 @@
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
 				C072206C1DD763F200CE9CAC /* About.storyboard in Resources */,
+				C04D219D1DD86A8400B98D86 /* TwitterKitResources.bundle in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
