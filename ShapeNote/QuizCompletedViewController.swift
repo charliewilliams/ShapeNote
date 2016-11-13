@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class QuizCompletedViewController: UIViewController {
 
@@ -20,6 +21,9 @@ class QuizCompletedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        Answers.logCustomEvent(withName: "QuizCompleted", customAttributes: ["group":Defaults.currentGroupName ?? "none",
+                                                                             "score":Float(numberCorrect)/Float(numberOfQuestions)])
         
         headlineLabel.text = phraseForScore().string
         backgroundImageView.image = phraseForScore().image

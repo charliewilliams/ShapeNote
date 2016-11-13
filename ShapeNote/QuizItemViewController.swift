@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 let tickmark = "✔︎"
 let cross = "✘"
@@ -23,7 +24,7 @@ class QuizItemViewController: UIViewController {
     var currentQuestionNumber = 0
     var numberOfCorrectQuestions = 0
     let numberOfQuestionsPerRound = 10
-    var question:QuizOption? {
+    var question:QuizOption! {
         didSet {
             if let question = question,
             let answers = question.answers {
@@ -37,6 +38,7 @@ class QuizItemViewController: UIViewController {
             }
         }
     }
+    
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerButton1: UIButton!
     @IBOutlet var answerButton2: UIButton!
@@ -63,13 +65,13 @@ class QuizItemViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = backgroundImageColor
-        setIndicatorsVisible(false, correctIndex:0)
+        setIndicatorsVisible(false)
         nextQuestion()
     }
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         
-        guard let index = question?.answerIndex else { fatalError() }
+        let index = question.answerIndex
         
         if index == sender.tag {
             answered(true, correctIndex:index)
@@ -95,7 +97,7 @@ class QuizItemViewController: UIViewController {
     @IBAction func nextQuestion() {
         
         nextButtonToBottomConstraint.constant = NextButtonConstraint.hidden.rawValue
-        setIndicatorsVisible(false, correctIndex: 0)
+        setIndicatorsVisible(false)
         
         guard currentQuestionNumber < numberOfQuestionsPerRound else {
             finishRound()
@@ -109,9 +111,15 @@ class QuizItemViewController: UIViewController {
         }
         
         question = QuizQuestionProvider.sharedProvider.nextQuestion()
+        
+        Answers.logCustomEvent(withName: "QuizQuestion", customAttributes: ["group":Defaults.currentGroupName ?? "none",
+                                                                            "questionNumber":currentQuestionNumber,
+                                                                            "questionType": question.questionType.rawValue,
+                                                                            "answerType": question.answerType.rawValue])
     }
     
     func finishRound() {
+        
         let endViewController = QuizCompletedViewController()
         endViewController.numberCorrect = numberOfCorrectQuestions
         endViewController.numberOfQuestions = numberOfQuestionsPerRound
@@ -121,10 +129,15 @@ class QuizItemViewController: UIViewController {
     }
     
     @IBAction func finishPressed(_ sender: AnyObject) {
+        
+        Answers.logCustomEvent(withName: "QuizCancelled", customAttributes: ["group":Defaults.currentGroupName ?? "none",
+                                                                            "questionNumber":currentQuestionNumber,
+                                                                            "score":Float(numberOfCorrectQuestions)/Float(numberOfQuestionsPerRound)])
+        
         let _ = navigationController?.popViewController(animated: true)
     }
     
-    func setIndicatorsVisible(_ visible:Bool, correctIndex:Int) {
+    func setIndicatorsVisible(_ visible:Bool, correctIndex:Int = 0) {
         
         if visible {
             

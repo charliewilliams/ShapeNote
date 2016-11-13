@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Crashlytics
 
 enum ScopeBarIndex: Int {
     case searchLeaders = 0
@@ -48,6 +49,8 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        Answers.logContentView(withName: String(describing: self.classForCoder), contentType: nil, contentId: nil, customAttributes: ["group":Defaults.currentGroupName ?? "none"])
         
         buildSearchController()
         extendedLayoutIncludesOpaqueBars = true

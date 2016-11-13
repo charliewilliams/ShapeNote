@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 let favoritedString = "★"
 let unfavoritedString = "☆"
@@ -87,6 +88,10 @@ class SongListTableViewCell: UITableViewCell {
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         guard let song = song else { fatalError("No song attached to cell") }
         song.favorited = !song.favorited
+        
+        print("Favorited/unfavorited \(song.title), \(song.number), \(song.book.title)")
+        Answers.logCustomEvent(withName: song.favorited ? "Favorite" : "Unfavorite", customAttributes: ["title":song.title, "number":song.number, "book":song.book.title])
+        
         self.songListTableView?.reloadData()
     }
     

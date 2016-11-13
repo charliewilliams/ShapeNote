@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Crashlytics
 
 class SongListTableViewController: UITableViewController, SubtitledTappable, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, IntroHandler {
     
@@ -80,6 +81,13 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         tableView.reloadData()
         tableView.contentOffset = .zero
         
+        var activeFilterNames = [String]()
+        for filter in activeFilters {
+            activeFilterNames.append(filter.rawValue)
+        }
+        print("Filters active: \(activeFilterNames)")
+        Answers.logCustomEvent(withName: "Filters", customAttributes: ["active":activeFilterNames])
+        
         updateTitle()
     }
     
@@ -147,7 +155,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         
         let ascending = sortOrder == .ascending
         
-        let sorted = songs.sorted { (l:Song, r:Song) -> Bool in
+        var sorted = songs.sorted { (l:Song, r:Song) -> Bool in
             
             switch sortType {
             case .number:
@@ -156,6 +164,12 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
                 return l.year < r.year
             case .popularity:
                 return l.popularity < r.popularity
+            }
+        }
+        
+        if sortType == .date {
+            sorted = sorted.filter { (s:Song) -> Bool in
+                return s.year > 0
             }
         }
         

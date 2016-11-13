@@ -15,7 +15,6 @@ class SearchResultsTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.registerClass(SongListTableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "SongListTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }
     

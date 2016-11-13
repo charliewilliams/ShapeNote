@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Social
+import Crashlytics
 
 class MinuteTakingViewController: UITableViewController {
     
@@ -52,6 +52,8 @@ class MinuteTakingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Answers.logContentView(withName: String(describing: self.classForCoder), contentType: nil, contentId: nil, customAttributes: ["group":Defaults.currentGroupName ?? "none"])
         
         doneButton.isEnabled = false
 

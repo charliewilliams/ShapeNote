@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="r5W-f3-8Tz">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="N38-IN-3uz">
+            <objects>
+                <viewController id="r5W-f3-8Tz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ffi-rT-i0s"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ver-ra-2fA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uw8-O9-opy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageOpen" translatesAutoresizingMaskIntoConstraints="NO" id="Uar-Bd-k0J">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ver-ra-2fA" firstAttribute="top" secondItem="Uar-Bd-k0J" secondAttribute="bottom" id="A7W-Pj-bnw"/>
+                            <constraint firstAttribute="trailing" secondItem="Uar-Bd-k0J" secondAttribute="trailing" id="Um3-KP-21O"/>
+                            <constraint firstItem="Uar-Bd-k0J" firstAttribute="top" secondItem="ffi-rT-i0s" secondAttribute="bottom" constant="-20" id="c4a-6P-4rh"/>
+                            <constraint firstItem="Uar-Bd-k0J" firstAttribute="leading" secondItem="uw8-O9-opy" secondAttribute="leading" id="gRg-40-HFI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GSk-eM-nb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="47"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pageOpen" width="600" height="920"/>
+    </resources>
+</document>

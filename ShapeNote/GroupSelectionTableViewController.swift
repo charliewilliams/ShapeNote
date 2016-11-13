@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 let reuseIdentifier = "cell"
 
@@ -47,8 +48,12 @@ class GroupSelectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath)!
-        Defaults.currentGroupName = cell.textLabel!.text
+        if let cell = tableView.cellForRow(at: indexPath),
+            let groupName = cell.textLabel!.text {
+            
+            Defaults.currentGroupName = groupName
+            Answers.logCustomEvent(withName: "Group Selection", customAttributes: ["name":groupName])
+        }
         
         _ = navigationController?.popViewController(animated: true)
     }

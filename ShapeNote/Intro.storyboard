@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11535.1" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SJP-jW-9Lu">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SJP-jW-9Lu">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11523"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,25 +19,25 @@
                         <viewControllerLayoutGuide type="bottom" id="Jp2-mJ-w9Z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Beq-f7-VEY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageOpen" translatesAutoresizingMaskIntoConstraints="NO" id="GoS-6a-9FO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-He-MTv" userLabel="Black overlay view">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.34463291952054792" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nice one! You've acquired the" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtB-h6-V18">
-                                <rect key="frame" x="49.5" y="60" width="276.5" height="23"/>
+                                <rect key="frame" x="68.666666666666686" y="60" width="276.66666666666663" height="23"/>
                                 <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="22"/>
                                 <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shapenote Minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="W3D-6c-syX">
-                                <rect key="frame" x="77" y="93" width="222" height="28"/>
+                                <rect key="frame" x="96.333333333333343" y="93" width="221.66666666666666" height="28"/>
                                 <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="27"/>
                                 <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +49,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Companion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-lo-emC">
-                                <rect key="frame" x="27.5" y="113" width="320.5" height="65"/>
+                                <rect key="frame" x="46.333333333333343" y="113" width="320.33333333333337" height="65"/>
                                 <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="64"/>
                                 <color key="textColor" red="0.96374198720000004" green="0.96374198720000004" blue="0.96374198720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -60,13 +61,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2G-A5-JWa">
-                                <rect key="frame" x="68" y="198" width="240" height="300"/>
+                                <rect key="frame" x="87" y="254.66666666666663" width="240" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="jOG-h4-JdM">
-                                        <rect key="frame" x="10" y="10" width="220" height="280"/>
+                                        <rect key="frame" x="10" y="10.000000000000028" width="220" height="280"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Keep a list of your favorite songs here, instead of folding down your book's page corners" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzh-Tv-6oE">
-                                                <rect key="frame" x="0.0" y="0.0" width="220" height="50.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="50.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -78,13 +79,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Search by lyrics" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJR-yz-CLf">
-                                                <rect key="frame" x="0.0" y="148.5" width="220" height="17"/>
+                                                <rect key="frame" x="0.0" y="148.66666666666663" width="220" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.25424679490000002" green="0.25424679490000002" blue="0.25424679490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Quick minute-taking" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBi-P6-gOV">
-                                                <rect key="frame" x="0.0" y="181.5" width="220" height="17"/>
+                                                <rect key="frame" x="0.0" y="181.33333333333331" width="220" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -96,7 +97,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➽ Test your knowledge with the Shapenote quiz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2nU-fr-bA2">
-                                                <rect key="frame" x="0.0" y="246.5" width="220" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="246.33333333333331" width="220" height="33.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.25424679487179491" green="0.25424679487179491" blue="0.25424679487179491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -126,7 +127,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZY-V4-Gcn">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MU9-Pr-CUS"/>
@@ -144,6 +145,7 @@
                         <constraints>
                             <constraint firstItem="MtB-h6-V18" firstAttribute="top" secondItem="nIa-vd-3Ez" secondAttribute="bottom" constant="40" id="4ub-Ix-cKg"/>
                             <constraint firstItem="MtB-h6-V18" firstAttribute="centerX" secondItem="Beq-f7-VEY" secondAttribute="centerX" id="8EG-Zt-660"/>
+                            <constraint firstItem="e2G-A5-JWa" firstAttribute="centerY" secondItem="Beq-f7-VEY" secondAttribute="centerY" multiplier="1.1" id="Fgh-9T-K4w"/>
                             <constraint firstItem="e2G-A5-JWa" firstAttribute="centerX" secondItem="Beq-f7-VEY" secondAttribute="centerX" id="Hpn-Rx-gqY"/>
                             <constraint firstItem="5sd-He-MTv" firstAttribute="width" secondItem="Beq-f7-VEY" secondAttribute="width" id="Htb-QU-raw"/>
                             <constraint firstItem="e2G-A5-JWa" firstAttribute="centerY" secondItem="Beq-f7-VEY" secondAttribute="centerY" constant="60" id="IZW-vE-C38"/>
@@ -169,7 +171,14 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Fgh-9T-K4w"/>
                                 <exclude reference="IZW-vE-C38"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Fgh-9T-K4w"/>
+                                <exclude reference="om3-Qy-kiy"/>
                             </mask>
                         </variation>
                     </view>

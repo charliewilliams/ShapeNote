@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -113,7 +113,7 @@
 		<string>FontAwesome.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>Intro</string>
+	<string>Launch</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

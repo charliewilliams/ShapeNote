@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class FacebookShareViewController: UIViewController, UITextViewDelegate {
     
@@ -30,6 +31,8 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Answers.logContentView(withName: String(describing: self.classForCoder), contentType: nil, contentId: nil, customAttributes: ["minutes":minutes.stringForSocialMedia(), "count":minutes.songs.count])
         
         observers.append(NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: OperationQueue.main) { [weak self] (note:Foundation.Notification) -> Void in
             

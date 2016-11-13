@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class QuizSetupViewController: UITableViewController {
     
@@ -18,11 +19,15 @@ class QuizSetupViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Answers.logContentView(withName: String(describing: self.classForCoder), contentType: nil, contentId: nil, customAttributes: ["group":Defaults.currentGroupName ?? "none"])
+        
         view.backgroundColor = backgroundImageColor
     }
 
     @IBAction func showAllButtonPressed(_ sender: UIBarButtonItem) {
         quizQuestionProvider.filtering = !quizQuestionProvider.filtering
+        
+        Answers.logCustomEvent(withName: "QuizShowAll", customAttributes: ["enabled":quizQuestionProvider.filtering])
         
         if quizQuestionProvider.filtering {
             showAllButton.title = "Show All"
@@ -88,6 +93,4 @@ class QuizSetupViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return quizQuestionProvider.quizOptions.count
     }
-
-
 }

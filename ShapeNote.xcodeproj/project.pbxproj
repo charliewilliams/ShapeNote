@@ -24,6 +24,7 @@
 		C04D219B1DD7B67C00B98D86 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C04D219C1DD7B68100B98D86 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
 		C04D219D1DD86A8400B98D86 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
+		C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04D219E1DD8C80600B98D86 /* Launch.storyboard */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
@@ -69,7 +70,6 @@
 		C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */; };
 		C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */; };
 		C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */; };
-		C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C964501C176E8000CB1444 /* HelloCWViewController.swift */; };
 		C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */; };
 		C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */; };
 		C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E171BFFBEBC000CCF81 /* Minutes.storyboard */; };
@@ -113,6 +113,7 @@
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C04311701DB4E4920015C180 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
+		C04D219E1DD8C80600B98D86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C0515B5B1A7BA59D0006ED16 /* ShapeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B5F1A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B601A7BA59D0006ED16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,7 +173,6 @@
 		C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizCompletedViewController.xib; sourceTree = "<group>"; };
 		C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterShareHelper.swift; sourceTree = "<group>"; };
 		C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitledTappable.swift; sourceTree = "<group>"; };
-		C0C964501C176E8000CB1444 /* HelloCWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloCWViewController.swift; sourceTree = "<group>"; };
 		C0CFCA5C1AA88C1F000C80DF /* ShapeNote 0. 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0. 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongListTableViewCell.xib; sourceTree = "<group>"; };
@@ -290,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
+				C04D219E1DD8C80600B98D86 /* Launch.storyboard */,
 				C04311701DB4E4920015C180 /* UIViewController.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
@@ -310,7 +311,6 @@
 				C0EA4E291C01B258000CCF81 /* Intro.storyboard */,
 				C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */,
 				C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */,
-				C0C964501C176E8000CB1444 /* HelloCWViewController.swift */,
 				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
 				C072206A1DD763F200CE9CAC /* About.storyboard */,
 				C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */,
@@ -521,6 +521,7 @@
 				C072206C1DD763F200CE9CAC /* About.storyboard in Resources */,
 				C04D219D1DD86A8400B98D86 /* TwitterKitResources.bundle in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
+				C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */,
 				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
 				C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */,
@@ -628,7 +629,6 @@
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
 				C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */,
-				C0C964521C176E8000CB1444 /* HelloCWViewController.swift in Sources */,
 				C04311711DB4E4920015C180 /* UIViewController.swift in Sources */,
 				C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,

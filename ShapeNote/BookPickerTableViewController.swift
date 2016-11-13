@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class BookPickerTableViewController: UITableViewController {
     
@@ -47,7 +48,12 @@ class BookPickerTableViewController: UITableViewController {
         
         if let cell = tableView.cellForRow(at: indexPath),
             let title = cell.textLabel?.text {
+            
             Defaults.currentlySelectedBookTitle = title
+            
+            print("Switched book to \(title)")
+            Answers.logCustomEvent(withName: "Switched book", customAttributes: ["title":title])
+            
         }
         
         _ = self.navigationController?.popViewController(animated: true)
