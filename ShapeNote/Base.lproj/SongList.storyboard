@@ -13,8 +13,8 @@
         <scene sceneID="IVu-nV-GIw">
             <objects>
                 <tableViewController title="Sacred Harp" id="pwM-Va-lag" customClass="SongListTableViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OoA-wg-ntw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OoA-wg-ntw">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <connections>
@@ -22,6 +22,7 @@
                             <outlet property="delegate" destination="pwM-Va-lag" id="Xsg-pw-y3i"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Title" id="h7t-20-rAS">
                         <barButtonItem key="leftBarButtonItem" image="notebook" id="B6c-BR-lRp"/>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="nIO-Hn-Rhl">

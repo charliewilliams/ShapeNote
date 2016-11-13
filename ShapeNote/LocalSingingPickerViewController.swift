@@ -62,8 +62,8 @@ extension LocalSingingPickerViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
         
+        print(error)
     }
 }
 
