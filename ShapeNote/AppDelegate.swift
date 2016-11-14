@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         #if DEBUG
             Fabric.with([Crashlytics(), Twitter()])
+        #else
+            Fabric.with([Twitter()])
         #endif
         
         JSONLoader.sharedLoader.handleFirstRun()
