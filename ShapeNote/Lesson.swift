@@ -80,7 +80,7 @@ class Lesson: NSManagedObject {
         
         userString += allLeadersString(useTwitterHandles: true)
         
-        userString += leader.count == 1 ? " is leading" : " are leading "
+        userString += leader.count == 1 ? " is leading " : " are leading "
         
         var number = song.number
         if number.hasPrefix("0") {
