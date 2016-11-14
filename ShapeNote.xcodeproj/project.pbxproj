@@ -19,7 +19,7 @@
 		C02E18A61BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */; };
 		C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */; };
 		C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043116E1DB4DDC70015C180 /* TabBarController.swift */; };
-		C04311711DB4E4920015C180 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* UIViewController.swift */; };
+		C04311711DB4E4920015C180 /* UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* UITableViewController.swift */; };
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
 		C04D219B1DD7B67C00B98D86 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
 		C04D219C1DD7B68100B98D86 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
@@ -111,7 +111,7 @@
 		C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTextEntryTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMinutesYetView.swift; sourceTree = "<group>"; };
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		C04311701DB4E4920015C180 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		C04311701DB4E4920015C180 /* UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
 		C04D219E1DD8C80600B98D86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C0515B5B1A7BA59D0006ED16 /* ShapeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,7 +291,7 @@
 			children = (
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
 				C04D219E1DD8C80600B98D86 /* Launch.storyboard */,
-				C04311701DB4E4920015C180 /* UIViewController.swift */,
+				C04311701DB4E4920015C180 /* UITableViewController.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
@@ -629,7 +629,7 @@
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
 				C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */,
-				C04311711DB4E4920015C180 /* UIViewController.swift in Sources */,
+				C04311711DB4E4920015C180 /* UITableViewController.swift in Sources */,
 				C09A65071A7ED9F800099E76 /* MinutesListViewController.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,
 				C021FD9F1C21EFAD009A972A /* FacebookShareViewController.swift in Sources */,

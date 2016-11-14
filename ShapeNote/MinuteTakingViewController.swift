@@ -14,10 +14,15 @@ class MinuteTakingViewController: UITableViewController {
     
     @IBOutlet weak var minutesTableView: UITableView!
     @IBOutlet var doneButton: UIBarButtonItem!
-    
-    var minutes:Minutes? // the minutes object, which is a collection of lessons
-    private var _lessons:[Lesson]?
-    fileprivate var lessons:[Lesson]? { // all of the lessons from the minutes object
+    var minutes: Minutes? // the minutes object, which is a collection of lessons
+    static let shortDateFormatter: DateFormatter = {
+        let d = DateFormatter()
+        d.dateStyle = .none
+        d.timeStyle = .short
+        return d
+    }()
+    private var _lessons: [Lesson]?
+    fileprivate var lessons: [Lesson]? { // all of the lessons from the minutes object
         get {
             
             if minutes == nil {
@@ -28,16 +33,16 @@ class MinuteTakingViewController: UITableViewController {
             
             if _lessons == nil {
                 
-                var templessons = [Lesson]()
+                var tempLessons = [Lesson]()
                 if let loadedArray:NSOrderedSet = minutes?.songs {
                     
                     loadedArray.forEach { (lesson:Any) in
                         
                         if let lesson = lesson as? Lesson {
-                            templessons.append(lesson)
+                            tempLessons.append(lesson)
                         }
                     }
-                    _lessons = templessons.sorted(by: { (first:Lesson, second:Lesson) -> Bool in
+                    _lessons = tempLessons.sorted(by: { (first:Lesson, second:Lesson) -> Bool in
                         return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
                     })
                 }
@@ -79,16 +84,16 @@ class MinuteTakingViewController: UITableViewController {
         CoreDataHelper.sharedHelper.saveContext()
         let shareVC = FacebookShareViewController()
 
-        let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .actionSheet)
         let action = UIAlertAction(title: "Post", style: .default) { (action:UIAlertAction) -> Void in
             
             shareVC.minutes = self.minutes!
             self.present(shareVC, animated: true, completion: {
-                let _ = self.navigationController?.popViewController(animated: false)
+                _ = self.navigationController?.popViewController(animated: false)
             })
         }
         let cancel = UIAlertAction(title: "Don't post", style: .cancel) { (cancel:UIAlertAction!) -> Void in
-            let _ = self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
         
         alert.addAction(cancel) // first
@@ -105,6 +110,7 @@ extension MinuteTakingViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if let lessons = lessons {
             doneButton.isEnabled = true
             return lessons.count
@@ -114,12 +120,8 @@ extension MinuteTakingViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .none
-            dateFormatter.timeStyle = .short
-            
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
         if let lessons = lessons, lessons.count > indexPath.row {
             let lesson = lessons[indexPath.row]
             var string = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
@@ -130,7 +132,7 @@ extension MinuteTakingViewController {
                 string = otherEvent
             }
             cell.textLabel?.text = string
-            cell.detailTextLabel?.text = dateFormatter.string(from: lesson.date as Date)
+            cell.detailTextLabel?.text = MinuteTakingViewController.shortDateFormatter.string(from: lesson.date as Date)
         }
         
         return cell

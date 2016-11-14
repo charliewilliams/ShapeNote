@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingersListTableViewController: UITableViewController {
+class SingersListTableViewController: UITableViewController, NoContentViewDisplaying {
 
     var singers:[Singer] {
         guard let s = CoreDataHelper.sharedHelper.singersInCurrentGroup() else {

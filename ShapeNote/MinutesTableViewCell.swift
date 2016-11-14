@@ -15,14 +15,9 @@ class MinutesTableViewCell: UITableViewCell {
     
     var minutes:Minutes?
 
-    func configureWithMinutes(_ minutes:Minutes) {
+    func configureWithMinutes(_ minutes:Minutes, dateFormatter: DateFormatter) {
         
         self.minutes = minutes
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .none
-        dateFormatter.dateStyle = .full
-        
         self.mainLabel.text = dateFormatter.string(from: minutes.date as Date)
         
         let songs = minutes.songs.count

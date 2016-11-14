@@ -8,7 +8,11 @@
 
 import UIKit
 
-extension UITableViewController {
+protocol NoContentViewDisplaying {
+    func updateNoContentView(dataCount: Int, noContentView: UIView)
+}
+
+extension NoContentViewDisplaying where Self: UITableViewController {
     
     func updateNoContentView(dataCount: Int, noContentView: UIView) {
         

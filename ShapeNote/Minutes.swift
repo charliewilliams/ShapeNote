@@ -19,6 +19,12 @@ class Minutes: NSManagedObject {
     @NSManaged var group: Group
     @NSManaged var book: Book
     @NSManaged var complete: Bool
+    static let dateFormatter: DateFormatter = {
+        let d = DateFormatter()
+        d.timeStyle = .none
+        d.dateStyle = .medium
+        return d
+    }()
     
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext!) {
         super.init(entity: entity, insertInto: context)
@@ -33,11 +39,7 @@ class Minutes: NSManagedObject {
 //            string = "Minutes for \(group.name) on "
 //        }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .none
-        dateFormatter.dateStyle = .medium
-        
-        string += dateFormatter.string(from: date)
+        string += Minutes.dateFormatter.string(from: date)
         string += ":\n\n"
         
         songs.enumerateObjects({ (object:Any!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) in

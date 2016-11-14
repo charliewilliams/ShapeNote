@@ -16,6 +16,12 @@ class MinutesListViewController: UITableViewController {
 
     @IBOutlet weak private var minutesListTableView: UITableView!
     @IBOutlet fileprivate var noMinutesYetView: UIView!
+    static let dateFormatter: DateFormatter = {
+        let d = DateFormatter()
+        d.timeStyle = .none
+        d.dateStyle = .full
+        return d
+    }()
     
     private var _allMinutes:[Minutes]?
     fileprivate var allMinutes:[Minutes] {
@@ -76,7 +82,7 @@ extension MinutesListViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MinutesTableViewCell
         
         let minute = allMinutes[indexPath.row]
-        cell.configureWithMinutes(minute)
+        cell.configureWithMinutes(minute, dateFormatter: MinutesListViewController.dateFormatter)
         
         return cell
     }
