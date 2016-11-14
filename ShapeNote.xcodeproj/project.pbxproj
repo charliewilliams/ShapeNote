@@ -266,6 +266,17 @@
 			name = "Song Lists";
 			sourceTree = "<group>";
 		};
+		C04D21A01DD9C78800B98D86 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				C04D219E1DD8C80600B98D86 /* Launch.storyboard */,
+				C0EA4E291C01B258000CCF81 /* Intro.storyboard */,
+				C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */,
+				C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */,
+			);
+			name = Intro;
+			sourceTree = "<group>";
+		};
 		C0515B521A7BA59D0006ED16 = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
-				C04D219E1DD8C80600B98D86 /* Launch.storyboard */,
+				C04D21A01DD9C78800B98D86 /* Intro */,
 				C04311701DB4E4920015C180 /* UITableViewController.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
@@ -308,9 +319,6 @@
 				C0C1D47B1A8133FC0082C0EB /* TwitterShareHelper.swift */,
 				C05626A51BEFD1B700E05EBE /* Quiz */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
-				C0EA4E291C01B258000CCF81 /* Intro.storyboard */,
-				C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */,
-				C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */,
 				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
 				C072206A1DD763F200CE9CAC /* About.storyboard */,
 				C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */,
