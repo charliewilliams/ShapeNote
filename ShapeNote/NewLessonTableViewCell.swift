@@ -24,12 +24,19 @@ class NewLessonTableViewCell: UITableViewCell {
 //        }
 //    }
     
+    func configure(leftText: String, rightText: String?, hideAddButton: Bool) {
+        
+        leftTextLabel.text = leftText
+        rightTextLabel.text = rightText
+        addButton.isHidden = hideAddButton
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         if let rightTextLabel = rightTextLabel {
             rightTextLabel.text = nil
         }
-        addButton?.isHidden = true
+        addButton.isHidden = true
     }
 }

@@ -21,9 +21,11 @@ enum ScopeBarIndex: Int {
 let minCellCount = 5
 
 enum CellIdentifier: String {
-    case Leader = "Leader"
-    case AssistedBy = "AssistedBy"
-    case Dedication = "Dedication"
+    case leader = "Leader"
+    case assistedBy = "AssistedBy"
+    case dedication = "Dedication"
+    case search = "SearchCell"
+    case twitter = "TwitterCell"
 }
 
 typealias CellType = (reuseIdentifier:CellIdentifier, index:ScopeBarIndex)
@@ -341,12 +343,12 @@ extension NewLessonViewController {
         switch index {
         case .searchLeaders: fallthrough
         case .searchSongs:
-            return CellIdentifier.Leader.rawValue
+            return CellIdentifier.leader.rawValue
         case .assistedBy:
-            return CellIdentifier.AssistedBy.rawValue
+            return CellIdentifier.assistedBy.rawValue
         case .dedication: fallthrough
         case .other:
-            return CellIdentifier.Dedication.rawValue
+            return CellIdentifier.dedication.rawValue
         }
     }
     
@@ -369,24 +371,15 @@ extension NewLessonViewController {
             
         case .searchLeaders:
             let singerCell = cell as! NewLessonTableViewCell
-            singerCell.leftTextLabel.text = "Leader"
-            if chosenSingers.count > 0 && indexPath.row == chosenSingers.count {
-                singerCell.addButton?.isHidden = false
-            } else {
-                singerCell.addButton?.isHidden = true
-            }
-            if indexPath.row < chosenSingers.count {
-                singerCell.rightTextLabel?.text = chosenSingers[indexPath.row].name
-            }
-            else {
-                singerCell.rightTextLabel?.text = nil
-            }
+            let singerName = indexPath.row < chosenSingers.count ? chosenSingers[indexPath.row].name : ""
+            let hideAddButton = chosenSingers.count > 0 && indexPath.row == chosenSingers.count
+            
+            singerCell.configure(leftText: "Leader", rightText: singerName, hideAddButton: hideAddButton)
             
         case .searchSongs:
             let songCell = cell as! NewLessonTableViewCell
-            songCell.leftTextLabel.text = "Song"
-            songCell.rightTextLabel?.text = chosenSong?.title
-            songCell.addButton.isHidden = true
+            
+            songCell.configure(leftText: "Song", rightText: chosenSong?.title, hideAddButton: true)
             
         case .assistedBy:
             let assistantCell = cell as! NewLessonAssistantTableViewCell
@@ -544,20 +537,23 @@ extension NewLessonViewController {
     
     @IBAction func donePressed(_ sender: AnyObject) {
         
-        let minutes = self.minutes!
+        defer {
+            _ = navigationController?.popViewController(animated: true)
+        }
+        
+        guard let minutes = self.minutes,
+            let song = chosenSong else {
+                return
+        }
         
         if minutes.managedObjectContext == nil {
             CoreDataHelper.managedContext.refresh(minutes, mergeChanges: true)
         }
         
         let lesson = NSEntityDescription.insertNewObject(forEntityName: "Lesson", into: minutes.managedObjectContext!) as! Lesson
+        lesson.song = song
         lesson.date = Date()
         lesson.minutes = minutes
-        
-        if let song = chosenSong {
-            lesson.song = song
-        }
-        
         lesson.leader = NSOrderedSet(array: chosenSingers)
         
         // optional stuff
@@ -569,8 +565,6 @@ extension NewLessonViewController {
         TwitterShareHelper.sharedHelper.postLesson(lesson)
         
         CoreDataHelper.sharedHelper.saveContext()
-        
-        let _ = navigationController?.popViewController(animated: true)
     }
 }
 
