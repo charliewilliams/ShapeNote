@@ -67,7 +67,7 @@ class JSONLoader: NSObject {
             book.hashTag = bookDef["hashTag"]!
             
             // load the songs
-            let songsSet = NSMutableOrderedSet();
+            let songsSet = NSMutableOrderedSet()
             let json = loadFileFromBundle(bookDef["fileName"]!)
             
             for d:NSDictionary in json {
