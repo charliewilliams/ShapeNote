@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-let tableViewHeaderHeight:CGFloat = 50
+let tableViewHeaderHeight:CGFloat = 94
 let tableViewRowHeight:CGFloat = 44
 
 class MinutesListViewController: UITableViewController {
 
     @IBOutlet weak private var minutesListTableView: UITableView!
     @IBOutlet fileprivate var noMinutesYetView: UIView!
+    
     static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.timeStyle = .none

@@ -86,7 +86,7 @@ class Lesson: NSManagedObject {
         if number.hasPrefix("0") {
             number = number.substring(from: number.index(after: number.startIndex))
         }
-        userString += "#\(number) : \(song.title)"
+        userString += "#\(number): \(song.title)"
         
         if dedication != nil {
             userString += " (\(dedication!))"

@@ -16,6 +16,16 @@ enum ScopeBarIndex: Int {
     case assistedBy = 2
     case dedication = 3
     case other = 4
+    
+    var placeholderText: String {
+        return [
+                "enter name",
+                "enter song number",
+                "enter assistant's name",
+                "enter dedication, i.e. \"for Sue Jones\"",
+                "what's happening now?"
+            ][self.rawValue]
+    }
 }
 
 let minCellCount = 5
@@ -36,16 +46,16 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     @IBOutlet weak var doneButton: UIBarButtonItem!
     var searchBar: UISearchBar!
     var searchController: UISearchController!
-    var minutes:Minutes?
-    var filteredSingers:[Singer]?
-    var filteredSongs:[Song]?
+    var minutes: Minutes?
+    var filteredSingers: [Singer]?
+    var filteredSongs: [Song]?
     var chosenSingers = [Singer]()
-    var chosenSong:Song?
-    var dedication:String?
-    var assistant:Singer?
-    var otherEvent:String?
-    var songs:[Song] = CoreDataHelper.sharedHelper.songs()
-    lazy var singers:[Singer] = {
+    var chosenSong: Song?
+    var dedication: String?
+    var assistant: Singer?
+    var otherEvent: String?
+    var songs: [Song] = CoreDataHelper.sharedHelper.songs()
+    lazy var singers: [Singer] = {
         
         guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: { (s1:Singer, s2:Singer) -> Bool in
             return s1.lastSingDate > s2.lastSingDate // overall, most recent first
@@ -80,6 +90,8 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         Answers.logContentView(withName: String(describing: self.classForCoder), contentType: nil, contentId: nil, customAttributes: ["group":Defaults.currentGroupName ?? "none"])
         
         buildSearchController()
+        buildSearchBar()
+        
         extendedLayoutIncludesOpaqueBars = true
         doneButton.isEnabled = false
     }
@@ -90,8 +102,6 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        
-        buildSearchBar()
     }
     
     func buildSearchBar() {
@@ -128,18 +138,18 @@ extension NewLessonViewController {
         
         guard searchText.characters.count > 0 else { filteredSingers = singers; return }
         
-        filteredSingers = singers.filter({(singer: Singer) -> Bool in
+        filteredSingers = singers.filter {(singer: Singer) -> Bool in
             return singer.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        })
+        }
     }
     
     func filterContentForSongSearchText(_ searchText: String) {
         
         guard searchText.characters.count > 0 else { filteredSongs = songs; return }
         
-        filteredSongs = songs.filter({(aSong: Song) -> Bool in
+        filteredSongs = songs.filter {(aSong: Song) -> Bool in
             return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
-        })
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -172,27 +182,19 @@ extension NewLessonViewController {
         
         let index = ScopeBarIndex(rawValue: searchBar.selectedScopeButtonIndex)!
         searchBar.keyboardType = .asciiCapable
+        searchBar.placeholder = index.placeholderText
         
         switch index {
             
-        case .searchSongs:
-            
-            filteredSongs = songs
-            searchBar.placeholder = "enter song number"
-            searchBar.keyboardType = .numberPad
-            
         case .searchLeaders:
-            searchBar.placeholder = "enter name"
             filteredSingers = singers
             
-        case .dedication:
-            searchBar.placeholder = "enter dedication, i.e. \"for Sue Jones\""
-            
-        case .assistedBy:
-            searchBar.placeholder = "enter assistant's name"
-            
-        case .other:
-            searchBar.placeholder = "what's happening now?"
+        case .searchSongs:
+            filteredSongs = songs
+            searchBar.keyboardType = .numberPad
+
+        default:
+            break
         }
         
         searchBar.reloadInputViews()
@@ -284,7 +286,7 @@ extension NewLessonViewController {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
         
-        if let singerCell = cell as? NewLessonTableViewCell, singerCell.parentTableViewController == nil {
+        if let singerCell = cell as? NewLessonTableViewCell {
             singerCell.parentTableViewController = self
         }
         cell.textLabel?.textColor = UIColor.black

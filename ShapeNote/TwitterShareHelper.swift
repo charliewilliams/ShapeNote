@@ -44,8 +44,6 @@ class TwitterShareHelper: NSObject {
             return
         }
         
-        print("Tweeting as \(userId)")
-        
         let client = TWTRAPIClient(userID: userId)
         var clientError : NSError? = nil
         let request = client.urlRequest(withMethod: "POST", url: statusPostEndpoint, parameters: params, error: &clientError)

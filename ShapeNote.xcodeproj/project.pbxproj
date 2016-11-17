@@ -22,9 +22,8 @@
 		C04311711DB4E4920015C180 /* UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* UITableViewController.swift */; };
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
 		C04D219B1DD7B67C00B98D86 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */; };
-		C04D219C1DD7B68100B98D86 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A741A86C25000E10773 /* TwitterKit.framework */; };
-		C04D219D1DD86A8400B98D86 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */; };
 		C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04D219E1DD8C80600B98D86 /* Launch.storyboard */; };
+		C04D21A21DD9F68300B98D86 /* MinuteTakingHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04D21A11DD9F68300B98D86 /* MinuteTakingHeaderTableViewCell.swift */; };
 		C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B601A7BA59D0006ED16 /* AppDelegate.swift */; };
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
@@ -46,8 +45,6 @@
 		C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */; };
 		C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A11BEFB63F00E05EBE /* QuizOption.swift */; };
 		C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */; };
-		C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A721A86C25000E10773 /* Crashlytics.framework */; };
-		C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06D7A731A86C25000E10773 /* Fabric.framework */; };
 		C07220681DD7374B00CE9CAC /* GroupSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07220661DD7374B00CE9CAC /* GroupSelectionTableViewController.swift */; };
 		C072206C1DD763F200CE9CAC /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C072206A1DD763F200CE9CAC /* About.storyboard */; };
 		C072206E1DD76B7B00CE9CAC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */; };
@@ -114,6 +111,7 @@
 		C04311701DB4E4920015C180 /* UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
 		C04D219E1DD8C80600B98D86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		C04D21A11DD9F68300B98D86 /* MinuteTakingHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteTakingHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		C0515B5B1A7BA59D0006ED16 /* ShapeNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B5F1A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B601A7BA59D0006ED16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,10 +144,6 @@
 		C0697C581D85E1F300269434 /* ReverseGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeocoder.swift; sourceTree = "<group>"; };
 		C0697C591D85E1F300269434 /* Singing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singing.swift; sourceTree = "<group>"; };
 		C0697C5E1D85E24900269434 /* GeoLite2-City.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-City.mmdb"; sourceTree = "<group>"; };
-		C06D7A721A86C25000E10773 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
-		C06D7A731A86C25000E10773 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = SOURCE_ROOT; };
-		C06D7A741A86C25000E10773 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Fabric/TwitterKit.framework; sourceTree = SOURCE_ROOT; };
-		C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Fabric/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
 		C07220661DD7374B00CE9CAC /* GroupSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSelectionTableViewController.swift; sourceTree = "<group>"; };
 		C072206B1DD763F200CE9CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -192,10 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C06D7A751A86C25000E10773 /* Crashlytics.framework in Frameworks */,
-				C04D219C1DD7B68100B98D86 /* TwitterKit.framework in Frameworks */,
 				C04D219B1DD7B67C00B98D86 /* TwitterCore.framework in Frameworks */,
-				C06D7A761A86C25000E10773 /* Fabric.framework in Frameworks */,
 				FB279DAEB38DBDC784FE9F7B /* Pods_ShapeNote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +227,7 @@
 				C07220661DD7374B00CE9CAC /* GroupSelectionTableViewController.swift */,
 				C09A65061A7ED9F800099E76 /* MinutesListViewController.swift */,
 				C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */,
+				C04D21A11DD9F68300B98D86 /* MinuteTakingHeaderTableViewCell.swift */,
 				C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */,
 				C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */,
 				C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */,
@@ -325,7 +317,6 @@
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
-				C0C1D5181A868F6B0082C0EB /* Fabric */,
 			);
 			path = ShapeNote;
 			sourceTree = "<group>";
@@ -399,17 +390,6 @@
 				C0697C591D85E1F300269434 /* Singing.swift */,
 			);
 			name = "Find Your Singing (Not in current app)";
-			sourceTree = "<group>";
-		};
-		C0C1D5181A868F6B0082C0EB /* Fabric */ = {
-			isa = PBXGroup;
-			children = (
-				C06D7A7A1A86C3F900E10773 /* TwitterKitResources.bundle */,
-				C06D7A721A86C25000E10773 /* Crashlytics.framework */,
-				C06D7A731A86C25000E10773 /* Fabric.framework */,
-				C06D7A741A86C25000E10773 /* TwitterKit.framework */,
-			);
-			name = Fabric;
 			sourceTree = "<group>";
 		};
 		C0EA4E271C00DF83000CCF81 /* Singer Lists */ = {
@@ -527,7 +507,6 @@
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
 				C072206C1DD763F200CE9CAC /* About.storyboard in Resources */,
-				C04D219D1DD86A8400B98D86 /* TwitterKitResources.bundle in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */,
 				C0EA4E191BFFBEBC000CCF81 /* Minutes.storyboard in Resources */,
@@ -620,7 +599,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric/Fabric.framework/run 95e78a1b7ecc0b8e2442e9fa982256d4da835a2e ba140be7fe51516e03f1a5f0a130fc0de9c405eb233d585b418ea25ebc2859b9";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3bf576a7e0e1a634037b4c20ef79f63196a6eb0f cdb8002da5b7da3cfd6f90faa82a27e0d488250d853761f7c834a9200ca71c52";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -673,6 +652,7 @@
 				C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */,
 				C072206E1DD76B7B00CE9CAC /* AboutViewController.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
+				C04D21A21DD9F68300B98D86 /* MinuteTakingHeaderTableViewCell.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */,
 				C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */,

@@ -13,6 +13,7 @@ let loggedInOnce = "loggedInOnce"
 let hasBadgedSingersTabOnce = "badgedSingersTabOnce"
 let bookKey = "currentBook"
 let groupKey = "currentGroup"
+let twitterKey = "hasTwitter"
 
 class Defaults: NSObject {
     
@@ -62,6 +63,15 @@ class Defaults: NSObject {
         }
         set(groupName) {
             UserDefaults.standard.set(groupName, forKey: groupKey)
+        }
+    }
+    
+    class var hasTwitter: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: twitterKey)
+        }
+        set(newValue) {
+            UserDefaults.standard.set(newValue, forKey: twitterKey)
         }
     }
 }

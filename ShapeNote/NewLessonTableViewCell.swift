@@ -15,20 +15,15 @@ class NewLessonTableViewCell: UITableViewCell {
     @IBOutlet var addButton: UIButton!
     @IBOutlet var backgroundImageView: UIImageView!
     
-    var parentTableViewController: NewLessonViewController?
-//        {
-//        didSet {
-//            if parentTableViewController != nil {
-//                addButton?.addTarget(parentTableViewController, action: #selector(NewLessonViewController.addSingerTapped) "addSingerTapped:", forControlEvents: .TouchUpInside)
-//            }
-//        }
-//    }
+    weak var parentTableViewController: NewLessonViewController!
     
     func configure(leftText: String, rightText: String?, hideAddButton: Bool) {
         
         leftTextLabel.text = leftText
         rightTextLabel.text = rightText
-        addButton.isHidden = hideAddButton
+        
+        // TODO support multiple singers
+        addButton.isHidden = true //hideAddButton
     }
     
     override func prepareForReuse() {
@@ -38,5 +33,10 @@ class NewLessonTableViewCell: UITableViewCell {
             rightTextLabel.text = nil
         }
         addButton.isHidden = true
+    }
+    
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        parentTableViewController.searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue
+        parentTableViewController.tableView.reloadData()
     }
 }
