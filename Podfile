@@ -6,6 +6,10 @@ use_frameworks!
 # inhibit_all_warnings!
 
 target 'ShapeNote' do
+    
+    pod 'Fabric'
+    pod 'Crashlytics'
+    pod 'TwitterKit'
     # pod 'Instructions', :git => 'git@github.com:ephread/Instructions.git', :branch => 'swift3'
     # pod 'SwiftSpinner'
 #    pod 'STTwitter'

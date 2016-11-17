@@ -10,6 +10,21 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>01826497F7FC495B9ECDA12B5E89B061</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FABAttributes.h</string>
+			<key>path</key>
+			<string>iOS/Fabric.framework/Headers/FABAttributes.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>01AC7181A716B89D39CB37AF9B40E9ED</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -23,23 +38,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0534B13B239893008BD5DA15B79B2C9A</key>
+		<key>06325BA7949F5EC77265207843B2908D</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>3F8B505AF5A63E0C7D82D3872B8F3108</string>
-				<string>2A7EDCAAFDC58770EF62C18DC54F09BC</string>
-				<string>8B3B2020B6E59BC1AC066DE5DD144D0F</string>
-				<string>635B81B10A6C1BEFFF03F1BAE3750DD5</string>
-				<string>55503A6D084E4A78F01B4EDEAC2B66B2</string>
-				<string>1B6560D8FF591285350F1DEEA83E290D</string>
+				<string>8CA3C1918CE84998F17EF4A4F7C14A2B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/JFADoubleSlider</string>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -58,7 +66,7 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>1B6560D8FF591285350F1DEEA83E290D</key>
+		<key>0F3FB753BD607DDBF8459CA7EA83F789</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -66,8 +74,73 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Fabric.h</string>
 			<key>path</key>
-			<string>JFADoubleSlider-umbrella.h</string>
+			<string>iOS/Fabric.framework/Headers/Fabric.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0F40A7E8C46B079E6ADCC5E9AF9F59D4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.plug-in</string>
+			<key>name</key>
+			<string>TwitterKitResources.bundle</string>
+			<key>path</key>
+			<string>iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151BC464101EA63334DD9F5BE3036BE8</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Crashlytics.framework</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151EE5DE17C222C4584CE1573FFE09CD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Answers.h</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework/Headers/Answers.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1B4E844C87B5AE24E81A7A50169463C6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2BA0F937BF3F02A3644DD640B71ECFC5</string>
+				<string>22ECFD6D3B32DCDA250F4F8566F33FBA</string>
+				<string>6481A44FDDEDB2E1494B3076B3F7B97A</string>
+				<string>A124712AD9EF076F35D1DAA446AD023C</string>
+				<string>C39D061CB0003344517E7A6139D17C69</string>
+				<string>F42D3675CC0584F98377469923FC3B87</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/JFADoubleSlider</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -83,6 +156,17 @@
 			<string>9DC63F7ABA665B680AF65A646DEA6F0D</string>
 			<key>remoteInfo</key>
 			<string>JFADoubleSlider</string>
+		</dict>
+		<key>22ECFD6D3B32DCDA250F4F8566F33FBA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>JFADoubleSlider.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>2395804F68E0919DC4169BCEE0A9F27B</key>
 		<dict>
@@ -184,14 +268,16 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>2A7EDCAAFDC58770EF62C18DC54F09BC</key>
+		<key>2BA0F937BF3F02A3644DD640B71ECFC5</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>JFADoubleSlider.modulemap</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -290,18 +376,16 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>374E4FEC09AF01707D5DCFCE9B7631D1</key>
+		<key>3AA513232DCCC66CB1C4A303B30BFA18</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>8D402AF39A654B675ADEC2EF2F82AE5D</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>JFADoubleSlider.m</string>
-			<key>path</key>
-			<string>JFADoubleSlider/JFADoubleSlider.m</string>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -345,19 +429,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3F8B505AF5A63E0C7D82D3872B8F3108</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>45F3465BAFF8DD4B7B2E86BE612AD50E</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -372,7 +443,7 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>4E1D6EE50FD101D59E3C7A0B6C613678</key>
+		<key>4ACA43A8FEFBE846606C202E8F5C4BFD</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -381,9 +452,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>JFADoubleSlider.h</string>
+			<string>CLSStackFrame.h</string>
 			<key>path</key>
-			<string>JFADoubleSlider/JFADoubleSlider.h</string>
+			<string>iOS/Crashlytics.framework/Headers/CLSStackFrame.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -400,7 +471,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>55503A6D084E4A78F01B4EDEAC2B66B2</key>
+		<key>57333BBD461A7DDF7650161EB0EE84E5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A124712AD9EF076F35D1DAA446AD023C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>59328A672529F99077115A44C344B633</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -408,17 +486,12 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CLSLogging.h</string>
 			<key>path</key>
-			<string>JFADoubleSlider-prefix.pch</string>
+			<string>iOS/Crashlytics.framework/Headers/CLSLogging.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>57333BBD461A7DDF7650161EB0EE84E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>635B81B10A6C1BEFFF03F1BAE3750DD5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>5B28DF037D412BCC955DDEFF03CEE2C0</key>
 		<dict>
@@ -441,19 +514,6 @@
 			<string>Pods-ShapeNote</string>
 			<key>path</key>
 			<string>Target Support Files/Pods-ShapeNote</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>635B81B10A6C1BEFFF03F1BAE3750DD5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>JFADoubleSlider-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -484,6 +544,34 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>644279B0B45DC514AAB59925DCA90CD0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3AA513232DCCC66CB1C4A303B30BFA18</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>TwitterCore</string>
+			<key>path</key>
+			<string>TwitterCore</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6481A44FDDEDB2E1494B3076B3F7B97A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>JFADoubleSlider.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>677B3C1EEB9B19BDC27B96DEACF3EEF3</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -507,7 +595,7 @@
 		<key>681F48BD9C8E8BDA6CA31746EC8E5CCA</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>8B3B2020B6E59BC1AC066DE5DD144D0F</string>
+			<string>6481A44FDDEDB2E1494B3076B3F7B97A</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -637,13 +725,30 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>7ADA52065181C984FC301D2AFCA06F87</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CD6C49D2EBB8CF382235DCE573C35681</string>
+				<string>A2865C453BF0593480C20AE5E5F40D13</string>
+				<string>1B4E844C87B5AE24E81A7A50169463C6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>JFADoubleSlider</string>
+			<key>path</key>
+			<string>JFADoubleSlider</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>93A4A3777CF96A4AAC1D13BA6DCCEA73</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>C1AD5A0DE6A59E6A1C9BBCE6EBBA3A54</string>
+				<string>E9EC9DEFDC6230653B12090750DB9199</string>
 				<string>DF74941F198236FA1A43264F86B6C89B</string>
 				<string>641B3DC224E61CD8290FE01E79B85AA4</string>
 			</array>
@@ -734,16 +839,16 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>8B3B2020B6E59BC1AC066DE5DD144D0F</key>
+		<key>8CA3C1918CE84998F17EF4A4F7C14A2B</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Fabric.framework</string>
 			<key>path</key>
-			<string>JFADoubleSlider.xcconfig</string>
+			<string>iOS/Fabric.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -759,6 +864,19 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>8D402AF39A654B675ADEC2EF2F82AE5D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>TwitterCore.framework</string>
+			<key>path</key>
+			<string>iOS/TwitterCore.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>93A4A3777CF96A4AAC1D13BA6DCCEA73</key>
 		<dict>
@@ -779,10 +897,25 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
+		<key>949AF3814A8DD45200749B3062646195</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CLSReport.h</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework/Headers/CLSReport.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>9570B25B2820BC2A6783D63D7AABC8BD</key>
 		<dict>
 			<key>fileRef</key>
-			<string>4E1D6EE50FD101D59E3C7A0B6C613678</string>
+			<string>CD6C49D2EBB8CF382235DCE573C35681</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -818,6 +951,49 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
+		<key>A124712AD9EF076F35D1DAA446AD023C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>JFADoubleSlider-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A2865C453BF0593480C20AE5E5F40D13</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>JFADoubleSlider.m</string>
+			<key>path</key>
+			<string>JFADoubleSlider/JFADoubleSlider.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A821D23C70D6DE483660CA4BC66376E1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Crashlytics.h</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework/Headers/Crashlytics.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>B1E2DD3D92299A7C7DFD3B3C97FBB53D</key>
 		<dict>
 			<key>isa</key>
@@ -828,6 +1004,37 @@
 			<string>9DC63F7ABA665B680AF65A646DEA6F0D</string>
 			<key>targetProxy</key>
 			<string>1FA510736BD434361DD449798D8D3160</string>
+		</dict>
+		<key>B2D25EAC52CFAEE8701C9C37582AB4FA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ANSCompatibility.h</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework/Headers/ANSCompatibility.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3C8F4A207C9C7CF2AAC3DEDC2DC1A36</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BCB9B424C8B7F493C6BF940B37C9EF64</string>
+				<string>FD0082CEF5D1FDAEB9C051B8356356CC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>TwitterKit</string>
+			<key>path</key>
+			<string>TwitterKit</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B4C1E8541EBE4ED0BADA62CF3CA4EC0D</key>
 		<dict>
@@ -855,20 +1062,42 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B783EAC584E790247C5BE512C6139E61</key>
+		<key>B62E0B12581F1DD80C2BB425604A457E</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>4E1D6EE50FD101D59E3C7A0B6C613678</string>
-				<string>374E4FEC09AF01707D5DCFCE9B7631D1</string>
-				<string>0534B13B239893008BD5DA15B79B2C9A</string>
+				<string>01826497F7FC495B9ECDA12B5E89B061</string>
+				<string>0F3FB753BD607DDBF8459CA7EA83F789</string>
+				<string>06325BA7949F5EC77265207843B2908D</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>JFADoubleSlider</string>
+			<string>Fabric</string>
 			<key>path</key>
-			<string>JFADoubleSlider</string>
+			<string>Fabric</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA3E16350F010ADFEC5EE9F379FE52E8</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B2D25EAC52CFAEE8701C9C37582AB4FA</string>
+				<string>151EE5DE17C222C4584CE1573FFE09CD</string>
+				<string>DCA01E8422299EF51DA97A12BC825110</string>
+				<string>59328A672529F99077115A44C344B633</string>
+				<string>949AF3814A8DD45200749B3062646195</string>
+				<string>4ACA43A8FEFBE846606C202E8F5C4BFD</string>
+				<string>A821D23C70D6DE483660CA4BC66376E1</string>
+				<string>CAD82C8D0E90F04A6A63951B80B66216</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Crashlytics</string>
+			<key>path</key>
+			<string>Crashlytics</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -886,11 +1115,37 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>BBCC9549F97C00131793B901D4C281D7</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>TwitterKit.framework</string>
+			<key>path</key>
+			<string>iOS/TwitterKit.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>3DCAB2B7CDE207B3958B6CB957FCC758</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BCB9B424C8B7F493C6BF940B37C9EF64</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BBCC9549F97C00131793B901D4C281D7</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -912,25 +1167,53 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>C1AD5A0DE6A59E6A1C9BBCE6EBBA3A54</key>
+		<key>C39D061CB0003344517E7A6139D17C69</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>B783EAC584E790247C5BE512C6139E61</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>JFADoubleSlider-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C5EFE7DB99E196F4ED074BFEFEC0135D</key>
 		<dict>
 			<key>fileRef</key>
-			<string>374E4FEC09AF01707D5DCFCE9B7631D1</string>
+			<string>A2865C453BF0593480C20AE5E5F40D13</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>CAD82C8D0E90F04A6A63951B80B66216</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>151BC464101EA63334DD9F5BE3036BE8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CD6C49D2EBB8CF382235DCE573C35681</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>JFADoubleSlider.h</string>
+			<key>path</key>
+			<string>JFADoubleSlider/JFADoubleSlider.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CEC22C73C1608DFA5D5D78BDCB218219</key>
 		<dict>
@@ -997,10 +1280,25 @@
 				<string>3B6F2055581055DD69AE269DE2C456C2</string>
 			</array>
 		</dict>
+		<key>DCA01E8422299EF51DA97A12BC825110</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>CLSAttributes.h</string>
+			<key>path</key>
+			<string>iOS/Crashlytics.framework/Headers/CLSAttributes.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>DEAF4B228CC5CC4D08726A63E38CC618</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>8B3B2020B6E59BC1AC066DE5DD144D0F</string>
+			<string>6481A44FDDEDB2E1494B3076B3F7B97A</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -1074,7 +1372,7 @@
 		<key>E15814BCE32F35FCF8374FF2A06C60C6</key>
 		<dict>
 			<key>fileRef</key>
-			<string>1B6560D8FF591285350F1DEEA83E290D</string>
+			<string>F42D3675CC0584F98377469923FC3B87</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1113,6 +1411,23 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>E9EC9DEFDC6230653B12090750DB9199</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA3E16350F010ADFEC5EE9F379FE52E8</string>
+				<string>B62E0B12581F1DD80C2BB425604A457E</string>
+				<string>7ADA52065181C984FC301D2AFCA06F87</string>
+				<string>644279B0B45DC514AAB59925DCA90CD0</string>
+				<string>B3C8F4A207C9C7CF2AAC3DEDC2DC1A36</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>EB92B82B0DD617B64FCDD5995F5C663C</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1138,6 +1453,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>F42D3675CC0584F98377469923FC3B87</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>JFADoubleSlider-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>F4C09B5CE46B013A99793FAC13A0B220</key>
 		<dict>
 			<key>fileRef</key>
@@ -1155,6 +1483,19 @@
 			<string>text.plist.xml</string>
 			<key>path</key>
 			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FD0082CEF5D1FDAEB9C051B8356356CC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>0F40A7E8C46B079E6ADCC5E9AF9F59D4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Resources</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
