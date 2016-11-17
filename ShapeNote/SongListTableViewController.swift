@@ -19,7 +19,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
             
             _songs = sort(songs: CoreDataHelper.sharedHelper.songs())
             
-            navigationItem.title = _songs?.first?.book.title ?? ""
+            navigationItem.title = _songs?.first?.book.shortTitle ?? ""
             return _songs!
         }
     }
