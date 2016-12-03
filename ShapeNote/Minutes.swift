@@ -37,7 +37,7 @@ class Minutes: NSManagedObject {
         if group.name.characters.count > 0 {
             string += "for \(group.name) on "
         } else {
-            string += " – "
+            string += "– "
         }
         
         string += Minutes.dateFormatter.string(from: date)
@@ -58,7 +58,7 @@ class Minutes: NSManagedObject {
         })
         
         if string.characters.count > 0 {
-            string += "\n\nMinuted using the ShapeNote Companion\n"
+            string += "\nMinuted using the ShapeNote Companion\n"
         }
         
         return string

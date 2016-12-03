@@ -15,6 +15,7 @@ class FacebookShareViewController: UIViewController, EmailSender, UITextViewDele
     var minutes: Minutes! {
         didSet {
             UIPasteboard.general.string = minutes.stringForSocialMedia()
+            title = minutes.headerString
         }
     }
     @IBOutlet weak var postComposeTextView: UITextView!
@@ -27,6 +28,7 @@ class FacebookShareViewController: UIViewController, EmailSender, UITextViewDele
         for observer in observers {
             NotificationCenter.default.removeObserver(observer)
         }
+        observers.removeAll()
     }
     
     init(minutes: Minutes) {
@@ -98,6 +100,10 @@ class FacebookShareViewController: UIViewController, EmailSender, UITextViewDele
     }
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func donePressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     

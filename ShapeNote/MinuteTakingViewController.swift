@@ -84,11 +84,20 @@ class MinuteTakingViewController: UITableViewController {
             return
         }
         
-        minutes.complete = true
-        CoreDataHelper.sharedHelper.saveContext()
+        let summaryVC = FacebookShareViewController(minutes: minutes)
         
-        present(FacebookShareViewController(minutes: minutes), animated: true) {
-            _ = self.navigationController?.popViewController(animated: false)
+        if !minutes.complete {
+            
+            present(summaryVC, animated: true) {
+                
+                minutes.complete = true
+                CoreDataHelper.sharedHelper.saveContext()
+                _ = self.navigationController?.popViewController(animated: false)
+            }
+            
+        } else {
+            
+            navigationController?.pushViewController(summaryVC, animated: true)
         }
     }
     
