@@ -54,27 +54,29 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     var dedication: String?
     var assistant: Singer?
     var otherEvent: String?
-    var songs: [Song] = CoreDataHelper.sharedHelper.songs()
+    var songs: [Song] = CoreDataHelper.sharedHelper.songs().sorted {
+        $0.numberForSorting < $1.numberForSorting
+    }
     lazy var singers: [Singer] = {
         
-        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: { (s1:Singer, s2:Singer) -> Bool in
-            return s1.lastSingDate > s2.lastSingDate // overall, most recent first
+        guard let allSingers = CoreDataHelper.sharedHelper.singersInCurrentGroup()?.sorted(by: {
+            $0.lastSingDate > $1.lastSingDate // overall, most recent first
         }) else {
             return []
         }
         
-        let todaySingers = allSingers.filter({ (s:Singer) -> Bool in
-            return s.lastSingDate > yesterday.timeIntervalSince1970
-        }).sorted(by: { (s1:Singer, s2:Singer) -> Bool in
-            return s1.lastSingDate < s2.lastSingDate // of people who have sung today, go in reverse order
+        let todaySingers = allSingers.filter({
+            return $0.lastSingDate > yesterday.timeIntervalSince1970
+        }).sorted(by: {
+            return $0.lastSingDate < $1.lastSingDate // of people who have sung today, go in reverse order
         })
         
-        let singersFromLastWeekButNotToday = allSingers.filter { (s:Singer) -> Bool in
-            return todaySingers.index(of: s) == nil && s.lastSingDate > lastWeekPlusOneDay
+        let singersFromLastWeekButNotToday = allSingers.filter {
+            return todaySingers.index(of: $0) == nil && $0.lastSingDate > lastWeekPlusOneDay
         }
         
-        let allOtherSingers = allSingers.filter { (s:Singer) -> Bool in
-            return todaySingers.index(of: s) == nil && singersFromLastWeekButNotToday.index(of: s) == nil
+        let allOtherSingers = allSingers.filter {
+            return todaySingers.index(of: $0) == nil && singersFromLastWeekButNotToday.index(of: $0) == nil
         }
         
         return singersFromLastWeekButNotToday + todaySingers + allOtherSingers
@@ -138,8 +140,8 @@ extension NewLessonViewController {
         
         guard searchText.characters.count > 0 else { filteredSingers = singers; return }
         
-        filteredSingers = singers.filter {(singer: Singer) -> Bool in
-            return singer.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        filteredSingers = singers.filter {
+            $0.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
     }
     
@@ -147,8 +149,8 @@ extension NewLessonViewController {
         
         guard searchText.characters.count > 0 else { filteredSongs = songs; return }
         
-        filteredSongs = songs.filter {(aSong: Song) -> Bool in
-            return aSong.number.hasPrefix(searchText) || aSong.number.hasPrefix("0" + searchText)
+        filteredSongs = songs.filter {
+            return $0.number.hasPrefix(searchText) || $0.number.hasPrefix("0" + searchText)
         }
     }
     

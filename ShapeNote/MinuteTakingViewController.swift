@@ -43,9 +43,7 @@ class MinuteTakingViewController: UITableViewController {
                             tempLessons.append(lesson)
                         }
                     }
-                    _lessons = tempLessons.sorted(by: { (first:Lesson, second:Lesson) -> Bool in
-                        return first.date.timeIntervalSince1970 > second.date.timeIntervalSince1970
-                    })
+                    _lessons = tempLessons.sorted() { $0.date > $1.date }
                 }
             }
             return _lessons
