@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11761" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="z5C-gD-qZO">
-                            <rect key="frame" x="0.0" y="174" width="375" height="544"/>
+                            <rect key="frame" x="0.0" y="110" width="375" height="544"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ois-qT-HOb">
@@ -65,7 +65,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="newMinutesButtonPressed:" destination="n40-Qi-f2u" eventType="touchUpInside" id="rbc-Ts-zKW"/>
-                                                <segue destination="tMy-iL-bif" kind="show" id="2Xb-1s-tZh"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -315,16 +314,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SL-1K-jcV">
-                                            <rect key="frame" x="15" y="26" width="70" height="18"/>
+                                            <rect key="frame" x="15" y="26" width="80" height="18"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="2K0-TG-0ds"/>
+                                                <constraint firstAttribute="width" constant="80" id="2K0-TG-0ds"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-rc-kDv">
-                                            <rect key="frame" x="99" y="24" width="231" height="22"/>
+                                            <rect key="frame" x="109" y="24" width="221" height="22"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="0rj-Pi-AtP"/>
@@ -377,16 +376,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assisted by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scq-N4-AUX">
-                                            <rect key="frame" x="15" y="17" width="70" height="15"/>
+                                            <rect key="frame" x="15" y="17" width="80" height="15"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="scX-7a-Y5F"/>
+                                                <constraint firstAttribute="width" constant="80" id="scX-7a-Y5F"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name of Assistant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp2-V2-ht0">
-                                            <rect key="frame" x="100" y="14" width="211" height="22"/>
+                                            <rect key="frame" x="110" y="14" width="201" height="22"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="O1D-yD-wqe"/>
@@ -443,16 +442,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedication" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-wJ-M6n">
-                                            <rect key="frame" x="15" y="17" width="70" height="15"/>
+                                            <rect key="frame" x="15" y="17" width="80" height="15"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="tc9-R1-9yv"/>
+                                                <constraint firstAttribute="width" constant="80" id="tc9-R1-9yv"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.4692882625" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter name or names" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iK2-7d-v5J">
-                                            <rect key="frame" x="100" y="10" width="247" height="30"/>
+                                            <rect key="frame" x="110" y="10" width="237" height="30"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>
@@ -518,7 +517,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVe-We-2cg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2542" y="-698"/>
+            <point key="canvasLocation" x="2607" y="-699"/>
         </scene>
         <!--Minutes-->
         <scene sceneID="6Fx-vm-YA5">
@@ -527,7 +526,7 @@
                     <tabBarItem key="tabBarItem" title="Minutes" image="recents" id="TAc-h1-TKn"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V9a-0s-Ixa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="V9a-0s-Ixa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
