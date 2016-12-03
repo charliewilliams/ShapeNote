@@ -81,12 +81,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         tableView.reloadData()
         tableView.contentOffset = .zero
         
-        var activeFilterNames = [String]()
-        for filter in activeFilters {
-            activeFilterNames.append(filter.rawValue)
-        }
-        print("Filters active: \(activeFilterNames)")
-        Answers.logCustomEvent(withName: "Filters", customAttributes: ["active":activeFilterNames])
+        logActiveFilters()
         
         updateTitle()
     }
@@ -95,6 +90,16 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         super.viewDidAppear(animated)
         
         handleFirstRun()
+    }
+    
+    func logActiveFilters() {
+        
+        var activeFilterNames = ""
+        for filter in activeFilters {
+            activeFilterNames += "\(filter.rawValue))"
+        }
+        print("Filters active: \(activeFilterNames)")
+        Answers.logCustomEvent(withName: "Filters", customAttributes: ["active":activeFilterNames])
     }
     
     // MARK: - Filtering
