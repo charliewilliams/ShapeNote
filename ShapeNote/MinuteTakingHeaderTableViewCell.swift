@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TwitterKit
 
 class MinuteTakingHeaderTableViewCell: UITableViewCell {
 
@@ -25,16 +24,14 @@ class MinuteTakingHeaderTableViewCell: UITableViewCell {
     
     @IBAction func liveTweetSwitchChanged(_ sender: UISwitch) {
         
+        Defaults.hasTwitter = sender.isOn
+        
         if sender.isOn {
             
             startTwitter()
             
         } else {
-            
-            let store = Twitter.sharedInstance().sessionStore
-            if let userId = store.session()?.userID {
-                store.logOutUserID(userId)
-            }
+
             setUpTwitter(forUserName: nil)
         }
     }

@@ -36,15 +36,21 @@ struct TwitterShareHelper {
     
     static func setUpTwitter(completion: @escaping TwitterLoginCompletion) {
         
-        if let session = session, state == .loggedIn {
-            completion(session.userName)
-            return
-        }
-        if state == .started {
-            completions.append(completion)
+        guard Defaults.hasTwitter else {
+            completion(nil)
             return
         }
         
+        if let session = session {
+            completion(session.userName)
+            return
+        }
+        
+        completions.append(completion)
+        
+        if state == .started {
+            return
+        }
         state = .started
         
         if let twitterID = Defaults.twitterId,
@@ -72,7 +78,7 @@ struct TwitterShareHelper {
     
     static private func finishSetup(withSession session: TWTRSession?) {
         
-        if let session = session {
+        if Defaults.hasTwitter, let session = session {
             
             Defaults.hasTwitter = true
             Defaults.twitterId = session.userID
@@ -106,7 +112,7 @@ extension TwitterShareHelper {
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
         let params = ["status": lesson.twitterString()]
         
-        guard let session = session else {
+        guard Defaults.hasTwitter, let session = session else {
             print("No twitter user Id available")
             return
         }
