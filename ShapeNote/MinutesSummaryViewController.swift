@@ -55,12 +55,14 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
             
             self?.handleKeyboardNotification(note)
         })
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed(_:)))
+        navigationController?.navigationItem.setRightBarButton(doneButton, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIPasteboard.general.string = minutes.stringForSocialMedia()
         postComposeTextView.text = minutes.stringForSocialMedia()
     }
     
@@ -71,22 +73,21 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
         return true
     }
     
-    func handleKeyboardNotification(_ note:Foundation.Notification) {
+    func handleKeyboardNotification(_ note: Foundation.Notification) {
         
-        guard let rectValue = (note as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-            let durationValue = (note as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
+        guard let rectValue = note.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            let durationValue = note.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
                 return
         }
         let showing = note.name == NSNotification.Name.UIKeyboardWillShow
         let rect = rectValue.cgRectValue
         let duration = durationValue.doubleValue
-        let tabBarHeightIfPresent = self.navigationController?.tabBarController?.tabBar.frame.height ?? 0
-        //        let curve = note.valueForKey(UIKeyboardAnimationCurveUserInfoKey)
+        let tabBarHeightIfPresent = navigationController?.tabBarController?.tabBar.frame.height ?? 0
         
-        UIView.animate(withDuration: duration, animations: { () -> Void in
+        UIView.animate(withDuration: duration) {
             self.postButtonToBottomEdgeConstraint.constant = showing ? rect.size.height : tabBarHeightIfPresent
             self.view.layoutIfNeeded()
-        })
+        }
     }
     
     @IBAction func sendEmailButtonPressed(_ sender: UIButton) {
@@ -99,12 +100,8 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
         UIApplication.shared.openURL(url)
     }
     
-    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    func donePressed(_ sender: UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

@@ -86,19 +86,17 @@ class MinuteTakingViewController: UITableViewController {
         
         let summaryVC = MinutesSummaryViewController(minutes: minutes)
         
-        if !minutes.complete {
-            
-            present(summaryVC, animated: true) {
-                
-                minutes.complete = true
-                CoreDataHelper.sharedHelper.saveContext()
-                _ = self.navigationController?.popViewController(animated: false)
-            }
-            
-        } else {
-            
+//        if !minutes.complete {
+//                
+//                minutes.complete = true
+//                CoreDataHelper.sharedHelper.saveContext()
+//                _ = self.navigationController?.popViewController(animated: false)
+//            }
+//            
+//        } else {
+        
             navigationController?.pushViewController(summaryVC, animated: true)
-        }
+//        }
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

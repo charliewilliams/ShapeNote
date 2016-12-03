@@ -278,12 +278,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Taking Minutes" id="et0-va-81l">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="eAm-Ni-47R">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="eAm-Ni-47R">
                             <connections>
                                 <action selector="donePressed:" destination="tMy-iL-bif" id="dhx-pg-iO9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="doneButton" destination="eAm-Ni-47R" id="9V8-Zc-2Il"/>
                         <outlet property="minutesTableView" destination="FnQ-AC-gn9" id="BPG-Y8-ljt"/>
@@ -526,7 +527,7 @@
                     <tabBarItem key="tabBarItem" title="Minutes" image="recents" id="TAc-h1-TKn"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="V9a-0s-Ixa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V9a-0s-Ixa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
