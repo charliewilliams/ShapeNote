@@ -22,9 +22,7 @@ class Lesson: NSManagedObject {
     
     func stringForMinutes() -> String {
         
-        var string = song.number + " " + song.title
-        string += " – "
-        string += allLeadersString(useTwitterHandles: false)
+        var string = "\(allLeadersString(useTwitterHandles: false)) \(song.number) \(song.title)"
         if let ded = dedication {
             string += " (\(ded))"
         }

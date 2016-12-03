@@ -35,9 +35,9 @@ class Minutes: NSManagedObject {
         
         var string = ""
         
-//        if group.name != nil {
-//            string = "Minutes for \(group.name) on "
-//        }
+        if group.name != nil {
+            string = "Minutes for \(group.name) on "
+        }
         
         string += Minutes.dateFormatter.string(from: date)
         string += ":\n\n"
@@ -49,6 +49,10 @@ class Minutes: NSManagedObject {
                 string += lesson.stringForMinutes()
             }
         })
+        
+        if string.characters.count > 0 {
+            string += "\n\nMinuted using the ShapeNote Companion\n"
+        }
         
         return string
     }
