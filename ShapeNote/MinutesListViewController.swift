@@ -34,7 +34,7 @@ class MinutesListViewController: UITableViewController {
             
             navigationItem.title = group.name + ": Minutes"
             if let m = CoreDataHelper.sharedHelper.minutes(group) {
-                _allMinutes = m.sorted { $0.date > $1.date }
+                _allMinutes = m.filter({ $0.songs.count > 0 }).sorted { $0.date > $1.date }
             }
         }
         return _allMinutes!
