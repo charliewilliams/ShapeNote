@@ -1,5 +1,5 @@
 //
-//  FacebookShareViewController.swift
+//  MinutesSummaryViewController.swift
 //  ShapeNote
 //
 //  Created by Charlie Williams on 16/12/2015.
@@ -10,7 +10,7 @@ import UIKit
 import Crashlytics
 import MessageUI
 
-class FacebookShareViewController: UIViewController, EmailSender, UITextViewDelegate {
+class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDelegate {
     
     var minutes: Minutes! {
         didSet {

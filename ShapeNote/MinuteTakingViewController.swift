@@ -84,7 +84,7 @@ class MinuteTakingViewController: UITableViewController {
             return
         }
         
-        let summaryVC = FacebookShareViewController(minutes: minutes)
+        let summaryVC = MinutesSummaryViewController(minutes: minutes)
         
         if !minutes.complete {
             
