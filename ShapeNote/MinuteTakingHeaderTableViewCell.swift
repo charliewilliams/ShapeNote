@@ -19,46 +19,38 @@ class MinuteTakingHeaderTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         liveTweetLabel.text = nil
-    }
-    
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
         
-        if Defaults.hasTwitter || Twitter.sharedInstance().sessionStore.session() != nil{
-            logIntoTwitter()
-        } else {
-            setUpTwitter(withSession: nil)
-        }
+        startTwitter()
     }
     
     @IBAction func liveTweetSwitchChanged(_ sender: UISwitch) {
         
         if sender.isOn {
             
+            startTwitter()
+            
+        } else {
+            
             let store = Twitter.sharedInstance().sessionStore
             if let userId = store.session()?.userID {
                 store.logOutUserID(userId)
             }
-            setUpTwitter(withSession: nil)
-            
-        } else {
-            
-            logIntoTwitter()
+            setUpTwitter(forUserName: nil)
         }
     }
     
-    func logIntoTwitter() {
-        Twitter.sharedInstance().logIn { [weak self] (session:TWTRSession?, error:Error?) in
-            self?.setUpTwitter(withSession: session)
+    func startTwitter() {
+        
+        TwitterShareHelper.setUpTwitter() { [weak self] userName in
+            self?.setUpTwitter(forUserName: userName)
         }
     }
-
-    func setUpTwitter(withSession session: TWTRSession?) {
+    
+    func setUpTwitter(forUserName userName: String?) {
         
-        if let username = session?.userName {
+        if let userName = userName {
             
-            Defaults.hasTwitter = true
-            liveTweetLabel.text = "Live tweeting as @\(username)"
+            liveTweetLabel.text = "Live tweeting as @\(userName)"
             liveTweetLabel.textColor = blueColor
             liveTweetSwitch.isOn = true
 
@@ -67,15 +59,12 @@ class MinuteTakingHeaderTableViewCell: UITableViewCell {
             
         } else {
             
-            Defaults.hasTwitter = false
             liveTweetLabel.text = "Live-tweeting: off"
             liveTweetLabel.textColor = .gray
             liveTweetSwitch.isOn = false
             
-            twitterIconImageView.tintColor = .gray
             twitterIconImageView.image = #imageLiteral(resourceName: "twtr-icn-logo.png").withRenderingMode(.alwaysTemplate)
+            twitterIconImageView.tintColor = .gray
         }
-        
-
     }
 }

@@ -10,18 +10,92 @@ import UIKit
 import Social
 import TwitterKit
 
-class TwitterShareHelper: NSObject {
+typealias TwitterLoginCompletion = (String?) -> ()
+
+enum TwitterLoginState {
+    case loggedOut
+    case started
+    case loggedIn
+}
+
+struct TwitterShareHelper {
     
-    var lesson: Lesson?
+    static let instance = TwitterShareHelper()
+    static var state: TwitterLoginState = .loggedOut
+    static var completions = [TwitterLoginCompletion]()
+    static var session: TWTRSession?
     
-    class var sharedHelper: TwitterShareHelper {
-        struct Static {
-            static let instance: TwitterShareHelper = TwitterShareHelper()
+    private init() {
+        
+        if TwitterShareHelper.session == nil,
+            let twitterId = Defaults.twitterId,
+            let s = Twitter.sharedInstance().sessionStore.session(forUserID: twitterId) as? TWTRSession {
+            TwitterShareHelper.session = s
         }
-        return Static.instance
     }
     
-    func postLesson(_ lesson:Lesson) {
+    static func setUpTwitter(completion: @escaping TwitterLoginCompletion) {
+        
+        if let session = session, state == .loggedIn {
+            completion(session.userName)
+            return
+        }
+        if state == .started {
+            completions.append(completion)
+            return
+        }
+        
+        state = .started
+        
+        if let twitterID = Defaults.twitterId,
+            let session = Twitter.sharedInstance().sessionStore.session(forUserID: twitterID) as? TWTRSession {
+            finishSetup(withSession: session)
+        }
+        else if Defaults.hasTwitter {
+            logIntoTwitter()
+        } else {
+            finishSetup(withSession: nil)
+        }
+    }
+    
+    static func logIntoTwitter() {
+        
+        Twitter.sharedInstance().logIn { (session: TWTRSession?, error: Error?) in
+            self.finishSetup(withSession: session)
+        }
+    }
+    
+    static func logOut() {
+        
+        finishSetup(withSession: nil)
+    }
+    
+    static private func finishSetup(withSession session: TWTRSession?) {
+        
+        if let session = session {
+            
+            Defaults.hasTwitter = true
+            Defaults.twitterId = session.userID
+            
+            self.session = session
+            state = .loggedIn
+            
+        } else {
+            
+            Defaults.hasTwitter = false
+            state = .loggedOut
+        }
+        
+        for completion in completions {
+            completion(session?.userName)
+        }
+        completions.removeAll()
+    }
+}
+
+extension TwitterShareHelper {
+
+    static func postLesson(_ lesson:Lesson) {
         
         // WARNING: DEBUG
 //        #if DEBUG
@@ -29,20 +103,15 @@ class TwitterShareHelper: NSObject {
 //        return
 //        #endif
 
-        self.lesson = lesson
         let statusPostEndpoint = "https://api.twitter.com/1.1/statuses/update.json"
         let params = ["status": lesson.twitterString()]
         
-        guard let userId = Twitter.sharedInstance().sessionStore.session()?.userID else {
-            
-            Twitter.sharedInstance().logIn { (session:TWTRSession?, error:Error?) in
-                if error == nil {
-                    self.postLesson(lesson)
-                }
-            }
+        guard let session = session else {
             print("No twitter user Id available")
             return
         }
+        
+        let userId = session.userID
         
         let client = TWTRAPIClient(userID: userId)
         var clientError : NSError? = nil
@@ -53,6 +122,7 @@ class TwitterShareHelper: NSObject {
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             
+            // All of this is just response handling, which we don't do anything with
             guard let data = data, connectionError == nil else {
                 print("Error: \(connectionError)")
                 return

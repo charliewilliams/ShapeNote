@@ -569,7 +569,7 @@ extension NewLessonViewController {
         
         minutes.singers.addObjects(from: chosenSingers)
         
-        TwitterShareHelper.sharedHelper.postLesson(lesson)
+        TwitterShareHelper.postLesson(lesson)
         
         CoreDataHelper.sharedHelper.saveContext()
     }

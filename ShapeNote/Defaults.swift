@@ -14,6 +14,7 @@ let hasBadgedSingersTabOnce = "badgedSingersTabOnce"
 let bookKey = "currentBook"
 let groupKey = "currentGroup"
 let twitterKey = "hasTwitter"
+let twitterIdKey = "twitterId"
 
 class Defaults: NSObject {
     
@@ -72,6 +73,15 @@ class Defaults: NSObject {
         }
         set(newValue) {
             UserDefaults.standard.set(newValue, forKey: twitterKey)
+        }
+    }
+    
+    class var twitterId: String? {
+        get {
+            return UserDefaults.standard.object(forKey: twitterIdKey) as? String
+        }
+        set(newValue) {
+            UserDefaults.standard.set(newValue, forKey: twitterIdKey)
         }
     }
 }

@@ -200,6 +200,7 @@
                                                 </imageView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0XA-rL-9xh">
                                                     <rect key="frame" x="281" y="7" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.0" green="0.54525274038314819" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="liveTweetSwitchChanged:" destination="bsg-ng-LND" eventType="valueChanged" id="7xH-JW-Ede"/>
                                                     </connections>
@@ -527,7 +528,7 @@
                     <tabBarItem key="tabBarItem" title="Minutes" image="recents" id="TAc-h1-TKn"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V9a-0s-Ixa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="V9a-0s-Ixa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
