@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let tableViewHeaderHeight: CGFloat = 94
+let tableViewHeaderHeight: CGFloat = 124
 let tableViewRowHeight: CGFloat = 44
 
 class MinutesListViewController: UITableViewController {

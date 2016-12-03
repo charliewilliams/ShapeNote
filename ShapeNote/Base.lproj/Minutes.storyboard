@@ -184,7 +184,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpI-Zd-uLI">
-                                            <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="43.5" width="375" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live tweeting as @shapenotemagic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rg-gf-UZx">
                                                     <rect key="frame" x="20" y="14" width="237" height="17"/>
@@ -219,10 +219,7 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iA2-HX-axw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="1y5-YE-Op0"/>
-                                            </constraints>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                             <state key="normal" title="New Lesson +">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -233,6 +230,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="GpI-Zd-uLI" firstAttribute="bottom" secondItem="DXf-Ux-0V7" secondAttribute="bottom" id="I6H-7U-rkJ"/>
                                         <constraint firstAttribute="trailing" secondItem="GpI-Zd-uLI" secondAttribute="trailing" id="KWJ-3k-PG1"/>
                                         <constraint firstItem="GpI-Zd-uLI" firstAttribute="top" secondItem="iA2-HX-axw" secondAttribute="bottom" id="UCT-bd-jUW"/>
                                         <constraint firstItem="iA2-HX-axw" firstAttribute="top" secondItem="DXf-Ux-0V7" secondAttribute="top" id="UJP-mV-YhK"/>

@@ -564,8 +564,12 @@ extension NewLessonViewController {
         lesson.leader = NSOrderedSet(array: chosenSingers)
         
         // optional stuff
-        lesson.dedication = dedication
-        lesson.otherEvent = otherEvent
+        // A bit hacky here with the magic numbers…
+        let dedicationCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! NewLessonTextEntryTableViewCell
+        lesson.dedication = dedicationCell.textField.text
+        
+        let otherEventcell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as! NewLessonTextEntryTableViewCell
+        lesson.otherEvent = otherEventcell.textField.text
         
         minutes.singers.addObjects(from: chosenSingers)
         
@@ -578,37 +582,37 @@ extension NewLessonViewController {
 //MARK: fancy getters & setters
 extension NewLessonViewController {
     
-    var searchingSongs:Bool {
+    var searchingSongs: Bool {
         get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.searchSongs.rawValue }
-        set {
+        set(newValue) {
             if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchSongs.rawValue }
         }
     }
     
-    var searchingSingers:Bool {
+    var searchingSingers: Bool {
         get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.searchLeaders.rawValue }
-        set {
+        set(newValue) {
             if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.searchLeaders.rawValue }
         }
     }
     
-    var addingAssistant:Bool {
+    var addingAssistant: Bool {
         get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.assistedBy.rawValue }
-        set {
+        set(newValue) {
             if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.assistedBy.rawValue }
         }
     }
     
-    var addingDedication:Bool {
+    var addingDedication: Bool {
         get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.dedication.rawValue }
-        set {
+        set(newValue) {
             if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.dedication.rawValue }
         }
     }
     
-    var addingOther:Bool {
+    var addingOther: Bool {
         get { return searchBar.selectedScopeButtonIndex == ScopeBarIndex.other.rawValue }
-        set {
+        set(newValue) {
             if newValue { searchBar.selectedScopeButtonIndex = ScopeBarIndex.other.rawValue }
         }
     }

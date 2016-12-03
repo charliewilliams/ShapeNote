@@ -86,8 +86,8 @@ class Lesson: NSManagedObject {
         }
         userString += "#\(number): \(song.title)"
         
-        if dedication != nil {
-            userString += " (\(dedication!))"
+        if let dedication = dedication {
+            userString += " (\(dedication))"
         }
         
         userString += "."
