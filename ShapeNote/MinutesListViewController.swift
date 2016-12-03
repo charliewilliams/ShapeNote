@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-let tableViewHeaderHeight:CGFloat = 94
-let tableViewRowHeight:CGFloat = 44
+let tableViewHeaderHeight: CGFloat = 94
+let tableViewRowHeight: CGFloat = 44
 
 class MinutesListViewController: UITableViewController {
 
@@ -24,39 +24,32 @@ class MinutesListViewController: UITableViewController {
         return d
     }()
     
-    private var _allMinutes:[Minutes]?
-    fileprivate var allMinutes:[Minutes] {
-        get {
-            if _allMinutes == nil {
-                
-                guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else {
-                    return []
-                }
-                
-                navigationItem.title = group.name + ": Minutes"
-                if let m = CoreDataHelper.sharedHelper.minutes(group) {
-                    
-                    _allMinutes = m.sorted { (a:Minutes, b:Minutes) -> Bool in
-                        return a.date.timeIntervalSince1970 > b.date.timeIntervalSince1970
-                    }
-                }
+    private var _allMinutes: [Minutes]?
+    fileprivate var allMinutes: [Minutes] {
+        if _allMinutes == nil {
+            
+            guard let group = CoreDataHelper.sharedHelper.currentlySelectedGroup else {
+                return []
             }
-            return _allMinutes!
+            
+            navigationItem.title = group.name + ": Minutes"
+            if let m = CoreDataHelper.sharedHelper.minutes(group) {
+                _allMinutes = m.sorted { $0.date > $1.date }
+            }
         }
+        return _allMinutes!
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
         
         _allMinutes = nil
-        self.tableView.reloadData()
+        tableView.reloadData()
         
         updateNoMinutesView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
         
         if CoreDataHelper.sharedHelper.currentlySelectedGroup == nil || Defaults.currentGroupName == nil {
@@ -95,7 +88,7 @@ extension MinutesListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let minutesViewController = minuteTakingViewControllerForIndexPath(indexPath)
-        self.navigationController?.pushViewController(minutesViewController, animated: true)
+        navigationController?.pushViewController(minutesViewController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -113,9 +106,9 @@ extension MinutesListViewController {
     @IBAction func newMinutesButtonPressed(_ sender: UIButton) {
         
         if let _ = CoreDataHelper.sharedHelper.currentlySelectedGroup,
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") {
             
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -160,7 +153,7 @@ private extension MinutesListViewController {
     func minuteTakingViewControllerForIndexPath(_ indexPath:IndexPath) -> MinuteTakingViewController {
         
         let m = allMinutes[indexPath.row]
-        let minutesViewController = self.storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") as! MinuteTakingViewController
+        let minutesViewController = storyboard?.instantiateViewController(withIdentifier: "MinuteTakingViewController") as! MinuteTakingViewController
         minutesViewController.minutes = m
         
         return minutesViewController

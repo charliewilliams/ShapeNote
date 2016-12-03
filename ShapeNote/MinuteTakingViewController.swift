@@ -142,7 +142,7 @@ extension MinuteTakingViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if minutes?.complete == true {
+        if let minutes = minutes, minutes.complete == true {
             return nil
         }
         return tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
