@@ -116,12 +116,15 @@ extension MinuteTakingViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        if let lessons = lessons, lessons.count > indexPath.row {
+        if let lessons = lessons, indexPath.row < lessons.count {
+            
             let lesson = lessons[indexPath.row]
-            var string = lesson.song.number + " " + lesson.song.title + " – " + lesson.allLeadersString(useTwitterHandles: false)
+            var string = "\(lesson.allLeadersString(useTwitterHandles: false)) – \(lesson.song.number) \(lesson.song.title)"
+            
             if let dedication = lesson.dedication {
                 string += " (\(dedication))"
             }
+            
             if let otherEvent = lesson.otherEvent {
                 string = otherEvent
             }
