@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class AboutViewController: UIViewController, EmailSender {
 
     let email = "c@charliewilliams.org"
     let subject = "Shapenote Companion App"
@@ -25,28 +25,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     @IBAction func emailButtonPressed(_ sender: UIButton) {
-        
-        guard MFMailComposeViewController.canSendMail() else {
-            
-            let urlString = "inbox-gmail://co?to=\(email)&subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: CharacterSet.whitespacesAndNewlines.inverted)!
-            let url = URL(string: urlString)!
-            
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-            return
-        }
-        
-        let composeVC = MFMailComposeViewController()
-        composeVC.mailComposeDelegate = self
-        
-        composeVC.setToRecipients([email])
-        composeVC.setSubject(subject)
-        composeVC.setMessageBody(body, isHTML: false)
-        
-        self.present(composeVC, animated: true, completion: nil)
+        presentEmailController(to: email, subject: subject, body: body)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

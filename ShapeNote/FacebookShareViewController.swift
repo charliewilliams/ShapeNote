@@ -8,8 +8,9 @@
 
 import UIKit
 import Crashlytics
+import MessageUI
 
-class FacebookShareViewController: UIViewController, UITextViewDelegate {
+class FacebookShareViewController: UIViewController, EmailSender, UITextViewDelegate {
     
     var minutes: Minutes! {
         didSet {
@@ -24,9 +25,18 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     deinit {
         
         for observer in observers {
-            
             NotificationCenter.default.removeObserver(observer)
         }
+    }
+    
+    init(minutes: Minutes) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.minutes = minutes
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -77,6 +87,10 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
         })
     }
     
+    @IBAction func sendEmailButtonPressed(_ sender: UIButton) {
+        presentEmailController(to: "", subject: minutes.headerString, body: postComposeTextView.text)
+    }
+    
     @IBAction func postButtonPressed(_ sender: UIBarButtonItem) {
         
         let url = URL(string: "fb://groups")!
@@ -84,8 +98,10 @@ class FacebookShareViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
-        
         dismiss(animated: true, completion: nil)
     }
     
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

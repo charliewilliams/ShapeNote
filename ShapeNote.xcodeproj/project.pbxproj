@@ -39,6 +39,7 @@
 		C0515B931A7BC4000006ED16 /* SH1991.json in Resources */ = {isa = PBXBuildFile; fileRef = C0515B921A7BC4000006ED16 /* SH1991.json */; };
 		C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */; };
 		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
+		C0519C5E1DF2D4C500ACACDE /* EmailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */; };
 		C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */; };
 		C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626971BEF711500E05EBE /* QuizSetupViewController.swift */; };
 		C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */; };
@@ -131,6 +132,7 @@
 		C0515B921A7BC4000006ED16 /* SH1991.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SH1991.json; sourceTree = "<group>"; };
 		C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
+		C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSender.swift; sourceTree = "<group>"; };
 		C0535FEC1A7FBF6700978C37 /* MinutesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesTableViewCell.swift; sourceTree = "<group>"; };
 		C05626971BEF711500E05EBE /* QuizSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSetupViewController.swift; sourceTree = "<group>"; };
 		C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
 				C072206A1DD763F200CE9CAC /* About.storyboard */,
 				C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */,
+				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -610,6 +613,7 @@
 			files = (
 				C07220681DD7374B00CE9CAC /* GroupSelectionTableViewController.swift in Sources */,
 				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
+				C0519C5E1DF2D4C500ACACDE /* EmailSender.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
 				C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */,

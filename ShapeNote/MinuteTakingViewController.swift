@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Crashlytics
+import MessageUI
 
 class MinuteTakingViewController: UITableViewController {
     
@@ -80,26 +81,21 @@ class MinuteTakingViewController: UITableViewController {
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
     
-        minutes?.complete = true
+        guard let minutes = minutes else {
+            _ = navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        minutes.complete = true
         CoreDataHelper.sharedHelper.saveContext()
-        let shareVC = FacebookShareViewController()
-
-        let alert = UIAlertController(title: "Post to Facebook?", message: nil, preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Post", style: .default) { (action:UIAlertAction) -> Void in
-            
-            shareVC.minutes = self.minutes!
-            self.present(shareVC, animated: true, completion: {
-                _ = self.navigationController?.popViewController(animated: false)
-            })
-        }
-        let cancel = UIAlertAction(title: "Don't post", style: .cancel) { (cancel:UIAlertAction!) -> Void in
-            _ = self.navigationController?.popViewController(animated: true)
-        }
         
-        alert.addAction(cancel) // first
-        alert.addAction(action)
-        
-        self.present(alert, animated: true, completion: nil)
+        present(FacebookShareViewController(minutes: minutes), animated: true) {
+            _ = self.navigationController?.popViewController(animated: false)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

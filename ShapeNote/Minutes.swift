@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 @objc(Minutes)
-
 class Minutes: NSManagedObject {
 
     @NSManaged var date: Date
@@ -30,17 +29,25 @@ class Minutes: NSManagedObject {
         super.init(entity: entity, insertInto: context)
         date = Date()
     }
-
-    func stringForSocialMedia() -> String {
+    
+    var headerString: String {
         
-        var string = ""
+        var string = "Minutes "
         
-        if group.name != nil {
-            string = "Minutes for \(group.name) on "
+        if group.name.characters.count > 0 {
+            string += "for \(group.name) on "
+        } else {
+            string += " – "
         }
         
         string += Minutes.dateFormatter.string(from: date)
-        string += ":\n\n"
+        
+        return string
+    }
+
+    func stringForSocialMedia() -> String {
+        
+        var string = "\(headerString):\n\n"
         
         songs.enumerateObjects({ (object:Any!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) in
             
