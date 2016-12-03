@@ -24,11 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = backgroundImageColor
         
         #if DEBUG
-            Fabric.with([Crashlytics(), Twitter()])
-        #else
             Fabric.with([Twitter()])
+        #else
+            Fabric.with([Crashlytics(), Twitter()])
         #endif
-        
+    
         JSONLoader.sharedLoader.handleFirstRun()
 
         return true
