@@ -187,19 +187,19 @@
                                             <rect key="frame" x="0.0" y="50" width="375" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live tweeting as @shapenotemagic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rg-gf-UZx">
-                                                    <rect key="frame" x="20" y="13.5" width="237" height="17"/>
+                                                    <rect key="frame" x="20" y="14" width="237" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" red="0.31372549020000001" green="0.73725490199999999" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twtr-icn-logo" translatesAutoresizingMaskIntoConstraints="NO" id="KbZ-DZ-zfe">
-                                                    <rect key="frame" x="336" y="6" width="31" height="31"/>
+                                                    <rect key="frame" x="334" y="6" width="33" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="KbZ-DZ-zfe" secondAttribute="height" multiplier="1:1" id="0yb-o9-o9j"/>
                                                     </constraints>
                                                 </imageView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0XA-rL-9xh">
-                                                    <rect key="frame" x="283" y="6.5" width="51" height="31"/>
+                                                    <rect key="frame" x="281" y="7" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="liveTweetSwitchChanged:" destination="bsg-ng-LND" eventType="valueChanged" id="7xH-JW-Ede"/>
                                                     </connections>
@@ -314,16 +314,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SL-1K-jcV">
-                                            <rect key="frame" x="15" y="26" width="80" height="18"/>
+                                            <rect key="frame" x="15" y="26" width="100" height="18"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="2K0-TG-0ds"/>
+                                                <constraint firstAttribute="width" constant="100" id="2K0-TG-0ds"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-rc-kDv">
-                                            <rect key="frame" x="109" y="24" width="221" height="22"/>
+                                            <rect key="frame" x="129" y="24" width="201" height="22"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="0rj-Pi-AtP"/>
@@ -376,16 +376,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assisted by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scq-N4-AUX">
-                                            <rect key="frame" x="15" y="17" width="80" height="15"/>
+                                            <rect key="frame" x="15" y="17" width="100" height="15"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="scX-7a-Y5F"/>
+                                                <constraint firstAttribute="width" constant="100" id="scX-7a-Y5F"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name of Assistant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp2-V2-ht0">
-                                            <rect key="frame" x="110" y="14" width="201" height="22"/>
+                                            <rect key="frame" x="130" y="14" width="181" height="22"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="O1D-yD-wqe"/>
@@ -442,16 +442,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedication" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-wJ-M6n">
-                                            <rect key="frame" x="15" y="17" width="80" height="15"/>
+                                            <rect key="frame" x="15" y="17" width="100" height="15"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="tc9-R1-9yv"/>
+                                                <constraint firstAttribute="width" constant="100" id="tc9-R1-9yv"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.4692882625" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter name or names" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iK2-7d-v5J">
-                                            <rect key="frame" x="110" y="10" width="237" height="30"/>
+                                            <rect key="frame" x="130" y="10" width="217" height="30"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done"/>

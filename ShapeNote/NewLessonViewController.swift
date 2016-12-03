@@ -329,13 +329,14 @@ extension NewLessonViewController {
         let cellTypeIndex = adjustedIndexForIndexPath(indexPath)
         
         switch cellTypeIndex {
-        case .searchLeaders: fallthrough
-        case .searchSongs:
+        case .searchLeaders,
+             .searchSongs:
             return 70
-        case .assistedBy: fallthrough
-        case .dedication: fallthrough
-        case .other:
+        case .assistedBy,
+             .dedication:
             return 44
+        case .other:
+            return 88
         }
     }
     
@@ -403,7 +404,9 @@ extension NewLessonViewController {
             
         case .other:
             let cell = cell as! NewLessonTextEntryTableViewCell
-            cell.leftTextLabel?.text = "Other Event"
+            cell.leftTextLabel?.text = "Other Event\n(own composition,\nmemorial lesson,\netc.)"
+            cell.leftTextLabel.numberOfLines = 0
+            cell.leftTextLabel.font = UIFont.systemFont(ofSize: 10)
             if otherEvent != nil {
                 cell.textField.isHidden = false
                 cell.textField.text = otherEvent
