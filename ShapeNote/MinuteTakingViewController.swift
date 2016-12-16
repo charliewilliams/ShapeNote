@@ -132,7 +132,7 @@ extension MinuteTakingViewController {
                 string += " \(otherEvent)"
             }
             
-            if let dedication = lesson.dedication {
+            if let dedication = lesson.dedication, dedication.characters.count > 0 {
                 string += " (\(dedication))"
             }
             
