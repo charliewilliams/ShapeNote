@@ -24,7 +24,7 @@ class MinutesListViewController: UITableViewController {
         return d
     }()
     
-    private var _allMinutes: [Minutes]?
+    fileprivate var _allMinutes: [Minutes]?
     fileprivate var allMinutes: [Minutes] {
         if _allMinutes == nil {
             
@@ -97,6 +97,39 @@ extension MinutesListViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableViewHeaderHeight
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard editingStyle == .delete, indexPath.row < allMinutes.count else { return }
+        
+        tableView.beginUpdates()
+        
+        var minutes = allMinutes
+        let toDelete = minutes.remove(at: indexPath.row)
+        
+        CoreDataHelper.sharedHelper.managedObjectContext?.delete(toDelete)
+        
+        _allMinutes = minutes
+        
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete minutes"
     }
 }
 

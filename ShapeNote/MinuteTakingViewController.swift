@@ -22,7 +22,7 @@ class MinuteTakingViewController: UITableViewController {
         d.timeStyle = .short
         return d
     }()
-    private var _lessons: [Lesson]?
+    fileprivate var _lessons: [Lesson]?
     fileprivate var lessons: [Lesson]? { // all of the lessons from the minutes object
         get {
             
@@ -164,8 +164,40 @@ extension MinuteTakingViewController {
         }
         return tableViewHeaderHeight
     }
-}
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard editingStyle == .delete, var lessons = lessons, indexPath.row < lessons.count else { return }
+        
+        tableView.beginUpdates()
+        
+        let toDelete = lessons.remove(at: indexPath.row)
+        
+        CoreDataHelper.sharedHelper.managedObjectContext?.delete(toDelete)
+        
+        _lessons = lessons
+        
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete lesson"
+    }
+}
+
 // MARK: Navigation
 extension MinuteTakingViewController {
     
