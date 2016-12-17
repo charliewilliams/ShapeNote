@@ -8,14 +8,13 @@
 
 import UIKit
 
-let checkmark = "✔︎"
-
 class QuizQuestionTypeTableViewCell: UITableViewCell {
     
+    private let checkmark = "✔︎"
     @IBOutlet var selectionButton: UIButton!
     @IBOutlet var label: UILabel!
     
-    var _selected = false
+    private var _selected = false
     var questionType:QuizOption! {
         didSet {
             label.text = questionType.itemStringForQuestionPair

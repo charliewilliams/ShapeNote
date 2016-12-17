@@ -39,14 +39,14 @@ enum AnswerVerb: String {
 }
 
 enum ModeOption: String {
-    case Major = "Major"
-    case Minor = "Minor"
+    case Major
+    case Minor
 }
 
 enum FormOption: String {
-    case Plaintune = "Plaintune"
-    case Fugue = "Fugue"
-    case Anthem = "Anthem"
+    case Plaintune
+    case Fugue
+    case Anthem
 }
 
 func ==(lhs: QuizOption, rhs: QuizOption) -> Bool {

@@ -11,9 +11,9 @@ import MessageUI
 
 class AboutViewController: UIViewController, EmailSender {
 
-    let email = "c@charliewilliams.org"
-    let subject = "Shapenote Companion App"
-    let body = "Hi Charlie!\n\n"
+    private let email = "c@charliewilliams.org"
+    private let subject = "Shapenote Companion App"
+    private let body = "Hi Charlie!\n\n"
     @IBOutlet weak var faceImageView: UIImageView!
     @IBOutlet weak var mainTextView: UITextView!
     

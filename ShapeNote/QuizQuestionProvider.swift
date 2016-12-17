@@ -10,66 +10,24 @@ import Foundation
 
 var numberOfQuestionsPerRound = 4
 
-extension Set {
-    
-    func random() -> Element? {
-        guard count > 0 else { return nil }
-        guard count > 1 else { return first }
-        let i = index(startIndex, offsetBy: Int(arc4random_uniform(UInt32(count))))
-        assert(i <= endIndex)
-        return self[i]
-    }
-}
-
-extension Array {
-    
-    func random() -> Element? {
-        guard count > 0 else { return nil }
-        return self[Int(arc4random_uniform(UInt32(count)))]
-    }
-}
-
-extension Collection {
-    
-    func shuffle() -> [Iterator.Element] {
-        var list = Array(self)
-        list.shuffleInPlace()
-        return list
-    }
-}
-
-extension MutableCollection where Index == Int {
-    
-    mutating func shuffleInPlace() {
-        
-        guard count > 1 else { return }
-        
-        for i in startIndex ..< endIndex - 1 {
-            let j = Int(arc4random_uniform(UInt32(endIndex - i))) + i
-            guard i != j else { continue }
-            swap(&self[i], &self[j])
-        }
-    }
-}
-
 class QuizQuestionProvider {
     
     var filtering = true
-    var selectedQuestions:Set<QuizOption>
+    var selectedQuestions: Set<QuizOption>
     
-    class var sharedProvider : QuizQuestionProvider {
+    static var sharedProvider: QuizQuestionProvider {
         struct Static {
-            static let instance : QuizQuestionProvider = QuizQuestionProvider()
+            static let instance: QuizQuestionProvider = QuizQuestionProvider()
         }
         return Static.instance
     }
     
     init() {
-        _quizOptions = [String:[QuizOption]]()
+        _quizOptions = [String: [QuizOption]]()
         selectedQuestions = Set<QuizOption>()
     }
     
-    var questionTypes:[String] {
+    var questionTypes: [String] {
         
         if filtering {
             return Array(filteredOptions.keys)
@@ -77,48 +35,43 @@ class QuizQuestionProvider {
         return ["Title", "Composer", "Lyricist", "First Line", "Year", "Number", "Mode & Form"]
     }
     
-    var _quizOptions:[String:[QuizOption]]
-    var quizOptions:[String:[QuizOption]] {
+    var _quizOptions: [String: [QuizOption]]
+    var quizOptions: [String: [QuizOption]] {
         
-        get {
-            
-            if filtering {
-                return filteredOptions
-            }
-            
-            if _quizOptions.keys.count > 0 { return _quizOptions }
-            
-            _quizOptions = [String:[QuizOption]]()
-
-            for question in questionTypes {
-                
-                var theseOptions = [QuizOption]()
-                
-                for answer in questionTypes {
-                    if let q = Quizzable(rawValue: question),
-                        let a = Quizzable(rawValue: answer),
-                        question != answer {
-                            theseOptions.append(QuizOption(questionType: q, answerType: a))
-                    }
-                }
-                
-                _quizOptions[question] = theseOptions
-            }
-            
-            return _quizOptions
+        if filtering {
+            return filteredOptions
         }
+        
+        if _quizOptions.keys.count > 0 { return _quizOptions }
+        
+        _quizOptions = [String:[QuizOption]]()
+        
+        for question in questionTypes {
+            
+            _quizOptions[question] = questionTypes.flatMap { answer -> QuizOption? in
+                
+                if let q = Quizzable(rawValue: question),
+                    let a = Quizzable(rawValue: answer),
+                    question != answer {
+                    return QuizOption(questionType: q, answerType: a)
+                }
+                return nil
+            }
+        }
+        
+        return _quizOptions
     }
     
-    var filteredOptions:[String:[QuizOption]] {
+    var filteredOptions: [String: [QuizOption]] {
         
-        return ["Title":[QuizOption(questionType: .Title, answerType: .Number),
+        return ["Title": [QuizOption(questionType: .Title, answerType: .Number),
                          QuizOption(questionType: .Title, answerType: .FirstLine),
                          QuizOption(questionType: .Title, answerType: .Composer),
             ],
-                "Number":[QuizOption(questionType: .Number, answerType: .Title),
+                "Number": [QuizOption(questionType: .Number, answerType: .Title),
                           QuizOption(questionType: .Number, answerType: .ModeAndForm),
             ],
-                "First Line":[QuizOption(questionType: .FirstLine, answerType: .Year),
+                "First Line": [QuizOption(questionType: .FirstLine, answerType: .Year),
                               QuizOption(questionType: .FirstLine, answerType: .Title)
             ],
         ]

@@ -19,6 +19,7 @@
 		C02E18A61BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */; };
 		C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */; };
 		C035664A1E057E1C00A13309 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566491E057E1C00A13309 /* ErrorHandler.swift */; };
+		C035664C1E057FFE00A13309 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035664B1E057FFE00A13309 /* Collection.swift */; };
 		C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043116E1DB4DDC70015C180 /* TabBarController.swift */; };
 		C04311711DB4E4920015C180 /* NoContentViewDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */; };
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
@@ -110,6 +111,7 @@
 		C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTextEntryTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMinutesYetView.swift; sourceTree = "<group>"; };
 		C03566491E057E1C00A13309 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		C035664B1E057FFE00A13309 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentViewDisplaying.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */,
 				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
 				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
+				C035664B1E057FFE00A13309 /* Collection.swift */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -648,6 +651,7 @@
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
 				C0285B821D9716E700306705 /* FavouritesTableViewController.swift in Sources */,
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
+				C035664C1E057FFE00A13309 /* Collection.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
 				C035664A1E057E1C00A13309 /* ErrorHandler.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
