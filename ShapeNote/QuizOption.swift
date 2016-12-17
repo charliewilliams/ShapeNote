@@ -6,9 +6,9 @@
 //  Copyright © 2015 Charlie Williams. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-enum Quizzable:String {
+enum Quizzable: String {
     case Title
     case Composer
     case Lyricist
@@ -18,7 +18,7 @@ enum Quizzable:String {
     case ModeAndForm = "Mode & Form"
 }
 
-enum QuestionVerb:String {
+enum QuestionVerb: String {
     case Title = ""
     case Composer = "A song by"
     case Lyricist = "A song with words by"
@@ -28,7 +28,7 @@ enum QuestionVerb:String {
     case ModeAndForm = "There is a %@ which"
 }
 
-enum AnswerVerb:String {
+enum AnswerVerb: String {
     case Title = "is titled"
     case Composer = "was written by"
     case Lyricist = "has words by"
@@ -38,12 +38,12 @@ enum AnswerVerb:String {
     case ModeAndForm = "is a"
 }
 
-enum ModeOption:String {
+enum ModeOption: String {
     case Major = "Major"
     case Minor = "Minor"
 }
 
-enum FormOption:String {
+enum FormOption: String {
     case Plaintune = "Plaintune"
     case Fugue = "Fugue"
     case Anthem = "Anthem"
@@ -54,20 +54,20 @@ func ==(lhs: QuizOption, rhs: QuizOption) -> Bool {
 }
 
 struct QuizOption: Hashable {
-    let questionType:Quizzable
-    let answerType:Quizzable
-    let question:String?
-    var answers:[String]?
-    var answerIndex:Int = 0
+    let questionType: Quizzable
+    let answerType: Quizzable
+    let question: String?
+    var answers: [String]?
+    var answerIndex: Int = 0
     
-    init(questionType:Quizzable, answerType:Quizzable) {
+    init(questionType: Quizzable, answerType: Quizzable) {
         self.questionType = questionType
         self.answerType = answerType
         question = nil
         answers = nil
     }
     
-    init(questionType:Quizzable, answerType:Quizzable, question:String?, answers:[String]?, answerIndex:Int) {
+    init(questionType: Quizzable, answerType: Quizzable, question: String?, answers: [String]?, answerIndex: Int) {
         self.questionType = questionType
         self.answerType = answerType
         self.question = question
@@ -75,7 +75,7 @@ struct QuizOption: Hashable {
         self.answerIndex = answerIndex
     }
     
-    var itemStringForQuestionPair:String {
+    var itemStringForQuestionPair: String {
         switch self.answerType {
         case .Title:
             return "…what's the title?"
@@ -94,7 +94,7 @@ struct QuizOption: Hashable {
         }
     }
     
-    var exampleStringForQuestionPair:NSAttributedString {
+    var exampleStringForQuestionPair: NSAttributedString {
         var s = String()
         let X = (question != nil) ? question! : "X"
         
@@ -140,8 +140,8 @@ struct QuizOption: Hashable {
         
         let fontName = "HoeflerText-Regular"
         let fontNameItalic = "HoeflerText-Italic"
-        let italics = [NSFontAttributeName:UIFont(name: fontNameItalic, size: 24)!]
-        let nonItalics = [NSFontAttributeName:UIFont(name: fontName, size: 24)!]
+        let italics = [NSFontAttributeName: UIFont(name: fontNameItalic, size: 24)!]
+        let nonItalics = [NSFontAttributeName: UIFont(name: fontName, size: 24)!]
         
         let nsstring = NSString(string: s)
         let range = nsstring.range(of: X)

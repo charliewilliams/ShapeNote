@@ -6,6 +6,8 @@
 //  Copyright © 2016 Charlie Williams. All rights reserved.
 //
 
+import UIKit
+
 class FavouritesTableViewController : SongListTableViewController, NoContentViewDisplaying {
     
     @IBOutlet var noContentView: UIView!

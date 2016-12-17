@@ -6,7 +6,7 @@
 //  Copyright © 2015 Charlie Williams. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum TabBarIndex:Int {
     case favorites = 0

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Charlie Williams. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol IntroHandler {
     func handleFirstRun()

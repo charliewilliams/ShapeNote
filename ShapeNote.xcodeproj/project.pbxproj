@@ -18,6 +18,7 @@
 		C02E18A41BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */; };
 		C02E18A61BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */; };
 		C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */; };
+		C035664A1E057E1C00A13309 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566491E057E1C00A13309 /* ErrorHandler.swift */; };
 		C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043116E1DB4DDC70015C180 /* TabBarController.swift */; };
 		C04311711DB4E4920015C180 /* NoContentViewDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */; };
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
@@ -108,6 +109,7 @@
 		C02E18A31BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonAssistantTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A51BF753E000FF2057 /* NewLessonTextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonTextEntryTableViewCell.swift; sourceTree = "<group>"; };
 		C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMinutesYetView.swift; sourceTree = "<group>"; };
+		C03566491E057E1C00A13309 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentViewDisplaying.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
@@ -145,7 +147,6 @@
 		C0697C571D85E1F300269434 /* LocationPermissionsDeniedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPermissionsDeniedViewController.swift; sourceTree = "<group>"; };
 		C0697C581D85E1F300269434 /* ReverseGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeocoder.swift; sourceTree = "<group>"; };
 		C0697C591D85E1F300269434 /* Singing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singing.swift; sourceTree = "<group>"; };
-		C0697C5E1D85E24900269434 /* GeoLite2-City.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-City.mmdb"; sourceTree = "<group>"; };
 		C07220661DD7374B00CE9CAC /* GroupSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSelectionTableViewController.swift; sourceTree = "<group>"; };
 		C072206B1DD763F200CE9CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +318,7 @@
 				C072206A1DD763F200CE9CAC /* About.storyboard */,
 				C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */,
 				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
+				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -333,7 +335,6 @@
 				C092E8631A8A0311002594A5 /* Shenandoah.json */,
 				C092E8641A8A0311002594A5 /* Cooper2012.json */,
 				C0515B5F1A7BA59D0006ED16 /* Info.plist */,
-				C0697C5E1D85E24900269434 /* GeoLite2-City.mmdb */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -648,6 +649,7 @@
 				C0285B821D9716E700306705 /* FavouritesTableViewController.swift in Sources */,
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
+				C035664A1E057E1C00A13309 /* ErrorHandler.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
 				C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,

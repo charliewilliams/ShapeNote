@@ -39,20 +39,20 @@ enum ManagedClass:String {
 
 class CoreDataHelper {
 
-    class var sharedHelper : CoreDataHelper {
+    class var sharedHelper: CoreDataHelper {
         struct Static {
-            static let instance:CoreDataHelper = CoreDataHelper()
+            static let instance = CoreDataHelper()
         }
         return Static.instance
     }
     
-    var currentlySelectedGroup:Group? {
+    var currentlySelectedGroup: Group? {
         get {
             return groupWithName(Defaults.currentGroupName)
         }
     }
     
-    var currentlySelectedBook:Book {
+    var currentlySelectedBook: Book {
         get {
             return book(Defaults.currentlySelectedBookTitle)!
         }
@@ -67,7 +67,7 @@ class CoreDataHelper {
         return nil
     }
     
-    func singers(inGroup group:Group) -> [Singer]? {
+    func singers(inGroup group: Group) -> [Singer]? {
         if let results = resultsForEntityName(ManagedClass.Singer.rawValue, matchingObject: group, inQueryString: "group == %@") as? [Singer],
             results.count > 0 {
             return results.sorted(by: { (a:Singer, b:Singer) -> Bool in
@@ -86,7 +86,7 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Book.rawValue) as! [Book]
     }
     
-    func book(_ title:String) -> Book? {
+    func book(_ title: String) -> Book? {
         return singleResultForEntityName(ManagedClass.Book.rawValue, matchingObject: title as NSObject?, inQueryString: "title == %@") as! Book?
     }
     
@@ -94,16 +94,16 @@ class CoreDataHelper {
         return songs(currentlySelectedBook.title)
     }
     
-    func songs(inBook book:Book) -> [Song] {
+    func songs(inBook book: Book) -> [Song] {
         return resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: book, inQueryString: "book == %@") as! [Song]
     }
     
-    func songs(inBook bookId:BookIdentifier) -> [Song] {
+    func songs(inBook bookId: BookIdentifier) -> [Song] {
         let bookObject = book(bookId.rawValue)!
         return songs(inBook: bookObject)
     }
     
-    func songs(_ inBookTitle:String) -> [Song] {
+    func songs(_ inBookTitle: String) -> [Song] {
         let bookObject = book(inBookTitle)!
         return songs(inBook: bookObject)
     }
@@ -112,7 +112,7 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: currentlySelectedBook, inQueryString: "book == %@") as! [Song]
     }
     
-    var numberOfSongsInCurrentBook:Int {
+    var numberOfSongsInCurrentBook: Int {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Song.rawValue)
         fetchRequest.predicate = NSPredicate(format: "book == %@", currentlySelectedBook)
@@ -126,7 +126,7 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Group.rawValue) as! [Group]
     }
     
-    func groupWithName(_ name:String?) -> Group! {
+    func groupWithName(_ name: String?) -> Group! {
         
         guard let name = name else { return nil }
         
@@ -147,7 +147,7 @@ class CoreDataHelper {
         return Group.create(name: name)
     }
     
-    func minutes(_ group:Group) -> [Minutes]? {
+    func minutes(_ group: Group) -> [Minutes]? {
         return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
     }
     
@@ -217,11 +217,11 @@ class CoreDataHelper {
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error.userInfo)")
             CoreDataHelper.sharedHelper.deleteLocalDatabaseFile()
-            CoreDataHelper.sharedHelper.handleError(error)
+            ErrorHandler.handleError(error)
             
         } catch {
             
-            CoreDataHelper.sharedHelper.handleError(nil)
+            ErrorHandler.handleError(nil)
             fatalError()
         }
         
@@ -268,19 +268,5 @@ class CoreDataHelper {
     
     func deleteLocalDatabaseFile() {
         try! FileManager.default.removeItem(at: self.modelURL)
-    }
-    
-    func handleError(_ error:NSError?) {
-        
-        var message = "Please email Charlie a description of what just happened so he can fix it.\n\nThis problem might also be fixed by deleting and reinstalling the app. (Sorry.)"
-        if let error = error,
-            error.localizedDescription.characters.count > 4 {
-                message = error.localizedDescription
-        }
-        let alert = UIAlertController(title: "Core Data Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        UIApplication.shared.keyWindow!.rootViewController!.present(alert, animated: true, completion: nil)
     }
 }
