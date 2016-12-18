@@ -148,7 +148,7 @@ extension MinutesListViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let mtvc = segue.destination as? MinuteTakingViewController, mtvc.minutes == nil {
-            mtvc.minutes = NSEntityDescription.insertNewObject(forEntityName: "Minutes", into: CoreDataHelper.managedContext) as? Minutes
+            mtvc.minutes = Minutes()
             mtvc.minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
             CoreDataHelper.sharedHelper.saveContext()
         }

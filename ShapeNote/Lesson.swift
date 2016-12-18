@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 @objc(Lesson)
-
 class Lesson: NSManagedObject {
 
     @NSManaged var date: Date
@@ -19,6 +18,26 @@ class Lesson: NSManagedObject {
     @NSManaged var minutes: Minutes
     @NSManaged var dedication: String?
     @NSManaged var otherEvent: String?
+    
+    convenience init(song: Song, minutes: Minutes, leaders: [Singer], dedication: String?, otherInfo: String?,
+                     group: Group = CoreDataHelper.sharedHelper.currentlySelectedGroup!,
+                     context: NSManagedObjectContext = CoreDataHelper.managedContext) {
+        
+        self.init(className: "Lesson", context: context)
+
+        self.song = song
+        self.minutes = minutes
+        self.leader = NSOrderedSet(array: leaders)
+        
+        if let dedication = dedication, dedication.characters.count > 0 {
+            self.dedication = dedication
+        }
+        if let other = otherInfo, other.characters.count > 0 {
+            self.otherEvent = other
+        }
+        
+        date = Date()
+    }
     
     func stringForMinutes() -> String {
         

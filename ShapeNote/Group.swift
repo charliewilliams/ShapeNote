@@ -10,21 +10,18 @@ import Foundation
 import CoreData
 
 @objc(Group)
-
 class Group: NSManagedObject {
 
     @NSManaged var name: String
     @NSManaged var singers: [Singer]
     @NSManaged var facebookID: String
     
-    class func create(name: String, facebookID: String? = nil) -> Group {
+     convenience init(name: String, facebookID: String? = nil, context: NSManagedObjectContext = CoreDataHelper.managedContext) {
+        self.init(className: "Group", context: context)
         
-        let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: CoreDataHelper.managedContext) as! Group
-        group.name = name
+        self.name = name
         if let facebookID = facebookID {
-            group.facebookID = facebookID
+            self.facebookID = facebookID
         }
-        
-        return group
     }
 }

@@ -68,6 +68,12 @@ class Song: NSManagedObject {
             "popularity":"popularity"]
     }
     
+    convenience init(book: Book, context: NSManagedObjectContext = CoreDataHelper.managedContext) {
+        self.init(className: "Song", context: context)
+        
+        self.book = book
+    }
+    
     func configureWithDict(_ dict:NSDictionary) {
         
         for (key, value) in Song.keys {

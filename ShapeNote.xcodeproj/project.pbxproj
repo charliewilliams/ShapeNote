@@ -20,6 +20,9 @@
 		C02E18A81BF7736400FF2057 /* NoMinutesYetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */; };
 		C035664A1E057E1C00A13309 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566491E057E1C00A13309 /* ErrorHandler.swift */; };
 		C035664C1E057FFE00A13309 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035664B1E057FFE00A13309 /* Collection.swift */; };
+		C035664F1E06DBDC00A13309 /* StoredValueCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */; };
+		C03566521E06FCCE00A13309 /* StoredValueCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566511E06FCCE00A13309 /* StoredValueCoordinatorTests.swift */; };
+		C03566541E07082C00A13309 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566531E07082C00A13309 /* NSManagedObject.swift */; };
 		C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043116E1DB4DDC70015C180 /* TabBarController.swift */; };
 		C04311711DB4E4920015C180 /* NoContentViewDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */; };
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
@@ -30,7 +33,6 @@
 		C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */; };
 		C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0515B671A7BA59D0006ED16 /* Main.storyboard */; };
 		C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0515B6A1A7BA59D0006ED16 /* Images.xcassets */; };
-		C0515B7A1A7BA59D0006ED16 /* ShapeNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */; };
 		C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */; };
 		C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B851A7BADFE0006ED16 /* JSONLoader.swift */; };
 		C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B871A7BBA790006ED16 /* Lesson.swift */; };
@@ -112,6 +114,12 @@
 		C02E18A71BF7736400FF2057 /* NoMinutesYetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMinutesYetView.swift; sourceTree = "<group>"; };
 		C03566491E057E1C00A13309 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		C035664B1E057FFE00A13309 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		C035664D1E05868200A13309 /* ShapeNote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShapeNote.entitlements; sourceTree = "<group>"; };
+		C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredValueCoordinator.swift; sourceTree = "<group>"; };
+		C03566501E06FCCE00A13309 /* ShapeNoteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNoteTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		C03566511E06FCCE00A13309 /* StoredValueCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredValueCoordinatorTests.swift; sourceTree = "<group>"; };
+		C03566531E07082C00A13309 /* NSManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
+		C03566551E070F2B00A13309 /* Pods_ShapeNote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_ShapeNote.framework; path = "../../Library/Developer/Xcode/DerivedData/ShapeNote-fjfnffnqpylxfaedztdsgzzwwrkq/Build/Products/Debug-iphonesimulator/Pods_ShapeNote.framework"; sourceTree = "<group>"; };
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentViewDisplaying.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
@@ -125,7 +133,6 @@
 		C0515B6A1A7BA59D0006ED16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C0515B731A7BA59D0006ED16 /* ShapeNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShapeNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0515B781A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeNoteTests.swift; sourceTree = "<group>"; };
 		C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		C0515B851A7BADFE0006ED16 /* JSONLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
 		C0515B871A7BBA790006ED16 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
@@ -209,6 +216,7 @@
 		0AB1ED6FCD97449B42354A2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C03566551E070F2B00A13309 /* Pods_ShapeNote.framework */,
 				C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */,
 				3D27FE40ECB6149B959D1687 /* Pods.framework */,
 				547CE94E4BEBDDA3311CB992 /* Pods_ShapeNote.framework */,
@@ -297,9 +305,11 @@
 		C0515B5D1A7BA59D0006ED16 /* ShapeNote */ = {
 			isa = PBXGroup;
 			children = (
+				C035664D1E05868200A13309 /* ShapeNote.entitlements */,
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
 				C04D21A01DD9C78800B98D86 /* Intro */,
 				C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */,
+				C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
@@ -345,8 +355,9 @@
 		C0515B761A7BA59D0006ED16 /* ShapeNoteTests */ = {
 			isa = PBXGroup;
 			children = (
-				C0515B791A7BA59D0006ED16 /* ShapeNoteTests.swift */,
 				C0515B771A7BA59D0006ED16 /* Supporting Files */,
+				C03566511E06FCCE00A13309 /* StoredValueCoordinatorTests.swift */,
+				C03566501E06FCCE00A13309 /* ShapeNoteTests-Bridging-Header.h */,
 			);
 			path = ShapeNoteTests;
 			sourceTree = "<group>";
@@ -368,6 +379,7 @@
 				C0515B891A7BBA7A0006ED16 /* Singer.swift */,
 				C0515B871A7BBA790006ED16 /* Lesson.swift */,
 				C09A650A1A7EDA8600099E76 /* Minutes.swift */,
+				C03566531E07082C00A13309 /* NSManagedObject.swift */,
 			);
 			name = "Managed Objects";
 			sourceTree = "<group>";
@@ -472,11 +484,14 @@
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 					C0515B721A7BA59D0006ED16 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = C0515B5A1A7BA59D0006ED16;
 					};
 				};
@@ -620,6 +635,7 @@
 				C0519C5E1DF2D4C500ACACDE /* EmailSender.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
+				C035664F1E06DBDC00A13309 /* StoredValueCoordinator.swift in Sources */,
 				C02E18A21BF695AA00FF2057 /* NewLessonTableViewCell.swift in Sources */,
 				C0C1D47C1A8133FC0082C0EB /* TwitterShareHelper.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
@@ -658,6 +674,7 @@
 				C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */,
 				C0535FED1A7FBF6700978C37 /* MinutesTableViewCell.swift in Sources */,
 				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
+				C03566541E07082C00A13309 /* NSManagedObject.swift in Sources */,
 				C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */,
 				C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */,
 				C072206E1DD76B7B00CE9CAC /* AboutViewController.swift in Sources */,
@@ -673,7 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0515B7A1A7BA59D0006ED16 /* ShapeNoteTests.swift in Sources */,
+				C03566521E06FCCE00A13309 /* StoredValueCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +860,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -877,6 +895,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -906,16 +925,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods\"",
+					"$(PROJECT_DIR)/ShapeNote",
+					"$(PROJECT_DIR)/Pods/**",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ShapeNoteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShapeNoteTests/ShapeNoteTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShapeNote.app/ShapeNote";
 			};
@@ -925,12 +953,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ShapeNoteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShapeNoteTests/ShapeNoteTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShapeNote.app/ShapeNote";
 			};

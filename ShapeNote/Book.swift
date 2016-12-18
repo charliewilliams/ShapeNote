@@ -24,4 +24,10 @@ enum BookIdentifier: String {
     @NSManaged var author: String
     @NSManaged var songs: NSOrderedSet
     @NSManaged var hashTag: String
+    
+    convenience init(identifier: BookIdentifier, context: NSManagedObjectContext = CoreDataHelper.managedContext) {
+        self.init(className: "Book", context: context)
+        
+        self.title = identifier.rawValue
+    }
 }

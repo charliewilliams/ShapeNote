@@ -70,23 +70,19 @@ class JSONLoader: NSObject {
             let songsSet = NSMutableOrderedSet()
             let json = loadFileFromBundle(bookDef["fileName"]!)
             
-            for d:NSDictionary in json {
+            for dict in json {
                 
-                let s = NSEntityDescription.insertNewObject(forEntityName: "Song", into: coreDataContext()) as! Song
-                s.configureWithDict(d)
-                songsSet.add(s)
+                let song = Song(book: book)
+                song.configureWithDict(dict)
+                songsSet.add(song)
             }
             
             book.songs = songsSet
         }
         
-        var error:NSError?
         do {
             try coreDataContext().save()
-        } catch let error1 as NSError {
-            error = error1
-        }
-        if error != nil {
+        } catch let error as NSError {
             print("\(error)")
         }
     }

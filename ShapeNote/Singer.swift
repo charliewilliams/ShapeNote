@@ -11,18 +11,17 @@ import CoreData
 
 enum Voice: String {
     case NotSpecified = ""
-    case Bass = "Bass"
-    case Tenor = "Tenor"
-    case Treble = "Treble"
-    case Alto = "Alto"
+    case Bass
+    case Tenor
+    case Treble
+    case Alto
 }
 
-func ==(lhs: Singer, rhs: Singer) -> Bool {
-    return lhs.facebookId == rhs.facebookId
+func ==(first: Singer, second: Singer) -> Bool {
+    return first.facebookId != nil && first.facebookId == second.facebookId
 }
 
 @objc(Singer)
-
 class Singer: NSManagedObject {
     
     @NSManaged var displayName: String?
@@ -37,7 +36,15 @@ class Singer: NSManagedObject {
     @NSManaged var songs: Lesson?
     @NSManaged var minutes: NSSet?
     
-    var name:String {
+    var name: String {
         return displayName ?? firstName ?? ""
+    }
+    
+    convenience init(context: NSManagedObjectContext = CoreDataHelper.managedContext) {
+        self.init(className: "Singer", context: context)
+        
+        firstSingDate = NSTimeIntervalSince1970
+        lastSingDate = NSTimeIntervalSince1970
+        group = CoreDataHelper.sharedHelper.currentlySelectedGroup
     }
 }

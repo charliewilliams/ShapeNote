@@ -232,10 +232,7 @@ extension NewLessonViewController {
             
         } else if let newSingerName = textField.text {
             
-            let newSinger = NSEntityDescription.insertNewObject(forEntityName: "Singer", into: CoreDataHelper.managedContext) as! Singer
-            newSinger.firstSingDate = NSTimeIntervalSince1970
-            newSinger.lastSingDate = NSTimeIntervalSince1970
-            newSinger.group = CoreDataHelper.sharedHelper.currentlySelectedGroup
+            let newSinger = Singer()
             
             var components = newSingerName.components(separatedBy: .whitespacesAndNewlines)
             newSinger.firstName = components.first
@@ -557,19 +554,17 @@ extension NewLessonViewController {
             CoreDataHelper.managedContext.refresh(minutes, mergeChanges: true)
         }
         
-        let lesson = NSEntityDescription.insertNewObject(forEntityName: "Lesson", into: minutes.managedObjectContext!) as! Lesson
-        lesson.song = song
-        lesson.date = Date()
-        lesson.minutes = minutes
-        lesson.leader = NSOrderedSet(array: chosenSingers)
-        
         // optional stuff
         // A bit hacky here with the magic numbers…
         let dedicationCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! NewLessonTextEntryTableViewCell
-        lesson.dedication = dedicationCell.textField.text
-        
         let otherEventcell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as! NewLessonTextEntryTableViewCell
-        lesson.otherEvent = otherEventcell.textField.text
+        
+        let dedication = dedicationCell.textField.text
+        let otherEvent = otherEventcell.textField.text
+        //
+        
+        let lesson = Lesson(song: song, minutes: minutes, leaders: chosenSingers, dedication: dedication, otherInfo: otherEvent)
+        
         
         minutes.singers.addObjects(from: chosenSingers)
         

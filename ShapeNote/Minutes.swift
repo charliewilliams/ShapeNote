@@ -18,6 +18,7 @@ class Minutes: NSManagedObject {
     @NSManaged var group: Group
     @NSManaged var book: Book
     @NSManaged var complete: Bool
+    
     static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.timeStyle = .none
@@ -25,12 +26,13 @@ class Minutes: NSManagedObject {
         return d
     }()
     
-    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext!) {
-        super.init(entity: entity, insertInto: context)
-        date = Date()
+    convenience init(context: NSManagedObjectContext = CoreDataHelper.managedContext, date: Date = Date()) {
+        
+        self.init(className: "Minutes", context: context)
+        self.date = date
     }
     
-    var headerString: String {
+    func headerString() -> String {
         
         var string = "Minutes "
         

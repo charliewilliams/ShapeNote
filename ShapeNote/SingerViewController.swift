@@ -61,7 +61,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         }
         
         if singer == nil {
-            singer = NSEntityDescription.insertNewObject(forEntityName: "Singer", into: CoreDataHelper.managedContext) as? Singer
+            singer = Singer()
         }
         
         guard let singer = singer else { fatalError() }

@@ -112,6 +112,10 @@ class CoreDataHelper {
         return resultsForEntityName(ManagedClass.Song.rawValue, matchingObject: currentlySelectedBook, inQueryString: "book == %@") as! [Song]
     }
     
+    func allSongsInAllBooks() -> [Song] {
+        return resultsForEntityName(ManagedClass.Song.rawValue) as! [Song]
+    }
+    
     var numberOfSongsInCurrentBook: Int {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Song.rawValue)
@@ -141,10 +145,10 @@ class CoreDataHelper {
                 return group
             }
         } catch {
-            return Group.create(name: name)
+            return Group(name: name)
         }
         
-        return Group.create(name: name)
+        return Group(name: name)
     }
     
     func minutes(_ group: Group) -> [Minutes]? {
@@ -189,7 +193,7 @@ class CoreDataHelper {
         return NSManagedObjectModel(contentsOf: self.modelURL)!
     }()
     
-    lazy var modelURL:URL = {
+    lazy var modelURL: URL = {
         return Bundle.main.url(forResource: "ShapeNote", withExtension: "momd")!
     }()
     
@@ -244,7 +248,7 @@ class CoreDataHelper {
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    func saveContext() {
         if let moc = self.managedObjectContext, moc.hasChanges {
             
             print("Managed Object Count: \(moc.registeredObjects.count)")

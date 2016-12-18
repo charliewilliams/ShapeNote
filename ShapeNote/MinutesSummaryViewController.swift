@@ -15,7 +15,7 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
     var minutes: Minutes! {
         didSet {
             UIPasteboard.general.string = minutes.stringForSocialMedia()
-            title = minutes.headerString
+            title = minutes.headerString()
         }
     }
     @IBOutlet weak var postComposeTextView: UITextView!
@@ -91,7 +91,7 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
     }
     
     @IBAction func sendEmailButtonPressed(_ sender: UIButton) {
-        presentEmailController(to: "", subject: minutes.headerString, body: postComposeTextView.text)
+        presentEmailController(to: "", subject: minutes.headerString(), body: postComposeTextView.text)
     }
     
     @IBAction func postButtonPressed(_ sender: UIBarButtonItem) {

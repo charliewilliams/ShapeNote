@@ -27,7 +27,7 @@ class MinuteTakingViewController: UITableViewController {
         get {
             
             if minutes == nil {
-                minutes = NSEntityDescription.insertNewObject(forEntityName: "Minutes", into: CoreDataHelper.managedContext) as? Minutes
+                minutes = Minutes()
                 minutes?.book = CoreDataHelper.sharedHelper.currentlySelectedBook
                 CoreDataHelper.sharedHelper.saveContext()
             }

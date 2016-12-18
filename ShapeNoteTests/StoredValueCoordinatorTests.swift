@@ -1,15 +1,14 @@
 //
-//  ShapeNoteTests.swift
-//  ShapeNoteTests
+//  StoredValueCoordinatorTests.swift
+//  ShapeNote
 //
-//  Created by Charlie Williams on 30/01/2015.
-//  Copyright (c) 2015 Charlie Williams. All rights reserved.
+//  Created by Charlie Williams on 18/12/2016.
+//  Copyright © 2016 Charlie Williams. All rights reserved.
 //
 
-import UIKit
 import XCTest
 
-class ShapeNoteTests: XCTestCase {
+class StoredValueCoordinatorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -23,12 +22,12 @@ class ShapeNoteTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure() {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
