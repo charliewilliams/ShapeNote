@@ -7,29 +7,55 @@
 //
 
 import XCTest
+import CoreData
+@testable import ShapeNote
 
 class StoredValueCoordinatorTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    var context: NSManagedObjectContext! = {
+        
+        let model = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
+        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
+        
+        do {
+            try coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        } catch {
+            print("Adding persistent store coordinator failed!")
+        }
+        
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.persistentStoreCoordinator = coordinator
+        
+        return context
+    }()
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    private class MockCoreDataHelper: CoreDataHelper {
+        
+        var testBook: Book!
+        var testSong: Song!
+        
+        override func books() -> [Book] {
+            return [testBook]
         }
     }
     
+    private var testCoreDataHelper: MockCoreDataHelper = {
+        MockCoreDataHelper()
+    }()
+    
+    override func setUp() {
+        super.setUp()
+        
+        testCoreDataHelper.testBook = Book(identifier: .sacredHarp, context: context)
+        testCoreDataHelper.testSong = Song(book: testCoreDataHelper.testBook, context: context)
+    }
+    
+    func testSVCReadsFavorite() {
+
+        testCoreDataHelper.testSong.favorited = true
+        
+        let storedData = StoreCoordinator().locallyStoredValues(coreDataHelper: testCoreDataHelper)
+        
+        print(storedData)
+    }
 }
