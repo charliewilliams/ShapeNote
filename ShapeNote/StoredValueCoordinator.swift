@@ -57,13 +57,15 @@ extension StoredValueCoordinator {
                     thisSong["fav"] = "true"
                 }
                 if let notes = song.notes {
-                    thisSong["notes"] = notes
+                    thisSong["note"] = notes
                 }
                 
                 thisBook[song.number] = thisSong
             }
             
-            values[book.title] = thisBook
+            if thisBook.keys.count > 0 {
+                values[book.title] = thisBook
+            }
         }
         
         return values
