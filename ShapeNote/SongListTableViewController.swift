@@ -181,7 +181,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         return ascending ? sorted : sorted.reversed()
     }
     
-    func headerTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc func headerTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         
         if sortOrder == .ascending {
             sortOrder = .descending
@@ -356,7 +356,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "notebook"), style: .plain, target: self, action: #selector(bookPickerButtonPressed(_:)))
     }
     
-    func bookPickerButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func bookPickerButtonPressed(_ sender: UIBarButtonItem) {
         
         let bookPickerVC = UIStoryboard(name: "BookPicker", bundle: nil).instantiateInitialViewController()!
         

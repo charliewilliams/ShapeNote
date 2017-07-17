@@ -100,7 +100,7 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
         UIApplication.shared.openURL(url)
     }
     
-    func donePressed(_ sender: UIBarButtonItem) {
+    @objc func donePressed(_ sender: UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
     
