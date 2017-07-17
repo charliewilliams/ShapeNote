@@ -130,7 +130,7 @@ extension TwitterShareHelper {
             
             // All of this is just response handling, which we don't do anything with
             guard let data = data, connectionError == nil else {
-                print("Error: \(connectionError)")
+                print("Error: \(String(describing: connectionError))")
                 return
             }
             
@@ -146,9 +146,9 @@ extension TwitterShareHelper {
             }
             
             if jsonError != nil {
-                print("Error: \(jsonError)")
+                print("Error: \(String(describing: jsonError))")
             } else {
-                print("\(json)")
+                print("\(String(describing: json))")
             }
         }
     }
