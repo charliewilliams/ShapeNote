@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rgN-e0-S6K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rgN-e0-S6K">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
             <objects>
                 <tableViewController title="Sacred Harp" id="pwM-Va-lag" customClass="SongListTableViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OoA-wg-ntw">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <connections>
@@ -37,7 +37,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQO-zt-667" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="0.0"/>
+            <point key="canvasLocation" x="886" y="-2"/>
         </scene>
         <!--Notes-->
         <scene sceneID="ip4-RJ-ru8">
@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbq-Py-HtG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="-2"/>
+            <point key="canvasLocation" x="2534" y="-2"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="fLH-Oa-Aht">
@@ -96,9 +96,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="9SR-cY-HiA">
-                                <rect key="frame" x="37.5" y="130.5" width="300" height="29"/>
+                                <rect key="frame" x="16" y="130.5" width="343" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="e9l-cZ-ymy"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="e9l-cZ-ymy"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Favourited"/>
@@ -110,9 +110,9 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ior-oO-wDq">
-                                <rect key="frame" x="37.5" y="188.5" width="300" height="29"/>
+                                <rect key="frame" x="16" y="188.5" width="343" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="SmS-Lh-LdZ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="SmS-Lh-LdZ"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Major"/>
@@ -130,9 +130,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="bwL-mC-X04">
-                                <rect key="frame" x="37.5" y="246.5" width="300" height="29"/>
+                                <rect key="frame" x="16" y="246.5" width="343" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="3Xf-H4-5xB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="3Xf-H4-5xB"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Plain"/>
@@ -144,9 +144,9 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mak-R5-APo">
-                                <rect key="frame" x="37.5" y="304.5" width="300" height="29"/>
+                                <rect key="frame" x="16" y="304.5" width="343" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="ZD9-pW-5gk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ZD9-pW-5gk"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Duple"/>
@@ -189,9 +189,9 @@
                                 </items>
                             </navigationBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-uj-NxA">
-                                <rect key="frame" x="37.5" y="362.5" width="300" height="29"/>
+                                <rect key="frame" x="16" y="362.5" width="343" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="l64-T0-QUL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="l64-T0-QUL"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Has Notes"/>
@@ -267,6 +267,7 @@
                             <constraint firstItem="ior-oO-wDq" firstAttribute="width" secondItem="9SR-cY-HiA" secondAttribute="width" id="78u-hM-o2K"/>
                             <constraint firstItem="ior-oO-wDq" firstAttribute="centerX" secondItem="9SR-cY-HiA" secondAttribute="centerX" id="89i-TQ-ige"/>
                             <constraint firstItem="ior-oO-wDq" firstAttribute="top" secondItem="9SR-cY-HiA" secondAttribute="bottom" constant="30" id="9uH-mo-dZ3"/>
+                            <constraint firstItem="ior-oO-wDq" firstAttribute="width" secondItem="9SR-cY-HiA" secondAttribute="width" id="Ays-fp-Tnj"/>
                             <constraint firstItem="7GV-uj-NxA" firstAttribute="width" secondItem="Mak-R5-APo" secondAttribute="width" id="CBz-Xj-MID"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u9C-kY-BEp" secondAttribute="trailing" constant="-20" id="D7v-m8-wQE"/>
                             <constraint firstItem="9SR-cY-HiA" firstAttribute="top" secondItem="KqB-tV-I3u" secondAttribute="bottom" constant="30" id="DXC-bL-LvY"/>
@@ -275,6 +276,7 @@
                             <constraint firstItem="3Nz-4z-aTq" firstAttribute="top" secondItem="4Pi-vY-zie" secondAttribute="bottom" id="M29-6P-qbU"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="width" secondItem="ior-oO-wDq" secondAttribute="width" id="M4q-A6-tOi"/>
                             <constraint firstItem="Mak-R5-APo" firstAttribute="top" secondItem="bwL-mC-X04" secondAttribute="bottom" constant="30" id="NJf-As-rGS"/>
+                            <constraint firstItem="bwL-mC-X04" firstAttribute="width" secondItem="9SR-cY-HiA" secondAttribute="width" id="O6D-fu-H81"/>
                             <constraint firstItem="Yaq-dX-qUp" firstAttribute="centerX" secondItem="7GV-uj-NxA" secondAttribute="centerX" id="OSd-4W-YXa"/>
                             <constraint firstItem="bwL-mC-X04" firstAttribute="centerX" secondItem="ior-oO-wDq" secondAttribute="centerX" id="SZb-8E-sr6"/>
                             <constraint firstItem="Eoi-5t-JCA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="870-Uu-YGA" secondAttribute="trailingMargin" id="TFl-yZ-VRS"/>
@@ -284,8 +286,10 @@
                             <constraint firstItem="bwL-mC-X04" firstAttribute="top" secondItem="ior-oO-wDq" secondAttribute="bottom" constant="30" id="bVO-zb-Kg2"/>
                             <constraint firstItem="Y3R-RK-QcM" firstAttribute="trailing" secondItem="Eoi-5t-JCA" secondAttribute="trailing" id="cJV-ck-i3g"/>
                             <constraint firstItem="Eoi-5t-JCA" firstAttribute="width" secondItem="7GV-uj-NxA" secondAttribute="width" priority="750" id="cTo-hu-9Bt"/>
+                            <constraint firstItem="Mak-R5-APo" firstAttribute="width" secondItem="9SR-cY-HiA" secondAttribute="width" id="dKV-YP-3vy"/>
                             <constraint firstItem="9SR-cY-HiA" firstAttribute="centerX" secondItem="KqB-tV-I3u" secondAttribute="centerX" id="dsS-dQ-HkQ"/>
                             <constraint firstItem="7GV-uj-NxA" firstAttribute="centerX" secondItem="Mak-R5-APo" secondAttribute="centerX" id="kzV-Mf-ND7"/>
+                            <constraint firstItem="Bud-VX-6UQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l94-X2-vEC" secondAttribute="trailing" constant="8" symbolic="YES" id="mvO-Pc-8tS"/>
                             <constraint firstItem="o7d-PQ-FVu" firstAttribute="top" secondItem="u9C-kY-BEp" secondAttribute="bottom" id="ou6-uG-hDu"/>
                             <constraint firstItem="KqB-tV-I3u" firstAttribute="top" secondItem="4Pi-vY-zie" secondAttribute="bottom" constant="60" id="qEF-IA-Nyh"/>
                             <constraint firstItem="Eoi-5t-JCA" firstAttribute="top" secondItem="Bud-VX-6UQ" secondAttribute="bottom" constant="-0.5" id="qgX-oz-LhP"/>
@@ -294,6 +298,8 @@
                             <constraint firstItem="ior-oO-wDq" firstAttribute="centerX" secondItem="KqB-tV-I3u" secondAttribute="centerX" id="sgt-KR-mtY"/>
                             <constraint firstItem="Bud-VX-6UQ" firstAttribute="top" secondItem="7GV-uj-NxA" secondAttribute="bottom" constant="21" id="vMG-0F-7Ps"/>
                             <constraint firstItem="u9C-kY-BEp" firstAttribute="top" secondItem="Yaq-dX-qUp" secondAttribute="bottom" constant="20" id="vSi-sz-KpH"/>
+                            <constraint firstItem="7GV-uj-NxA" firstAttribute="width" secondItem="9SR-cY-HiA" secondAttribute="width" id="vdY-Fp-FEs"/>
+                            <constraint firstItem="Y3R-RK-QcM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bud-VX-6UQ" secondAttribute="trailing" constant="8" symbolic="YES" id="zA3-4Z-jce"/>
                             <constraint firstItem="Bud-VX-6UQ" firstAttribute="centerX" secondItem="7GV-uj-NxA" secondAttribute="centerX" id="zVi-zT-fR0"/>
                         </constraints>
                         <variation key="default">
@@ -324,7 +330,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c6n-hA-cyN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -334,7 +340,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxL-7c-Q5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="-1"/>
+            <point key="canvasLocation" x="119" y="-2"/>
         </scene>
     </scenes>
     <resources>
