@@ -151,8 +151,8 @@ struct QuizOption: Hashable {
         
         return attrQuestion
     }
-    
-    var hashValue: Int {
-        return questionType.hashValue + answerType.hashValue
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(questionType.hashValue + answerType.hashValue)
     }
 }

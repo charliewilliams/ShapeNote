@@ -101,7 +101,7 @@ class Lesson: NSManagedObject {
         
         var number = song.number
         if number.hasPrefix("0") {
-            number = number.substring(from: number.index(after: number.startIndex))
+            number = number.substring(from: 1)
         }
         userString += "#\(number): \(song.title)"
         

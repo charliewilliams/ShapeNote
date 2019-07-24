@@ -29,7 +29,7 @@ class SongListTableViewCell: UITableViewCell {
         self.song = song
         
         if song.number.hasPrefix("0") {
-            numberLabel.text = song.number.substring(from: song.number.index(song.number.startIndex, offsetBy: 1))
+            numberLabel.text = song.number.substring(from: 1)
         } else {
             numberLabel.text = song.number
         }

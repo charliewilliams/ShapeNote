@@ -81,7 +81,7 @@ class Song: NSManagedObject {
             if var dictValue = dict[value] as? String,
                 dictValue != "null" {
                     if dictValue.hasPrefix("0") {
-                        dictValue = dictValue.substring(from: dictValue.index(after: dictValue.startIndex))
+                        dictValue = dictValue.substring(from: 1)
                     }
                     self.setValue(dictValue, forKey: key)
                     
@@ -120,8 +120,7 @@ class Song: NSManagedObject {
     private(set) var isTriple: Bool!
     private func _isTriple() -> Bool {
         if let timeSignature = timeSignature {
-            let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
-            let numerator = timeSignature.substring(to: index)
+            let numerator = timeSignature.substring(to: 1)
             return numerator == "3" || numerator == "9"
         }
         return false
@@ -130,8 +129,7 @@ class Song: NSManagedObject {
     private(set) var isDuple: Bool!
     private func _isDuple() -> Bool {
         if let timeSignature = timeSignature {
-            let index = timeSignature.characters.index(timeSignature.startIndex, offsetBy: 1)
-            let numerator = timeSignature.substring(to: index)
+            let numerator = timeSignature.substring(to: 1)
             return numerator != "3" && numerator != "9" && Int(numerator) != 0
         }
         return false
@@ -154,8 +152,8 @@ class Song: NSManagedObject {
         guard let lyrics = lyrics else { return nil }
         let lines = lyrics.components(separatedBy: CharacterSet.newlines)
         guard let line = lines.first else { return nil }
-        if line.characters.last == "," {
-            return line.substring(to: line.characters.index(before: line.endIndex))
+        if line.last == "," {
+            return String(line[..<line.index(before: line.endIndex)])
         }
         
         return line
@@ -189,7 +187,7 @@ class Song: NSManagedObject {
     
     func formatName(_ name: String?) -> String? {
         
-        guard let name = name, name.characters.count > 0 else {
+        guard let name = name, name.count > 0 else {
             return nil
         }
         

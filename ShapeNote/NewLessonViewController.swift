@@ -296,7 +296,7 @@ extension NewLessonViewController {
                 
                 let song = filteredSongs![indexPath.row]
                 let rawNumber = song.number
-                let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: rawNumber.index(rawNumber.startIndex, offsetBy: 1)) : rawNumber
+                let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: 1) : rawNumber
                 cell.textLabel?.text = number + " " + song.title
                 
             } else if let filteredSingers = filteredSingers, indexPath.row < filteredSingers.count {

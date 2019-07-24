@@ -49,7 +49,7 @@ class Minutes: NSManagedObject {
 
     func stringForSocialMedia() -> String {
         
-        var string = "\(headerString):\n\n"
+        var string = headerString() + ":\n\n"
         
         songs.enumerateObjects({ (object:Any!, i:Int, stop:UnsafeMutablePointer<ObjCBool>) in
             

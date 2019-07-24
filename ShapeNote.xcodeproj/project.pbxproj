@@ -65,6 +65,7 @@
 		C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A65081A7EDA0D00099E76 /* MinuteTakingViewController.swift */; };
 		C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A650A1A7EDA8600099E76 /* Minutes.swift */; };
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
+		C0A54EAE22E900590054AC28 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A54EAD22E900590054AC28 /* String.swift */; };
 		C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0BE7DB41BE6359A006383CC /* FontAwesome.otf */; };
 		C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB61BE6A169006383CC /* NotesViewController.swift */; };
 		C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */; };
@@ -174,6 +175,7 @@
 		C09A650A1A7EDA8600099E76 /* Minutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minutes.swift; sourceTree = "<group>"; };
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
 		C09ABE1B1C1F6E2800310195 /* ShapeNote 0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.4.xcdatamodel"; sourceTree = "<group>"; };
+		C0A54EAD22E900590054AC28 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C0BE7DB41BE6359A006383CC /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		C0BE7DB61BE6A169006383CC /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
 				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
 				C035664B1E057FFE00A13309 /* Collection.swift */,
+				C0A54EAD22E900590054AC28 /* String.swift */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -666,6 +669,7 @@
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
 				C09A65091A7EDA0D00099E76 /* MinuteTakingViewController.swift in Sources */,
 				C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */,
+				C0A54EAE22E900590054AC28 /* String.swift in Sources */,
 				C092E8621A891A51002594A5 /* Defaults.swift in Sources */,
 				C02E18A41BF753C500FF2057 /* NewLessonAssistantTableViewCell.swift in Sources */,
 				C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */,
