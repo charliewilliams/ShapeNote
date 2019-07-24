@@ -120,7 +120,7 @@ class CoreDataHelper {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ManagedClass.Song.rawValue)
         fetchRequest.predicate = NSPredicate(format: "book == %@", currentlySelectedBook)
-        if let count = try? managedObjectContext?.count(for: fetchRequest) {
+        if let count = ((try? managedObjectContext?.count(for: fetchRequest)) as Int??) {
             return count ?? 0
         }
         return 0

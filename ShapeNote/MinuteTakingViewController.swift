@@ -165,11 +165,11 @@ extension MinuteTakingViewController {
         return tableViewHeaderHeight
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         guard editingStyle == .delete, var lessons = lessons, indexPath.row < lessons.count else { return }
         
@@ -201,7 +201,7 @@ extension MinuteTakingViewController {
 // MARK: Navigation
 extension MinuteTakingViewController {
     
-    override func didMove(toParentViewController parent: UIViewController?) {
+    override func didMove(toParent parent: UIViewController?) {
         
         if let minutes = minutes, parent == nil && minutes.songs.count == 0 {
             CoreDataHelper.managedContext.delete(minutes)

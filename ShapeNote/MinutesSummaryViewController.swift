@@ -46,12 +46,12 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
         
         Answers.logContentView(withName: String(describing: self.classForCoder), contentType: nil, contentId: nil, customAttributes: ["minutes":minutes.stringForSocialMedia(), "count":minutes.songs.count])
         
-        observers.append(NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: OperationQueue.main) { [weak self] (note:Foundation.Notification) -> Void in
+        observers.append(NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { [weak self] (note:Foundation.Notification) -> Void in
             
             self?.handleKeyboardNotification(note)
         })
         
-        observers.append(NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: OperationQueue.main) { [weak self] (note:Foundation.Notification) -> Void in
+        observers.append(NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main) { [weak self] (note:Foundation.Notification) -> Void in
             
             self?.handleKeyboardNotification(note)
         })
@@ -75,11 +75,11 @@ class MinutesSummaryViewController: UIViewController, EmailSender, UITextViewDel
     
     func handleKeyboardNotification(_ note: Foundation.Notification) {
         
-        guard let rectValue = note.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-            let durationValue = note.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
+        guard let rectValue = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let durationValue = note.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else {
                 return
         }
-        let showing = note.name == NSNotification.Name.UIKeyboardWillShow
+        let showing = note.name == UIResponder.keyboardWillShowNotification
         let rect = rectValue.cgRectValue
         let duration = durationValue.doubleValue
         let tabBarHeightIfPresent = navigationController?.tabBarController?.tabBar.frame.height ?? 0

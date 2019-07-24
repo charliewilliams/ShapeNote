@@ -33,7 +33,7 @@ class QuizItemViewController: UIViewController {
                 
                 for (index, answer) in answers.enumerated() {
                     let button = buttons[index]
-                    button.setTitle(answer, for: UIControlState())
+                    button.setTitle(answer, for: UIControl.State())
                 }
             }
         }
@@ -91,7 +91,7 @@ class QuizItemViewController: UIViewController {
         let firstHalf = correct ? "Hooray!" : "Boo…"
         let done = (currentQuestionNumber == numberOfQuestionsPerRound)
         let secondHalf = done ? "Finish Round" : "Next Question"
-        nextQuestionButton.setTitle("\(firstHalf) \(secondHalf)", for: UIControlState())
+        nextQuestionButton.setTitle("\(firstHalf) \(secondHalf)", for: UIControl.State())
     }
     
     @IBAction func nextQuestion() {

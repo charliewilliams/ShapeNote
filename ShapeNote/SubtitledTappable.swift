@@ -38,8 +38,8 @@ extension SubtitledTappable where Self: UIViewController {
     
         let title = title ?? ""
         let subtitle = subtitle ?? ""
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15.0)]
-        let subtitleAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0)]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15.0)]
+        let subtitleAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)]
         
         let attributedTitle = NSMutableAttributedString(string: title + "\n", attributes: titleAttributes)
 

@@ -48,7 +48,7 @@ class QuizQuestionProvider {
         
         for question in questionTypes {
             
-            _quizOptions[question] = questionTypes.flatMap { answer -> QuizOption? in
+            _quizOptions[question] = questionTypes.compactMap { answer -> QuizOption? in
                 
                 if let q = Quizzable(rawValue: question),
                     let a = Quizzable(rawValue: answer),
@@ -108,14 +108,14 @@ class QuizQuestionProvider {
             return data != correctAnswer
         }
         
-        let incorrectAnswers = incorrectSongs.prefix(numberOfQuestionsPerRound - 1).flatMap { (song:Song) -> String? in
+        let incorrectAnswers = incorrectSongs.prefix(numberOfQuestionsPerRound - 1).compactMap { (song:Song) -> String? in
             return song.stringForQuizQuestion(question: answerType)!
         }
         
         var answers = [correctAnswer] + incorrectAnswers
         answers.shuffleInPlace()
         
-        let answerIndex = answers.index(of: correctAnswer)!
+        let answerIndex = answers.firstIndex(of: correctAnswer)!
         
         return QuizOption(questionType: questionType, answerType: answerType, question: correctQuestion, answers:answers, answerIndex:answerIndex)
     }

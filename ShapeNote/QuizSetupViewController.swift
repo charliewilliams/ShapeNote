@@ -36,11 +36,11 @@ class QuizSetupViewController: UITableViewController {
         }
         
         let transition = CATransition()
-        transition.type = kCATransitionPush
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.fillMode = kCAFillModeForwards
+        transition.type = CATransitionType.push
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.fillMode = CAMediaTimingFillMode.forwards
         transition.duration = 0.5
-        transition.subtype = quizQuestionProvider.filtering ? kCATransitionFromTop : kCATransitionFromBottom
+        transition.subtype = convertToOptionalCATransitionSubtype(quizQuestionProvider.filtering ? CATransitionSubtype.fromTop.rawValue : CATransitionSubtype.fromBottom.rawValue)
         self.tableView.layer.add(transition, forKey: "UITableViewReloadDataAnimationKey")
         
         self.tableView.reloadData()
@@ -93,4 +93,10 @@ class QuizSetupViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return quizQuestionProvider.quizOptions.count
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalCATransitionSubtype(_ input: String?) -> CATransitionSubtype? {
+	guard let input = input else { return nil }
+	return CATransitionSubtype(rawValue: input)
 }

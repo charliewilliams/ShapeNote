@@ -79,7 +79,7 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     
     func add(_ toAdd:FilterType, remove toRemove:FilterType) {
         var filters = songListViewController.activeFilters
-        if let index = filters.index(of: toRemove) { filters.remove(at: index) }
+        if let index = filters.firstIndex(of: toRemove) { filters.remove(at: index) }
         filters.append(toAdd)
         songListViewController?.activeFilters = filters
     }
@@ -87,7 +87,7 @@ class FiltersViewController: UIViewController, JFADoubleSliderDelegate {
     func remove(_ toRemove:[FilterType]) {
         var filters = songListViewController.activeFilters
         for filter in toRemove {
-            if let index = filters.index(of: filter) { filters.remove(at: index) }
+            if let index = filters.firstIndex(of: filter) { filters.remove(at: index) }
         }
         songListViewController?.activeFilters = filters
     }

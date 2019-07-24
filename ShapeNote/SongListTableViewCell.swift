@@ -71,7 +71,7 @@ class SongListTableViewCell: UITableViewCell {
             lyricsLabel.text = nil
         }
         
-        favoriteButton.setTitle(favoriteStateString, for: UIControlState())
+        favoriteButton.setTitle(favoriteStateString, for: UIControl.State())
         favoriteButton.alpha = favoriteStateAlpha
         
         meterAndTypeLabel.text = infoString

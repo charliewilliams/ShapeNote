@@ -123,7 +123,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         
         if textField != twitterHandleTextField {
             
-            let index = textFields.index(of: textField)!
+            let index = textFields.firstIndex(of: textField)!
             let newField = textFields[index+1]
             newField.becomeFirstResponder()
             

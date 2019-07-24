@@ -121,7 +121,7 @@ extension TwitterShareHelper {
         
         let client = TWTRAPIClient(userID: userId)
         var clientError : NSError? = nil
-        let request = client.urlRequest(withMethod: "POST", urlString: statusPostEndpoint, parameters: params, error: &clientError)
+        let request = client.urlRequest(withMethod: "POST", url: statusPostEndpoint, parameters: params, error: &clientError)
         if let error = clientError {
             print("Error connecting to Twitter for user \(userId): \(error.localizedDescription)")
         }

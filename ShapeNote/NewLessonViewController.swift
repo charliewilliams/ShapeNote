@@ -72,11 +72,11 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
         })
         
         let singersFromLastWeekButNotToday = allSingers.filter {
-            return todaySingers.index(of: $0) == nil && $0.lastSingDate > lastWeekPlusOneDay
+            return todaySingers.firstIndex(of: $0) == nil && $0.lastSingDate > lastWeekPlusOneDay
         }
         
         let allOtherSingers = allSingers.filter {
-            return todaySingers.index(of: $0) == nil && singersFromLastWeekButNotToday.index(of: $0) == nil
+            return todaySingers.firstIndex(of: $0) == nil && singersFromLastWeekButNotToday.firstIndex(of: $0) == nil
         }
         
         return singersFromLastWeekButNotToday + todaySingers + allOtherSingers
@@ -512,7 +512,7 @@ extension NewLessonViewController {
         return indexPath.row < chosenSingers.count
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
         case .delete:
