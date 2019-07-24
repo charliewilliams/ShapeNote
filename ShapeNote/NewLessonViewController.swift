@@ -138,7 +138,7 @@ extension NewLessonViewController {
     
     func filterContentForSingerSearchText(_ searchText: String) {
         
-        guard searchText.characters.count > 0 else { filteredSingers = singers; return }
+        guard searchText.count > 0 else { filteredSingers = singers; return }
         
         filteredSingers = singers.filter {
             $0.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
@@ -147,7 +147,7 @@ extension NewLessonViewController {
     
     func filterContentForSongSearchText(_ searchText: String) {
         
-        guard searchText.characters.count > 0 else { filteredSongs = songs; return }
+        guard searchText.count > 0 else { filteredSongs = songs; return }
         
         filteredSongs = songs.filter {
             return $0.number.hasPrefix(searchText) || $0.number.hasPrefix("0" + searchText)
@@ -224,7 +224,7 @@ extension NewLessonViewController {
         } else if addingOther {
             
             otherEvent = textField.text
-            if let otherEvent = otherEvent, otherEvent.characters.count > 0 {
+            if let otherEvent = otherEvent, otherEvent.count > 0 {
                 doneButton.isEnabled = true
             } else if chosenSong == nil || chosenSingers.count == 0 {
                 doneButton.isEnabled = false
@@ -296,7 +296,7 @@ extension NewLessonViewController {
                 
                 let song = filteredSongs![indexPath.row]
                 let rawNumber = song.number
-                let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: rawNumber.characters.index(rawNumber.startIndex, offsetBy: 1)) : rawNumber
+                let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: rawNumber.index(rawNumber.startIndex, offsetBy: 1)) : rawNumber
                 cell.textLabel?.text = number + " " + song.title
                 
             } else if let filteredSingers = filteredSingers, indexPath.row < filteredSingers.count {

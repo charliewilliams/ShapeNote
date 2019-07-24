@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1030"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B6F2055581055DD69AE269DE2C456C2"
+               BlueprintIdentifier = "95D5528ECE5B871F784CA1DC9578D40B"
                BuildableName = "Pods_ShapeNote.framework"
                BlueprintName = "Pods-ShapeNote"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B6F2055581055DD69AE269DE2C456C2"
+            BlueprintIdentifier = "95D5528ECE5B871F784CA1DC9578D40B"
             BuildableName = "Pods_ShapeNote.framework"
             BlueprintName = "Pods-ShapeNote"
             ReferencedContainer = "container:Pods.xcodeproj">

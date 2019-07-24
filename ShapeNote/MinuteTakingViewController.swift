@@ -128,11 +128,11 @@ extension MinuteTakingViewController {
             let lesson = lessons[indexPath.row]
             var string = "\(lesson.allLeadersString(useTwitterHandles: false)) – \(lesson.song.number) \(lesson.song.title)"
             
-            if let otherEvent = lesson.otherEvent, otherEvent.characters.count > 0 {
+            if let otherEvent = lesson.otherEvent, otherEvent.count > 0 {
                 string += " \(otherEvent)"
             }
             
-            if let dedication = lesson.dedication, dedication.characters.count > 0 {
+            if let dedication = lesson.dedication, dedication.count > 0 {
                 string += " (\(dedication))"
             }
             

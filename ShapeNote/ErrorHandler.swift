@@ -14,7 +14,7 @@ struct ErrorHandler {
         
         var message = "Please email Charlie a description of what just happened so he can fix it.\n\nThis problem might also be fixed by deleting and reinstalling the app. (Sorry.)"
         if let error = error,
-            error.localizedDescription.characters.count > 4 {
+            error.localizedDescription.count > 4 {
             message = error.localizedDescription
         }
         let alert = UIAlertController(title: "Core Data Error", message: message, preferredStyle: .alert)

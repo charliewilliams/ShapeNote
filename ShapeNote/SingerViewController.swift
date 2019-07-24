@@ -45,7 +45,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
         
         if let firstName = singer.firstName,
             let lastName = singer.lastName, singer.displayName == nil {
-                let lastInitial = lastName.substring(to: lastName.characters.index(lastName.startIndex, offsetBy: 1))
+                let lastInitial = lastName.substring(to: lastName.index(lastName.startIndex, offsetBy: 1))
                 displayNameTextField.placeholder = "Display name (optional — i.e. \(firstName) \(lastInitial))"
         }
         
@@ -56,7 +56,7 @@ class SingerViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func donePressed(_ sender: AnyObject) {
         
-        guard let name = nameTextField.text, name.characters.count > 0 else {
+        guard let name = nameTextField.text, name.count > 0 else {
             return
         }
         

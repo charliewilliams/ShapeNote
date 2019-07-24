@@ -36,7 +36,7 @@ class Minutes: NSManagedObject {
         
         var string = "Minutes "
         
-        if group.name.characters.count > 0 {
+        if group.name.count > 0 {
             string += "for \(group.name) on "
         } else {
             string += "– "
@@ -59,7 +59,7 @@ class Minutes: NSManagedObject {
             }
         })
         
-        if string.characters.count > 0 {
+        if string.count > 0 {
             string += "\nMinuted using the ShapeNote Companion\n"
         }
         

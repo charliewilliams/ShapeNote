@@ -131,12 +131,12 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
                     case .triple:
                         return song.isTriple
                     case .notes:
-                        if let count = song.notes?.characters.count {
+                        if let count = song.notes?.count {
                             return count > 0
                         }
                         return false
                     case .noNotes:
-                        return song.notes == nil || song.notes?.characters.count == 0
+                        return song.notes == nil || song.notes?.count == 0
                     }
                 }
             }

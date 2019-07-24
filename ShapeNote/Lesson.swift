@@ -29,10 +29,10 @@ class Lesson: NSManagedObject {
         self.minutes = minutes
         self.leader = NSOrderedSet(array: leaders)
         
-        if let dedication = dedication, dedication.characters.count > 0 {
+        if let dedication = dedication, dedication.count > 0 {
             self.dedication = dedication
         }
-        if let other = otherInfo, other.characters.count > 0 {
+        if let other = otherInfo, other.count > 0 {
             self.otherEvent = other
         }
         
@@ -129,7 +129,7 @@ class Lesson: NSManagedObject {
             userString += " " + song.book.hashTag
         }
         
-        while userString.characters.count > 160 {
+        while userString.count > 160 {
             var components = userString.components(separatedBy: " ")
             components.removeLast()
             userString = components.joined(separator: " ")
