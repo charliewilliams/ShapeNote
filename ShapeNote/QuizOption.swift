@@ -153,6 +153,7 @@ struct QuizOption: Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(questionType.hashValue + answerType.hashValue)
+        hasher.combine(questionType.hashValue)
+        hasher.combine(answerType.hashValue)
     }
 }
