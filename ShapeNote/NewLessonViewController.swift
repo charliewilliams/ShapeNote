@@ -39,7 +39,7 @@ enum CellIdentifier: String {
 }
 
 typealias CellType = (reuseIdentifier:CellIdentifier, index:ScopeBarIndex)
-let blueColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+let blueColor = UIColor(red: 0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
 
 class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITextFieldDelegate {
 
