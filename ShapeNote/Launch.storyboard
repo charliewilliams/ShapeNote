@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="r5W-f3-8Tz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="r5W-f3-8Tz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,15 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageOpen" translatesAutoresizingMaskIntoConstraints="NO" id="Uar-Bd-k0J">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pageOpen" translatesAutoresizingMaskIntoConstraints="NO" id="Uar-Bd-k0J">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ver-ra-2fA" firstAttribute="top" secondItem="Uar-Bd-k0J" secondAttribute="bottom" id="A7W-Pj-bnw"/>
+                            <constraint firstAttribute="bottom" secondItem="Uar-Bd-k0J" secondAttribute="bottom" id="GBc-aK-yMa"/>
                             <constraint firstAttribute="trailing" secondItem="Uar-Bd-k0J" secondAttribute="trailing" id="Um3-KP-21O"/>
-                            <constraint firstItem="Uar-Bd-k0J" firstAttribute="top" secondItem="ffi-rT-i0s" secondAttribute="bottom" constant="-20" id="c4a-6P-4rh"/>
+                            <constraint firstItem="Uar-Bd-k0J" firstAttribute="top" secondItem="uw8-O9-opy" secondAttribute="top" id="b0o-1Z-09J"/>
                             <constraint firstItem="Uar-Bd-k0J" firstAttribute="leading" secondItem="uw8-O9-opy" secondAttribute="leading" id="gRg-40-HFI"/>
                         </constraints>
                     </view>

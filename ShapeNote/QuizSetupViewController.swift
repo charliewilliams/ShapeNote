@@ -60,9 +60,11 @@ class QuizSetupViewController: UITableViewController {
         
         let questionType = quizQuestionProvider.questionTypes[indexPath.section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
-        
-        cell.questionType = questionsForType[indexPath.row]
-        
+
+        if questionsForType.count > indexPath.row {
+            cell.questionType = questionsForType[indexPath.row]
+        }
+
         return cell
     }
     
@@ -91,7 +93,7 @@ class QuizSetupViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return quizQuestionProvider.quizOptions.count
+        return quizQuestionProvider.questionTypes.count
     }
 }
 

@@ -16,7 +16,7 @@ let wrongColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
 
 enum NextButtonConstraint: CGFloat {
     case hidden = -50
-    case shown = 50
+    case shown = 0
 }
 
 class QuizItemViewController: UIViewController {

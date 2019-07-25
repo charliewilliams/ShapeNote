@@ -30,7 +30,7 @@ class QuizQuestionProvider {
     var questionTypes: [String] {
         
         if filtering {
-            return Array(filteredOptions.keys)
+            return ["Title", "Number", "First Line"]
         }
         return ["Title", "Composer", "Lyricist", "First Line", "Year", "Number", "Mode & Form"]
     }
@@ -62,20 +62,20 @@ class QuizQuestionProvider {
         return _quizOptions
     }
     
-    var filteredOptions: [String: [QuizOption]] {
+    lazy var filteredOptions: [String: [QuizOption]] = {
         
-        return ["Title": [QuizOption(questionType: .Title, answerType: .Number),
-                         QuizOption(questionType: .Title, answerType: .FirstLine),
-                         QuizOption(questionType: .Title, answerType: .Composer),
+        ["Title": [QuizOption(questionType: .Title, answerType: .Number),
+                   QuizOption(questionType: .Title, answerType: .FirstLine),
+                   QuizOption(questionType: .Title, answerType: .Composer),
             ],
-                "Number": [QuizOption(questionType: .Number, answerType: .Title),
-                          QuizOption(questionType: .Number, answerType: .ModeAndForm),
+         "Number": [QuizOption(questionType: .Number, answerType: .Title),
+                    QuizOption(questionType: .Number, answerType: .ModeAndForm),
             ],
-                "First Line": [QuizOption(questionType: .FirstLine, answerType: .Year),
-                              QuizOption(questionType: .FirstLine, answerType: .Title)
+         "First Line": [QuizOption(questionType: .FirstLine, answerType: .Year),
+                        QuizOption(questionType: .FirstLine, answerType: .Title)
             ],
         ]
-    }
+    }()
     
     func nextQuestion() -> QuizOption {
         

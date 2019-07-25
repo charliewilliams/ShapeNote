@@ -34,7 +34,7 @@ class QuizQuestionTypeTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: false)
         
-        guard let questionType = questionType else { fatalError() }
+        guard let questionType = questionType else { return }
         
         if selected {
             selectionButton.setTitle(checkmark, for: UIControl.State())
