@@ -26,7 +26,6 @@ class TabBarController : UITabBarController {
         didSet {
             if let nav = selectedViewController as? UINavigationController,
                 let vc = nav.viewControllers.first {
-                print("Logged view of \(String(describing: vc.classForCoder))")
                 Answers.logContentView(withName: String(describing: vc.classForCoder), contentType: nil, contentId: nil, customAttributes: nil)
             }
         }

@@ -98,7 +98,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         for filter in activeFilters {
             activeFilterNames += "\(filter.rawValue))"
         }
-        print("Filters active: \(activeFilterNames)")
+//        print("Filters active: \(activeFilterNames)")
         Answers.logCustomEvent(withName: "Filters", customAttributes: ["active":activeFilterNames])
     }
     

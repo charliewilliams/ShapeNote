@@ -104,6 +104,10 @@ class Song: NSManagedObject {
     }
     
     func precompute() {
+
+        if number.hasPrefix("0") {
+            number = number.substring(from: 1)
+        }
         
         strippedString = number.trimmingCharacters(in: characterSetToStrip)
         strippedNumber = Float(strippedString) ?? 0

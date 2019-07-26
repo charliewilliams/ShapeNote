@@ -48,7 +48,7 @@ class NewLessonViewController: UITableViewController, UISearchBarDelegate, UISea
     var searchController: UISearchController!
     var minutes: Minutes?
     var filteredSingers: [Singer]?
-    var filteredSongs: [Song]?
+    var filteredSongs: [Song]!
     var chosenSingers = [Singer]()
     var chosenSong: Song?
     var dedication: String?
@@ -292,12 +292,10 @@ extension NewLessonViewController {
 
         if searchController.isActive {
 
-            if searchingSongs {
+            if searchingSongs, let filteredSongs = filteredSongs {
                 
-                let song = filteredSongs![indexPath.row]
-                let rawNumber = song.number
-                let number = rawNumber.hasPrefix("0") ? rawNumber.substring(from: 1) : rawNumber
-                cell.textLabel?.text = number + " " + song.title
+                let song = filteredSongs[indexPath.row]
+                cell.textLabel?.text = song.number + " " + song.title
                 
             } else if let filteredSingers = filteredSingers, indexPath.row < filteredSingers.count {
                 
@@ -431,7 +429,7 @@ extension NewLessonViewController {
         
         if searchingSongs {
             
-            chosenSong = filteredSongs![index]
+            chosenSong = filteredSongs[index]
             
             if chosenSingers.count == 0 {
                 searchingSingers = true

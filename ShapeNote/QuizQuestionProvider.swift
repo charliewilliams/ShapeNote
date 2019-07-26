@@ -109,7 +109,7 @@ class QuizQuestionProvider {
         }
         
         let incorrectAnswers = incorrectSongs.prefix(numberOfQuestionsPerRound - 1).compactMap { (song:Song) -> String? in
-            return song.stringForQuizQuestion(question: answerType)!
+            return song.stringForQuizQuestion(question: answerType)
         }
         
         var answers = [correctAnswer] + incorrectAnswers

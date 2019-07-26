@@ -250,18 +250,14 @@ class CoreDataHelper {
     
     func saveContext() {
         if let moc = self.managedObjectContext, moc.hasChanges {
-            
-            print("Managed Object Count: \(moc.registeredObjects.count)")
-            
+
             do {
                 try moc.save()
-//                moc.reset()
                 
             } catch let error as NSError {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+
                 NSLog("Unresolved error \(error), \(error.userInfo)")
-                //                    abort()
+                // abort()
                 
                 // The next most nuclear thing after just abort() is:
                 deleteLocalDatabaseFile()

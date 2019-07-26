@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5KH-Fb-Kea">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5KH-Fb-Kea">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +16,6 @@
                     <tabBarItem key="tabBarItem" title="About" image="tea_cup" id="iZa-bR-2xh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2d8-Ke-vV6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -41,13 +39,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CW-face" translatesAutoresizingMaskIntoConstraints="NO" id="V1Y-4s-UXr">
-                                <rect key="frame" x="20" y="40" width="102.5" height="102.5"/>
+                                <rect key="frame" x="20" y="60" width="96" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="V1Y-4s-UXr" secondAttribute="height" multiplier="1:1" id="YbV-Bs-lah"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Hi, I'm Charlie Williams.   I sing in Bristol (UK) &amp; I hope you enjoy this app." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0q-sQ-qqH" userLabel="Photo Side Text View">
-                                <rect key="frame" x="126.5" y="40" width="193.5" height="75.5"/>
+                                <rect key="frame" x="120" y="60" width="200" height="69"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -56,7 +54,7 @@
                                 </variation>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPi-Q9-h1Z" userLabel="Main Text View">
-                                <rect key="frame" x="20" y="172.5" width="280" height="345.5"/>
+                                <rect key="frame" x="20" y="186" width="280" height="332"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">I have made this app as a gift to the Sacred Harp singing community. I hope all of my fellow singers find it useful.  Did you know: You can help make this app better! That's right, no app-development experience is necessary.  First, if you see something that doesn't work quite right in the app, please contact me about it at the email address above.  Second, I hope to expand the information available in the app to books beyond the Denson edition. Basic index information is available for the Cooper edition, Christian Harmony and Shenandoah Harmony, but in order to display more detailed information (and for the quiz to work for those books) I'll need someone to make a spreadsheet of all the title/number/composer/date/lyricist/lyrics date/lyrics-or-first-line/etc information. Once I have that, it's pretty straightforward for me to improve support for that book in the app.  Likewise, I'd like to add support for as many books as there's interest in supporting. If you sing from another book and would like to see the app support it, I extend the same "let's make a spreadsheet" invitation to you as well!
 
@@ -73,7 +71,7 @@ If you have any other thoughts or ideas, please get in touch via the email addre
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-3c-2Cy">
-                                <rect key="frame" x="131.5" y="115.5" width="188.5" height="27"/>
+                                <rect key="frame" x="125" y="129" width="195" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="email me: c@charliewilliams.org"/>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -90,7 +88,7 @@ If you have any other thoughts or ideas, please get in touch via the email addre
                             <constraint firstItem="IPi-Q9-h1Z" firstAttribute="top" secondItem="V1Y-4s-UXr" secondAttribute="bottom" constant="30" id="36l-3p-ioF"/>
                             <constraint firstItem="IPi-Q9-h1Z" firstAttribute="leading" secondItem="sLW-st-R5N" secondAttribute="leading" constant="20" id="3ts-Nl-PRu"/>
                             <constraint firstItem="NdC-3c-2Cy" firstAttribute="top" secondItem="E0q-sQ-qqH" secondAttribute="bottom" id="5XE-TO-0cg"/>
-                            <constraint firstItem="V1Y-4s-UXr" firstAttribute="width" secondItem="sLW-st-R5N" secondAttribute="width" multiplier="0.32" id="5dW-mr-vhA"/>
+                            <constraint firstItem="V1Y-4s-UXr" firstAttribute="width" secondItem="sLW-st-R5N" secondAttribute="width" multiplier="0.3" id="5dW-mr-vhA"/>
                             <constraint firstAttribute="bottom" secondItem="IPi-Q9-h1Z" secondAttribute="bottom" constant="50" id="78a-1B-Zfq"/>
                             <constraint firstItem="NdC-3c-2Cy" firstAttribute="leading" secondItem="E0q-sQ-qqH" secondAttribute="leading" constant="5" id="Dkt-Ln-UVu"/>
                             <constraint firstItem="E0q-sQ-qqH" firstAttribute="leading" secondItem="V1Y-4s-UXr" secondAttribute="trailing" constant="4" id="GdK-bI-FTP"/>
@@ -98,7 +96,7 @@ If you have any other thoughts or ideas, please get in touch via the email addre
                             <constraint firstItem="E0q-sQ-qqH" firstAttribute="top" secondItem="V1Y-4s-UXr" secondAttribute="top" id="Mea-jr-OFW"/>
                             <constraint firstItem="NdC-3c-2Cy" firstAttribute="bottom" secondItem="V1Y-4s-UXr" secondAttribute="bottom" id="bJy-0M-0NY"/>
                             <constraint firstItem="V1Y-4s-UXr" firstAttribute="leading" secondItem="sLW-st-R5N" secondAttribute="leading" constant="20" id="dII-af-33N"/>
-                            <constraint firstItem="V1Y-4s-UXr" firstAttribute="top" secondItem="sLW-st-R5N" secondAttribute="top" constant="40" id="jVG-3n-RGj"/>
+                            <constraint firstItem="V1Y-4s-UXr" firstAttribute="top" secondItem="sLW-st-R5N" secondAttribute="top" constant="60" id="jVG-3n-RGj"/>
                             <constraint firstAttribute="trailing" secondItem="E0q-sQ-qqH" secondAttribute="trailing" id="xeH-Jp-TOH"/>
                         </constraints>
                     </view>

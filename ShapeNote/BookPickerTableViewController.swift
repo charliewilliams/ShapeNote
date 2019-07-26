@@ -51,7 +51,7 @@ class BookPickerTableViewController: UITableViewController {
             
             Defaults.currentlySelectedBookTitle = title
             
-            print("Switched book to \(title)")
+//            print("Switched book to \(title)")
             Answers.logCustomEvent(withName: "Switched book", customAttributes: ["title":title])
             
         }

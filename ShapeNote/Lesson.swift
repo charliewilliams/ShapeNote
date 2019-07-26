@@ -98,12 +98,7 @@ class Lesson: NSManagedObject {
         userString += allLeadersString(useTwitterHandles: true)
         
         userString += leader.count == 1 ? " is leading " : " are leading "
-        
-        var number = song.number
-        if number.hasPrefix("0") {
-            number = number.substring(from: 1)
-        }
-        userString += "#\(number): \(song.title)"
+        userString += "#\(song.number): \(song.title)"
         
         if let dedication = dedication {
             userString += " (\(dedication))"

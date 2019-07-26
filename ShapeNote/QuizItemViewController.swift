@@ -27,13 +27,13 @@ class QuizItemViewController: UIViewController {
     var question:QuizOption! {
         didSet {
             if let question = question,
-            let answers = question.answers {
+                let answers = question.answers {
                 self.questionLabel.attributedText = question.exampleStringForQuestionPair
                 let buttons = answerButtons
                 
                 for (index, answer) in answers.enumerated() {
                     let button = buttons[index]
-                    button.setTitle(answer, for: UIControl.State())
+                    button.setTitle(answer, for: .normal)
                 }
             }
         }

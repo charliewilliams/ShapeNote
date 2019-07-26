@@ -11,21 +11,21 @@ import Foundation
 extension String {
 
     func substring(to: Int) -> String {
-        return substring(from: self.startIndex, to: self.index(self.startIndex, offsetBy: to));
+        return substring(from: startIndex, to: index(startIndex, offsetBy: to));
     }
 
     func substring(from: Int) -> String {
-        return substring(from: self.index(self.startIndex, offsetBy: from), to: self.index(self.startIndex, offsetBy: self.count))
+        return substring(from: index(startIndex, offsetBy: from), to: index(startIndex, offsetBy: count))
     }
 
     func substring(from: Int, to: Int) -> String {
 
-        let startIndex = self.index(self.startIndex, offsetBy: from)
-        let endIndex = self.index(self.startIndex, offsetBy: to)
-        return substring(from: startIndex, to: endIndex)
+        let start = index(startIndex, offsetBy: from)
+        let end = index(startIndex, offsetBy: to)
+        return substring(from: start, to: end)
     }
 
     func substring(from: Index, to: Index) -> String {
-        return String(self[startIndex..<endIndex])
+        return String(self[from..<to])
     }
 }

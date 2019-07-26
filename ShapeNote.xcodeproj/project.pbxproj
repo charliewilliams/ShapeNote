@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C00AB58F1A7FDFEA001F4D61 /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */; };
 		C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C8DF1CCBB30200292F06 /* DataValidity.swift */; };
-		C012C8E21CCBB63F00292F06 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C8E11CCBB63F00292F06 /* Notifications.swift */; };
 		C021FD9F1C21EFAD009A972A /* MinutesSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021FD9D1C21EFAD009A972A /* MinutesSummaryViewController.swift */; };
 		C021FDA01C21EFAD009A972A /* MinutesSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C021FD9E1C21EFAD009A972A /* MinutesSummaryViewController.xib */; };
 		C0285B801D97169C00306705 /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0285B7E1D97169C00306705 /* Favourites.storyboard */; };
@@ -103,7 +102,6 @@
 		77A2ED1F51222277DE60C191 /* Pods-ShapeNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShapeNote/Pods-ShapeNote.debug.xcconfig"; sourceTree = "<group>"; };
 		C00AB58E1A7FDFEA001F4D61 /* NewLessonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
 		C012C8DF1CCBB30200292F06 /* DataValidity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidity.swift; sourceTree = "<group>"; };
-		C012C8E11CCBB63F00292F06 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C021FD9C1C21EAEA009A972A /* ShapeNote 0.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.5.xcdatamodel"; sourceTree = "<group>"; };
 		C021FD9D1C21EFAD009A972A /* MinutesSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinutesSummaryViewController.swift; sourceTree = "<group>"; };
 		C021FD9E1C21EFAD009A972A /* MinutesSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MinutesSummaryViewController.xib; sourceTree = "<group>"; };
@@ -312,7 +310,6 @@
 		C0515B5D1A7BA59D0006ED16 /* ShapeNote */ = {
 			isa = PBXGroup;
 			children = (
-				C035664D1E05868200A13309 /* ShapeNote.entitlements */,
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
 				C04D21A01DD9C78800B98D86 /* Intro */,
 				C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */,
@@ -320,7 +317,6 @@
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
-				C012C8E11CCBB63F00292F06 /* Notifications.swift */,
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
 				C0697C531D85E1BB00269434 /* Find Your Singing (Not in current app) */,
@@ -350,6 +346,7 @@
 		C0515B5E1A7BA59D0006ED16 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C035664D1E05868200A13309 /* ShapeNote.entitlements */,
 				C0BE7DB41BE6359A006383CC /* FontAwesome.otf */,
 				C092E85F1A8914B6002594A5 /* CH.json */,
 				C0515B921A7BC4000006ED16 /* SH1991.json */,
@@ -663,7 +660,6 @@
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
 				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
 				C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */,
-				C012C8E21CCBB63F00292F06 /* Notifications.swift in Sources */,
 				C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */,
 				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
