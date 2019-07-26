@@ -1,4 +1,0 @@
-{"identity":{"generator":"Crashlytics iOS SDK/3.8.3","build_version":"120","display_version":"3.8.3","api_key":"95e78a1b7ecc0b8e2442e9fa982256d4da835a2e","started_at":1479050121,"session_id":"8aecd6e154dd4f389b3403594be1a890","install_id":"EE3BABB0-F31E-4892-A298-41F29306D61F","beta_token":null,"absolute_log_timestamps":true}}
-{"host":{"model":"iPhone8,1","machine":"N71AP","os_build_version":"14B100","os_display_version":"10.1.1","platform":"ios","locale":"en_GB"}}
-{"application":{"bundle_id":"com.charliewilliams.ShapeNote","custom_bundle_id":null,"build_version":"14","display_version":"1.0","extension_id":null}}
-{"executable":{"architecture":"arm64","uuid":"a813388cc1923c7c843b4f0fac2fa596","base":4295262208,"size":1376256,"encrypted":false,"minimum_sdk_version":"9.0.0","built_sdk_version":"10.1.0"}}

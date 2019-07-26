@@ -15,3 +15,7 @@ Theoretical future enhancements:
 - Sharing of cloud-stored minutes among group members
 - GameKit integration for challenges singers can complete (i.e. on the quiz)
 - Leaderboards to see singers' choices in an intuitive format
+
+![screenshot](https://raw.githubusercontent.com/charliewilliams/ShapeNote/master/Screenshots/2.jpeg)
+![screenshot](https://raw.githubusercontent.com/charliewilliams/ShapeNote/master/Screenshots/3.jpeg)
+![screenshot](https://raw.githubusercontent.com/charliewilliams/ShapeNote/master/Screenshots/1.jpeg)
