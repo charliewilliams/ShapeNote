@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5KH-Fb-Kea">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5KH-Fb-Kea">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -56,9 +54,8 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPi-Q9-h1Z" userLabel="Main Text View">
                                 <rect key="frame" x="20" y="186" width="280" height="332"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">I have made this app as a gift to the Sacred Harp singing community. I hope all of my fellow singers find it useful.  Did you know: You can help make this app better! That's right, no app-development experience is necessary.  First, if you see something that doesn't work quite right in the app, please contact me about it at the email address above.  Second, I hope to expand the information available in the app to books beyond the Denson edition. Basic index information is available for the Cooper edition, Christian Harmony and Shenandoah Harmony, but in order to display more detailed information (and for the quiz to work for those books) I'll need someone to make a spreadsheet of all the title/number/composer/date/lyricist/lyrics date/lyrics-or-first-line/etc information. Once I have that, it's pretty straightforward for me to improve support for that book in the app.  Likewise, I'd like to add support for as many books as there's interest in supporting. If you sing from another book and would like to see the app support it, I extend the same "let's make a spreadsheet" invitation to you as well!
-
-If you have any other thoughts or ideas, please get in touch via the email address above (or come visit us in Bristol (UK), where we sing every Tuesday throughout the year from 7-9pm and have an all-day the Saturday before the second Sunday in May, which you are most welcome to attend.)</string>
+                                <mutableString key="text">I have made this app as a gift to the Sacred Harp singing community. I hope all of my fellow singers find it useful. 
+If you have any other thoughts or ideas, please get in touch via the email address above (or come visit us in Bristol (UK), where we sing every Tuesday throughout the year from 7-9pm and have an all-day the Saturday before the second Sunday in May, which you are most welcome to attend.)</mutableString>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>

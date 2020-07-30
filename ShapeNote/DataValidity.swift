@@ -6,7 +6,9 @@
 //  Copyright © 2016 Charlie Williams. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+let blueColor = UIColor(red: 0, green: 122 / 255.0, blue: 1, alpha: 1)
 
 typealias Completion = (() -> ())
 typealias NetworkCompletion = ((_ success: Bool, _ error: Error?) -> ())

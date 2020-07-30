@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 class TabBarController : UITabBarController {
     
@@ -19,15 +18,6 @@ class TabBarController : UITabBarController {
         }).count == 0 {
         
             selectedIndex = TabBarIndex.songs.rawValue
-        }
-    }
-    
-    override var selectedViewController: UIViewController? {
-        didSet {
-            if let nav = selectedViewController as? UINavigationController,
-                let vc = nav.viewControllers.first {
-                Answers.logContentView(withName: String(describing: vc.classForCoder), contentType: nil, contentId: nil, customAttributes: nil)
-            }
         }
     }
 }

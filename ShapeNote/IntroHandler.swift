@@ -23,8 +23,10 @@ extension IntroHandler where Self: UIViewController {
         let introVC = UIStoryboard(name: "Intro", bundle: nil).instantiateInitialViewController() as! IntroPopupViewController
         _ = introVC.view
         introVC.doneButton.isHidden = false
+        introVC.modalPresentationStyle = .fullScreen
+        introVC.modalTransitionStyle = .crossDissolve
         
-        DispatchQueue.main.async { () -> Void in
+        DispatchQueue.main.async {
             self.present(introVC, animated: false, completion: nil)
         }
     }

@@ -18,60 +18,10 @@
 	<string>1.1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb340955376092604</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fbauth2</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>22</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>3bf576a7e0e1a634037b4c20ef79f63196a6eb0f</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>consumerKey</key>
-					<string>wIwCcZCe5NXNxUcZWjP5YXn8G</string>
-					<key>consumerSecret</key>
-					<string>0wvXBxSQHmV7SRqrVl5bYI6rlhoCl8tuUXuKqgO5sVuXb1IwKm</string>
-				</dict>
-				<key>KitName</key>
-				<string>Twitter</string>
-			</dict>
-		</array>
-	</dict>
-	<key>FacebookAppID</key>
-	<string>340955376092604</string>
-	<key>FacebookDisplayName</key>
-	<string>ShapeNote</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbauth2</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -95,8 +45,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We'll only use your location to find your nearest singing.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.otf</string>

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 let tickmark = "✔︎"
 let cross = "✘"
@@ -111,11 +110,6 @@ class QuizItemViewController: UIViewController {
         }
         
         question = QuizQuestionProvider.sharedProvider.nextQuestion()
-        
-        Answers.logCustomEvent(withName: "QuizQuestion", customAttributes: ["group":Defaults.currentGroupName ?? "none",
-                                                                            "questionNumber":currentQuestionNumber,
-                                                                            "questionType": question.questionType.rawValue,
-                                                                            "answerType": question.answerType.rawValue])
     }
     
     func finishRound() {
@@ -129,10 +123,6 @@ class QuizItemViewController: UIViewController {
     }
     
     @IBAction func finishPressed(_ sender: AnyObject) {
-        
-        Answers.logCustomEvent(withName: "QuizCancelled", customAttributes: ["group":Defaults.currentGroupName ?? "none",
-                                                                            "questionNumber":currentQuestionNumber,
-                                                                            "score":Float(numberOfCorrectQuestions)/Float(numberOfQuestionsPerRound)])
         
         let _ = navigationController?.popViewController(animated: true)
     }

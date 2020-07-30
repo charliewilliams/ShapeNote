@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
-import TwitterKit
 
 let backgroundImage = UIImage(named: "Launch")!
 let backgroundImageColor = UIColor(patternImage:backgroundImage)
@@ -22,12 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         window?.backgroundColor = backgroundImageColor
-        
-        #if DEBUG
-            Fabric.with([Twitter()])
-        #else
-            Fabric.with([Crashlytics(), Twitter()])
-        #endif
     
         JSONLoader.sharedLoader.handleFirstRun()
 

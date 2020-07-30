@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Crashlytics
 
 class SongListTableViewController: UITableViewController, SubtitledTappable, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, IntroHandler {
     
@@ -98,8 +97,6 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         for filter in activeFilters {
             activeFilterNames += "\(filter.rawValue))"
         }
-//        print("Filters active: \(activeFilterNames)")
-        Answers.logCustomEvent(withName: "Filters", customAttributes: ["active":activeFilterNames])
     }
     
     // MARK: - Filtering
@@ -237,10 +234,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     func updateSearchResults(for searchController: UISearchController) {
 
         let searchResults = songs
-        
         let fullSearchText = searchController.searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
-        Answers.logSearch(withQuery: fullSearchText, customAttributes: ["group":Defaults.currentGroupName ?? "none"])
-        
         let searchItems = fullSearchText.components(separatedBy: " ") as [String]
         
         // Build all the "AND" expressions for each value in the searchString.

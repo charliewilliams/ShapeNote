@@ -8,7 +8,6 @@
 
 import UIKit
 import JFADoubleSlider
-import Crashlytics
 
 enum FilterType: String {
     case unfavorited
