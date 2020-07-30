@@ -54,13 +54,14 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         searchTableView.tableView.delegate = self
         searchController = UISearchController(searchResultsController: searchTableView)
         searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
         
         searchController.delegate = self
         searchController.searchBar.delegate = self
         
-        definesPresentationContext = true
+//        definesPresentationContext = true
         
         buildHeaderLabel()
         updateTitle()

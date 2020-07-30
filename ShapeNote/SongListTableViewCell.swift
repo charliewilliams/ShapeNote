@@ -13,8 +13,8 @@ let unfavoritedString = "☆"
 
 class SongListTableViewCell: UITableViewCell {
     
-    var song:Song?
-    var songListTableView:UITableView?
+    var song: Song?
+    var songListTableView: UITableView?
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
@@ -22,6 +22,14 @@ class SongListTableViewCell: UITableViewCell {
     @IBOutlet weak var localChampionLabel: UILabel!
     @IBOutlet weak var meterAndTypeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    var favoriteStateString: String {
+        song?.favorited == true ? favoritedString : unfavoritedString
+    }
+    
+    var favoriteStateAlpha:CGFloat {
+        song?.favorited == true ? 1.0 : 0.3
+    }
 
     func configureWithSong(_ song:Song) {
         
@@ -70,23 +78,18 @@ class SongListTableViewCell: UITableViewCell {
             lyricsLabel.text = nil
         }
         
-        favoriteButton.setTitle(favoriteStateString, for: UIControl.State())
+        favoriteButton.setTitle(favoriteStateString, for: .normal)
         favoriteButton.alpha = favoriteStateAlpha
         
         meterAndTypeLabel.text = infoString
     }
     
-    var favoriteStateString:String {
-        return song?.favorited == true ? favoritedString : unfavoritedString
-    }
-    
-    var favoriteStateAlpha:CGFloat {
-        return song?.favorited == true ? 1.0 : 0.3
-    }
-    
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        
         guard let song = song else { fatalError("No song attached to cell") }
         song.favorited = !song.favorited
+        
+        CoreDataHelper.sharedHelper.saveContext()
         
         self.songListTableView?.reloadData()
     }
