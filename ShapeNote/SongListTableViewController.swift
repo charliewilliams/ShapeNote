@@ -180,18 +180,17 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     
     @objc func headerTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         
-        if sortOrder == .ascending {
-            sortOrder = .descending
-        } else {
-            sortOrder = .ascending
-            
-            switch sortType {
-            case .number:
-                sortType = .popularity
-            case .popularity:
-                sortType = .date
-            case .date:
-                sortType = .number
+        switch sortType {
+        case .number:
+            sortType = .popularity
+        case .popularity:
+            sortType = .date
+        case .date:
+            sortType = .number
+            if sortOrder == .ascending {
+                sortOrder = .descending
+            } else {
+                sortOrder = .ascending
             }
         }
         
@@ -219,7 +218,15 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         }
         
         let filterDescription = filterString + " - "
-        subtitle = "\(filtering ? filterDescription : "")Sorted by \(sortDescription(forType: sortType, order: sortOrder))"
+        let tapToChange: String
+            
+        if !filtering, sortType == .number, sortOrder == .ascending {
+            tapToChange = " (tap to change)"
+        } else {
+            tapToChange = ""
+        }
+            
+        subtitle = "\(filtering ? filterDescription : "")Sorted by \(sortDescription(forType: sortType, order: sortOrder))\(tapToChange)"
     }
     
     // MARK: - Pull to search

@@ -50,22 +50,29 @@ class QuizSetupViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
-        if let headerView = view as? UITableViewHeaderFooterView {
+        let headerView = view as! QuizHeaderView
             
-            headerView.contentView.backgroundColor = blueColor
-            headerView.textLabel?.textColor = UIColor.white
-            headerView.textLabel?.text = "Given the \(quizQuestionProvider.questionTypes[section])…"
-        }
+        headerView.titleLabel.text = "Given the \(quizQuestionProvider.questionTypes[section])…"
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UITableViewHeaderFooterView()
+        return UINib(nibName: "QuizHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! QuizHeaderView
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 33
     }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
+        if tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return nil
+        }
+        
+        return indexPath
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let questionType = quizQuestionProvider.questionTypes[section]
         guard let questionsForType = quizQuestionProvider.quizOptions[questionType] else { fatalError() }
@@ -75,10 +82,4 @@ class QuizSetupViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return quizQuestionProvider.questionTypes.count
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalCATransitionSubtype(_ input: String?) -> CATransitionSubtype? {
-	guard let input = input else { return nil }
-	return CATransitionSubtype(rawValue: input)
 }

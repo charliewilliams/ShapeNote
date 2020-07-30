@@ -8,25 +8,17 @@
 
 import UIKit
 
-enum TabBarIndex:Int {
-    case favorites = 0
-    case songs = 1
-    case quiz = 2
-    case minutes = 3
-    case about = 4
+enum TabBarIndex: Int {
+    case songs
+    case quiz
+    case favorites
 }
 
 class TabBarManager {
     
-    var tabBarController: UITabBarController!
+    static let instance = TabBarManager()
     
-    class var sharedManager: TabBarManager {
-        struct Static {
-            static let instance:TabBarManager = TabBarManager()
-        }
-
-        return Static.instance
-    }
+    var tabBarController: UITabBarController!
     
     fileprivate func badgeTabAtIndex(_ index:TabBarIndex, badged:Bool) {
         

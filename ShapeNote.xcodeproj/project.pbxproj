@@ -38,6 +38,10 @@
 		C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */; };
 		C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A11BEFB63F00E05EBE /* QuizOption.swift */; };
 		C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */; };
+		C05BE4D624D3260900ECD320 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4D524D3260900ECD320 /* UILabel.swift */; };
+		C05BE4D824D3270700ECD320 /* QuizHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4D724D3270700ECD320 /* QuizHeaderView.swift */; };
+		C05BE4DA24D3270E00ECD320 /* QuizHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4D924D3270E00ECD320 /* QuizHeaderView.xib */; };
+		C05BE4DC24D327B000ECD320 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
@@ -124,6 +128,10 @@
 		C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionProvider.swift; sourceTree = "<group>"; };
 		C05626A11BEFB63F00E05EBE /* QuizOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOption.swift; sourceTree = "<group>"; };
 		C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizItemViewController.swift; sourceTree = "<group>"; };
+		C05BE4D524D3260900ECD320 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		C05BE4D724D3270700ECD320 /* QuizHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHeaderView.swift; sourceTree = "<group>"; };
+		C05BE4D924D3270E00ECD320 /* QuizHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizHeaderView.xib; sourceTree = "<group>"; };
+		C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
@@ -255,8 +263,10 @@
 				C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */,
 				C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
+				C05BE4D524D3260900ECD320 /* UILabel.swift */,
 				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
 				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
+				C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */,
 				C092E8611A891A51002594A5 /* Defaults.swift */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
@@ -327,6 +337,8 @@
 			children = (
 				C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */,
 				C05626971BEF711500E05EBE /* QuizSetupViewController.swift */,
+				C05BE4D724D3270700ECD320 /* QuizHeaderView.swift */,
+				C05BE4D924D3270E00ECD320 /* QuizHeaderView.xib */,
 				C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */,
 				C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */,
 				C05626A11BEFB63F00E05EBE /* QuizOption.swift */,
@@ -447,6 +459,7 @@
 			files = (
 				C092E8601A8914B6002594A5 /* CH.json in Resources */,
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
+				C05BE4DA24D3270E00ECD320 /* QuizHeaderView.xib in Resources */,
 				C0285B801D97169C00306705 /* Favourites.storyboard in Resources */,
 				C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */,
 				C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */,
@@ -553,8 +566,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
+				C05BE4D624D3260900ECD320 /* UILabel.swift in Sources */,
 				C0519C5E1DF2D4C500ACACDE /* EmailSender.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
+				C05BE4D824D3270700ECD320 /* QuizHeaderView.swift in Sources */,
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
 				C035664F1E06DBDC00A13309 /* StoredValueCoordinator.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
@@ -576,6 +591,7 @@
 				C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */,
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
 				C0285B821D9716E700306705 /* FavouritesTableViewController.swift in Sources */,
+				C05BE4DC24D327B000ECD320 /* NibLoadableView.swift in Sources */,
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
 				C035664C1E057FFE00A13309 /* Collection.swift in Sources */,
 				C0515B611A7BA59D0006ED16 /* AppDelegate.swift in Sources */,
@@ -770,6 +786,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
+				CURRENT_PROJECT_VERSION = 23;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -785,6 +802,7 @@
 				INFOPLIST_FILE = ShapeNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,6 +822,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
+				CURRENT_PROJECT_VERSION = 23;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -819,6 +838,7 @@
 				INFOPLIST_FILE = ShapeNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG=0";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

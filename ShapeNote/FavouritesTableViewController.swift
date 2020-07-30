@@ -26,7 +26,7 @@ class FavouritesTableViewController : SongListTableViewController, NoContentView
         
         view.backgroundColor = .clear
         
-        TabBarManager.sharedManager.tabBarController = tabBarController!
+        TabBarManager.instance.tabBarController = tabBarController!
         
         // Always be filterin'
         activeFilters = [.favorited]
