@@ -82,6 +82,7 @@
 		C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E291C01B258000CCF81 /* Intro.storyboard */; };
 		C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */; };
 		C0EA4E2E1C01BC3B000CCF81 /* TabBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */; };
+		D168C217262983541EEA351B /* Pods_ShapeNoteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E7A167903B89C1C49A743F /* Pods_ShapeNoteTests.framework */; };
 		FB279DAEB38DBDC784FE9F7B /* Pods_ShapeNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547CE94E4BEBDDA3311CB992 /* Pods_ShapeNote.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		098909FFEDD50D2A0623BD9D /* Pods-ShapeNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeNoteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShapeNoteTests/Pods-ShapeNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		277DBFC58EBE2F9537F57EB8 /* Pods-ShapeNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeNoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShapeNoteTests/Pods-ShapeNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D27FE40ECB6149B959D1687 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		547CE94E4BEBDDA3311CB992 /* Pods_ShapeNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShapeNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F72A61DC124AED2D74251E /* Pods-ShapeNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShapeNote/Pods-ShapeNote.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		C0EA4E291C01B258000CCF81 /* Intro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
 		C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPopupViewController.swift; sourceTree = "<group>"; };
 		C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarManager.swift; sourceTree = "<group>"; };
+		C5E7A167903B89C1C49A743F /* Pods_ShapeNoteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShapeNoteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C035665A1E07187C00A13309 /* JFADoubleSlider.framework in Frameworks */,
+				D168C217262983541EEA351B /* Pods_ShapeNoteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +230,7 @@
 				C064B5EE1BEBEC950021F2B0 /* TwitterCore.framework */,
 				3D27FE40ECB6149B959D1687 /* Pods.framework */,
 				547CE94E4BEBDDA3311CB992 /* Pods_ShapeNote.framework */,
+				C5E7A167903B89C1C49A743F /* Pods_ShapeNoteTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,6 +240,8 @@
 			children = (
 				77A2ED1F51222277DE60C191 /* Pods-ShapeNote.debug.xcconfig */,
 				76F72A61DC124AED2D74251E /* Pods-ShapeNote.release.xcconfig */,
+				098909FFEDD50D2A0623BD9D /* Pods-ShapeNoteTests.debug.xcconfig */,
+				277DBFC58EBE2F9537F57EB8 /* Pods-ShapeNoteTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -442,7 +450,6 @@
 				C0C1D47D1A81348D0082C0EB /* ShellScript */,
 				C064ECD41AB950650020AFE3 /* ShellScript */,
 				30433AE3E832D05BD6EB2C6C /* [CP] Embed Pods Frameworks */,
-				19CD8BF8D93B7832670D7BA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -457,6 +464,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0515B801A7BA59D0006ED16 /* Build configuration list for PBXNativeTarget "ShapeNoteTests" */;
 			buildPhases = (
+				0518126347A0378F72964401 /* [CP] Check Pods Manifest.lock */,
 				C0515B6F1A7BA59D0006ED16 /* Sources */,
 				C0515B701A7BA59D0006ED16 /* Frameworks */,
 				C0515B711A7BA59D0006ED16 /* Resources */,
@@ -558,19 +566,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19CD8BF8D93B7832670D7BA1 /* [CP] Copy Pods Resources */ = {
+		0518126347A0378F72964401 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShapeNoteTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		30433AE3E832D05BD6EB2C6C /* [CP] Embed Pods Frameworks */ = {
@@ -579,13 +594,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JFADoubleSlider/JFADoubleSlider.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JFADoubleSlider.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3AF9A248140B464812D6A96A /* [CP] Check Pods Manifest.lock */ = {
@@ -594,13 +612,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShapeNote-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C064ECD41AB950650020AFE3 /* ShellScript */ = {
@@ -947,6 +968,7 @@
 		};
 		C0515B811A7BA59D0006ED16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 098909FFEDD50D2A0623BD9D /* Pods-ShapeNoteTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -975,6 +997,7 @@
 		};
 		C0515B821A7BA59D0006ED16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 277DBFC58EBE2F9537F57EB8 /* Pods-ShapeNoteTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
