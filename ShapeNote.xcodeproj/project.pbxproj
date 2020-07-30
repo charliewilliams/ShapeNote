@@ -15,7 +15,6 @@
 		C035664F1E06DBDC00A13309 /* StoredValueCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */; };
 		C03566521E06FCCE00A13309 /* StoredValueCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566511E06FCCE00A13309 /* StoredValueCoordinatorTests.swift */; };
 		C03566541E07082C00A13309 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03566531E07082C00A13309 /* NSManagedObject.swift */; };
-		C035665A1E07187C00A13309 /* JFADoubleSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03566591E07187C00A13309 /* JFADoubleSlider.framework */; };
 		C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C043116E1DB4DDC70015C180 /* TabBarController.swift */; };
 		C04311711DB4E4920015C180 /* NoContentViewDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */; };
 		C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04311721DB4EE080015C180 /* BookPicker.storyboard */; };
@@ -98,7 +97,6 @@
 		C03566531E07082C00A13309 /* NSManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 		C03566551E070F2B00A13309 /* Pods_ShapeNote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_ShapeNote.framework; path = "../../Library/Developer/Xcode/DerivedData/ShapeNote-fjfnffnqpylxfaedztdsgzzwwrkq/Build/Products/Debug-iphonesimulator/Pods_ShapeNote.framework"; sourceTree = "<group>"; };
 		C03566571E07181200A13309 /* JFADoubleSlider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JFADoubleSlider.framework; path = "../../Library/Developer/Xcode/DerivedData/ShapeNote-fjfnffnqpylxfaedztdsgzzwwrkq/Build/Products/Debug-iphonesimulator/JFADoubleSlider/JFADoubleSlider.framework"; sourceTree = "<group>"; };
-		C03566591E07187C00A13309 /* JFADoubleSlider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JFADoubleSlider.framework; sourceTree = "<group>"; };
 		C043116E1DB4DDC70015C180 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentViewDisplaying.swift; sourceTree = "<group>"; };
 		C04311721DB4EE080015C180 /* BookPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookPicker.storyboard; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C035665A1E07187C00A13309 /* JFADoubleSlider.framework in Frameworks */,
 				D168C217262983541EEA351B /* Pods_ShapeNoteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,7 +295,6 @@
 		C0515B761A7BA59D0006ED16 /* ShapeNoteTests */ = {
 			isa = PBXGroup;
 			children = (
-				C03566591E07187C00A13309 /* JFADoubleSlider.framework */,
 				C0515B771A7BA59D0006ED16 /* Supporting Files */,
 				C03566511E06FCCE00A13309 /* StoredValueCoordinatorTests.swift */,
 				C03566501E06FCCE00A13309 /* ShapeNoteTests-Bridging-Header.h */,
