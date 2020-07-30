@@ -614,7 +614,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION == Release ]; then\necho \"Bumping build number...\"\nplist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\nbuildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\nif [[ \"${buildnum}\" == \"\" ]]; then\necho \"No build number in $plist\"\nexit 2\nfi\n\nbuildnum=$(expr $buildnum + 1)\n/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\necho \"Bumped build number to $buildnum\"\n\nelse\necho $CONFIGURATION \" build - Not bumping build number.\"\nfi";
+			shellScript = "if [ $CONFIGURATION == Release ]; then\necho \"Bumping build number...\"\nplist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\nbuildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\nif [[ \"${buildnum}\" == \"\" ]]; then\necho \"No build number in $plist\"\nexit 2\nfi\n\nbuildnum=$(expr $buildnum + 1)\n/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\necho \"Bumped build number to $buildnum\"\n\nelse\necho $CONFIGURATION \" build - Not bumping build number.\"\nfi\n";
 		};
 		C0C1D47D1A81348D0082C0EB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -627,7 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3bf576a7e0e1a634037b4c20ef79f63196a6eb0f cdb8002da5b7da3cfd6f90faa82a27e0d488250d853761f7c834a9200ca71c52";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3bf576a7e0e1a634037b4c20ef79f63196a6eb0f cdb8002da5b7da3cfd6f90faa82a27e0d488250d853761f7c834a9200ca71c52\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -819,7 +819,7 @@
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -871,7 +871,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
