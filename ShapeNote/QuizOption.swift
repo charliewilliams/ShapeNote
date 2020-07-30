@@ -9,32 +9,32 @@
 import UIKit
 
 enum Quizzable: String {
+    case Number
     case Title
     case Composer
     case Lyricist
     case FirstLine = "First Line"
     case Year
-    case Number
     case ModeAndForm = "Mode & Form"
 }
 
 enum QuestionVerb: String {
+    case Number = "Song #"
     case Title = ""
     case Composer = "A song by"
     case Lyricist = "A song with words by"
     case FirstLine = "A song beginning with the line"
     case Year = "A song written in"
-    case Number = "Song #"
     case ModeAndForm = "There is a %@ which"
 }
 
 enum AnswerVerb: String {
+    case Number = "is song number"
     case Title = "is titled"
     case Composer = "was written by"
     case Lyricist = "has words by"
     case FirstLine = "begins with the line"
     case Year = "was written in the year"
-    case Number = "is song number"
     case ModeAndForm = "is a"
 }
 

@@ -10,7 +10,6 @@ import UIKit
 
 class QuizSetupViewController: UITableViewController {
     
-    @IBOutlet var showAllButton: UIBarButtonItem!
     @IBOutlet var goTakeQuizButton: UIBarButtonItem!
 
     let quizQuestionProvider = QuizQuestionProvider.sharedProvider
@@ -20,25 +19,11 @@ class QuizSetupViewController: UITableViewController {
         
         view.backgroundColor = backgroundImageColor
     }
-
-    @IBAction func showAllButtonPressed(_ sender: UIBarButtonItem) {
-        quizQuestionProvider.filtering = !quizQuestionProvider.filtering
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        if quizQuestionProvider.filtering {
-            showAllButton.title = "Show All"
-        } else {
-            showAllButton.title = "Popular"
-        }
-        
-        let transition = CATransition()
-        transition.type = CATransitionType.push
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.fillMode = CAMediaTimingFillMode.forwards
-        transition.duration = 0.5
-        transition.subtype = convertToOptionalCATransitionSubtype(quizQuestionProvider.filtering ? CATransitionSubtype.fromTop.rawValue : CATransitionSubtype.fromBottom.rawValue)
-        self.tableView.layer.add(transition, forKey: "UITableViewReloadDataAnimationKey")
-        
-        self.tableView.reloadData()
+        tableView.selectRow(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .top)
     }
     
     func didChangeSelection() {

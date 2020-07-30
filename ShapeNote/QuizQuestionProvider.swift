@@ -12,7 +12,6 @@ var numberOfQuestionsPerRound = 4
 
 class QuizQuestionProvider {
     
-    var filtering = true
     var selectedQuestions: Set<QuizOption>
     
     static var sharedProvider: QuizQuestionProvider {
@@ -27,20 +26,10 @@ class QuizQuestionProvider {
         selectedQuestions = Set<QuizOption>()
     }
     
-    var questionTypes: [String] {
-        
-        if filtering {
-            return ["Title", "Number", "First Line"]
-        }
-        return ["Title", "Composer", "Lyricist", "First Line", "Year", "Number", "Mode & Form"]
-    }
+    let questionTypes = ["Title", "Number", "Composer", "Lyricist", "First Line", "Mode & Form", "Year"]
     
     var _quizOptions: [String: [QuizOption]]
     var quizOptions: [String: [QuizOption]] {
-        
-        if filtering {
-            return filteredOptions
-        }
         
         if _quizOptions.keys.count > 0 { return _quizOptions }
         
@@ -61,21 +50,6 @@ class QuizQuestionProvider {
         
         return _quizOptions
     }
-    
-    lazy var filteredOptions: [String: [QuizOption]] = {
-        
-        ["Title": [QuizOption(questionType: .Title, answerType: .Number),
-                   QuizOption(questionType: .Title, answerType: .FirstLine),
-                   QuizOption(questionType: .Title, answerType: .Composer),
-            ],
-         "Number": [QuizOption(questionType: .Number, answerType: .Title),
-                    QuizOption(questionType: .Number, answerType: .ModeAndForm),
-            ],
-         "First Line": [QuizOption(questionType: .FirstLine, answerType: .Year),
-                        QuizOption(questionType: .FirstLine, answerType: .Title)
-            ],
-        ]
-    }()
     
     func nextQuestion() -> QuizOption {
         

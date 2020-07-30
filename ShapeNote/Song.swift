@@ -44,7 +44,6 @@ class Song: NSManagedObject {
     @NSManaged var parts: Int16
     @NSManaged var key: String?
     @NSManaged var book: Book
-    @NSManaged var ledBy: Lesson
     @NSManaged var favorited: Bool
     @NSManaged var notes: String?
     @NSManaged var lyrics: String?

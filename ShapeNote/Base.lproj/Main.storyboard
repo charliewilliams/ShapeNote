@@ -18,10 +18,9 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8Q0-5a-X5B" kind="relationship" relationship="viewControllers" id="G4o-3r-Vlr"/>
                         <segue destination="REg-5d-aJe" kind="relationship" relationship="viewControllers" id="ClZ-WB-Dg9"/>
                         <segue destination="9j9-n7-ArW" kind="relationship" relationship="viewControllers" id="FsH-n4-aTg"/>
-                        <segue destination="cPv-9F-IW0" kind="relationship" relationship="viewControllers" id="pC2-ty-HeG"/>
+                        <segue destination="8Q0-5a-X5B" kind="relationship" relationship="viewControllers" id="G4o-3r-Vlr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -57,16 +56,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EIX-nE-2Fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1118" y="0.0"/>
-        </scene>
-        <!--About-->
-        <scene sceneID="qu0-IK-bf3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="About" id="cPv-9F-IW0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="neT-gj-rP5"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a8k-gp-MVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="361" y="241"/>
         </scene>
     </scenes>
 </document>

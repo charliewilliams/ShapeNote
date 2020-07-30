@@ -14,7 +14,7 @@ let correctColor = UIColor(red: 0.004, green: 0.788, blue: 0, alpha: 1)
 let wrongColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
 
 enum NextButtonConstraint: CGFloat {
-    case hidden = -50
+    case hidden = -65
     case shown = 0
 }
 

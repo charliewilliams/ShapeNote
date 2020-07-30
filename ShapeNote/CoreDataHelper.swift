@@ -151,10 +151,6 @@ class CoreDataHelper {
         return Group(name: name)
     }
     
-    func minutes(_ group: Group) -> [Minutes]? {
-        return resultsForEntityName("Minutes", matchingObject: nil, inQueryString: nil) as! [Minutes]?
-    }
-    
     func singleResultForEntityName(_ entityName:String, matchingObject object:NSObject?, inQueryString queryString:String?) -> NSManagedObject? {
         return resultsForEntityName(entityName, matchingObject: object, inQueryString: queryString)?.first
     }

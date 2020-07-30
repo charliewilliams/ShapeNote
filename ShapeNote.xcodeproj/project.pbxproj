@@ -26,7 +26,6 @@
 		C0515B6B1A7BA59D0006ED16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0515B6A1A7BA59D0006ED16 /* Images.xcassets */; };
 		C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */; };
 		C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B851A7BADFE0006ED16 /* JSONLoader.swift */; };
-		C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B871A7BBA790006ED16 /* Lesson.swift */; };
 		C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B891A7BBA7A0006ED16 /* Singer.swift */; };
 		C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B8B1A7BBA7A0006ED16 /* Book.swift */; };
 		C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B8D1A7BBA7A0006ED16 /* Song.swift */; };
@@ -40,8 +39,6 @@
 		C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */; };
 		C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A11BEFB63F00E05EBE /* QuizOption.swift */; };
 		C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */; };
-		C072206C1DD763F200CE9CAC /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C072206A1DD763F200CE9CAC /* About.storyboard */; };
-		C072206E1DD76B7B00CE9CAC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
@@ -49,7 +46,6 @@
 		C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8631A8A0311002594A5 /* Shenandoah.json */; };
 		C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8641A8A0311002594A5 /* Cooper2012.json */; };
 		C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */; };
-		C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A650A1A7EDA8600099E76 /* Minutes.swift */; };
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
 		C0A54EAE22E900590054AC28 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A54EAD22E900590054AC28 /* String.swift */; };
 		C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0BE7DB41BE6359A006383CC /* FontAwesome.otf */; };
@@ -117,7 +113,6 @@
 		C0515B781A7BA59D0006ED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		C0515B851A7BADFE0006ED16 /* JSONLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
-		C0515B871A7BBA790006ED16 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		C0515B891A7BBA7A0006ED16 /* Singer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singer.swift; sourceTree = "<group>"; };
 		C0515B8B1A7BBA7A0006ED16 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		C0515B8D1A7BBA7A0006ED16 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
@@ -131,8 +126,6 @@
 		C056269F1BEF8F0400E05EBE /* QuizQuestionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionProvider.swift; sourceTree = "<group>"; };
 		C05626A11BEFB63F00E05EBE /* QuizOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOption.swift; sourceTree = "<group>"; };
 		C05626A31BEFB80700E05EBE /* QuizItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizItemViewController.swift; sourceTree = "<group>"; };
-		C072206B1DD763F200CE9CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
-		C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
@@ -140,7 +133,6 @@
 		C092E8631A8A0311002594A5 /* Shenandoah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Shenandoah.json; sourceTree = "<group>"; };
 		C092E8641A8A0311002594A5 /* Cooper2012.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cooper2012.json; sourceTree = "<group>"; };
 		C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPickerTableViewController.swift; sourceTree = "<group>"; };
-		C09A650A1A7EDA8600099E76 /* Minutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minutes.swift; sourceTree = "<group>"; };
 		C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewCell.swift; sourceTree = "<group>"; };
 		C09ABE1B1C1F6E2800310195 /* ShapeNote 0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.4.xcdatamodel"; sourceTree = "<group>"; };
 		C0A54EAD22E900590054AC28 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -278,8 +270,6 @@
 				C05626A51BEFD1B700E05EBE /* Quiz */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
 				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
-				C072206A1DD763F200CE9CAC /* About.storyboard */,
-				C072206D1DD76B7B00CE9CAC /* AboutViewController.swift */,
 				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
 				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
 				C035664B1E057FFE00A13309 /* Collection.swift */,
@@ -331,8 +321,6 @@
 				C0515B8D1A7BBA7A0006ED16 /* Song.swift */,
 				C0515B8B1A7BBA7A0006ED16 /* Book.swift */,
 				C0515B891A7BBA7A0006ED16 /* Singer.swift */,
-				C0515B871A7BBA790006ED16 /* Lesson.swift */,
-				C09A650A1A7EDA8600099E76 /* Minutes.swift */,
 				C03566531E07082C00A13309 /* NSManagedObject.swift */,
 			);
 			name = "Managed Objects";
@@ -468,7 +456,6 @@
 				C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
-				C072206C1DD763F200CE9CAC /* About.storyboard in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
@@ -575,7 +562,6 @@
 				C0515B8C1A7BBA7A0006ED16 /* Book.swift in Sources */,
 				C035664F1E06DBDC00A13309 /* StoredValueCoordinator.swift in Sources */,
 				C0515B861A7BADFE0006ED16 /* JSONLoader.swift in Sources */,
-				C09A650B1A7EDA8600099E76 /* Minutes.swift in Sources */,
 				C04311711DB4E4920015C180 /* NoContentViewDisplaying.swift in Sources */,
 				C05626A21BEFB63F00E05EBE /* QuizOption.swift in Sources */,
 				C0EA4E2E1C01BC3B000CCF81 /* TabBarManager.swift in Sources */,
@@ -592,7 +578,6 @@
 				C0A54EAE22E900590054AC28 /* String.swift in Sources */,
 				C092E8621A891A51002594A5 /* Defaults.swift in Sources */,
 				C05626A01BEF8F0400E05EBE /* QuizQuestionProvider.swift in Sources */,
-				C0515B881A7BBA790006ED16 /* Lesson.swift in Sources */,
 				C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */,
 				C0285B821D9716E700306705 /* FavouritesTableViewController.swift in Sources */,
 				C012C8E01CCBB30200292F06 /* DataValidity.swift in Sources */,
@@ -605,7 +590,6 @@
 				C03566541E07082C00A13309 /* NSManagedObject.swift in Sources */,
 				C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */,
 				C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */,
-				C072206E1DD76B7B00CE9CAC /* AboutViewController.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */,
@@ -646,14 +630,6 @@
 				C0515B681A7BA59D0006ED16 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C072206A1DD763F200CE9CAC /* About.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C072206B1DD763F200CE9CAC /* Base */,
-			);
-			name = About.storyboard;
 			sourceTree = "<group>";
 		};
 		C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */ = {
