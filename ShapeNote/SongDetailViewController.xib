@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FontAwesome.otf">
+            <string>FontAwesome</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongDetailViewController" customModule="ShapeNote" customModuleProvider="target">
+            <connections>
+                <outlet property="favoriteButton" destination="sxh-5w-XvE" id="hAY-s2-gxp"/>
+                <outlet property="infoLabel" destination="N1c-ZS-z0y" id="oqb-1z-Qsu"/>
+                <outlet property="lyricsLabel" destination="07Q-Sj-DE0" id="izb-Ym-Rr4"/>
+                <outlet property="meterAndTypeLabel" destination="auO-ji-qzv" id="O3h-C8-elD"/>
+                <outlet property="numberLabel" destination="LeS-1Y-1dg" id="ra4-4Z-tdB"/>
+                <outlet property="titleLabel" destination="vpf-n0-z1A" id="ciW-rR-9ny"/>
+                <outlet property="view" destination="6HD-AP-Deu" id="Lp3-ua-eDS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6HD-AP-Deu">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nL9-eB-LDx">
+                    <rect key="frame" x="0.0" y="44" width="414" height="873"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="49" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeS-1Y-1dg">
+                            <rect key="frame" x="20" y="20" width="83.5" height="72"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="60"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxh-5w-XvE">
+                            <rect key="frame" x="364" y="20" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="7fn-bG-BmU"/>
+                                <constraint firstAttribute="height" constant="30" id="gev-oe-f23"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="">
+                                <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="favoriteButtonPressed:" destination="-1" eventType="touchUpInside" id="kWD-tz-tjr"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vpf-n0-z1A">
+                            <rect key="frame" x="115.5" y="48" width="72" height="36"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Isaac Watts, 1719" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1c-ZS-z0y">
+                            <rect key="frame" x="23" y="92" width="133" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LMD Plain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auO-ji-qzv">
+                            <rect key="frame" x="23" y="113" width="77" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07Q-Sj-DE0">
+                            <rect key="frame" x="23" y="142" width="371" height="487"/>
+                            <mutableString key="text">Will God forever cast us off?
+His wrath forever smoke
+Against the people of His love,
+His little chosen flock.
+
+Think of the tribes so dearly bought
+With the Redeemer’s blood,
+Nor let Thy Zion be forgot,
+Where once Thy glory stood.
+
+Where once Thy churches prayed and sang
+Thy foes profanely rage;
+Amid Thy gates their ensigns hang,
+And there their host engage.
+
+And still to heighten our distress,
+Thy presence is withdrawn;
+Thy wonted signs of pow’r and grace
+Thy pow’r and grace are gone.
+
+No prophet speaks to calm our grief,
+But all in silence mourn;
+Nor know the hour of our relief,
+The hour of Thy return.</mutableString>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="LeS-1Y-1dg" firstAttribute="leading" secondItem="nL9-eB-LDx" secondAttribute="leading" constant="20" id="1KI-bx-Ab1"/>
+                        <constraint firstItem="vDu-if-iYV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N1c-ZS-z0y" secondAttribute="trailing" symbolic="YES" id="28R-xq-KL4"/>
+                        <constraint firstItem="LeS-1Y-1dg" firstAttribute="bottom" secondItem="vpf-n0-z1A" secondAttribute="bottom" constant="8" id="3AT-v2-9s3"/>
+                        <constraint firstItem="sxh-5w-XvE" firstAttribute="top" secondItem="LeS-1Y-1dg" secondAttribute="top" id="8I4-aW-RwX"/>
+                        <constraint firstItem="N1c-ZS-z0y" firstAttribute="top" secondItem="vpf-n0-z1A" secondAttribute="bottom" constant="8" id="Fed-fl-2GO"/>
+                        <constraint firstItem="auO-ji-qzv" firstAttribute="leading" secondItem="N1c-ZS-z0y" secondAttribute="leading" id="H0Q-gA-Bmb"/>
+                        <constraint firstItem="vpf-n0-z1A" firstAttribute="leading" secondItem="LeS-1Y-1dg" secondAttribute="trailing" constant="12" id="Hbl-VK-ufn"/>
+                        <constraint firstItem="vDu-if-iYV" firstAttribute="bottom" secondItem="07Q-Sj-DE0" secondAttribute="bottom" constant="40.5" id="LQj-C4-4Hx"/>
+                        <constraint firstAttribute="bottom" secondItem="07Q-Sj-DE0" secondAttribute="bottom" constant="40.5" id="PdK-bB-0V0"/>
+                        <constraint firstItem="07Q-Sj-DE0" firstAttribute="leading" secondItem="auO-ji-qzv" secondAttribute="leading" id="Py2-Hp-ADA"/>
+                        <constraint firstItem="N1c-ZS-z0y" firstAttribute="leading" secondItem="nL9-eB-LDx" secondAttribute="leading" constant="23" id="V9y-gT-ILJ"/>
+                        <constraint firstAttribute="trailing" secondItem="sxh-5w-XvE" secondAttribute="trailing" constant="20" id="dk1-hh-YmO"/>
+                        <constraint firstItem="vDu-if-iYV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="auO-ji-qzv" secondAttribute="trailing" symbolic="YES" id="ffH-2K-1xt"/>
+                        <constraint firstItem="LeS-1Y-1dg" firstAttribute="top" secondItem="vDu-if-iYV" secondAttribute="top" constant="20" id="g4b-Jy-wM1"/>
+                        <constraint firstItem="auO-ji-qzv" firstAttribute="top" secondItem="N1c-ZS-z0y" secondAttribute="bottom" id="oyn-H1-ooR"/>
+                        <constraint firstItem="07Q-Sj-DE0" firstAttribute="top" secondItem="auO-ji-qzv" secondAttribute="bottom" constant="8" id="wrX-fb-t4X"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vpf-n0-z1A" secondAttribute="trailing" constant="10" id="y0x-bm-Cx6"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="vDu-if-iYV"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="QX8-wt-Ulz"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="nL9-eB-LDx" firstAttribute="leading" secondItem="5Yy-ii-keh" secondAttribute="leading" id="2s9-Yk-c23"/>
+                <constraint firstItem="5Yy-ii-keh" firstAttribute="trailing" secondItem="sxh-5w-XvE" secondAttribute="trailing" constant="20" id="F3Y-6k-bbC"/>
+                <constraint firstItem="5Yy-ii-keh" firstAttribute="trailing" secondItem="07Q-Sj-DE0" secondAttribute="trailing" constant="20" id="Z3X-3c-gIS"/>
+                <constraint firstItem="nL9-eB-LDx" firstAttribute="trailing" secondItem="5Yy-ii-keh" secondAttribute="trailing" id="fmN-gS-PPG"/>
+                <constraint firstItem="nL9-eB-LDx" firstAttribute="bottom" secondItem="5Yy-ii-keh" secondAttribute="bottom" constant="55" id="hmH-yD-HMO"/>
+                <constraint firstItem="nL9-eB-LDx" firstAttribute="top" secondItem="5Yy-ii-keh" secondAttribute="top" id="t5K-Ap-qcM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="5Yy-ii-keh"/>
+            <point key="canvasLocation" x="1001" y="228"/>
+        </view>
+    </objects>
+</document>

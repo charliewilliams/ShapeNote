@@ -44,6 +44,7 @@
 		C05BE4DC24D327B000ECD320 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */; };
 		C05BE4DE24D4A9F500ECD320 /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */; };
 		C05BE4E024D4B0C300ECD320 /* SongDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */; };
+		C05BE4E224D4B4E400ECD320 /* SongDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
@@ -135,6 +136,7 @@
 		C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
 		C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDisplaying.swift; sourceTree = "<group>"; };
+		C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongDetailViewController.xib; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */,
 				C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */,
 				C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */,
+				C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */,
 			);
 			name = "Song Lists";
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
+				C05BE4E224D4B4E400ECD320 /* SongDetailViewController.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,

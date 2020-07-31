@@ -340,8 +340,10 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let song = filtering ? filteredSongs[indexPath.row] : songs[indexPath.row]
-        performSegue(withIdentifier: "SongDetailViewController", sender: song)
+        let vc = SongDetailViewController(nibName: nil, bundle: nil)
+        vc.song = filtering ? filteredSongs[indexPath.row] : songs[indexPath.row]
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Navigation
