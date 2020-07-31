@@ -13,10 +13,12 @@ class TabBarController : UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if CoreDataHelper.sharedHelper.songs().filter({ $0.favorited }).count == 0 {
-            selectedIndex = TabBarIndex.songs.rawValue
-        } else {
-            selectedIndex = TabBarIndex.favorites.rawValue
-        }
+//        selectedIndex = 0
+        
+//        if CoreDataHelper.sharedHelper.songs().filter({ $0.favorited }).count == 0 {
+//            selectedIndex = TabBarIndex.songs.rawValue
+//        } else {
+//            selectedIndex = TabBarIndex.favorites.rawValue
+//        }
     }
 }

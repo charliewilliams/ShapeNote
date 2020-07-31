@@ -337,15 +337,22 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableViewRowHeight
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let song = filtering ? filteredSongs[indexPath.row] : songs[indexPath.row]
+        performSegue(withIdentifier: "SongDetailViewController", sender: song)
+    }
 
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let identifier = segue.identifier else { return }
+        
         if let selectedIndexPath = tableView.indexPathForSelectedRow,
             let cell = tableView.cellForRow(at: selectedIndexPath) as? SongListTableViewCell,
-            let destinationVC = segue.destination as? NotesViewController, identifier == "showNotes" {
+            let destinationVC = segue.destination as? SongDetailViewController {
                 destinationVC.song = cell.song
         }
         if let destinationVC = segue.destination as? FiltersViewController, identifier == "editFilters" {

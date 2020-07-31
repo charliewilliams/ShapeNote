@@ -42,6 +42,8 @@
 		C05BE4D824D3270700ECD320 /* QuizHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4D724D3270700ECD320 /* QuizHeaderView.swift */; };
 		C05BE4DA24D3270E00ECD320 /* QuizHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4D924D3270E00ECD320 /* QuizHeaderView.xib */; };
 		C05BE4DC24D327B000ECD320 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */; };
+		C05BE4DE24D4A9F500ECD320 /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */; };
+		C05BE4E024D4B0C300ECD320 /* SongDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
@@ -52,7 +54,6 @@
 		C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */; };
 		C0A54EAE22E900590054AC28 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A54EAD22E900590054AC28 /* String.swift */; };
 		C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0BE7DB41BE6359A006383CC /* FontAwesome.otf */; };
-		C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB61BE6A169006383CC /* NotesViewController.swift */; };
 		C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */; };
 		C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */; };
 		C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */; };
@@ -132,6 +133,8 @@
 		C05BE4D724D3270700ECD320 /* QuizHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHeaderView.swift; sourceTree = "<group>"; };
 		C05BE4D924D3270E00ECD320 /* QuizHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizHeaderView.xib; sourceTree = "<group>"; };
 		C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
+		C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDisplaying.swift; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
@@ -143,7 +146,6 @@
 		C09ABE1B1C1F6E2800310195 /* ShapeNote 0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.4.xcdatamodel"; sourceTree = "<group>"; };
 		C0A54EAD22E900590054AC28 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C0BE7DB41BE6359A006383CC /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
-		C0BE7DB61BE6A169006383CC /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerProfileViewController.swift; sourceTree = "<group>"; };
 		C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCompletedViewController.swift; sourceTree = "<group>"; };
@@ -217,9 +219,9 @@
 				C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */,
 				C09A96A01A7EC293009D1C29 /* SongListTableViewCell.swift */,
 				C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */,
-				C0BE7DB61BE6A169006383CC /* NotesViewController.swift */,
 				C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */,
 				C092E8671A8A0CB8002594A5 /* BookPickerTableViewController.swift */,
+				C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */,
 			);
 			name = "Song Lists";
 			sourceTree = "<group>";
@@ -261,6 +263,7 @@
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
 				C04D21A01DD9C78800B98D86 /* Intro */,
 				C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */,
+				C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */,
 				C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */,
 				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
 				C05BE4D524D3260900ECD320 /* UILabel.swift */,
@@ -371,7 +374,6 @@
 				C0515B571A7BA59D0006ED16 /* Sources */,
 				C0515B581A7BA59D0006ED16 /* Frameworks */,
 				C0515B591A7BA59D0006ED16 /* Resources */,
-				C064ECD41AB950650020AFE3 /* ShellScript */,
 				30433AE3E832D05BD6EB2C6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -545,19 +547,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C064ECD41AB950650020AFE3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION == Release ]; then\necho \"Bumping build number...\"\nplist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\nbuildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\nif [[ \"${buildnum}\" == \"\" ]]; then\necho \"No build number in $plist\"\nexit 2\nfi\n\nbuildnum=$(expr $buildnum + 1)\n/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\necho \"Bumped build number to $buildnum\"\n\nelse\necho $CONFIGURATION \" build - Not bumping build number.\"\nfi\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -583,6 +572,7 @@
 				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
 				C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */,
 				C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */,
+				C05BE4DE24D4A9F500ECD320 /* SongDetailViewController.swift in Sources */,
 				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
 				C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */,
@@ -598,11 +588,11 @@
 				C035664A1E057E1C00A13309 /* ErrorHandler.swift in Sources */,
 				C0515B841A7BA5F90006ED16 /* CoreDataHelper.swift in Sources */,
 				C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */,
-				C0BE7DB71BE6A169006383CC /* NotesViewController.swift in Sources */,
 				C03566541E07082C00A13309 /* NSManagedObject.swift in Sources */,
 				C043116F1DB4DDC70015C180 /* TabBarController.swift in Sources */,
 				C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */,
 				C09A96A11A7EC293009D1C29 /* SongListTableViewCell.swift in Sources */,
+				C05BE4E024D4B0C300ECD320 /* SongDisplaying.swift in Sources */,
 				C092E8681A8A0CB8002594A5 /* BookPickerTableViewController.swift in Sources */,
 				C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */,
 				C0515B641A7BA59D0006ED16 /* ShapeNote.xcdatamodeld in Sources */,
@@ -712,7 +702,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-D DEBUG=1";
@@ -766,7 +756,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				PROVISIONING_PROFILE = "";
@@ -786,7 +776,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -800,7 +790,7 @@
 					"\"$(SRCROOT)/Pods\"",
 				);
 				INFOPLIST_FILE = ShapeNote/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
@@ -822,7 +812,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -836,7 +826,7 @@
 					"\"$(SRCROOT)/Pods\"",
 				);
 				INFOPLIST_FILE = ShapeNote/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG=0";

@@ -7,12 +7,17 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FontAwesome.otf">
+            <string>FontAwesome</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Sacred Harp-->
         <scene sceneID="IVu-nV-GIw">
             <objects>
                 <tableViewController title="Sacred Harp" id="pwM-Va-lag" customClass="SongListTableViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OoA-wg-ntw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OoA-wg-ntw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -23,6 +28,7 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Title" id="h7t-20-rAS">
+                        <barButtonItem key="backBarButtonItem" title="Song List" id="uQA-Ci-s9e"/>
                         <barButtonItem key="leftBarButtonItem" image="notebook" id="B6c-BR-lRp"/>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="nIO-Hn-Rhl">
                             <connections>
@@ -32,52 +38,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="filterButton" destination="nIO-Hn-Rhl" id="Hav-xT-tak"/>
+                        <segue destination="J4i-q2-1Zd" kind="show" identifier="SongDetailViewController" id="G6S-ML-bb6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQO-zt-667" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="886" y="-2"/>
-        </scene>
-        <!--Notes-->
-        <scene sceneID="ip4-RJ-ru8">
-            <objects>
-                <viewController storyboardIdentifier="SongNotesViewController" title="Notes" id="Nfb-Kh-kw7" customClass="NotesViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TFu-eB-ne7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="il1-M9-YVz">
-                                <rect key="frame" x="16" y="20" width="343" height="627"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="Nfb-Kh-kw7" id="iY5-3u-wrD"/>
-                                </connections>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="il1-M9-YVz" firstAttribute="leading" secondItem="TFu-eB-ne7" secondAttribute="leadingMargin" id="Diu-aO-EAR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="il1-M9-YVz" secondAttribute="trailing" id="R5c-J3-6Pr"/>
-                            <constraint firstItem="WJy-BJ-sa4" firstAttribute="bottom" secondItem="il1-M9-YVz" secondAttribute="bottom" constant="20" id="RUg-gC-HkK"/>
-                            <constraint firstItem="il1-M9-YVz" firstAttribute="top" secondItem="WJy-BJ-sa4" secondAttribute="top" constant="20" id="yrm-qQ-4R2"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="WJy-BJ-sa4"/>
-                    </view>
-                    <connections>
-                        <outlet property="textView" destination="il1-M9-YVz" id="Z5l-jj-Sc6"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vbq-Py-HtG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2534" y="-2"/>
         </scene>
         <!--Filters View Controller-->
         <scene sceneID="fLH-Oa-Aht">
@@ -313,7 +279,136 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lve-d0-Zae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="-1"/>
+            <point key="canvasLocation" x="1716" y="-440"/>
+        </scene>
+        <!--Song Detail View Controller-->
+        <scene sceneID="fR9-Id-Ylb">
+            <objects>
+                <viewController storyboardIdentifier="SongDetailViewController" id="J4i-q2-1Zd" customClass="SongDetailViewController" customModule="ShapeNote" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ao1-IG-U6y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZV-5L-0hL">
+                                <rect key="frame" x="0.0" y="44" width="375" height="629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="49" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cn5-ef-0cW">
+                                        <rect key="frame" x="20" y="20" width="83.5" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76L-Uc-Hj3">
+                                        <rect key="frame" x="325" y="20" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="CSr-fA-3fl"/>
+                                            <constraint firstAttribute="width" constant="30" id="HWg-2G-H1P"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="">
+                                            <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="favoriteButtonPressed:" destination="J4i-q2-1Zd" eventType="touchUpInside" id="K5b-lF-aVf"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYg-iG-KRE">
+                                        <rect key="frame" x="115.5" y="48" width="72" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Isaac Watts, 1719" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnD-b2-RPu">
+                                        <rect key="frame" x="23" y="92" width="133" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LMD Plain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSe-3z-eXs">
+                                        <rect key="frame" x="23" y="113" width="77" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5p-1v-URQ">
+                                        <rect key="frame" x="23" y="142" width="332" height="487"/>
+                                        <mutableString key="text">Will God forever cast us off?
+His wrath forever smoke
+Against the people of His love,
+His little chosen flock.
+
+Think of the tribes so dearly bought
+With the Redeemer’s blood,
+Nor let Thy Zion be forgot,
+Where once Thy glory stood.
+
+Where once Thy churches prayed and sang
+Thy foes profanely rage;
+Amid Thy gates their ensigns hang,
+And there their host engage.
+
+And still to heighten our distress,
+Thy presence is withdrawn;
+Thy wonted signs of pow’r and grace
+Thy pow’r and grace are gone.
+
+No prophet speaks to calm our grief,
+But all in silence mourn;
+Nor know the hour of our relief,
+The hour of Thy return.</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="UnD-b2-RPu" firstAttribute="top" secondItem="bYg-iG-KRE" secondAttribute="bottom" constant="8" id="1NP-af-hnT"/>
+                                    <constraint firstAttribute="trailing" secondItem="76L-Uc-Hj3" secondAttribute="trailing" constant="20" id="7DJ-l1-DLB"/>
+                                    <constraint firstItem="U5p-1v-URQ" firstAttribute="leading" secondItem="vSe-3z-eXs" secondAttribute="leading" id="B73-ol-RXe"/>
+                                    <constraint firstItem="cn5-ef-0cW" firstAttribute="top" secondItem="Kuc-JF-Vsf" secondAttribute="top" constant="20" id="MNn-Wl-tgK"/>
+                                    <constraint firstItem="vSe-3z-eXs" firstAttribute="top" secondItem="UnD-b2-RPu" secondAttribute="bottom" id="P2v-q7-KRU"/>
+                                    <constraint firstItem="bYg-iG-KRE" firstAttribute="leading" secondItem="cn5-ef-0cW" secondAttribute="trailing" constant="12" id="PW0-uX-kbw"/>
+                                    <constraint firstItem="cn5-ef-0cW" firstAttribute="leading" secondItem="NZV-5L-0hL" secondAttribute="leading" constant="20" id="Pci-7U-Svh"/>
+                                    <constraint firstItem="vSe-3z-eXs" firstAttribute="leading" secondItem="UnD-b2-RPu" secondAttribute="leading" id="T1a-wB-90C"/>
+                                    <constraint firstItem="Kuc-JF-Vsf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UnD-b2-RPu" secondAttribute="trailing" symbolic="YES" id="UXz-ea-QMz"/>
+                                    <constraint firstItem="cn5-ef-0cW" firstAttribute="bottom" secondItem="bYg-iG-KRE" secondAttribute="bottom" constant="8" id="XS4-Ie-CNl"/>
+                                    <constraint firstItem="UnD-b2-RPu" firstAttribute="leading" secondItem="NZV-5L-0hL" secondAttribute="leading" constant="23" id="ZDg-VO-1NR"/>
+                                    <constraint firstItem="76L-Uc-Hj3" firstAttribute="top" secondItem="cn5-ef-0cW" secondAttribute="top" id="c3C-db-XhH"/>
+                                    <constraint firstItem="Kuc-JF-Vsf" firstAttribute="bottom" secondItem="U5p-1v-URQ" secondAttribute="bottom" constant="40.5" id="czU-4M-pEr"/>
+                                    <constraint firstItem="Kuc-JF-Vsf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vSe-3z-eXs" secondAttribute="trailing" symbolic="YES" id="dSY-NM-hNa"/>
+                                    <constraint firstItem="U5p-1v-URQ" firstAttribute="top" secondItem="vSe-3z-eXs" secondAttribute="bottom" constant="8" id="iDp-qX-dll"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bYg-iG-KRE" secondAttribute="trailing" constant="10" id="xgh-8z-qRA"/>
+                                    <constraint firstAttribute="bottom" secondItem="U5p-1v-URQ" secondAttribute="bottom" constant="40.5" id="ydi-tE-iqY"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Kuc-JF-Vsf"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="LzO-fY-1b7"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Oiy-jK-8kV" firstAttribute="trailing" secondItem="76L-Uc-Hj3" secondAttribute="trailing" constant="20" id="TU3-Vb-HaU"/>
+                            <constraint firstItem="Oiy-jK-8kV" firstAttribute="trailing" secondItem="U5p-1v-URQ" secondAttribute="trailing" constant="20" id="WVg-O5-jfR"/>
+                            <constraint firstItem="NZV-5L-0hL" firstAttribute="bottom" secondItem="Oiy-jK-8kV" secondAttribute="bottom" constant="55" id="YQF-jc-Wcn"/>
+                            <constraint firstItem="NZV-5L-0hL" firstAttribute="top" secondItem="Oiy-jK-8kV" secondAttribute="top" id="cS5-PI-YOO"/>
+                            <constraint firstItem="NZV-5L-0hL" firstAttribute="leading" secondItem="Oiy-jK-8kV" secondAttribute="leading" id="oxm-sO-Yot"/>
+                            <constraint firstItem="NZV-5L-0hL" firstAttribute="trailing" secondItem="Oiy-jK-8kV" secondAttribute="trailing" id="tG4-NG-4QS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Oiy-jK-8kV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="q6y-D0-KSc"/>
+                    <connections>
+                        <outlet property="favoriteButton" destination="76L-Uc-Hj3" id="fb9-qo-DZe"/>
+                        <outlet property="infoLabel" destination="UnD-b2-RPu" id="FcO-tZ-VH5"/>
+                        <outlet property="lyricsLabel" destination="U5p-1v-URQ" id="eLI-on-DRA"/>
+                        <outlet property="meterAndTypeLabel" destination="vSe-3z-eXs" id="Ner-SG-Hzd"/>
+                        <outlet property="numberLabel" destination="cn5-ef-0cW" id="HnX-U7-uEW"/>
+                        <outlet property="titleLabel" destination="bYg-iG-KRE" id="sKW-jk-aoo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AD0-IY-nGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1716" y="242"/>
         </scene>
         <!--Songs-->
         <scene sceneID="noS-xh-2V0">

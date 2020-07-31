@@ -46,15 +46,6 @@
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Az9-tu-4Ed" userLabel="Champion">
-                        <rect key="frame" x="466" y="6" width="4" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="HtH-P7-ZwR"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LMD Plain" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXK-VD-TyS" userLabel="MeterAndType">
                         <rect key="frame" x="413" y="28" width="57" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -94,13 +85,10 @@
                     <constraint firstItem="t8L-vB-DLt" firstAttribute="leading" secondItem="DjO-12-xd5" secondAttribute="trailing" constant="8" id="KxA-tn-Sj5"/>
                     <constraint firstItem="xXK-VD-TyS" firstAttribute="top" secondItem="GxF-hm-J6l" secondAttribute="bottom" constant="-4" id="LQm-Jf-Ptq"/>
                     <constraint firstItem="qrS-34-jF6" firstAttribute="leading" secondItem="bKv-PB-ZMg" secondAttribute="leading" id="OIx-j2-x1D"/>
-                    <constraint firstItem="Az9-tu-4Ed" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DjO-12-xd5" secondAttribute="trailing" constant="10" id="Qpe-wu-DmS"/>
                     <constraint firstItem="GxF-hm-J6l" firstAttribute="centerY" secondItem="DjO-12-xd5" secondAttribute="centerY" id="UBR-Kh-3NP"/>
                     <constraint firstItem="GxF-hm-J6l" firstAttribute="leading" secondItem="t8L-vB-DLt" secondAttribute="trailing" constant="-5" id="Ufb-bn-dlE"/>
                     <constraint firstItem="qrS-34-jF6" firstAttribute="top" secondItem="bKv-PB-ZMg" secondAttribute="bottom" id="VE1-Fm-fBT"/>
                     <constraint firstItem="bKv-PB-ZMg" firstAttribute="top" secondItem="8Ls-oR-28u" secondAttribute="topMargin" constant="-4" id="gLa-o2-BSI"/>
-                    <constraint firstItem="Az9-tu-4Ed" firstAttribute="trailing" secondItem="8Ls-oR-28u" secondAttribute="trailingMargin" id="r76-ga-htt"/>
-                    <constraint firstItem="DjO-12-xd5" firstAttribute="baseline" secondItem="Az9-tu-4Ed" secondAttribute="baseline" id="rbm-8e-t3B"/>
                     <constraint firstItem="qrS-34-jF6" firstAttribute="baseline" secondItem="xXK-VD-TyS" secondAttribute="baseline" id="s4K-Y0-qlI"/>
                     <constraint firstItem="t8L-vB-DLt" firstAttribute="baseline" secondItem="DjO-12-xd5" secondAttribute="baseline" constant="-1" id="zHA-8E-UWL"/>
                     <constraint firstItem="DjO-12-xd5" firstAttribute="leading" secondItem="bKv-PB-ZMg" secondAttribute="trailing" constant="8" id="zp5-op-xMc"/>
@@ -115,7 +103,6 @@
             <connections>
                 <outlet property="favoriteButton" destination="GxF-hm-J6l" id="J9V-B2-dDd"/>
                 <outlet property="infoLabel" destination="qrS-34-jF6" id="7Nm-yW-RX4"/>
-                <outlet property="localChampionLabel" destination="Az9-tu-4Ed" id="cl2-0W-GwM"/>
                 <outlet property="lyricsLabel" destination="t8L-vB-DLt" id="vOb-ef-Xxq"/>
                 <outlet property="meterAndTypeLabel" destination="xXK-VD-TyS" id="mlc-KT-yu0"/>
                 <outlet property="numberLabel" destination="bKv-PB-ZMg" id="3xe-c7-tCK"/>
