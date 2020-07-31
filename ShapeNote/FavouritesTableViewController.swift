@@ -39,7 +39,6 @@ class FavouritesTableViewController : SongListTableViewController, NoContentView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        handleFirstRun()
         updateNoContentView(dataCount: filteredSongs.count, noContentView: noContentView)
     }
 }

@@ -17,10 +17,10 @@ extension NoContentViewDisplaying where Self: UITableViewController {
     func updateNoContentView(dataCount: Int, noContentView: UIView) {
         
         if dataCount > 0 {
-            noContentView.isHidden = true
+            noContentView.removeFromSuperview()
             tableView.isScrollEnabled = true
+            tableView.tableHeaderView = nil
         } else {
-            noContentView.isHidden = false
             tableView.isScrollEnabled = false
             var height = UIScreen.main.bounds.size.height
             height -= UIApplication.shared.statusBarFrame.height

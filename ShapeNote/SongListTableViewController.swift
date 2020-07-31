@@ -50,18 +50,7 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         
         tableView.register(UINib(nibName: "SongListTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         
-        searchTableView = SearchResultsTableViewController()
-        searchTableView.tableView.delegate = self
-        searchController = UISearchController(searchResultsController: searchTableView)
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
-        
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
-        
-//        definesPresentationContext = true
+        buildSearchController()
         
         buildHeaderLabel()
         updateTitle()
@@ -90,6 +79,25 @@ class SongListTableViewController: UITableViewController, SubtitledTappable, UIS
         super.viewDidAppear(animated)
         
         handleFirstRun()
+    }
+    
+    func buildSearchController() {
+        
+        searchTableView = SearchResultsTableViewController()
+        searchTableView.tableView.delegate = self
+        searchController = UISearchController(searchResultsController: searchTableView)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
+        
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
     }
     
     func logActiveFilters() {
