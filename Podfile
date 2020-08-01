@@ -8,11 +8,14 @@ use_frameworks!
 target 'ShapeNote' do
     
     pod 'JFADoubleSlider'
+    pod 'Firebase/Analytics'
+
+
 end
 
 target 'ShapeNoteTests' do
-   
-   inherit! :search_paths
+  
+  inherit! :search_paths
 end
 
 post_install do |installer|

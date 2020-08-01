@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 let backgroundImage = UIImage(named: "Launch")!
 let backgroundImageColor = UIColor(patternImage:backgroundImage)
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        FirebaseApp.configure()
         
         window?.backgroundColor = backgroundImageColor
     

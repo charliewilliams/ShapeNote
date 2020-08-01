@@ -45,6 +45,7 @@
 		C05BE4DE24D4A9F500ECD320 /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */; };
 		C05BE4E024D4B0C300ECD320 /* SongDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */; };
 		C05BE4E224D4B4E400ECD320 /* SongDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */; };
+		C05BE4E824D605FF00ECD320 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4E724D605FE00ECD320 /* GoogleService-Info.plist */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
 		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
@@ -137,6 +138,7 @@
 		C05BE4DD24D4A9F500ECD320 /* SongDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
 		C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDisplaying.swift; sourceTree = "<group>"; };
 		C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongDetailViewController.xib; sourceTree = "<group>"; };
+		C05BE4E724D605FE00ECD320 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
 		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
 				C035664B1E057FFE00A13309 /* Collection.swift */,
 				C0A54EAD22E900590054AC28 /* String.swift */,
+				C05BE4E724D605FE00ECD320 /* GoogleService-Info.plist */,
 				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
 				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
@@ -473,6 +476,7 @@
 				C05BE4E224D4B4E400ECD320 /* SongDetailViewController.xib in Resources */,
 				C0515B931A7BC4000006ED16 /* SH1991.json in Resources */,
 				C04D219F1DD8C80600B98D86 /* Launch.storyboard in Resources */,
+				C05BE4E824D605FF00ECD320 /* GoogleService-Info.plist in Resources */,
 				C092E8661A8A0311002594A5 /* Cooper2012.json in Resources */,
 				C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */,
 				C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */,
@@ -522,11 +526,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ShapeNote/Pods-ShapeNote-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JFADoubleSlider/JFADoubleSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JFADoubleSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

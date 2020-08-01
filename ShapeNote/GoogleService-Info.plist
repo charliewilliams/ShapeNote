@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>293907970794-dpbdhmlhiajtn7olce51q4kju0a57hjs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.293907970794-dpbdhmlhiajtn7olce51q4kju0a57hjs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA57uo6LZHnFHAtx1I9sseXw8AJeT959zQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>293907970794</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.charliewilliams.ShapeNote</string>
+	<key>PROJECT_ID</key>
+	<string>shapenote-a7829</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shapenote-a7829.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:293907970794:ios:1b68f64686b9cee93ab593</string>
+	<key>DATABASE_URL</key>
+	<string>https://shapenote-a7829.firebaseio.com</string>
+</dict>
+</plist>
