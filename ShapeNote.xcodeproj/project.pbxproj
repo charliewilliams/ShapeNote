@@ -31,7 +31,6 @@
 		C0515B901A7BBA7A0006ED16 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B8F1A7BBA7A0006ED16 /* Group.swift */; };
 		C0515B931A7BC4000006ED16 /* SH1991.json in Resources */ = {isa = PBXBuildFile; fileRef = C0515B921A7BC4000006ED16 /* SH1991.json */; };
 		C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */; };
-		C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */; };
 		C0519C5E1DF2D4C500ACACDE /* EmailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */; };
 		C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05626971BEF711500E05EBE /* QuizSetupViewController.swift */; };
 		C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */; };
@@ -47,7 +46,6 @@
 		C05BE4E224D4B4E400ECD320 /* SongDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */; };
 		C05BE4E824D605FF00ECD320 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C05BE4E724D605FE00ECD320 /* GoogleService-Info.plist */; };
 		C07436C71DABC17C00EBB4B9 /* IntroHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */; };
-		C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07542E81A7BFE55007626C6 /* SingerViewController.swift */; };
 		C092E8601A8914B6002594A5 /* CH.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E85F1A8914B6002594A5 /* CH.json */; };
 		C092E8621A891A51002594A5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092E8611A891A51002594A5 /* Defaults.swift */; };
 		C092E8651A8A0311002594A5 /* Shenandoah.json in Resources */ = {isa = PBXBuildFile; fileRef = C092E8631A8A0311002594A5 /* Shenandoah.json */; };
@@ -57,14 +55,12 @@
 		C0A54EAE22E900590054AC28 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A54EAD22E900590054AC28 /* String.swift */; };
 		C0BE7DB51BE6359A006383CC /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0BE7DB41BE6359A006383CC /* FontAwesome.otf */; };
 		C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */; };
-		C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */; };
 		C0C1D1CA1BF0E13200C22809 /* QuizCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */; };
 		C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */; };
 		C0C2B2CC1DB3DA5C00DD27A2 /* SubtitledTappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */; };
 		C0D1325A1C1D724D007D95B5 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D132591C1D724D007D95B5 /* SearchResultsTableViewController.swift */; };
 		C0D1325C1C1D825C007D95B5 /* SongListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D1325B1C1D825C007D95B5 /* SongListTableViewCell.xib */; };
 		C0EA4E1C1BFFBEE9000CCF81 /* SongList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1A1BFFBEE9000CCF81 /* SongList.storyboard */; };
-		C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */; };
 		C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */; };
 		C0EA4E2A1C01B258000CCF81 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EA4E291C01B258000CCF81 /* Intro.storyboard */; };
 		C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */; };
@@ -124,7 +120,6 @@
 		C0515B8F1A7BBA7A0006ED16 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C0515B921A7BC4000006ED16 /* SH1991.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SH1991.json; sourceTree = "<group>"; };
 		C0515B971A7BEB3B0006ED16 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
-		C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingersListTableViewController.swift; sourceTree = "<group>"; };
 		C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSender.swift; sourceTree = "<group>"; };
 		C05626971BEF711500E05EBE /* QuizSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSetupViewController.swift; sourceTree = "<group>"; };
 		C056269D1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,7 +135,6 @@
 		C05BE4E124D4B4E400ECD320 /* SongDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongDetailViewController.xib; sourceTree = "<group>"; };
 		C05BE4E724D605FE00ECD320 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C07436C61DABC17C00EBB4B9 /* IntroHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHandler.swift; sourceTree = "<group>"; };
-		C07542E81A7BFE55007626C6 /* SingerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerViewController.swift; sourceTree = "<group>"; };
 		C092E85F1A8914B6002594A5 /* CH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CH.json; sourceTree = "<group>"; };
 		C092E8611A891A51002594A5 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		C092E8631A8A0311002594A5 /* Shenandoah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Shenandoah.json; sourceTree = "<group>"; };
@@ -151,7 +145,6 @@
 		C0A54EAD22E900590054AC28 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C0BE7DB41BE6359A006383CC /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		C0BE7DB81BE6AA5F006383CC /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
-		C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingerProfileViewController.swift; sourceTree = "<group>"; };
 		C0C1D1C81BF0E13200C22809 /* QuizCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCompletedViewController.swift; sourceTree = "<group>"; };
 		C0C1D1C91BF0E13200C22809 /* QuizCompletedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizCompletedViewController.xib; sourceTree = "<group>"; };
 		C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitledTappable.swift; sourceTree = "<group>"; };
@@ -161,7 +154,6 @@
 		C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeNote-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0DBE9251C05D2CD0060344F /* ShapeNote 0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShapeNote 0.3.xcdatamodel"; sourceTree = "<group>"; };
 		C0EA4E1B1BFFBEE9000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongList.storyboard; sourceTree = "<group>"; };
-		C0EA4E1E1BFFBF09000CCF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Singers.storyboard; sourceTree = "<group>"; };
 		C0EA4E231BFFBF54000CCF81 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
 		C0EA4E291C01B258000CCF81 /* Intro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
 		C0EA4E2B1C01BAD6000CCF81 /* IntroPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPopupViewController.swift; sourceTree = "<group>"; };
@@ -267,32 +259,19 @@
 			children = (
 				C0515B601A7BA59D0006ED16 /* AppDelegate.swift */,
 				C04D21A01DD9C78800B98D86 /* Intro */,
-				C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */,
-				C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */,
 				C035664E1E06DBDC00A13309 /* StoredValueCoordinator.swift */,
-				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
-				C05BE4D524D3260900ECD320 /* UILabel.swift */,
-				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
-				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
-				C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */,
-				C092E8611A891A51002594A5 /* Defaults.swift */,
+				C05BE4EB24D60E7200ECD320 /* Data */,
 				C0EA4E2D1C01BC3B000CCF81 /* TabBarManager.swift */,
 				C0515B671A7BA59D0006ED16 /* Main.storyboard */,
 				C043116E1DB4DDC70015C180 /* TabBarController.swift */,
-				C0515B911A7BBA810006ED16 /* Managed Objects */,
 				C02E18911BF11BD300FF2057 /* Song Lists */,
-				C0EA4E271C00DF83000CCF81 /* Singer Lists */,
 				C05626A51BEFD1B700E05EBE /* Quiz */,
 				C0515B6A1A7BA59D0006ED16 /* Images.xcassets */,
-				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
-				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
-				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
-				C035664B1E057FFE00A13309 /* Collection.swift */,
-				C0A54EAD22E900590054AC28 /* String.swift */,
+				C05BE4EA24D60E6300ECD320 /* Protocols */,
+				C05BE4EF24D60EC500ECD320 /* Helpers */,
+				C05BE4EC24D60E7E00ECD320 /* Extensions */,
 				C05BE4E724D605FE00ECD320 /* GoogleService-Info.plist */,
-				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
 				C0515B5E1A7BA59D0006ED16 /* Supporting Files */,
-				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
 			);
 			path = ShapeNote;
 			sourceTree = "<group>";
@@ -300,6 +279,7 @@
 		C0515B5E1A7BA59D0006ED16 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0D2AF831A7EE3310074C40F /* ShapeNote-Bridging-Header.h */,
 				C035664D1E05868200A13309 /* ShapeNote.entitlements */,
 				C0BE7DB41BE6359A006383CC /* FontAwesome.otf */,
 				C092E85F1A8914B6002594A5 /* CH.json */,
@@ -339,6 +319,7 @@
 				C03566531E07082C00A13309 /* NSManagedObject.swift */,
 			);
 			name = "Managed Objects";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		C05626A51BEFD1B700E05EBE /* Quiz */ = {
@@ -358,15 +339,47 @@
 			name = Quiz;
 			sourceTree = "<group>";
 		};
-		C0EA4E271C00DF83000CCF81 /* Singer Lists */ = {
+		C05BE4EA24D60E6300ECD320 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */,
-				C0515B991A7BF0BB0006ED16 /* SingersListTableViewController.swift */,
-				C0BEF0B41A8E0EE00020EA31 /* SingerProfileViewController.swift */,
-				C07542E81A7BFE55007626C6 /* SingerViewController.swift */,
+				C05BE4DB24D327B000ECD320 /* NibLoadableView.swift */,
+				C05BE4DF24D4B0C300ECD320 /* SongDisplaying.swift */,
+				C04311701DB4E4920015C180 /* NoContentViewDisplaying.swift */,
+				C0C2B2CB1DB3DA5C00DD27A2 /* SubtitledTappable.swift */,
 			);
-			name = "Singer Lists";
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C05BE4EB24D60E7200ECD320 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C0515B831A7BA5F90006ED16 /* CoreDataHelper.swift */,
+				C0515B851A7BADFE0006ED16 /* JSONLoader.swift */,
+				C092E8611A891A51002594A5 /* Defaults.swift */,
+				C0515B911A7BBA810006ED16 /* Managed Objects */,
+				C0515B621A7BA59D0006ED16 /* ShapeNote.xcdatamodeld */,
+				C012C8DF1CCBB30200292F06 /* DataValidity.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C05BE4EC24D60E7E00ECD320 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C05BE4D524D3260900ECD320 /* UILabel.swift */,
+				C035664B1E057FFE00A13309 /* Collection.swift */,
+				C0A54EAD22E900590054AC28 /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C05BE4EF24D60EC500ECD320 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C0519C5D1DF2D4C500ACACDE /* EmailSender.swift */,
+				C03566491E057E1C00A13309 /* ErrorHandler.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,7 +482,6 @@
 				C0515B691A7BA59D0006ED16 /* Main.storyboard in Resources */,
 				C05BE4DA24D3270E00ECD320 /* QuizHeaderView.xib in Resources */,
 				C0285B801D97169C00306705 /* Favourites.storyboard in Resources */,
-				C0EA4E1F1BFFBF09000CCF81 /* Singers.storyboard in Resources */,
 				C04311731DB4EE080015C180 /* BookPicker.storyboard in Resources */,
 				C0EA4E241BFFBF54000CCF81 /* Quiz.storyboard in Resources */,
 				C0C1D1CB1BF0E13200C22809 /* QuizCompletedViewController.xib in Resources */,
@@ -568,7 +580,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0BEF0B51A8E0EE00020EA31 /* SingerProfileViewController.swift in Sources */,
 				C05BE4D624D3260900ECD320 /* UILabel.swift in Sources */,
 				C0519C5E1DF2D4C500ACACDE /* EmailSender.swift in Sources */,
 				C0515B8E1A7BBA7A0006ED16 /* Song.swift in Sources */,
@@ -583,11 +594,9 @@
 				C056269E1BEF870600E05EBE /* QuizQuestionTypeTableViewCell.swift in Sources */,
 				C0BE7DB91BE6AA5F006383CC /* FiltersViewController.swift in Sources */,
 				C0515B8A1A7BBA7A0006ED16 /* Singer.swift in Sources */,
-				C0515B9A1A7BF0BB0006ED16 /* SingersListTableViewController.swift in Sources */,
 				C05626A41BEFB80700E05EBE /* QuizItemViewController.swift in Sources */,
 				C0EA4E2C1C01BAD6000CCF81 /* IntroPopupViewController.swift in Sources */,
 				C05BE4DE24D4A9F500ECD320 /* SongDetailViewController.swift in Sources */,
-				C07542EA1A7BFE55007626C6 /* SingerViewController.swift in Sources */,
 				C05626981BEF711500E05EBE /* QuizSetupViewController.swift in Sources */,
 				C0515B981A7BEB3B0006ED16 /* SongListTableViewController.swift in Sources */,
 				C0A54EAE22E900590054AC28 /* String.swift in Sources */,
@@ -654,14 +663,6 @@
 				C0EA4E1B1BFFBEE9000CCF81 /* Base */,
 			);
 			name = SongList.storyboard;
-			sourceTree = "<group>";
-		};
-		C0EA4E1D1BFFBF09000CCF81 /* Singers.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0EA4E1E1BFFBF09000CCF81 /* Base */,
-			);
-			name = Singers.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -790,7 +791,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 26;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -826,7 +827,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShapeNote/ShapeNote.entitlements;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 26;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
