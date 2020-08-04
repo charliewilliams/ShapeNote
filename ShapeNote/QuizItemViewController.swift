@@ -10,6 +10,8 @@ import UIKit
 
 let tickmark = "✔︎"
 let cross = "✘"
+let questionMark = "?"
+let unknownColor = UIColor.gray
 let correctColor = UIColor(red: 0.004, green: 0.788, blue: 0, alpha: 1)
 let wrongColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
 
@@ -135,6 +137,7 @@ class QuizItemViewController: UIViewController {
                 
                 let center = label.center
                 label.center = CGPoint(x: center.x, y: center.y - 50)
+                label.alpha = 0
                 
                 if index == correctIndex {
                     label.text = tickmark
@@ -158,7 +161,8 @@ class QuizItemViewController: UIViewController {
         } else {
             
             for label in indicatorLabels {
-                label.alpha = 0
+                label.text = questionMark
+                label.textColor = unknownColor
             }
         }
     }
