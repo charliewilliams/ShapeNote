@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SubtitledTappable: class {
+protocol SubtitledTappable: AnyObject {
     
     var headerLabel: UILabel? { get set }
     var headerTapGestureRecognizer: UITapGestureRecognizer! { get set }

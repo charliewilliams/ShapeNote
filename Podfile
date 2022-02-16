@@ -1,6 +1,6 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
+platform :ios, '15.0'
 
 use_frameworks!
 # inhibit_all_warnings!
@@ -9,7 +9,6 @@ target 'ShapeNote' do
     
     pod 'JFADoubleSlider'
     pod 'Firebase/Analytics'
-
 
 end
 

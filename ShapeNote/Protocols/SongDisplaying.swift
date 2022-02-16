@@ -11,7 +11,7 @@ import UIKit
 let favoritedString = "★"
 let unfavoritedString = "☆"
 
-protocol SongDisplaying: class {
+protocol SongDisplaying: AnyObject {
     
     var song: Song! { get set }
     
